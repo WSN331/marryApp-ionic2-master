@@ -1,0 +1,37 @@
+page-start{
+
+  ion-content{
+    background-image:url('../../assets/img/bgsele.jpg');
+    background-size:cover;
+    width:100%;
+  }
+
+  .button{
+    background-color:transparent;
+    border-radius:20px;
+    color:#ffaa00;
+    border: 2px solid #ffaa00;
+    width:50%;
+    margin:0 auto;
+  }
+
+  .button:active{
+    background-color:#ffaa00;
+    color:white;
+  }
+  .button:hover{
+    background-color:#ffaa00;
+    color:white;
+  }
+
+  .gg{
+    margin-top:100%;
+  }
+  .dl{
+    margin-top:10px;
+  }
+  .zc{
+    margin-top:10px;
+  }
+
+}

@@ -1,0 +1,22 @@
+page-contact {
+  .span{
+    clear: both;
+    float: left;
+    margin: 30px 10px 10px 10px;
+  }
+
+  div.picture img{
+    clear: both;
+    float: left;
+    width: 15%;
+    margin: 10px;
+    border-radius:50%;
+    overflow:hidden;
+  }
+
+  .name{
+    float: left;
+    margin: 20px;
+    font-size: 30px;
+  }
+}

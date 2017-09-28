@@ -1,0 +1,27 @@
+page-register{
+  textarea.hobby{
+    width: 100%;
+    height: 200px;
+  }
+
+  button.btn_register{
+    margin-bottom: 50px;
+  }
+
+  .btn_register{
+    background-color:transparent;
+    border-radius:20px;
+    color:#ffaa00;
+    border: 2px solid #ffaa00;
+    width:50%;
+    margin:0 auto;
+  }
+  .btn_register:active{
+    background-color:#ffaa00;
+    color:white;
+  }
+  .btn_register:hover{
+    background-color:#ffaa00;
+    color:white;
+  }
+}

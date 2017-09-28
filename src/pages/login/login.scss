@@ -1,0 +1,38 @@
+page-login{
+  .button{
+    background-color:transparent;
+    border-radius:20px;
+    color:#ffaa00;
+    border: 2px solid #ffaa00;
+    width:50%;
+    margin:0 auto;
+  }
+  .button:active{
+    background-color:#ffaa00;
+    color:white;
+  }
+  .button:hover{
+    background-color:#ffaa00;
+    color:white;
+  }
+
+  .mm{
+    color:#cccccc;
+    position:absolute;
+    bottom:46px;
+    width:100%;
+    text-align:center;
+  }
+
+//不同浏览器下的显示
+  .text-input::-moz-placeholder {
+    color: #cccccc;
+  }
+  .text-input:-ms-input-placeholder {
+    color: #cccccc;
+  }
+  .text-input::-webkit-input-placeholder {
+    color: #cccccc;
+  }
+
+}

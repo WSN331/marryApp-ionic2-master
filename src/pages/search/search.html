@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      搜索
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <div class="div">
+    <div class="div1">
+      <button ion-button icon-only clear (click)="gotoIntroduce()">
+        <ion-icon ios="ios-search-outline" md="md-search"></ion-icon>
+      </button>
+    </div>
+    <div class="div2">
+      <ion-input type="text" placeholder="搜索ID" [(ngModel)]="userid"></ion-input>
+    </div>
+    <div class="div3">
+      <button ion-button icon-only clear (click)="inputClear()">
+        <ion-icon ios="ios-close-outline" md="md-close"></ion-icon>
+      </button>
+    </div>
+    <div class="div4">
+    </div>
+
+  </div>
+
+  <div class="basic">
+    <p>基本筛选</p>
+    <div class="divhigh">
+      <ion-label>身高</ion-label>
+      <ion-input type="text" placeholder="请输入身高" text-right [(ngModel)]="searchItem.high"></ion-input>
+    </div>
+    <div class="divage">
+      <ion-label>年龄</ion-label>
+      <ion-input type="text" placeholder="请输入年龄" text-right [(ngModel)]="searchItem.age"></ion-input>
+    </div>
+    <div class="divincome">
+      <ion-label>年收入</ion-label>
+      <ion-input type="text" placeholder="请输入年收入" text-right [(ngModel)]="searchItem.income"></ion-input>
+    </div>
+    <div class="divwork">
+      <ion-label>工作生活</ion-label>
+      <ion-input type="text" placeholder="请输入工作生活地址" text-right [(ngModel)]="searchItem.live"></ion-input>
+    </div>
+  </div>
+
+  <div class="detail">
+    <div>
+      <p class="p1">高级筛选</p>
+      <p class="p2">仅加V会员可用</p>
+    </div>
+    <div class="divhome">
+      <ion-label>户籍(老家)</ion-label>
+      <ion-input type="text" placeholder="请输入户籍" text-right [(ngModel)]="VsearchItem.home"></ion-input>
+    </div>
+    <div class="divedu">
+      <ion-label>学历</ion-label>
+      <ion-input type="text" placeholder="请输入学历" text-right [(ngModel)]="VsearchItem.edu"></ion-input>
+    </div>
+    <div class="divconslletation">
+      <ion-label>星座</ion-label>
+      <ion-input type="text" placeholder="请输入星座" text-right [(ngModel)]="VsearchItem.constellation"></ion-input>
+    </div>
+    <div class="divzodiac">
+      <ion-label>属相</ion-label>
+      <ion-input type="text" placeholder="请输入属相" text-right [(ngModel)]="VsearchItem.zodiac"></ion-input>
+    </div>
+    <div class="divmarriage">
+      <ion-label>婚史</ion-label>
+      <ion-input type="text" placeholder="请输入婚史" text-right [(ngModel)]="VsearchItem.marriage"></ion-input>
+    </div>
+  </div>
+
+</ion-content>

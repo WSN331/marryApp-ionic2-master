@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>注册</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list inset>
+
+    <ion-item>
+      <ion-input type="text" placeholder="账号" [(ngModel)]="registerForm.account"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input type="password" placeholder="密码" [(ngModel)]="registerForm.password"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input type="text" placeholder="姓名" [(ngModel)]="registerForm.name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input type="text" placeholder="年龄" [(ngModel)]="registerForm.age"></ion-input>
+    </ion-item>
+
+    <ion-list radio-group [(ngModel)]="registerForm.sex">
+
+      <ion-list-header>性别</ion-list-header>
+      <ion-item>
+        <ion-label>男</ion-label>
+        <ion-radio checked="true" value="0"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>女</ion-label>
+        <ion-radio checked="true" value="1"></ion-radio>
+      </ion-item>
+
+    </ion-list>
+
+    <textarea class="hobby" placeholder="爱好" [(ngModel)]="registerForm.hobby"></textarea>
+
+  </ion-list>
+
+  <button class="btn_register" ion-button full (click)="register()">注册</button>
+
+</ion-content>

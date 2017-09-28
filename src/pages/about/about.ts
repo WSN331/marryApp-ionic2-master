@@ -1,0 +1,57 @@
+import { Component } from '@angular/core';
+import {App, NavController} from 'ionic-angular';
+import { SafeUrl } from '@angular/platform-browser';
+
+import { Memory } from '../../util/Memory'
+import { ImgService } from '../../util/ImgService'
+
+import { StartPage } from '../start/start'
+import { UserIntroducePage } from '../user-introduce/user-introduce'
+
+@Component({
+  selector: 'page-about',
+  templateUrl: 'about.html'
+})
+export class AboutPage {
+
+  public user;
+
+  constructor(public navCtrl: NavController, private imgService: ImgService, public memory: Memory,
+              public app:App) {
+    this.getUser();
+  }
+
+  /**
+   * 获取用户信息
+   */
+  getUser() {
+    this.user = this.memory.getUser();
+  }
+
+  /**
+   * 修改图片为安全URL
+   * @param image
+   */
+  changeImage(image: String) : SafeUrl{
+    return this.imgService.safeImage(image)
+  }
+
+  /**
+   * 获取详细信息
+   */
+  getIntroduce() {
+    this.navCtrl.push(UserIntroducePage);
+  }
+
+  /**
+   * 登出
+   */
+  logout() {
+    // this.navCtrl.insert(0, StartPage);
+    // this.navCtrl.pop();
+    //window.location.reload();
+    this.app.getRootNav().setRoot(StartPage);
+    this.memory.setUser({});
+  }
+
+}

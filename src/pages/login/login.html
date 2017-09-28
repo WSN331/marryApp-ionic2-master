@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>登录</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list inset>
+
+    <ion-item>
+      <ion-input type="text" placeholder="请输入手机号" [(ngModel)]="loginForm.account" text-center></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input type="password" placeholder="请输入密码" [(ngModel)]="loginForm.password" text-center></ion-input>
+    </ion-item>
+    <ion-item></ion-item>
+
+  </ion-list>
+
+  <button ion-button full (click)="login()">登录</button>
+
+  <div class="mm">
+    <p>忘记密码？</p>
+  </div>
+</ion-content>

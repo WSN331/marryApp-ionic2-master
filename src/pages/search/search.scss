@@ -1,0 +1,215 @@
+page-search{
+
+  .div{
+    position: relative;
+    width:100%;
+    overflow: hidden;
+  }
+  .div1{
+    float: left;
+    display: inline-block;
+  }
+  .div2{
+    position: absolute;
+    padding-top:5px;
+    font-size:20px;
+    float: left;
+    margin-left: 54px;
+  }
+  .div3{
+    text-align: right;
+    width: 100%;
+  }
+  .div4{
+    width:100%;
+    height:1px;
+    margin:0px auto;
+    padding:0px;
+    background-color:#cccccc;
+    overflow:hidden;
+  }
+
+  .divhigh{
+    overflow: hidden;
+    position: relative;
+  }
+  .divhigh ion-label{
+    position: absolute;
+    font-size: 18px;
+    height: 100%;
+    line-height: 100%;
+    text-align: center;
+    width:auto;
+    float: left;
+  }
+  .divhigh ion-input{
+    width:100%;
+    display: inline-block;
+  }
+
+  .divage{
+    clear: both;
+    position: relative;
+  }
+  .divage ion-label{
+    position: absolute;
+    font-size: 18px;
+    height: 100%;
+    line-height: 100%;
+    text-align: center;
+    width:auto;
+    float: left;
+  }
+  .divage ion-input{
+    width:100%;
+    display: inline-block;
+  }
+
+  .divincome{
+    clear: both;
+    position: relative;
+  }
+  .divincome ion-label{
+    position: absolute;
+    font-size: 18px;
+    height: 100%;
+    line-height: 100%;
+    text-align: center;
+    width:auto;
+    float: left;
+  }
+  .divincome ion-input{
+    width:100%;
+    display: inline-block;
+  }
+
+  .divwork{
+    clear: both;
+    position: relative;
+  }
+  .divwork ion-label{
+    position: absolute;
+    font-size: 18px;
+    height: 100%;
+    line-height: 100%;
+    text-align: center;
+    width:auto;
+    float: left;
+  }
+  .divwork ion-input{
+    width:100%;
+    display: inline-block;
+  }
+
+  p{
+    color: #cccccc;
+  }
+  p.p1{
+    clear: both;
+    color:#cccccc;
+    float: left;
+  }
+  p.p2{
+    margin-left:20px;
+    color:#ffaa00;
+    display: inline-block;
+  }
+
+  .divhome{
+    clear: both;
+    position: relative;
+  }
+  .divhome ion-label{
+    position: absolute;
+    font-size: 18px;
+    height: 100%;
+    line-height: 100%;
+    text-align: center;
+    width:auto;
+    float: left;
+  }
+  .divhome ion-input{
+    width:100%;
+    display: inline-block;
+  }
+
+  .divedu{
+    clear: both;
+    position: relative;
+  }
+  .divedu ion-label{
+    position: absolute;
+    font-size: 18px;
+    height: 100%;
+    line-height: 100%;
+    text-align: center;
+    width:auto;
+    float: left;
+  }
+  .divedu ion-input{
+    width:100%;
+    display: inline-block;
+  }
+
+  .divconslletation{
+    clear: both;
+    position: relative;
+  }
+  .divconslletation ion-label{
+    position: absolute;
+    font-size: 18px;
+    height: 100%;
+    line-height: 100%;
+    text-align: center;
+    width:auto;
+    float: left;
+  }
+  .divconslletation ion-input{
+    width:100%;
+    display: inline-block;
+  }
+
+  .divzodiac{
+    clear: both;
+    position: relative;
+  }
+  .divzodiac ion-label{
+    position: absolute;
+    font-size: 18px;
+    height: 100%;
+    line-height: 100%;
+    text-align: center;
+    width:auto;
+    float: left;
+  }
+  .divzodiac ion-input{
+    width:100%;
+    display: inline-block;
+  }
+
+  .divmarriage{
+    clear: both;
+    position: relative;
+  }
+  .divmarriage ion-label{
+    position: absolute;
+    font-size: 18px;
+    height: 100%;
+    line-height: 100%;
+    text-align: center;
+    width:auto;
+    float: left;
+  }
+  .divmarriage ion-input{
+    width:100%;
+    display: inline-block;
+  }
+
+  .basic{
+    margin-top:10%;
+  }
+  .detail{
+    margin-top: 10%;
+  }
+
+}

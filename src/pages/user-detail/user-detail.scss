@@ -1,0 +1,19 @@
+page-userDetail{
+  .btn_detail{
+    background-color:transparent;
+    border-radius:20px;
+    color:#ffaa00;
+    border: 2px solid #ffaa00;
+    width:50%;
+    margin:0 auto;
+  }
+  .btn_detail:active{
+    background-color:#ffaa00;
+    color:white;
+  }
+  .btn_detail:hover{
+    background-color:#ffaa00;
+    color:white;
+  }
+
+}

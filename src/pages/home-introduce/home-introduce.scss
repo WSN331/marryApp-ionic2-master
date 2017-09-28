@@ -1,0 +1,92 @@
+page-homeIntroduce{
+  ion-item span{
+    color: #A0A0A0;
+  }
+
+  ion-item p.content {
+    color: black;
+    font-family: 黑体;
+    font-size: 20px;
+    margin-top: 3px;
+  }
+
+  .neirong{
+    position: relative;
+    margin-top: 15px;
+    text-align: center;
+  }
+  .name{
+    font-size: 22px;
+    display: inline-block;
+  }
+  .pic{
+    position: absolute;
+    text-align: center;
+    display: inline-block;
+  }
+
+  .des{
+    text-align: center;
+  }
+
+  p.line-one {
+    display: inline-block;
+    padding: 2px;
+    border-radius: 5px;
+  }
+
+  .meinfo{
+    text-align: center;
+  }
+
+  .yue{
+    overflow: hidden;
+    text-align: center;
+    margin-left: 35%;
+  }
+  .yueta{
+    width: 50%;
+    background-color:transparent;
+    border-radius:20px;
+    color:#ffaa00;
+    border: 2px solid #ffaa00;
+  }
+  .yueta:active{
+    background-color:#ffaa00;
+    color:white;
+  }
+  .yueta:hover{
+    background-color:#ffaa00;
+    color:white;
+  }
+
+
+  ion-list {
+    clear: both;
+    float: left;
+    width: 100%;
+  }
+
+  button {
+    float: left;
+  }
+
+  br{
+    clear: both;
+  }
+
+  .button{
+    background-color:transparent;
+    border-radius:20px;
+    color:#ffaa00;
+    border: 2px solid #ffaa00;
+  }
+  .button:active{
+    background-color:#ffaa00;
+    color:white;
+  }
+  .button:hover{
+    background-color:#ffaa00;
+    color:white;
+  }
+}

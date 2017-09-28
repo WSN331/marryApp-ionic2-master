@@ -1,0 +1,20 @@
+page-everyperson{
+
+  div{
+    overflow:hidden;
+  }
+
+  div.man{
+    height:50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  div.woman{
+    height:50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

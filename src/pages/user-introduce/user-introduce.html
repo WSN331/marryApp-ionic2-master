@@ -1,0 +1,89 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>详细信息</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="picture">
+    <img [src]="sageImage(baseInfo.picture)">
+  </div>
+  <div class="title-right">
+    <p class="line-one">{{ baseInfo.name }}</p>
+    <p class="line-one">{{ ['男','女'][baseInfo.sex] }}</p>
+    <p class="line-one">{{ baseInfo.age }}岁</p>
+    <p class="change_image" (click)="changeImage()">修改图片</p>
+  </div>
+  <ion-list no-lines>
+    <ion-item>
+      <span>身高：</span>{{ detailInfo.height }}
+      <span>体重：</span>{{ detailInfo.weight }}
+    </ion-item>
+    <ion-item>
+      <span>爱好：</span>
+      <p class="content">{{ baseInfo.hobby }}</p>
+    </ion-item>
+    <ion-item>
+      <span>所在地：</span>
+      <p class="content" *ngIf="detailInfo.newDistrict !== undefined && detailInfo.newDistrict !== null">
+        {{detailInfo.newDistrict.city.province.name}}-{{detailInfo.newDistrict.city.name}}-{{detailInfo.newDistrict.name}}
+      </p>
+    </ion-item>
+    <ion-item>
+      <span>故乡：</span>
+      <p class="content" *ngIf="detailInfo.oldDistrict !== undefined && detailInfo.oldDistrict !== null">
+        {{detailInfo.oldDistrict.city.province.name}}-{{detailInfo.oldDistrict.city.name}}-{{detailInfo.oldDistrict.name}}
+      </p>
+    </ion-item>
+    <ion-item>
+      <span>择偶标准：</span>
+      <p class="content">{{ detailInfo.chooseStandard }}</p>
+    </ion-item>
+    <ion-item>
+      <span>星座：</span>
+      <p class="content">{{ detailInfo.constellation }}</p>
+    </ion-item>
+    <ion-item>
+      <span>学历：</span>
+      <p class="content">{{ detailInfo.edu }}</p>
+    </ion-item>
+    <ion-item>
+      <span>大学：</span>
+      <p class="content" *ngIf="detailInfo.forthSchool !== undefined && detailInfo.forthSchool !== null">
+        {{detailInfo.forthSchool.name}}
+      </p>
+    </ion-item>
+    <ion-item>
+      <span>高中：</span>
+      <p class="content" *ngIf="detailInfo.thirdSchool !== undefined && detailInfo.thirdSchool !== null">
+        {{detailInfo.thirdSchool.name}}
+      </p>
+    </ion-item>
+    <ion-item>
+      <span>初中：</span>
+      <p class="content" *ngIf="detailInfo.secondSchool !== undefined && detailInfo.secondSchool !== null">
+        {{detailInfo.secondSchool.name}}
+      </p>
+    </ion-item>
+    <ion-item>
+      <span>小学：</span>
+      <p class="content" *ngIf="detailInfo.firstSchool !== undefined && detailInfo.firstSchool !== null">
+        {{detailInfo.firstSchool.name}}
+      </p>
+    </ion-item>
+    <ion-item>
+      <span>期望婚时：</span>
+      <p class="content">{{ detailInfo.hopeTime }}</p>
+    </ion-item>
+    <ion-item>
+      <span>收入：</span>
+      <p class="content">{{ detailInfo.income }}</p>
+    </ion-item>
+    <ion-item>
+      <span>自我介绍：</span>
+      <p class="content">{{ detailInfo.introduce }}</p>
+    </ion-item>
+  </ion-list>
+
+  <button ion-button full (click)="detail()" class="update">修改</button>
+</ion-content>

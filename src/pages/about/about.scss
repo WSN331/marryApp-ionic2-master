@@ -1,0 +1,30 @@
+page-about {
+  div.picture img{
+    clear: both;
+    float: left;
+    width: 30%;
+    margin: 10px;
+    border-radius:50%;
+    overflow:hidden;
+  }
+  .introduce{
+    color: grey;
+  }
+
+  .button{
+    background-color:transparent;
+    border-radius:20px;
+    color:#ffaa00;
+    border: 2px solid #ffaa00;
+    width:50%;
+    margin:0 auto;
+  }
+  .button:active{
+    background-color:#ffaa00;
+    color:white;
+  }
+  .button:hover{
+    background-color:#ffaa00;
+    color:white;
+  }
+}

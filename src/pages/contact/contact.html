@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      心动
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"  refreshingText="Refreshing...">
+
+    </ion-refresher-content>
+  </ion-refresher>
+  <h1 class="span">我喜欢谁</h1>
+  <div *ngFor="let user of likeList">
+    <div class="picture">
+      <img [src]="changeImage(user.picture)">
+    </div>
+    <p class="name">{{ user.name }}</p>
+  </div>
+
+  <h1 class="span">谁喜欢我</h1>
+  <div *ngFor="let user of beLikeList">
+    <div class="picture">
+      <img [src]="changeImage(user.picture)">
+    </div>
+    <p class="name">{{ user.name }}</p>
+  </div>
+
+</ion-content>

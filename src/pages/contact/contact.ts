@@ -1,0 +1,72 @@
+import { Component } from '@angular/core';
+import { NavController } from 'ionic-angular';
+import { SafeUrl } from '@angular/platform-browser';
+
+import { MyHttp } from '../../util/MyHttp';
+import { Memory } from '../../util/Memory'
+import { ImgService } from '../../util/ImgService'
+
+@Component({
+  selector: 'page-contact',
+  templateUrl: 'contact.html'
+})
+export class ContactPage {
+
+  /**
+   * 我喜欢的
+   */
+  public likeList;
+
+  /**
+   * 喜欢我的
+   */
+  public beLikeList;
+
+  constructor(public navCtrl: NavController, private myHttp : MyHttp, private imgService: ImgService, public memory: Memory) {
+    this.doRefresh();
+  }
+
+  doRefresh(refresher?) {
+    this.getLikeList(refresher);
+    this.getBeLikeList(refresher);
+  }
+
+  /**
+   * 获取喜欢的列表
+   */
+  getLikeList(refresher) {
+    this.myHttp.post(MyHttp.URL_LIKE_LIST, {
+      userId: this.memory.getUser().id
+    }, (data) => {
+      console.log(data)
+      this.likeList = data.userList;
+      if (typeof refresher !== 'undefined') {
+        refresher.complete();
+      }
+    })
+  }
+
+  /**
+   * 获取被喜欢的列表
+   */
+  getBeLikeList(refresher) {
+    this.myHttp.post(MyHttp.URL_BE_LIKE_LIST, {
+      userId: this.memory.getUser().id
+    }, (data) => {
+      this.beLikeList = data.userList;
+      if (typeof refresher !== 'undefined') {
+        refresher.complete();
+      }
+    })
+  }
+
+  /**
+   *
+   * @param image
+   */
+  changeImage(image: String) : SafeUrl{
+    return this.imgService.safeImage(image)
+  }
+
+
+}

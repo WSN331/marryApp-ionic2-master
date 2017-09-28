@@ -1,0 +1,186 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>信息完善</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-item no-lines>
+    <ion-label>姓名：</ion-label>
+    <ion-input [(ngModel)]="baseInfo.name"></ion-input>
+  </ion-item>
+
+  <ion-list radio-group [(ngModel)]="baseInfo.sex" no-lines>
+
+    <ion-list-header>性别：</ion-list-header>
+    <ion-item>
+      <ion-label>男</ion-label>
+      <ion-radio value="0"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>女</ion-label>
+      <ion-radio value="1"></ion-radio>
+    </ion-item>
+  </ion-list>
+
+  <ion-item no-lines>
+    <ion-label>年龄：</ion-label>
+    <ion-input [(ngModel)]="baseInfo.age"></ion-input>
+  </ion-item>
+  <ion-item no-lines>
+    <ion-label>爱好：</ion-label>
+    <ion-input [(ngModel)]="baseInfo.hobby"></ion-input>
+  </ion-item>
+
+  <ion-item no-lines>
+    <ion-label>所在地：</ion-label>
+    <!--省-->
+    <ion-select [(ngModel)]="selectOption.newDistrictSelect.provinceId" (ngModelChange)="getCityList('newDistrictSelect')">
+      <ion-option *ngFor="let province of selectOption.provinceList" value="{{province.id}}">
+        {{province.name}}
+      </ion-option>
+    </ion-select>
+    <!--市-->
+    <ion-select [(ngModel)]="selectOption.newDistrictSelect.cityId" (ngModelChange)="getDistrictList('newDistrictSelect')">
+      <ion-option *ngFor="let city of selectOption.newDistrictSelect.cityList" value="{{city.id}}">
+        {{city.name}}
+      </ion-option>
+    </ion-select>
+    <!--区-->
+    <ion-select [(ngModel)]="selectOption.newDistrictSelect.id">
+      <ion-option *ngFor="let district of selectOption.newDistrictSelect.districtList" value="{{district.id}}">
+        {{district.name}}
+      </ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item no-lines>
+    <ion-label>故乡：</ion-label>
+    <!--省-->
+    <ion-select [(ngModel)]="selectOption.oldDistrictSelect.provinceId" (ngModelChange)="getCityList('oldDistrictSelect')">
+      <ion-option *ngFor="let province of selectOption.provinceList" value="{{province.id}}">
+        {{province.name}}
+      </ion-option>
+    </ion-select>
+    <!--市-->
+    <ion-select [(ngModel)]="selectOption.oldDistrictSelect.cityId" (ngModelChange)="getDistrictList('oldDistrictSelect')">
+      <ion-option *ngFor="let city of selectOption.oldDistrictSelect.cityList" value="{{city.id}}">
+        {{city.name}}
+      </ion-option>
+    </ion-select>
+    <!--区-->
+    <ion-select [(ngModel)]="selectOption.oldDistrictSelect.id">
+      <ion-option *ngFor="let district of selectOption.oldDistrictSelect.districtList" value="{{district.id}}">
+        {{district.name}}
+      </ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item no-lines>
+    <ion-label>小学：</ion-label>
+    <!--省-->
+    <ion-select [(ngModel)]="selectOption.firstSchoolSelect.provinceId" (ngModelChange)="getSchoolList('firstSchoolSelect')">
+      <ion-option *ngFor="let province of selectOption.provinceList" value="{{province.id}}">
+        {{province.name}}
+      </ion-option>
+    </ion-select>
+    <!--学校-->
+    <ion-select [(ngModel)]="selectOption.firstSchoolSelect.id">
+      <ion-option *ngFor="let school of selectOption.firstSchoolSelect.schoolList" value="{{school.id}}">
+        {{school.name}}
+      </ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item no-lines>
+    <ion-label>初中：</ion-label>
+    <!--省-->
+    <ion-select [(ngModel)]="selectOption.secondSchoolSelect.provinceId" (ngModelChange)="getSchoolList('secondSchoolSelect')">
+      <ion-option *ngFor="let province of selectOption.provinceList" value="{{province.id}}">
+        {{province.name}}
+      </ion-option>
+    </ion-select>
+    <!--学校-->
+    <ion-select [(ngModel)]="selectOption.secondSchoolSelect.id">
+      <ion-option *ngFor="let school of selectOption.secondSchoolSelect.schoolList" value="{{school.id}}">
+        {{school.name}}
+      </ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item no-lines>
+    <ion-label>高中：</ion-label>
+    <!--省-->
+    <ion-select [(ngModel)]="selectOption.thirdSchoolSelect.provinceId" (ngModelChange)="getSchoolList('thirdSchoolSelect')">
+      <ion-option *ngFor="let province of selectOption.provinceList" value="{{province.id}}">
+        {{province.name}}
+      </ion-option>
+    </ion-select>
+    <!--学校-->
+    <ion-select [(ngModel)]="selectOption.thirdSchoolSelect.id">
+      <ion-option *ngFor="let school of selectOption.thirdSchoolSelect.schoolList" value="{{school.id}}">
+        {{school.name}}
+      </ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item no-lines>
+    <ion-label>大学：</ion-label>
+    <!--省-->
+    <ion-select [(ngModel)]="selectOption.forthSchoolSelect.provinceId" (ngModelChange)="getSchoolList('forthSchoolSelect')">
+      <ion-option *ngFor="let province of selectOption.provinceList" value="{{province.id}}">
+        {{province.name}}
+      </ion-option>
+    </ion-select>
+    <!--学校-->
+    <ion-select [(ngModel)]="selectOption.forthSchoolSelect.id">
+      <ion-option *ngFor="let school of selectOption.forthSchoolSelect.schoolList" value="{{school.id}}">
+        {{school.name}}
+      </ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item no-lines>
+    <ion-label>择偶标准：</ion-label>
+    <ion-input [(ngModel)]="detailInfo.chooseStandard"></ion-input>
+  </ion-item>
+
+  <ion-item no-lines>
+    <ion-label>星座：</ion-label>
+    <ion-input [(ngModel)]="detailInfo.constellation"></ion-input>
+  </ion-item>
+
+  <ion-item no-lines>
+    <ion-label>学历：</ion-label>
+    <ion-input [(ngModel)]="detailInfo.edu"></ion-input>
+  </ion-item>
+
+  <ion-item no-lines>
+    <ion-label>身高：</ion-label>
+    <ion-input [(ngModel)]="detailInfo.height"></ion-input>
+  </ion-item>
+
+  <ion-item no-lines>
+    <ion-label>体重：</ion-label>
+    <ion-input [(ngModel)]="detailInfo.weight"></ion-input>
+  </ion-item>
+
+  <ion-item no-lines>
+    <ion-label>期望婚时：</ion-label>
+    <ion-input [(ngModel)]="detailInfo.hopeTime"></ion-input>
+  </ion-item>
+
+  <ion-item no-lines>
+    <ion-label>收入：</ion-label>
+    <ion-input [(ngModel)]="detailInfo.income"></ion-input>
+  </ion-item>
+
+  <ion-item no-lines>
+    <ion-label>自我介绍：</ion-label>
+    <ion-input [(ngModel)]="detailInfo.introduce"></ion-input>
+  </ion-item>
+
+  <button class="btn_detail" ion-button full (click)="detail()">保存</button>
+
+</ion-content>

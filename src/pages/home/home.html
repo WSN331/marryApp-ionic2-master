@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar color="light">
+
+    <ion-title>LOGO</ion-title>
+
+    <ion-buttons end>
+
+      <button ion-button icon-only (click)="gotoSearch()">
+         <ion-icon ios="ios-search-outline" md="md-search"></ion-icon>
+       </button>
+
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-slides class="slide-title">
+    <ion-slide *ngFor="let user of userList; let i = index;" (click)="getIntroduce(user.id)">
+      <div>
+        <div class="picture">
+          <img [src]="changeImage(user.picture)" />
+        </div>
+
+        <div class="neirong">
+          <div class="name">
+            {{ user.name }}
+          </div>
+          <div class="pic">
+            <img src="../../assets/img/vrz.png"/>
+          </div>
+        </div>
+
+        <div class="descript">
+          <p class="one">{{ ['男','女'][user.sex] }}</p>
+          <p class="two">{{ user.age }}岁</p>
+        </div>
+
+        <div class="hobby"><span>爱好：</span>{{ user.hobby }}</div>
+
+      </div>
+    </ion-slide>
+  </ion-slides>
+
+</ion-content>
