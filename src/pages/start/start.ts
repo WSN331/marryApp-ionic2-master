@@ -1,11 +1,11 @@
 /**
  * Created by ASUS on 2017/8/29 0029.
  */
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {NavController} from 'ionic-angular';
 import {LoginPage} from "../login/login";
-import { RegisterPage } from '../register/register';
-import {EverypersonPage} from "../everyperson/everyperson";
+import {RegisterPage} from '../register/register';
+import {EveryPersonPage} from "../every-person/every-person";
 
 
 @Component({
@@ -14,7 +14,7 @@ import {EverypersonPage} from "../everyperson/everyperson";
 })
 export class StartPage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl:NavController) {
 
   }
 
@@ -30,10 +30,8 @@ export class StartPage {
     this.navCtrl.push(RegisterPage);
   }
 
-  goToSeeEachPerson(){
-    this.navCtrl.push(EverypersonPage);
+  goToSeeEachPerson() {
+    this.navCtrl.push(EveryPersonPage);
   }
-
-
 
 }

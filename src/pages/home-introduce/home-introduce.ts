@@ -2,7 +2,7 @@
  * Created by ASUS on 2017/8/29 0029.
  */
 import { Component } from '@angular/core';
-import {Alert, AlertController, NavController, NavParams} from 'ionic-angular';
+import { AlertController, NavController, NavParams} from 'ionic-angular';
 import { SafeUrl } from '@angular/platform-browser';
 
 import { MyHttp } from '../../util/MyHttp';

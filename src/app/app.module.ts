@@ -23,7 +23,7 @@ import { ImagePicker } from '@ionic-native/image-picker';
 import { MyHttp } from '../util/MyHttp'
 import { Memory } from '../util/Memory'
 import { ImgService } from '../util/ImgService'
-import {EverypersonPage} from "../pages/everyperson/everyperson";
+import {EveryPersonPage} from "../pages/every-person/every-person";
 import {SearchPage} from "../pages/search/search";
 import {MessagePage} from "../pages/message/message";
 
@@ -40,7 +40,7 @@ import {MessagePage} from "../pages/message/message";
     HomeIntroducePage,
     UserIntroducePage,
     UserDetailPage,
-    EverypersonPage,
+    EveryPersonPage,
     SearchPage,
     MessagePage
   ],
@@ -62,7 +62,7 @@ import {MessagePage} from "../pages/message/message";
     HomeIntroducePage,
     UserIntroducePage,
     UserDetailPage,
-    EverypersonPage,
+    EveryPersonPage,
     SearchPage,
     MessagePage
   ],

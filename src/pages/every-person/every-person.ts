@@ -1,14 +1,14 @@
-import {Component, ViewChild} from "@angular/core";
+import {Component} from "@angular/core";
 import {NavController} from "ionic-angular";
 import {Memory} from "../../util/Memory";
 import {HomePage} from "../home/home";
 
 @Component({
-  selector:'page-everyperson',
-  templateUrl:'everyperson.html'
+  selector:'page-everyPerson',
+  templateUrl:'every-person.html'
 })
 
-export class EverypersonPage{
+export class EveryPersonPage{
 
   constructor(public navCtrl: NavController,public memory:Memory) {
 

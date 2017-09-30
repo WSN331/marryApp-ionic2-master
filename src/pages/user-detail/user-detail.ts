@@ -104,6 +104,7 @@ export class UserDetailPage {
       this.getUserInfo();
       this.navCtrl.pop();
       this.events.publish('e-user-introduce');
+      this.events.publish('e-home-list');
     })
   }
 

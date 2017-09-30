@@ -3,15 +3,16 @@ import {NavController} from "ionic-angular";
 import {ContactPage} from "../contact/contact";
 
 @Component({
-  selector:'page-message',
-  templateUrl:'message.html'
+  selector: 'page-message',
+  templateUrl: 'message.html'
 })
 
-export class MessagePage{
+export class MessagePage {
 
-  constructor(public navCtrl:NavController){
+  constructor(public navCtrl:NavController) {
   }
-  gotoContact(){
+
+  goToContact() {
     this.navCtrl.push(ContactPage);
   }
 }

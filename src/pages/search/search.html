@@ -10,12 +10,12 @@
 
   <div class="div">
     <div class="div1">
-      <button ion-button icon-only clear (click)="gotoIntroduce()">
+      <button ion-button icon-only clear (click)="goToIntroduce()">
         <ion-icon ios="ios-search-outline" md="md-search"></ion-icon>
       </button>
     </div>
     <div class="div2">
-      <ion-input type="text" placeholder="搜索ID" [(ngModel)]="userid"></ion-input>
+      <ion-input type="text" placeholder="搜索ID" [(ngModel)]="userId"></ion-input>
     </div>
     <div class="div3">
       <button ion-button icon-only clear (click)="inputClear()">
@@ -54,23 +54,23 @@
     </div>
     <div class="divhome">
       <ion-label>户籍(老家)</ion-label>
-      <ion-input type="text" placeholder="请输入户籍" text-right [(ngModel)]="VsearchItem.home"></ion-input>
+      <ion-input type="text" placeholder="请输入户籍" text-right [(ngModel)]="vSearchItem.home"></ion-input>
     </div>
     <div class="divedu">
       <ion-label>学历</ion-label>
-      <ion-input type="text" placeholder="请输入学历" text-right [(ngModel)]="VsearchItem.edu"></ion-input>
+      <ion-input type="text" placeholder="请输入学历" text-right [(ngModel)]="vSearchItem.edu"></ion-input>
     </div>
     <div class="divconslletation">
       <ion-label>星座</ion-label>
-      <ion-input type="text" placeholder="请输入星座" text-right [(ngModel)]="VsearchItem.constellation"></ion-input>
+      <ion-input type="text" placeholder="请输入星座" text-right [(ngModel)]="vSearchItem.constellation"></ion-input>
     </div>
     <div class="divzodiac">
       <ion-label>属相</ion-label>
-      <ion-input type="text" placeholder="请输入属相" text-right [(ngModel)]="VsearchItem.zodiac"></ion-input>
+      <ion-input type="text" placeholder="请输入属相" text-right [(ngModel)]="vSearchItem.zodiac"></ion-input>
     </div>
     <div class="divmarriage">
       <ion-label>婚史</ion-label>
-      <ion-input type="text" placeholder="请输入婚史" text-right [(ngModel)]="VsearchItem.marriage"></ion-input>
+      <ion-input type="text" placeholder="请输入婚史" text-right [(ngModel)]="vSearchItem.marriage"></ion-input>
     </div>
   </div>
 

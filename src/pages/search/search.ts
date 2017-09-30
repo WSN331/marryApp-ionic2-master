@@ -1,5 +1,4 @@
 import {Component} from "@angular/core";
-import {selector} from "rxjs/operator/multicast";
 import {NavController} from "ionic-angular";
 import {HomeIntroducePage} from "../home-introduce/home-introduce";
 
@@ -10,15 +9,27 @@ import {HomeIntroducePage} from "../home-introduce/home-introduce";
 
 export class SearchPage{
 
-  private userid;
+  /**
+   *
+   */
+  private userId;
 
+  /**
+   *
+   * @type {{high: string, age: string, income: string, live: string}}
+     */
   private searchItem = {
     high : '',
     age : '',
     income : '',
     live : ''
   }
-  private VsearchItem = {
+
+  /**
+   *
+   * @type {{home: string, edu: string, constellation: string, zodiac: string, marriage: string}}
+     */
+  private vSearchItem = {
     home :'',
     edu :'',
     constellation:'',
@@ -32,9 +43,9 @@ export class SearchPage{
   /**
    * 点击搜索id
    */
-  gotoIntroduce(){
-    if(this.userid){
-      this.navCtrl.push(HomeIntroducePage, {otherUserId: this.userid});
+  goToIntroduce(){
+    if(this.userId){
+      this.navCtrl.push(HomeIntroducePage, {otherUserId: this.userId});
     }
   }
 
