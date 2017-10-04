@@ -4,6 +4,8 @@ import {AlertController} from 'ionic-angular';
 import {SafeUrl} from '@angular/platform-browser';
 import {LoadingController} from 'ionic-angular';
 import { Events } from 'ionic-angular';
+// import { ViewChild } from '@angular/core';
+// import { Slides } from 'ionic-angular';
 
 import {MyHttp} from '../../util/MyHttp';
 import {Memory} from '../../util/Memory'
@@ -26,6 +28,7 @@ export class HomePage {
   public userList = [];
   public id;
 
+  // @ViewChild("homeSlides") slides: Slides;
 
   constructor(public navCtrl:NavController, private myHttp:MyHttp, public alertCtrl:AlertController, public memory:Memory,
               private imgService:ImgService, public loadingCtrl:LoadingController, public events: Events) {
@@ -34,6 +37,11 @@ export class HomePage {
       this.getUserList();
     })
   }
+
+  // goToSlide(action: number) {
+  //   console.log(this.sildes.getActiveIndex())
+  //   this.slides.slideTo(this.sildes.getActiveIndex() + action);
+  // }
 
   /**
    * 获取用户列表

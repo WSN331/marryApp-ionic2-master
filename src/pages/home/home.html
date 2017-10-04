@@ -16,28 +16,34 @@
 
 <ion-content>
 
-  <ion-slides [pager]="false" class="slide-title">
+  <ion-slides #homeSlides [pager]="true" class="slide-title">
     <ion-slide *ngFor="let user of userList; let i = index;" (click)="getIntroduce(user.id)">
       <div>
         <div class="picture">
           <img [src]="changeImage(user.picture)" />
         </div>
 
-        <div class="neirong">
-          <div class="name">
-            {{ user.name }}
+        <!--<ion-icon class="ion-ios-arrow-back icon"></ion-icon>-->
+        <!--<ion-icon class="ion-ios-arrow-forward icon"></ion-icon>-->
+
+        <div class="message">
+          <div class="neirong">
+            <div class="name">
+              {{ user.name }}
+            </div>
+            <div class="pic">
+              <img src="assets/img/vrz.png"/>
+            </div>
           </div>
-          <div class="pic">
-            <img src="assets/img/vrz.png"/>
+
+          <div class="descript">
+            <p class="one">{{ ['男','女'][user.sex] }}</p>
+            <p class="two">{{ user.age }}岁</p>
           </div>
+
+          <div class="hobby"><span>爱好：</span>{{ user.hobby }}</div>
         </div>
 
-        <div class="descript">
-          <p class="one">{{ ['男','女'][user.sex] }}</p>
-          <p class="two">{{ user.age }}岁</p>
-        </div>
-
-        <div class="hobby"><span>爱好：</span>{{ user.hobby }}</div>
 
       </div>
     </ion-slide>

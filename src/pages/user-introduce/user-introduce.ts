@@ -67,6 +67,7 @@ export class UserIntroducePage {
         userId: this.memory.getUser().id
       }, (data)=>{
         this.getUserInfo();
+        // this.memory.getSex()
       })
     })
   }

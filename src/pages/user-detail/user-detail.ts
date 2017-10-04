@@ -103,6 +103,8 @@ export class UserDetailPage {
     this.myHttp.post(MyHttp.URL_USER_COMPLETE, json, (data)=> {
       this.getUserInfo();
       this.navCtrl.pop();
+      this.memory.setUser(this.baseInfo);
+      this.events.publish("e-user-self");
       this.events.publish('e-user-introduce');
       this.events.publish('e-home-list');
     })

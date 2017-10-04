@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {App, NavController} from 'ionic-angular';
 import { SafeUrl } from '@angular/platform-browser';
+import { Events } from 'ionic-angular';
 
 import { Memory } from '../../util/Memory'
 import { ImgService } from '../../util/ImgService'
@@ -17,8 +18,11 @@ export class AboutPage {
   public user;
 
   constructor(public navCtrl: NavController, private imgService: ImgService, public memory: Memory,
-              public app:App) {
+              public app:App, public events: Events) {
     this.getUser();
+    this.events.subscribe('e-user-self', () => {
+      this.getUser();
+    })
   }
 
   /**
