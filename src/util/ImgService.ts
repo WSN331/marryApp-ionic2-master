@@ -5,7 +5,6 @@ import {Injectable} from '@angular/core';
 import {Camera, CameraOptions} from '@ionic-native/camera';
 import { AlertController } from 'ionic-angular';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { ImagePicker } from '@ionic-native/image-picker';
 
 @Injectable()
 export class ImgService {
@@ -15,27 +14,32 @@ export class ImgService {
    * @type {{quality: number, destinationType: number, encodingType: number, mediaType: number}}
      */
   private cameraOptions: CameraOptions = {
-    quality: 50,
+    quality: 75,
     destinationType: this.camera.DestinationType.DATA_URL,
     encodingType: this.camera.EncodingType.JPEG,
     mediaType: this.camera.MediaType.PICTURE,
-    targetWidth: 100,
-    targetHeight: 100
+    targetWidth: 500,
+    targetHeight: 500,
+    allowEdit: true,
+    saveToPhotoAlbum: false
   }
 
   /**
-   * 相册参数
-   * @type {{maximumImagesCount: number, width: number, height: number, quality: number, outputType: number}}
+   * 相册选择图片参数
+   * @type {ImageResizerOptions}
      */
-  private pickerOptions = {
-    maximumImagesCount: 1,
-    width: 500,//图片的宽度
-    height: 500,//图片的高度
-    quality: 50,//图片的质量0-100之间选择
-    outputType: 1 // default .FILE_URI返回影像档的，0表示FILE_URI返回影像档的也是默认的，1表示返回base64格式的图片
+  private chooseOptions = {
+    quality: 75,
+    destinationType: this.camera.DestinationType.DATA_URL,
+    sourceType:this.camera.PictureSourceType.PHOTOLIBRARY,
+    allowEdit: true,
+    encodingType: this.camera.EncodingType.JPEG,
+    targetWidth: 500,
+    targetHeight: 500,
+    saveToPhotoAlbum: false
   }
 
-  constructor(private camera: Camera, public alertCtrl: AlertController, private sanitize:DomSanitizer, private imagePicker: ImagePicker) {
+  constructor(private camera: Camera, public alertCtrl: AlertController, private sanitize:DomSanitizer) {
   }
 
   /**
@@ -52,17 +56,15 @@ export class ImgService {
   }
 
   /**
-   * 调用相册
+   * 启用相册
    * @param success
      */
-  startPicker(success: Function) {
-    this.imagePicker.getPictures(this.pickerOptions).then((results) => {
-      if(results.length>0) {
-        success(this.encodeAdd(results[0]));
-      }
+  chooseCamera(success: Function) {
+    this.camera.getPicture(this.chooseOptions).then((imageData) => {
+      success(this.encodeAdd(imageData));
     }, (err) => {
       console.log(err);
-      this.failError("调用相册失败");
+      this.failError("调用相机失败");
     });
   }
 

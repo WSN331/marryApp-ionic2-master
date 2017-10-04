@@ -16,7 +16,7 @@
 
 <ion-content>
 
-  <ion-slides class="slide-title">
+  <ion-slides [pager]="false" class="slide-title">
     <ion-slide *ngFor="let user of userList; let i = index;" (click)="getIntroduce(user.id)">
       <div>
         <div class="picture">
@@ -28,7 +28,7 @@
             {{ user.name }}
           </div>
           <div class="pic">
-            <img src="../../assets/img/vrz.png"/>
+            <img src="assets/img/vrz.png"/>
           </div>
         </div>
 

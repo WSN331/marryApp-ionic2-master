@@ -61,7 +61,7 @@ export class UserIntroducePage {
    * 修改图片
    */
   changeImage() {
-    this.imgService.startPicker((imageData) => {
+    this.imgService.chooseCamera((imageData) => {
       this.myHttp.post(MyHttp.URL_USER_COMPLETE, {
         picture: imageData,
         userId: this.memory.getUser().id

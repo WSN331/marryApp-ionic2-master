@@ -44,6 +44,8 @@ export class SearchPage{
    * 点击搜索id
    */
   goToIntroduce(){
+    console.log(this.searchItem)
+    console.log(this.vSearchItem)
     if(this.userId){
       this.navCtrl.push(HomeIntroducePage, {otherUserId: this.userId});
     }
