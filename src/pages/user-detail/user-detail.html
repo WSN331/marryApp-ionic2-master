@@ -11,8 +11,12 @@
     <ion-input [(ngModel)]="baseInfo.name"></ion-input>
   </ion-item>
 
-  <ion-list radio-group [(ngModel)]="baseInfo.sex" no-lines>
+  <ion-item no-lines>
+    <ion-label>昵称：</ion-label>
+    <ion-input [(ngModel)]="baseInfo.nickName"></ion-input>
+  </ion-item>
 
+  <ion-list radio-group [(ngModel)]="baseInfo.sex" no-lines>
     <ion-list-header>性别：</ion-list-header>
     <ion-item>
       <ion-label>男</ion-label>
@@ -25,8 +29,8 @@
   </ion-list>
 
   <ion-item no-lines>
-    <ion-label>年龄：</ion-label>
-    <ion-input [(ngModel)]="baseInfo.age"></ion-input>
+    <ion-label>出生年月日：</ion-label>
+    <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="baseInfo.birthday"></ion-datetime>
   </ion-item>
   <ion-item no-lines>
     <ion-label>爱好：</ion-label>
@@ -141,14 +145,21 @@
     </ion-select>
   </ion-item>
 
+  <ion-list radio-group [(ngModel)]="detailInfo.graduate" no-lines>
+    <ion-list-header>是否毕业：</ion-list-header>
+    <ion-item>
+      <ion-label>否</ion-label>
+      <ion-radio value="0"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>是</ion-label>
+      <ion-radio value="1"></ion-radio>
+    </ion-item>
+  </ion-list>
+
   <ion-item no-lines>
     <ion-label>择偶标准：</ion-label>
     <ion-input [(ngModel)]="detailInfo.chooseStandard"></ion-input>
-  </ion-item>
-
-  <ion-item no-lines>
-    <ion-label>星座：</ion-label>
-    <ion-input [(ngModel)]="detailInfo.constellation"></ion-input>
   </ion-item>
 
   <ion-item no-lines>

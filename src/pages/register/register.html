@@ -9,7 +9,7 @@
   <ion-list inset>
 
     <ion-item>
-      <ion-input type="text" placeholder="账号" [(ngModel)]="registerForm.account"></ion-input>
+      <ion-input type="tel" placeholder="手机号" [(ngModel)]="registerForm.account"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -21,7 +21,16 @@
     </ion-item>
 
     <ion-item>
-      <ion-input type="text" placeholder="年龄" [(ngModel)]="registerForm.age"></ion-input>
+      <ion-input type="email" placeholder="邮箱" [(ngModel)]="registerForm.email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input type="text" placeholder="昵称" [(ngModel)]="registerForm.nickName"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>出生年月日</ion-label>
+      <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="registerForm.birthday"></ion-datetime>
     </ion-item>
 
     <ion-list radio-group [(ngModel)]="registerForm.sex">

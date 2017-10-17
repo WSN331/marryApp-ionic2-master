@@ -29,7 +29,7 @@
         <div class="message">
           <div class="neirong">
             <div class="name">
-              {{ user.name }}
+              {{ user.nickName }}
             </div>
             <div class="pic">
               <img src="assets/img/vrz.png"/>
@@ -38,7 +38,7 @@
 
           <div class="descript">
             <p class="one">{{ ['男','女'][user.sex] }}</p>
-            <p class="two">{{ user.age }}岁</p>
+            <p class="two">{{ calculateService.getAge(user.birthday) }}岁</p>
           </div>
 
           <div class="hobby"><span>爱好：</span>{{ user.hobby }}</div>

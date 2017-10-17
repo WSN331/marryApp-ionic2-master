@@ -8,6 +8,7 @@ import { SafeUrl } from '@angular/platform-browser';
 import { MyHttp } from '../../util/MyHttp';
 import { Memory } from '../../util/Memory'
 import { ImgService } from '../../util/ImgService'
+import {CalculateService} from '../../util/CalculateService'
 
 @Component({
   selector: 'page-homeIntroduce',
@@ -33,7 +34,7 @@ export class HomeIntroducePage {
   public relation = "0"
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public alert:AlertController,
-              private myHttp : MyHttp, private imgService:ImgService, public memory: Memory) {
+              private myHttp : MyHttp, private imgService:ImgService, public memory: Memory, public calculateService: CalculateService) {
     this.getUserInfo();
   }
 
@@ -80,10 +81,10 @@ export class HomeIntroducePage {
 
   /**
    *
-   * @param type
+   * @param type 0喜欢，1讨厌，2取消喜欢，3取消讨厌，4收藏，5取消收藏
      */
   changeRelation(type: number) {
-    let url = [MyHttp.URL_LIKE,MyHttp.URL_HATE,MyHttp.URL_DIS_LIKE,MyHttp.URL_DIS_HATE][type];
+    let url = [MyHttp.URL_LIKE,MyHttp.URL_HATE,MyHttp.URL_DIS_LIKE,MyHttp.URL_DIS_HATE,MyHttp.URL_COLLECT,MyHttp.URL_DIS_COLLECT][type];
     this.myHttp.post(url, {
       userId: this.memory.getUser().id,
       toUserId: this.navParams.get('otherUserId')

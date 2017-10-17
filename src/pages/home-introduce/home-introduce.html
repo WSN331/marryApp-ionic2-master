@@ -13,11 +13,13 @@
   <button ion-button *ngIf="relation!=='1'" (click)="changeRelation(0)">喜欢</button>
   <button ion-button *ngIf="relation==='2'" (click)="changeRelation(3)">取消讨厌</button>
   <button ion-button *ngIf="relation!=='2'" (click)="changeRelation(1)">讨厌</button>
+  <button ion-button *ngIf="relation==='3'" (click)="changeRelation(5)">取消收藏</button>
+  <button ion-button *ngIf="relation!=='3'" (click)="changeRelation(4)">收藏</button>
   <br/>
 
   <div class="neirong">
     <div class="name">
-      {{ baseInfo.name }}
+      {{ baseInfo.nickName }}
     </div>
     <div class="pic">
       <img src="assets/img/vrz.png"/>
@@ -27,7 +29,7 @@
   <div class="des">
     <p class="line-one">{{ ['男','女'][baseInfo.sex] }}</p>
     <p class="line-one">|</p>
-    <p class="line-one">{{ baseInfo.age }}岁</p>
+    <p class="line-one">{{ calculateService.getAge(baseInfo.birthday) }}岁</p>
   </div>
 
   <div class="yue">
@@ -62,7 +64,7 @@
     </ion-item>
     <ion-item>
       <span>星座：</span>
-      <p class="content">{{ detailInfo.constellation }}</p>
+      <p class="content">{{ calculateService.getConstellation(baseInfo.birthday) }}</p>
     </ion-item>
     <ion-item>
       <span>学历：</span>
@@ -73,6 +75,7 @@
       <p class="content" *ngIf="detailInfo.forthSchool !== undefined && detailInfo.forthSchool !== null">
         {{detailInfo.forthSchool.name}}
       </p>
+      <p *ngIf="detailInfo.graduate === 1">已毕业</p>
     </ion-item>
     <ion-item>
       <span>高中：</span>

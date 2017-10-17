@@ -26,6 +26,7 @@ import { ImgService } from '../util/ImgService'
 import {EveryPersonPage} from "../pages/every-person/every-person";
 import {SearchPage} from "../pages/search/search";
 import {MessagePage} from "../pages/message/message";
+import {CalculateService} from '../util/CalculateService'
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import {MessagePage} from "../pages/message/message";
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     MyHttp,
     Memory,
-    ImgService
+    ImgService,
+    CalculateService
   ]
 })
 export class AppModule {}

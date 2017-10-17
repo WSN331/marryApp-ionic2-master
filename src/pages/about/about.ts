@@ -5,6 +5,7 @@ import { Events } from 'ionic-angular';
 
 import { Memory } from '../../util/Memory'
 import { ImgService } from '../../util/ImgService'
+import {CalculateService} from '../../util/CalculateService'
 
 import { StartPage } from '../start/start'
 import { UserIntroducePage } from '../user-introduce/user-introduce'
@@ -18,7 +19,7 @@ export class AboutPage {
   public user;
 
   constructor(public navCtrl: NavController, private imgService: ImgService, public memory: Memory,
-              public app:App, public events: Events) {
+              public app:App, public events: Events, public calculateService: CalculateService) {
     this.getUser();
     this.events.subscribe('e-user-self', () => {
       this.getUser();

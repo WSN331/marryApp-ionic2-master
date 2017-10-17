@@ -9,6 +9,7 @@ import { Events } from 'ionic-angular';
 import { MyHttp } from '../../util/MyHttp';
 import { Memory } from '../../util/Memory'
 import { ImgService } from '../../util/ImgService'
+import {CalculateService} from '../../util/CalculateService'
 
 import { UserDetailPage } from '../user-detail/user-detail'
 
@@ -28,7 +29,8 @@ export class UserIntroducePage {
    */
   public detailInfo = {}
 
-  constructor(public navCtrl:NavController, private myHttp:MyHttp, private imgService:ImgService, public memory:Memory, public events: Events) {
+  constructor(public navCtrl:NavController, private myHttp:MyHttp, private imgService:ImgService,
+              public memory:Memory, public events: Events, public calculateService: CalculateService) {
     this.getUserInfo();
     this.events.subscribe('e-user-introduce', () => {
       this.getUserInfo();

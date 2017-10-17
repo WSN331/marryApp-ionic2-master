@@ -11,8 +11,8 @@ export class MyHttp {
    * 服务器的IP
    * @type {string}
    */
-  static IP = "47.95.212.171";
-  // static IP = "localhost"
+  // static IP = "47.95.212.171";
+  static IP = "localhost"
 
   /**
    * 服务端端口号
@@ -44,6 +44,8 @@ export class MyHttp {
   static URL_LIKE_LIST = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/relation/likeList";
   // 被喜欢的列表
   static URL_BE_LIKE_LIST = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/relation/beLikeList";
+  // 收藏的列表
+  static URL_COLLECT_LIST = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/relation/collectList";
   // 喜欢
   static URL_LIKE = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/relation/like";
   // 取消喜欢
@@ -52,6 +54,10 @@ export class MyHttp {
   static URL_HATE = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/relation/hate";
   // 取消讨厌
   static URL_DIS_HATE = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/relation/disHate";
+  // 收藏
+  static URL_COLLECT = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/relation/collect";
+  // 取消收藏
+  static URL_DIS_COLLECT = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/relation/disCollect";
   // 获取省份列表
   static URL_GET_PROVINCE_LIST = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/select/getProvinceList";
   // 获取城市列表

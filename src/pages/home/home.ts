@@ -10,6 +10,7 @@ import { Events } from 'ionic-angular';
 import {MyHttp} from '../../util/MyHttp';
 import {Memory} from '../../util/Memory'
 import {ImgService} from '../../util/ImgService'
+import {CalculateService} from '../../util/CalculateService'
 
 import {HomeIntroducePage} from '../../pages/home-introduce/home-introduce'
 import {StartPage} from "../start/start";
@@ -31,7 +32,8 @@ export class HomePage {
   // @ViewChild("homeSlides") slides: Slides;
 
   constructor(public navCtrl:NavController, private myHttp:MyHttp, public alertCtrl:AlertController, public memory:Memory,
-              private imgService:ImgService, public loadingCtrl:LoadingController, public events: Events) {
+              private imgService:ImgService, public loadingCtrl:LoadingController, public events: Events,
+              public calculateService: CalculateService) {
     this.getUserList();
     this.events.subscribe('e-home-list', () => {
       this.getUserList();

@@ -22,6 +22,11 @@ export class ContactPage {
    */
   public beLikeList;
 
+  /**
+   * 我收藏的
+   */
+  public collectList;
+
   constructor(public navCtrl: NavController, private myHttp : MyHttp, private imgService: ImgService, public memory: Memory) {
     this.doRefresh();
   }
@@ -29,12 +34,13 @@ export class ContactPage {
   doRefresh(refresher?) {
     this.getLikeList(refresher);
     this.getBeLikeList(refresher);
+    this.getCollectList(refresher);
   }
 
   /**
    * 获取喜欢的列表
    */
-  getLikeList(refresher) {
+  getLikeList(refresher?) {
     this.myHttp.post(MyHttp.URL_LIKE_LIST, {
       userId: this.memory.getUser().id
     }, (data) => {
@@ -49,11 +55,26 @@ export class ContactPage {
   /**
    * 获取被喜欢的列表
    */
-  getBeLikeList(refresher) {
+  getBeLikeList(refresher?) {
     this.myHttp.post(MyHttp.URL_BE_LIKE_LIST, {
       userId: this.memory.getUser().id
     }, (data) => {
       this.beLikeList = data.userList;
+      if (typeof refresher !== 'undefined') {
+        refresher.complete();
+      }
+    })
+  }
+
+  /**
+   * 获取收藏的列表
+   */
+  getCollectList(refresher?) {
+    this.myHttp.post(MyHttp.URL_COLLECT_LIST, {
+      userId: this.memory.getUser().id
+    }, (data) => {
+      console.log(data)
+      this.collectList = data.userList;
       if (typeof refresher !== 'undefined') {
         refresher.complete();
       }

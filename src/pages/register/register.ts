@@ -22,8 +22,10 @@ export class RegisterPage {
     password: '',
     name: '',
     sex: 0,
-    age: '',
-    hobby: ''
+    hobby: '',
+    birthday: '',
+    email:'',
+    nickName:''
   };
 
   constructor(public navCtrl:NavController, private myHttp:MyHttp, public alertCtrl:AlertController) {

@@ -11,10 +11,12 @@
     <div class="picture">
       <img [src]="changeImage(user.picture)">
     </div>
-    <h2>{{ user.name }}</h2>
+    <h2>{{ user.nickName }}</h2>
     <p>{{ user.account }}</p>
+    <p>{{ user.name }}</p>
     <p>{{ ['男','女'][user.sex] }}</p>
-    <p>{{ user.age }}岁</p>
+    <p>{{ calculateService.getAge(user.birthday) }}岁</p>
+    <p>{{ calculateService.getConstellation(user.birthday) }}</p>
     <p><span>爱好：</span>{{ user.hobby }}</p>
   </div>
   <p class="introduce" (click)="getIntroduce()">详细信息</p>

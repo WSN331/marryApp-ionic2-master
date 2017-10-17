@@ -39,6 +39,12 @@ export class UserDetailPage {
   }
 
   /**
+   * 等级划分
+   * @type {{firstSchoolSelect: number, secondSchoolSelect: number, thirdSchoolSelect: number, forthSchoolSelect: number}}
+     */
+  private scales = {firstSchoolSelect: 1, secondSchoolSelect: 2, thirdSchoolSelect: 3, forthSchoolSelect:4};
+
+  /**
    * 需要复选的内容
    * @type {string}
      */
@@ -87,7 +93,9 @@ export class UserDetailPage {
    * 完善个人信息
    */
   detail() {
-    let json = {userId: this.baseInfo['id']};
+    let json = {
+      userId: this.baseInfo['id']
+    };
     for (let name in this.baseInfo) {
       if (name!=="picture"){
         json[name] = this.baseInfo[name];
@@ -142,7 +150,8 @@ export class UserDetailPage {
    */
   getSchoolList(selectName:string) {
     this.myHttp.post(MyHttp.URL_GET_SCHOOL_LIST, {
-      provinceId: this.selectOption[selectName].provinceId
+      provinceId: this.selectOption[selectName].provinceId,
+      scale: this.scales[selectName]
     }, (data)=>{
       console.log(data);
       this.selectOption[selectName].schoolList=data.list;

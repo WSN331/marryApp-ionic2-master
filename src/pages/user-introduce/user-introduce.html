@@ -11,10 +11,14 @@
   <div class="title-right">
     <p class="line-one">{{ baseInfo.name }}</p>
     <p class="line-one">{{ ['男','女'][baseInfo.sex] }}</p>
-    <p class="line-one">{{ baseInfo.age }}岁</p>
+    <p class="line-one">{{ calculateService.getAge(baseInfo.birthday) }}岁</p>
     <p class="change_image" (click)="changeImage()">修改图片</p>
   </div>
   <ion-list no-lines>
+    <ion-item>
+      <span>昵称：</span>
+      <p class="content">{{ baseInfo.nickName }}</p>
+    </ion-item>
     <ion-item>
       <span>身高：</span>{{ detailInfo.height }}
       <span>体重：</span>{{ detailInfo.weight }}
@@ -41,7 +45,7 @@
     </ion-item>
     <ion-item>
       <span>星座：</span>
-      <p class="content">{{ detailInfo.constellation }}</p>
+      <p class="content">{{ calculateService.getConstellation(detailInfo.birthday) }}</p>
     </ion-item>
     <ion-item>
       <span>学历：</span>
@@ -52,6 +56,7 @@
       <p class="content" *ngIf="detailInfo.forthSchool !== undefined && detailInfo.forthSchool !== null">
         {{detailInfo.forthSchool.name}}
       </p>
+      <p *ngIf="detailInfo.graduate === 1">已毕业</p>
     </ion-item>
     <ion-item>
       <span>高中：</span>

@@ -17,7 +17,7 @@
     <div class="picture">
       <img [src]="changeImage(user.picture)">
     </div>
-    <p class="name">{{ user.name }}</p>
+    <p class="name">{{ user.nickName }}</p>
   </div>
 
   <h1 class="span">谁喜欢我</h1>
@@ -25,7 +25,15 @@
     <div class="picture">
       <img [src]="changeImage(user.picture)">
     </div>
-    <p class="name">{{ user.name }}</p>
+    <p class="name">{{ user.nickName }}</p>
+  </div>
+
+  <h1 class="span">收藏栏</h1>
+  <div *ngFor="let user of collectList">
+    <div class="picture">
+      <img [src]="changeImage(user.picture)">
+    </div>
+    <p class="name">{{ user.nickName }}</p>
   </div>
 
 </ion-content>
