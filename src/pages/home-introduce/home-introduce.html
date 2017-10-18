@@ -6,7 +6,11 @@
 
 <ion-content>
   <div>
-    <img [src]="changeImage(baseInfo.picture)">
+    <img [src]="sageImage(baseInfo.picture)">
+  </div>
+
+  <div class="all-pic">
+    <img *ngFor="let picture of allPictures" [src]="sageImage(picture)">
   </div>
 
   <button ion-button *ngIf="relation==='1'" (click)="changeRelation(2)">取消喜欢</button>
@@ -32,10 +36,10 @@
     <p class="line-one">{{ calculateService.getAge(baseInfo.birthday) }}岁</p>
   </div>
 
-  <div class="yue">
-    <button ion-button full *ngIf="baseInfo.sex==0 " class="yueta">约他</button>
-    <button ion-button full *ngIf="baseInfo.sex==1 " class="yueta">约她</button>
-  </div>
+  <!--<div class="yue">-->
+    <!--<button ion-button full *ngIf="baseInfo.sex==0 " class="yueta">约他</button>-->
+    <!--<button ion-button full *ngIf="baseInfo.sex==1 " class="yueta">约她</button>-->
+  <!--</div>-->
 
   <ion-list no-lines>
     <ion-item>

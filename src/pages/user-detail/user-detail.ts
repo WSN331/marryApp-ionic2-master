@@ -4,6 +4,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Events } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
 
 import { MyHttp } from '../../util/MyHttp';
 import { Memory } from '../../util/Memory'
@@ -50,15 +51,17 @@ export class UserDetailPage {
      */
   private detailInfoSelect = "newDistrict oldDistrict firstSchool secondSchool thirdSchool forthSchool";
 
-  constructor(public navCtrl:NavController, private myHttp:MyHttp, public memory:Memory, public events: Events) {
+  constructor(public navCtrl:NavController, private myHttp:MyHttp, public memory:Memory,
+              public events: Events, public alertCtrl: AlertController) {
     this.getUserInfo();
     this.getProvinceList();
   }
 
   /**
    * 获取用户信息
-   */
-  getUserInfo() {
+   * @param callBack 可能存在的回调
+     */
+  getUserInfo(callBack?) {
     this.myHttp.post(MyHttp.URL_USER_INTRODUCE, {
       userId: this.memory.getUser().id,
       otherUserId: this.memory.getUser().id
@@ -86,6 +89,10 @@ export class UserDetailPage {
         this.selectOption[name + 'Select'].id = this.detailInfo[name].id;
       }
       console.log(this.selectOption);
+
+      if (callBack !== null && typeof callBack === 'function') {
+        callBack();
+      }
     })
   }
 
@@ -109,12 +116,13 @@ export class UserDetailPage {
       }
     }
     this.myHttp.post(MyHttp.URL_USER_COMPLETE, json, (data)=> {
-      this.getUserInfo();
+      this.getUserInfo(() => {
+        this.memory.setUser(this.baseInfo);
+        this.events.publish("e-user-self");
+        this.events.publish('e-user-introduce');
+        this.events.publish('e-home-list');
+      });
       this.navCtrl.pop();
-      this.memory.setUser(this.baseInfo);
-      this.events.publish("e-user-self");
-      this.events.publish('e-user-introduce');
-      this.events.publish('e-home-list');
     })
   }
 
@@ -168,6 +176,114 @@ export class UserDetailPage {
     }, (data)=>{
       console.log(data);
       this.selectOption[selectName].districtList=data.list;
+    });
+  }
+
+  /**
+   * 跳出添加学校第一步弹窗
+   */
+  public alertAddSchoolStep1() {
+    let alert = this.alertCtrl.create();
+    alert.setTitle("选择省份");
+    for (let province of this.selectOption.provinceList) {
+      alert.addInput({
+        type : 'radio',
+        label: province['name'],
+        value: province['id'],
+      });
+    }
+    alert.addButton("关闭");
+    alert.addButton({
+      text: '下一步',
+      handler: data => {
+        this.alertAddSchoolStep2(data);
+      }
+    })
+    alert.present();
+  }
+
+  /**
+   * 跳出添加学校第二步弹窗
+   * @param provinceId 省份
+     */
+  private alertAddSchoolStep2(provinceId) {
+    let alert = this.alertCtrl.create();
+    alert.setTitle("选择学校类型");
+    alert.addInput({
+      type : 'radio',
+      label: '小学',
+      value: '1',
+    });
+    alert.addInput({
+      type : 'radio',
+      label: '初中',
+      value: '2',
+    });
+    alert.addInput({
+      type : 'radio',
+      label: '高中',
+      value: '3',
+    });
+    alert.addInput({
+      type : 'radio',
+      label: '大学',
+      value: '4',
+    });
+    alert.addButton("关闭");
+    alert.addButton({
+      text: '下一步',
+      handler: data => {
+        this.alertAddSchoolStep3(provinceId, data);
+      }
+    })
+    alert.present();
+  }
+
+  /**
+   * 添加学校的第三步
+   * @param provinceId 省份
+   * @param scale 学校类型
+     */
+  private alertAddSchoolStep3(provinceId, scale) {
+    this.alertCtrl.create({
+      title: '填写学校名',
+      inputs: [{
+        name: 'name',
+        placeholder: '学校全名'
+      }],
+      buttons:[{
+        text: "提交",
+        handler: data => {
+          this.addSchool(provinceId, scale, data.name);
+        }
+      }]
+    }).present();
+  }
+
+  /**
+   * 执行添加学校
+   */
+  private addSchool(provinceId, scale, name) {
+    console.log(provinceId)
+    console.log(scale)
+    console.log(name)
+    this.myHttp.post(MyHttp.URL_ADD_SCHOOL, {
+      provinceId: provinceId,
+      scale: scale,
+      name: name
+    }, (data)=>{
+      console.log(data);
+      let message = '';
+      if (data.addSchoolResult === '0') {
+        message = '添加成功';
+      } else if (data.addSchoolResult === '1') {
+        message = '学校已存在';
+      }
+      this.alertCtrl.create({
+        title: '结果',
+        subTitle: message,
+        buttons: ['关闭']
+      }).present();
     });
   }
 }

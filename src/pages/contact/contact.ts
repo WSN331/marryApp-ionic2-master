@@ -85,7 +85,7 @@ export class ContactPage {
    *
    * @param image
    */
-  changeImage(image: String) : SafeUrl{
+  sageImage(image: String) : SafeUrl{
     return this.imgService.safeImage(image)
   }
 

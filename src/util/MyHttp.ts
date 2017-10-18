@@ -40,6 +40,8 @@ export class MyHttp {
   static URL_USER_LIST = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/home/list";
   // 用户详情
   static URL_USER_INTRODUCE = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/home/introduce";
+  // 获取全部图片
+  static URL_GET_ALL_PICTURE = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/home/getAllPicture";
   // 喜欢的列表
   static URL_LIKE_LIST = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/relation/likeList";
   // 被喜欢的列表
@@ -66,6 +68,8 @@ export class MyHttp {
   static URL_GET_DISTRICT_LIST = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/select/getDistrictList";
   // 获取学校列表
   static URL_GET_SCHOOL_LIST = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/select/getSchoolList";
+  // 添加学校
+  static URL_ADD_SCHOOL = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/select/addSchool";
 
   constructor (private http : Http) {
 

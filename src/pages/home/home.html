@@ -20,7 +20,7 @@
     <ion-slide *ngFor="let user of userList; let i = index;" (click)="getIntroduce(user.id)">
       <div>
         <div class="picture">
-          <img [src]="changeImage(user.picture)" />
+          <img [src]="sageImage(user.picture)" />
         </div>
 
         <!--<ion-icon class="ion-ios-arrow-back icon"></ion-icon>-->

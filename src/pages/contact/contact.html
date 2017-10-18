@@ -15,7 +15,7 @@
   <h1 class="span">我喜欢谁</h1>
   <div *ngFor="let user of likeList">
     <div class="picture">
-      <img [src]="changeImage(user.picture)">
+      <img [src]="sageImage(user.picture)">
     </div>
     <p class="name">{{ user.nickName }}</p>
   </div>
@@ -23,7 +23,7 @@
   <h1 class="span">谁喜欢我</h1>
   <div *ngFor="let user of beLikeList">
     <div class="picture">
-      <img [src]="changeImage(user.picture)">
+      <img [src]="sageImage(user.picture)">
     </div>
     <p class="name">{{ user.nickName }}</p>
   </div>
@@ -31,7 +31,7 @@
   <h1 class="span">收藏栏</h1>
   <div *ngFor="let user of collectList">
     <div class="picture">
-      <img [src]="changeImage(user.picture)">
+      <img [src]="sageImage(user.picture)">
     </div>
     <p class="name">{{ user.nickName }}</p>
   </div>

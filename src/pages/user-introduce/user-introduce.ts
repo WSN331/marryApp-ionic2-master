@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { SafeUrl } from '@angular/platform-browser';
 import { Events } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
 
 import { MyHttp } from '../../util/MyHttp';
 import { Memory } from '../../util/Memory'
@@ -29,18 +30,28 @@ export class UserIntroducePage {
    */
   public detailInfo = {}
 
+  /**
+   * 全部图片
+   * @type {Array}
+   */
+  public allPictures = []
+
   constructor(public navCtrl:NavController, private myHttp:MyHttp, private imgService:ImgService,
-              public memory:Memory, public events: Events, public calculateService: CalculateService) {
+              public memory:Memory, public events: Events, public calculateService: CalculateService,
+              public alertCtrl: AlertController) {
     this.getUserInfo();
+    this.getAllPicture();
     this.events.subscribe('e-user-introduce', () => {
       this.getUserInfo();
+      this.getAllPicture();
     })
   }
 
   /**
    * 获取用户信息
+   * @param callBack 可能存在的回调
    */
-  getUserInfo() {
+  getUserInfo(callBack?) {
     this.myHttp.post(MyHttp.URL_USER_INTRODUCE, {
       userId: this.memory.getUser().id,
       otherUserId: this.memory.getUser().id
@@ -48,6 +59,21 @@ export class UserIntroducePage {
       console.log(data)
       this.baseInfo = data.baseInfo || {};
       this.detailInfo = data.detailInfo || {};
+
+      if (callBack !== null && typeof callBack === 'function') {
+        callBack();
+      }
+    })
+  }
+
+  /**
+   * 获取全部图片
+   */
+  getAllPicture() {
+    this.myHttp.post(MyHttp.URL_GET_ALL_PICTURE, {
+      userId: this.memory.getUser().id
+    }, (data) => {
+      this.allPictures = data.allPicture;
     })
   }
 
@@ -60,16 +86,52 @@ export class UserIntroducePage {
   }
 
   /**
-   * 修改图片
+   * 图片操作
+   * @param index 图片序号
    */
-  changeImage() {
+  controlImage(index) {
+    console.log(index)
+    this.alertCtrl.create({
+      title: '图片操作',
+      buttons: [{
+        text:'设为头像',
+        handler: ()=> {
+          this.changeImage(index);
+        }
+      },{
+        text:'删除图片'
+      },'取消']
+    }).present();
+  }
+
+  /**
+   * 修改图片
+   * @param index 图片序号
+     */
+  changeImage(index) {
+    this.myHttp.post(MyHttp.URL_USER_COMPLETE, {
+      picture: index,
+      userId: this.memory.getUser().id
+    }, (data)=>{
+      this.getUserInfo(()=> {
+        this.memory.setUser(this.baseInfo);
+        this.events.publish("e-user-self");
+      });
+
+    })
+
+  }
+
+  /**
+   * 添加图片
+   */
+  addPicture() {
     this.imgService.chooseCamera((imageData) => {
       this.myHttp.post(MyHttp.URL_USER_COMPLETE, {
-        picture: imageData,
+        addPicture: imageData,
         userId: this.memory.getUser().id
       }, (data)=>{
-        this.getUserInfo();
-        // this.memory.getSex()
+        this.getAllPicture();
       })
     })
   }

@@ -9,7 +9,7 @@
 <ion-content padding>
   <div class="user" *ngIf="user != undefined">
     <div class="picture">
-      <img [src]="changeImage(user.picture)">
+      <img [src]="sageImage(user.picture)">
     </div>
     <h2>{{ user.nickName }}</h2>
     <p>{{ user.account }}</p>

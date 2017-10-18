@@ -25,6 +25,16 @@ page-homeIntroduce{
     display: inline-block;
   }
 
+  .all-pic {
+    float: left;
+  }
+
+  .all-pic img {
+    width: 44%;
+    margin: 3%;
+    float: left;
+  }
+
   .des{
     text-align: center;
   }

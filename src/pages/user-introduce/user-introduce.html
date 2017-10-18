@@ -12,8 +12,13 @@
     <p class="line-one">{{ baseInfo.name }}</p>
     <p class="line-one">{{ ['男','女'][baseInfo.sex] }}</p>
     <p class="line-one">{{ calculateService.getAge(baseInfo.birthday) }}岁</p>
-    <p class="change_image" (click)="changeImage()">修改图片</p>
+    <!--<p class="change_image" (click)="changeImage()">修改图片</p>-->
   </div>
+
+  <div class="all-pic">
+    <img *ngFor="let picture of allPictures; let i = index" [src]="sageImage(picture)" (click)="controlImage(i)">
+  </div>
+
   <ion-list no-lines>
     <ion-item>
       <span>昵称：</span>

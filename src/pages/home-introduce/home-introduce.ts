@@ -33,9 +33,16 @@ export class HomeIntroducePage {
      */
   public relation = "0"
 
+  /**
+   * 全部图片
+   * @type {Array}
+     */
+  public allPictures = [];
+
   constructor(public navCtrl: NavController, public navParams: NavParams,public alert:AlertController,
               private myHttp : MyHttp, private imgService:ImgService, public memory: Memory, public calculateService: CalculateService) {
     this.getUserInfo();
+    this.getAllPicture();
   }
 
   /**
@@ -53,6 +60,17 @@ export class HomeIntroducePage {
       if(data.introduceResult==='1'){
         this.pushPrompt();
       }
+    })
+  }
+
+  /**
+   * 获取全部图片
+   */
+  getAllPicture() {
+    this.myHttp.post(MyHttp.URL_GET_ALL_PICTURE, {
+      userId: this.navParams.get('otherUserId'),
+    }, (data) => {
+      this.allPictures = data.allPicture;
     })
   }
 
@@ -75,7 +93,7 @@ export class HomeIntroducePage {
    * 修改图片
    * @param image
    */
-  changeImage(image: String) : SafeUrl{
+  sageImage(image: String) : SafeUrl{
     return this.imgService.safeImage(image)
   }
 

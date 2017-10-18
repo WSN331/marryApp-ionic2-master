@@ -37,7 +37,7 @@ export class AboutPage {
    * 修改图片为安全URL
    * @param image
    */
-  changeImage(image: String) : SafeUrl{
+  sageImage(image: String) : SafeUrl{
     return this.imgService.safeImage(image)
   }
 
