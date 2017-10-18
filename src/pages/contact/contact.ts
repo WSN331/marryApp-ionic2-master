@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { SafeUrl } from '@angular/platform-browser';
 
 import { MyHttp } from '../../util/MyHttp';
 import { Memory } from '../../util/Memory'
@@ -27,7 +26,7 @@ export class ContactPage {
    */
   public collectList;
 
-  constructor(public navCtrl: NavController, private myHttp : MyHttp, private imgService: ImgService, public memory: Memory) {
+  constructor(public navCtrl: NavController, private myHttp : MyHttp, public imgService: ImgService, public memory: Memory) {
     this.doRefresh();
   }
 
@@ -79,14 +78,6 @@ export class ContactPage {
         refresher.complete();
       }
     })
-  }
-
-  /**
-   *
-   * @param image
-   */
-  sageImage(image: String) : SafeUrl{
-    return this.imgService.safeImage(image)
   }
 
 

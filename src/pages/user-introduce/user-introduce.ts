@@ -3,7 +3,6 @@
  */
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { SafeUrl } from '@angular/platform-browser';
 import { Events } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 
@@ -36,14 +35,16 @@ export class UserIntroducePage {
    */
   public allPictures = []
 
-  constructor(public navCtrl:NavController, private myHttp:MyHttp, private imgService:ImgService,
+  constructor(public navCtrl:NavController, private myHttp:MyHttp, public imgService:ImgService,
               public memory:Memory, public events: Events, public calculateService: CalculateService,
               public alertCtrl: AlertController) {
-    this.getUserInfo();
-    this.getAllPicture();
-    this.events.subscribe('e-user-introduce', () => {
-      this.getUserInfo();
+    this.getUserInfo(()=> {
       this.getAllPicture();
+    });
+    this.events.subscribe('e-user-introduce', () => {
+      this.getUserInfo(()=> {
+        this.getAllPicture();
+      });
     })
   }
 
@@ -78,11 +79,11 @@ export class UserIntroducePage {
   }
 
   /**
-   * 修改安全URL图片
-   * @param image
-   */
-  sageImage(image: String) : SafeUrl{
-    return this.imgService.safeImage(image)
+   * 判断图片是否已经满
+   * @returns {boolean} 是否满
+     */
+  imageNotFull() : boolean {
+    return this.allPictures.length < 4;
   }
 
   /**
@@ -99,7 +100,10 @@ export class UserIntroducePage {
           this.changeImage(index);
         }
       },{
-        text:'删除图片'
+        text:'删除图片',
+        handler: ()=> {
+          this.delPicture(index);
+        }
       },'取消']
     }).present();
   }
@@ -120,6 +124,19 @@ export class UserIntroducePage {
 
     })
 
+  }
+
+  /**
+   * 删除图片
+   * @param index 下标
+     */
+  delPicture(index) {
+    this.myHttp.post(MyHttp.URL_USER_COMPLETE, {
+      delPicture: index,
+      userId: this.memory.getUser().id
+    }, (data)=>{
+      this.getAllPicture();
+    })
   }
 
   /**

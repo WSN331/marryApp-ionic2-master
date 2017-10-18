@@ -6,11 +6,11 @@
 
 <ion-content>
   <div>
-    <img [src]="sageImage(baseInfo.picture)">
+    <img [src]="imgService.safeImage(baseInfo.picture)">
   </div>
 
   <div class="all-pic">
-    <img *ngFor="let picture of allPictures" [src]="sageImage(picture)">
+    <img *ngFor="let picture of allPictures" [src]="imgService.safeImage(picture)">
   </div>
 
   <button ion-button *ngIf="relation==='1'" (click)="changeRelation(2)">取消喜欢</button>

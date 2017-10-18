@@ -3,7 +3,6 @@
  */
 import { Component } from '@angular/core';
 import { AlertController, NavController, NavParams} from 'ionic-angular';
-import { SafeUrl } from '@angular/platform-browser';
 
 import { MyHttp } from '../../util/MyHttp';
 import { Memory } from '../../util/Memory'
@@ -40,15 +39,17 @@ export class HomeIntroducePage {
   public allPictures = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public alert:AlertController,
-              private myHttp : MyHttp, private imgService:ImgService, public memory: Memory, public calculateService: CalculateService) {
-    this.getUserInfo();
+              public myHttp : MyHttp, public imgService:ImgService, public memory: Memory, public calculateService: CalculateService) {
+    this.getUserInfo(()=> {
+
+    });
     this.getAllPicture();
   }
 
   /**
    * 获取用户信息
    */
-  getUserInfo() {
+  getUserInfo(callBack?) {
     this.myHttp.post(MyHttp.URL_USER_INTRODUCE, {
       userId: this.memory.getUser().id,
       otherUserId: this.navParams.get('otherUserId')
@@ -60,6 +61,9 @@ export class HomeIntroducePage {
       if(data.introduceResult==='1'){
         this.pushPrompt();
       }
+      if (callBack !== null && typeof callBack === 'function') {
+        callBack();
+      }
     })
   }
 
@@ -70,6 +74,7 @@ export class HomeIntroducePage {
     this.myHttp.post(MyHttp.URL_GET_ALL_PICTURE, {
       userId: this.navParams.get('otherUserId'),
     }, (data) => {
+      console.log(data)
       this.allPictures = data.allPicture;
     })
   }
@@ -87,14 +92,6 @@ export class HomeIntroducePage {
       }
       }]
     }).present();
-  }
-
-  /**
-   * 修改图片
-   * @param image
-   */
-  sageImage(image: String) : SafeUrl{
-    return this.imgService.safeImage(image)
   }
 
   /**

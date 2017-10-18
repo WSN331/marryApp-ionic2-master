@@ -6,7 +6,7 @@
 
 <ion-content padding>
   <div class="picture">
-    <img [src]="sageImage(baseInfo.picture)">
+    <img [src]="imgService.safeImage(baseInfo.picture)">
   </div>
   <div class="title-right">
     <p class="line-one">{{ baseInfo.name }}</p>
@@ -16,7 +16,8 @@
   </div>
 
   <div class="all-pic">
-    <img *ngFor="let picture of allPictures; let i = index" [src]="sageImage(picture)" (click)="controlImage(i)">
+    <img *ngFor="let picture of allPictures; let i = index" [src]="imgService.safeImage(picture)" (click)="controlImage(i)">
+    <img *ngIf="imageNotFull()" src="assets/img/add.jpg" (click)="addPicture()">
   </div>
 
   <ion-list no-lines>

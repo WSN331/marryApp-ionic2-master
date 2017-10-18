@@ -1,11 +1,8 @@
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {AlertController} from 'ionic-angular';
-import {SafeUrl} from '@angular/platform-browser';
 import {LoadingController} from 'ionic-angular';
 import { Events } from 'ionic-angular';
-// import { ViewChild } from '@angular/core';
-// import { Slides } from 'ionic-angular';
 
 import {MyHttp} from '../../util/MyHttp';
 import {Memory} from '../../util/Memory'
@@ -32,7 +29,7 @@ export class HomePage {
   // @ViewChild("homeSlides") slides: Slides;
 
   constructor(public navCtrl:NavController, private myHttp:MyHttp, public alertCtrl:AlertController, public memory:Memory,
-              private imgService:ImgService, public loadingCtrl:LoadingController, public events: Events,
+              public imgService:ImgService, public loadingCtrl:LoadingController, public events: Events,
               public calculateService: CalculateService) {
     this.getUserList();
     this.events.subscribe('e-home-list', () => {
@@ -82,14 +79,6 @@ export class HomePage {
       })
     }
 
-  }
-
-  /**
-   *
-   * @param image
-   */
-  sageImage(image:String):SafeUrl {
-    return this.imgService.safeImage(image)
   }
 
   /**

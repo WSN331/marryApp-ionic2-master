@@ -114,6 +114,7 @@ export class MyHttp {
     }
     options.headers.append('Content-Type', 'application/x-www-form-urlencoded');
     this.http.post(url, this.body(body), options).subscribe((data) => {
+      console.log(data)
       this.callBack(success, data);
     });
   }
@@ -129,6 +130,9 @@ export class MyHttp {
       console.log(data)
     } else {
       let body = JSON.parse(data._body);
+      if (body === null || body === undefined) {
+        return;
+      }
       if (body.result === 'error') {
         console.log("back error")
         console.log(body)

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {App, NavController} from 'ionic-angular';
-import { SafeUrl } from '@angular/platform-browser';
 import { Events } from 'ionic-angular';
 
 import { Memory } from '../../util/Memory'
@@ -18,7 +17,7 @@ export class AboutPage {
 
   public user;
 
-  constructor(public navCtrl: NavController, private imgService: ImgService, public memory: Memory,
+  constructor(public navCtrl: NavController, public imgService: ImgService, public memory: Memory,
               public app:App, public events: Events, public calculateService: CalculateService) {
     this.getUser();
     this.events.subscribe('e-user-self', () => {
@@ -31,14 +30,6 @@ export class AboutPage {
    */
   getUser() {
     this.user = this.memory.getUser();
-  }
-
-  /**
-   * 修改图片为安全URL
-   * @param image
-   */
-  sageImage(image: String) : SafeUrl{
-    return this.imgService.safeImage(image)
   }
 
   /**
