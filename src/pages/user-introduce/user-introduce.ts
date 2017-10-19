@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Events } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
+import {LoadingController} from 'ionic-angular';
 
 import { MyHttp } from '../../util/MyHttp';
 import { Memory } from '../../util/Memory'
@@ -37,14 +38,11 @@ export class UserIntroducePage {
 
   constructor(public navCtrl:NavController, private myHttp:MyHttp, public imgService:ImgService,
               public memory:Memory, public events: Events, public calculateService: CalculateService,
-              public alertCtrl: AlertController) {
-    this.getUserInfo(()=> {
-      this.getAllPicture();
-    });
+              public alertCtrl: AlertController, public loadingCtrl:LoadingController) {
+    this.getUserInfo();
+    this.getAllPicture();
     this.events.subscribe('e-user-introduce', () => {
-      this.getUserInfo(()=> {
-        this.getAllPicture();
-      });
+      this.getUserInfo();
     })
   }
 
@@ -53,6 +51,10 @@ export class UserIntroducePage {
    * @param callBack 可能存在的回调
    */
   getUserInfo(callBack?) {
+    let loader = this.loadingCtrl.create({
+      content: "Please wait...",
+    });
+    loader.present();
     this.myHttp.post(MyHttp.URL_USER_INTRODUCE, {
       userId: this.memory.getUser().id,
       otherUserId: this.memory.getUser().id
@@ -60,7 +62,7 @@ export class UserIntroducePage {
       console.log(data)
       this.baseInfo = data.baseInfo || {};
       this.detailInfo = data.detailInfo || {};
-
+      loader.dismiss();
       if (callBack !== null && typeof callBack === 'function') {
         callBack();
       }
@@ -71,10 +73,15 @@ export class UserIntroducePage {
    * 获取全部图片
    */
   getAllPicture() {
+    let loader = this.loadingCtrl.create({
+      content: "Please wait...",
+    });
+    loader.present();
     this.myHttp.post(MyHttp.URL_GET_ALL_PICTURE, {
       userId: this.memory.getUser().id
     }, (data) => {
       this.allPictures = data.allPicture;
+      loader.dismiss()
     })
   }
 

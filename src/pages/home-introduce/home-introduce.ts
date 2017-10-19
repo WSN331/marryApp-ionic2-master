@@ -3,6 +3,7 @@
  */
 import { Component } from '@angular/core';
 import { AlertController, NavController, NavParams} from 'ionic-angular';
+import {LoadingController} from 'ionic-angular';
 
 import { MyHttp } from '../../util/MyHttp';
 import { Memory } from '../../util/Memory'
@@ -39,7 +40,8 @@ export class HomeIntroducePage {
   public allPictures = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public alert:AlertController,
-              public myHttp : MyHttp, public imgService:ImgService, public memory: Memory, public calculateService: CalculateService) {
+              public myHttp : MyHttp, public imgService:ImgService, public memory: Memory,
+              public calculateService: CalculateService, public loadingCtrl:LoadingController) {
     this.getUserInfo(()=> {
 
     });
@@ -50,6 +52,10 @@ export class HomeIntroducePage {
    * 获取用户信息
    */
   getUserInfo(callBack?) {
+    let loader = this.loadingCtrl.create({
+      content: "Please wait...",
+    });
+    loader.present();
     this.myHttp.post(MyHttp.URL_USER_INTRODUCE, {
       userId: this.memory.getUser().id,
       otherUserId: this.navParams.get('otherUserId')
@@ -64,6 +70,7 @@ export class HomeIntroducePage {
       if (callBack !== null && typeof callBack === 'function') {
         callBack();
       }
+      loader.dismiss();
     })
   }
 
@@ -71,11 +78,16 @@ export class HomeIntroducePage {
    * 获取全部图片
    */
   getAllPicture() {
+    let loader = this.loadingCtrl.create({
+      content: "Please wait...",
+    });
+    loader.present();
     this.myHttp.post(MyHttp.URL_GET_ALL_PICTURE, {
       userId: this.navParams.get('otherUserId'),
     }, (data) => {
       console.log(data)
       this.allPictures = data.allPicture;
+      loader.dismiss();
     })
   }
 
