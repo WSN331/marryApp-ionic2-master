@@ -43,7 +43,7 @@ export class UserIntroducePage {
     this.getAllPicture();
     this.events.subscribe('e-user-introduce', () => {
       this.getUserInfo();
-    })
+    }) 
   }
 
   /**
