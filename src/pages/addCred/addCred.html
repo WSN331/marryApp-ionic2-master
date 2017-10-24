@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{ type['name'] }}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div *ngIf="havePic()">
+    <img [src]="imgService.safeImage(base64)" (click)="addPicture()" >
+  </div>
+  <div *ngIf="!havePic()">
+    <img src="assets/img/add.jpg"  (click)="addPicture()" >
+  </div>
+  <button ion-button full (click)="addCred()">提交</button>
+
+</ion-content>

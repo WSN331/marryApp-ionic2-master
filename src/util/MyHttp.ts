@@ -3,6 +3,7 @@
  */
 import {Injectable} from '@angular/core';
 import {Http, RequestOptionsArgs, Headers} from '@angular/http';
+import {LoadingController} from 'ionic-angular';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
@@ -11,9 +12,9 @@ export class MyHttp {
    * 服务器的IP
    * @type {string}
    */
-  static IP = "47.95.212.171";
+  // static IP = "47.95.212.171";
   // static IP = "localhost"
-  // static IP = "192.168.2.178"
+  static IP = "192.168.2.178"
 
   /**
    * 服务端端口号
@@ -71,8 +72,12 @@ export class MyHttp {
   static URL_GET_SCHOOL_LIST = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/select/getSchoolList";
   // 添加学校
   static URL_ADD_SCHOOL = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/select/addSchool";
+  // 获取证件信息
+  static URL_CRED_INFO = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/credInfo";
+  // 添加证件
+  static URL_ADD_CRED = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/addCred";
 
-  constructor (private http : Http) {
+  constructor (private http : Http, public loadingCtrl:LoadingController) {
 
   }
 
@@ -113,9 +118,13 @@ export class MyHttp {
     if (options == null ) {
       options = {headers: new Headers()}
     }
+    let loader = this.loadingCtrl.create({
+      content: "Please wait...",
+    });
     options.headers.append('Content-Type', 'application/x-www-form-urlencoded');
     this.http.post(url, this.body(body), options).subscribe((data) => {
       console.log(data)
+      loader.dismiss();
       this.callBack(success, data);
     });
   }

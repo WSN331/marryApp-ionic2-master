@@ -275,7 +275,7 @@ export class UserDetailPage {
       console.log(data);
       let message = '';
       if (data.addSchoolResult === '0') {
-        message = '添加成功';
+        message = '添加成功，待审核通过即可使用';
       } else if (data.addSchoolResult === '1') {
         message = '学校已存在';
       }

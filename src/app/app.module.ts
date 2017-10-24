@@ -14,6 +14,8 @@ import { AboutPage } from '../pages/about/about';
 import { HomeIntroducePage } from '../pages/home-introduce/home-introduce'
 import { UserIntroducePage } from '../pages/user-introduce/user-introduce'
 import { UserDetailPage } from '../pages/user-detail/user-detail'
+import { CredListPage } from '../pages/credList/credList'
+import { AddCredPage } from '../pages/addCred/addCred'
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -43,7 +45,9 @@ import {CalculateService} from '../util/CalculateService'
     UserDetailPage,
     EveryPersonPage,
     SearchPage,
-    MessagePage
+    MessagePage,
+    CredListPage,
+    AddCredPage
   ],
   imports: [
     BrowserModule,
@@ -65,7 +69,9 @@ import {CalculateService} from '../util/CalculateService'
     UserDetailPage,
     EveryPersonPage,
     SearchPage,
-    MessagePage
+    MessagePage,
+    CredListPage,
+    AddCredPage
   ],
   providers: [
     StatusBar,

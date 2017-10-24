@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      身份验证
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item *ngFor="let credType of credTypes" (click) = "clickItem(credType)">
+      <span>{{credType.name}}</span>
+      <p>{{['未认证','未通过','等待审核','审核通过'][getStatus(credType.id) + 2]}}</p>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

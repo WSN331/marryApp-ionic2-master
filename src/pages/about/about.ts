@@ -8,6 +8,7 @@ import {CalculateService} from '../../util/CalculateService'
 
 import { StartPage } from '../start/start'
 import { UserIntroducePage } from '../user-introduce/user-introduce'
+import { CredListPage } from '../credList/credList'
 
 @Component({
   selector: 'page-about',
@@ -37,6 +38,13 @@ export class AboutPage {
    */
   getIntroduce() {
     this.navCtrl.push(UserIntroducePage);
+  }
+
+  /**
+   * 进入信息认证详情界面
+   */
+  goToCredList() {
+    this.navCtrl.push(CredListPage);
   }
 
   /**
