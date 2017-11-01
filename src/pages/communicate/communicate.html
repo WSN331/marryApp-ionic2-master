@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>聊天</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="messageShow">
+    <div class="first" id="first">
+      <ng-container *ngFor="let msg of subMsgList">
+        <div *ngIf="msg.from==this.mySelf" class="sendMs">
+          {{msg.text}}
+        </div>
+        <div *ngIf="msg.from!=this.mySelf" class="receiveMs">
+          {{msg.text}}
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="textArea">
+    <ion-item>
+      <button ion-button icon-only item-start clear (click)="sendImgMsg()">
+        <ion-icon ios="ios-image" md="md-image" ></ion-icon>
+      </button>
+      <ion-input id="send" [(ngModel)]="sendText" type="text" placeholder="想说点什么......" text-center>
+      </ion-input>
+      <button ion-button icon-only item-end clear (click)="sendMessage()" >
+        <ion-icon ios="ios-chatbubbles-outline" md="md-chatbubbles-outline"></ion-icon>
+      </button>
+    </ion-item>
+  </div>
+
+</ion-content>
+

@@ -61,11 +61,13 @@ export class HomePage {
         size: 10,
         index: 1
       }, (data) => {
+
         loader.dismiss();
         console.log(data)
         if (data.listResult === '0') {
           this.userList = data.userList;
         } else if (data.listResult === '1'){
+
           this.alertCtrl.create({
             message: '亲~请先完善您的信息',
             buttons: [{
@@ -76,6 +78,13 @@ export class HomePage {
             }]
           }).present();
         }
+
+        //提示用户有未读消息
+        let isMsg = this.memory.getMsg();
+        if(isMsg){
+          this.searchPub("又有人找您啦~");
+        }
+
       })
     }
 
@@ -126,5 +135,18 @@ export class HomePage {
      */
   isLogin() {
     return this.memory.getUser().id ? true : false;
+  }
+
+
+  /**
+   * 提示框
+   * @param subTitle
+   */
+  searchPub(subTitle: string) {
+    this.alertCtrl.create({
+      title: "消息",
+      subTitle: subTitle,
+      buttons: ["关闭"]
+    }).present();
   }
 }

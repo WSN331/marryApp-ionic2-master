@@ -9,9 +9,9 @@
 <ion-content>
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"  refreshingText="Refreshing...">
-
     </ion-refresher-content>
   </ion-refresher>
+
   <h1 class="span">我喜欢谁</h1>
   <div *ngFor="let user of likeList">
     <div class="picture">

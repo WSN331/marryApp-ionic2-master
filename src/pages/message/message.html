@@ -15,12 +15,13 @@
     </div>
   </div>
 
-  <div class="two" no-lines>
+  <div class="two" no-lines (click)="goToPeople()">
     <div class="xindong">
       <img src="assets/img/zuijin.png"/>
     </div>
     <div class="miaoshu">
       最近来访
+      <div *ngIf="this.memory.getMsg()==true" class="msg"></div>
     </div>
   </div>
 

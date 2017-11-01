@@ -22,4 +22,16 @@ page-message{
   .three{
     margin-top:20px;
   }
+
+  .msg{
+    width:20px;
+    height:20px;
+    border-radius:50px;
+    border:solid #ffaa00 1px;
+    display: inline-block;
+    position: absolute;
+    background: #ffaa00;
+    margin-left: 70%;
+    margin-top:-85%;
+  }
 }

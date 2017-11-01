@@ -7,6 +7,26 @@
 
   private user = {};
   private sex = {};
+  //未读消息设置
+  private msg = false;
+  //通信工具初始化
+  private realTiming=null;
+
+  public getTiming() {
+    return this.realTiming;
+  }
+
+  public setTiming(realTiming) {
+    this.realTiming = realTiming;
+  }
+
+  public setMsg(msg){
+    this.msg = msg;
+  }
+
+  public getMsg(){
+    return this.msg;
+  }
 
   public setUser(user : any) {
     this.user = user;

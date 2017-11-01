@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>聊天</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <ion-list-header>Today</ion-list-header>
+    <button ion-item  *ngFor="let conTalk of conversations" (click)="goToTalk(conTalk.talk)">
+      <ion-avatar item-start>
+        <img [src]="imgService.safeImage(conTalk.baseInfo.picture)">
+      </ion-avatar>
+      <h2>{{conTalk.baseInfo.nickName}}</h2>
+      <p *ngIf="conTalk.talk.unreadMessagesCount>0">您有未读消息</p>
+      <div *ngIf="conTalk.talk.unreadMessagesCount>0">{{this.memory.setMsg(true)}}</div>
+      <ion-note item-end *ngIf="conTalk.talk.lastMessageAt.getMinutes()<10">{{conTalk.talk.lastMessageAt.getMonth()+1}}-{{conTalk.talk.lastMessageAt.getDate()}} {{conTalk.talk.lastMessageAt.getHours()}}:{{'0'+conTalk.talk.lastMessageAt.getMinutes()}}</ion-note>
+      <ion-note item-end *ngIf="conTalk.talk.lastMessageAt.getMinutes()>=10">{{conTalk.talk.lastMessageAt.getMonth()+1}}-{{conTalk.talk.lastMessageAt.getDate()}} {{conTalk.talk.lastMessageAt.getHours()}}:{{conTalk.talk.lastMessageAt.getMinutes()}}</ion-note>
+    </button>
+  </ion-list>
+
+</ion-content>

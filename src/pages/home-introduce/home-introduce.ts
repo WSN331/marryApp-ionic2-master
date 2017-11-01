@@ -9,6 +9,7 @@ import { MyHttp } from '../../util/MyHttp';
 import { Memory } from '../../util/Memory'
 import { ImgService } from '../../util/ImgService'
 import {CalculateService} from '../../util/CalculateService'
+import {CommunicatePage} from "../communicate/communicate";
 
 @Component({
   selector: 'page-homeIntroduce',
@@ -120,6 +121,14 @@ export class HomeIntroducePage {
     })
   }
 
+  /**
+   * 切换到聊天界面
+   */
+  eachCommunicate(){
+    this.navCtrl.push(CommunicatePage,{
+      person:this.navParams.get('otherUserId')
+    });
+  }
 
 
 }

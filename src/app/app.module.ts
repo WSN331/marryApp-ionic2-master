@@ -29,6 +29,9 @@ import {EveryPersonPage} from "../pages/every-person/every-person";
 import {SearchPage} from "../pages/search/search";
 import {MessagePage} from "../pages/message/message";
 import {CalculateService} from '../util/CalculateService'
+import {PeoplePage} from "../pages/perlist/people";
+import {CommunicateService} from "../util/CommunicateService";
+import {CommunicatePage} from "../pages/communicate/communicate";
 
 @NgModule({
   declarations: [
@@ -47,7 +50,9 @@ import {CalculateService} from '../util/CalculateService'
     SearchPage,
     MessagePage,
     CredListPage,
-    AddCredPage
+    AddCredPage,
+    PeoplePage,
+    CommunicatePage,
   ],
   imports: [
     BrowserModule,
@@ -71,7 +76,9 @@ import {CalculateService} from '../util/CalculateService'
     SearchPage,
     MessagePage,
     CredListPage,
-    AddCredPage
+    AddCredPage,
+    PeoplePage,
+    CommunicatePage,
   ],
   providers: [
     StatusBar,
@@ -82,7 +89,8 @@ import {CalculateService} from '../util/CalculateService'
     MyHttp,
     Memory,
     ImgService,
-    CalculateService
+    CalculateService,
+    CommunicateService,
   ]
 })
 export class AppModule {}
