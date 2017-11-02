@@ -44,6 +44,12 @@
 
   <ion-list no-lines>
     <ion-item>
+      <span>通过审核的</span>
+      <div>
+        <strong *ngFor="let cred of creds">{{cred}};</strong>
+      </div>
+    </ion-item>
+    <ion-item>
       <span>身高：</span>{{ detailInfo.height }}
       <span>体重：</span>{{ detailInfo.weight }}
     </ion-item>

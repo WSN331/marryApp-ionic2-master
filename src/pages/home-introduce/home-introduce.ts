@@ -35,6 +35,12 @@ export class HomeIntroducePage {
   public relation = "0"
 
   /**
+   * 通过审核的证件
+   * @type {Array}
+     */
+  public creds = [];
+
+  /**
    * 全部图片
    * @type {Array}
      */
@@ -43,9 +49,7 @@ export class HomeIntroducePage {
   constructor(public navCtrl: NavController, public navParams: NavParams,public alert:AlertController,
               public myHttp : MyHttp, public imgService:ImgService, public memory: Memory,
               public calculateService: CalculateService, public loadingCtrl:LoadingController) {
-    this.getUserInfo(()=> {
-
-    });
+    this.getUserInfo();
     this.getAllPicture();
   }
 
@@ -65,6 +69,7 @@ export class HomeIntroducePage {
       this.baseInfo = data.baseInfo || {};
       this.detailInfo = data.detailInfo || {};
       this.relation = data.relation || {};
+      this.creds = data.creds || [];
       if(data.introduceResult==='1'){
         this.pushPrompt();
       }
