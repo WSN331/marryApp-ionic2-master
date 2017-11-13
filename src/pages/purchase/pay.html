@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>会员购买</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card *ngFor="let order of orders" (click)="goToPay(order)">
+    <img src="{{order.image}}" />
+    <div class="card-title">{{order.price}}</div>
+    <div class="card-subtitle">{{order.des}}</div>
+  </ion-card>
+
+<!--  <ion-card>
+    <img src="assets/img/card-amsterdam.png"/>
+    <div class="card-title">118元/1个月</div>
+    <div class="card-subtitle">每天仅需3.9元</div>
+  </ion-card>
+
+  <ion-card>
+    <img src="assets/img/card-sf.png"/>
+    <div class="card-title">228元/3个月</div>
+    <div class="card-subtitle">每天仅需3.2元</div>
+  </ion-card>
+
+  <ion-card>
+    <img src="assets/img/card-madison.png"/>
+    <div class="card-title">588元/12个月</div>
+    <div class="card-subtitle">原价五折优惠</div>
+  </ion-card>-->
+
+</ion-content>

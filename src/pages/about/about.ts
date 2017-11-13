@@ -9,6 +9,7 @@ import {CalculateService} from '../../util/CalculateService'
 import { StartPage } from '../start/start'
 import { UserIntroducePage } from '../user-introduce/user-introduce'
 import { CredListPage } from '../credList/credList'
+import {PayPage} from "../purchase/pay";
 
 @Component({
   selector: 'page-about',
@@ -58,4 +59,10 @@ export class AboutPage {
     this.memory.setUser({});
   }
 
+  /**
+   * 成为会员
+   */
+  toPay(){
+    this.navCtrl.push(PayPage);
+  }
 }

@@ -32,6 +32,7 @@ import {CalculateService} from '../util/CalculateService'
 import {PeoplePage} from "../pages/perlist/people";
 import {CommunicateService} from "../util/CommunicateService";
 import {CommunicatePage} from "../pages/communicate/communicate";
+import {PayPage} from "../pages/purchase/pay";
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import {CommunicatePage} from "../pages/communicate/communicate";
     AddCredPage,
     PeoplePage,
     CommunicatePage,
+    PayPage
   ],
   imports: [
     BrowserModule,
@@ -79,6 +81,7 @@ import {CommunicatePage} from "../pages/communicate/communicate";
     AddCredPage,
     PeoplePage,
     CommunicatePage,
+    PayPage
   ],
   providers: [
     StatusBar,

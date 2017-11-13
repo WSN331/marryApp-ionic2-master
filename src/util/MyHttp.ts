@@ -76,6 +76,11 @@ export class MyHttp {
   static URL_CRED_INFO = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/credInfo";
   // 添加证件
   static URL_ADD_CRED = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/addCred";
+  //获取会员价格
+  static URL_ORDER_PRICE = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/aliPay/getVipTypeList";
+  //获取订单信息
+  static URL_ORDER_INFO = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/aliPay/getPayInfo2";
+
 
   constructor (private http : Http, public loadingCtrl:LoadingController) {
 

@@ -32,6 +32,7 @@
         "cordova-plugin-compat": "^1.1.0",
         "cordova-plugin-console": "^1.0.5",
         "cordova-plugin-device": "^1.1.4",
+        "cordova-plugin-offbye-alipay": "git+https://github.com/DreamMoon/cordova-plugin-alipay.git",
         "cordova-plugin-splashscreen": "^4.0.3",
         "cordova-plugin-statusbar": "^2.2.2",
         "cordova-plugin-telerik-imagepicker": "^2.1.8",
@@ -58,7 +59,10 @@
             "cordova-plugin-whitelist": {},
             "ionic-plugin-keyboard": {},
             "cordova-plugin-camera": {},
-            "com.synconset.imagepicker": {}
+            "com.synconset.imagepicker": {},
+            "cordova-plugin-offbye-alipay": {
+                "PARTNER_ID": "[2088821549927762]"
+            }
         },
         "platforms": [
             "android"

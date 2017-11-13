@@ -93,7 +93,7 @@ export class CommunicatePage{
    */
   sendMessage(){
     // 用自己的id作为 clientId，获取 IMClient 对象实例
-    if(this.sendText!=null){
+    if(this.sendText!=null && this.sendText.toString().trim()!=null){
       this.realSend = this.sendText;
 
       let msg = new AV.TextMessage(this.realSend);
