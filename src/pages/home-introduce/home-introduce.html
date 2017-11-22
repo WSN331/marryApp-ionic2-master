@@ -1,16 +1,13 @@
-<ion-header>
+<ion-header hidden>
   <ion-navbar>
-    <ion-title>{{ baseInfo.name }}</ion-title>
+    <!--<ion-title>{{ baseInfo.name }}</ion-title>-->
   </ion-navbar>
 </ion-header>
 
 <ion-content>
+  <!--<ion-icon name="arrow-dropleft-circle" class="back-icon" (click)="back()"></ion-icon>-->
   <div>
     <img [src]="imgService.safeImage(baseInfo.picture)">
-  </div>
-
-  <div class="all-pic">
-    <img *ngFor="let picture of allPictures" [src]="imgService.safeImage(picture)">
   </div>
 
   <button ion-button *ngIf="relation==='1'" (click)="changeRelation(2)">取消喜欢</button>
@@ -37,6 +34,10 @@
     <p class="line-one">{{ calculateService.getAge(baseInfo.birthday) }}岁</p>
   </div>
 
+
+  <div class="all-pic">
+    <img *ngFor="let picture of allPictures" [src]="imgService.safeImage(picture)">
+  </div>
   <!--<div class="yue">-->
     <!--<button ion-button full *ngIf="baseInfo.sex==0 " class="yueta">约他</button>-->
     <!--<button ion-button full *ngIf="baseInfo.sex==1 " class="yueta">约她</button>-->

@@ -12,8 +12,8 @@ export class MyHttp {
    * 服务器的IP
    * @type {string}
    */
-  static IP = "47.95.212.171";
-  // static IP = "localhost"
+  // static IP = "47.95.212.171";
+  static IP = "localhost"
   // static IP = "192.168.2.178"
 
   /**
@@ -80,7 +80,8 @@ export class MyHttp {
   static URL_ORDER_PRICE = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/aliPay/getVipTypeList";
   //获取订单信息
   static URL_ORDER_INFO = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/aliPay/getPayInfo2";
-
+  // 获取短信验证码
+  static URL_SEND_VERIFY = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/sendVerify";
 
   constructor (private http : Http, public loadingCtrl:LoadingController) {
 

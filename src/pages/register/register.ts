@@ -25,7 +25,8 @@ export class RegisterPage {
     hobby: '',
     birthday: '',
     email:'',
-    nickName:''
+    nickName:'',
+    verifyCode:''
   };
 
   constructor(public navCtrl:NavController, private myHttp:MyHttp, public alertCtrl:AlertController) {
@@ -48,6 +49,19 @@ export class RegisterPage {
         this.navCtrl.pop();
       } else if (data.registerResult === "1") {
         this.registerMessage("账号已存在");
+      }
+    })
+  }
+
+  sendVerify() {
+    this.myHttp.post(MyHttp.URL_SEND_VERIFY, {
+      phone: this.registerForm.account
+    }, (data) => {
+      console.log(data);
+      if (data.sendResult === "0") {
+        this.registerMessage("发送验证码成功，请在10分钟内验证");
+      } else if (data.sendResult === "1") {
+        this.registerMessage("发送验证码失败：" + data.message);
       }
     })
   }

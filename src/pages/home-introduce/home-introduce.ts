@@ -54,6 +54,13 @@ export class HomeIntroducePage {
   }
 
   /**
+   * 返回
+   */
+  back() {
+    this.navCtrl.pop();
+  }
+
+  /**
    * 获取用户信息
    */
   getUserInfo(callBack?) {

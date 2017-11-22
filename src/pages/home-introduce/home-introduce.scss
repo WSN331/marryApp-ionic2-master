@@ -3,6 +3,17 @@ page-homeIntroduce{
     color: #A0A0A0;
   }
 
+  .back-icon {
+    font-size: 25px;
+    float: left;
+    color: black;
+    z-index: 99;
+  }
+
+  img{
+    z-index: -1
+  }
+
   ion-item p.content {
     color: black;
     font-family: 黑体;

@@ -59,7 +59,9 @@ import {PayPage} from "../pages/purchase/pay";
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp, {
+      backButtonIcon: 'arrow-back'
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
