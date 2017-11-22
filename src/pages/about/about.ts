@@ -10,6 +10,7 @@ import { StartPage } from '../start/start'
 import { UserIntroducePage } from '../user-introduce/user-introduce'
 import { CredListPage } from '../credList/credList'
 import {PayPage} from "../purchase/pay";
+import {AuthorInformationPage} from "../authorInformation/authorInformation"
 
 @Component({
   selector: 'page-about',
@@ -64,5 +65,9 @@ export class AboutPage {
    */
   toPay(){
     this.navCtrl.push(PayPage);
+  }
+
+  authorInformation() {
+    this.navCtrl.push(AuthorInformationPage);
   }
 }

@@ -16,6 +16,7 @@ import { UserIntroducePage } from '../pages/user-introduce/user-introduce'
 import { UserDetailPage } from '../pages/user-detail/user-detail'
 import { CredListPage } from '../pages/credList/credList'
 import { AddCredPage } from '../pages/addCred/addCred'
+import { AuthorInformationPage } from "../pages/authorInformation/authorInformation"
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -54,7 +55,8 @@ import {PayPage} from "../pages/purchase/pay";
     AddCredPage,
     PeoplePage,
     CommunicatePage,
-    PayPage
+    PayPage,
+    AuthorInformationPage
   ],
   imports: [
     BrowserModule,
@@ -83,7 +85,8 @@ import {PayPage} from "../pages/purchase/pay";
     AddCredPage,
     PeoplePage,
     CommunicatePage,
-    PayPage
+    PayPage,
+    AuthorInformationPage
   ],
   providers: [
     StatusBar,
