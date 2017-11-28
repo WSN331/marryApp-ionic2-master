@@ -3,15 +3,16 @@ page-homeIntroduce{
     color: #A0A0A0;
   }
 
-  .back-icon {
-    font-size: 25px;
-    float: left;
-    color: black;
+  .back_icon {
+    width: 35px;
+    position:absolute;
+    left:0px;
+    top:20px;
     z-index: 99;
   }
 
-  img{
-    z-index: -1
+  .main_pic img{
+    z-index: 98
   }
 
   ion-item p.content {
@@ -21,10 +22,9 @@ page-homeIntroduce{
     margin-top: 3px;
   }
 
-  .neirong{
-    position: relative;
-    margin-top: 15px;
-    text-align: center;
+  .first_line{
+    margin: 30px;
+
   }
   .name{
     font-size: 22px;

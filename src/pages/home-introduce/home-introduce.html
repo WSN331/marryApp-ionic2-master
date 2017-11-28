@@ -5,21 +5,22 @@
 </ion-header>
 
 <ion-content>
-  <!--<ion-icon name="arrow-dropleft-circle" class="back-icon" (click)="back()"></ion-icon>-->
-  <div>
+  <div class="main_pic">
     <img [src]="imgService.safeImage(baseInfo.picture)">
   </div>
 
-  <button ion-button *ngIf="relation==='1'" (click)="changeRelation(2)">取消喜欢</button>
-  <button ion-button *ngIf="relation!=='1'" (click)="changeRelation(0)">喜欢</button>
-  <button ion-button *ngIf="relation==='2'" (click)="changeRelation(3)">取消无感</button>
-  <button ion-button *ngIf="relation!=='2'" (click)="changeRelation(1)">无感</button>
-  <button ion-button *ngIf="relation==='3'" (click)="changeRelation(5)">取消收藏</button>
-  <button ion-button *ngIf="relation!=='3'" (click)="changeRelation(4)">收藏</button>
-  <button ion-button (click)="eachCommunicate()">打招呼</button>
-  <br/>
+  <!--<button ion-button *ngIf="relation==='1'" (click)="changeRelation(2)">取消喜欢</button>-->
+  <!--<button ion-button *ngIf="relation!=='1'" (click)="changeRelation(0)">喜欢</button>-->
+  <!--<button ion-button *ngIf="relation==='2'" (click)="changeRelation(3)">取消无感</button>-->
+  <!--<button ion-button *ngIf="relation!=='2'" (click)="changeRelation(1)">无感</button>-->
+  <!--<button ion-button *ngIf="relation==='3'" (click)="changeRelation(5)">取消收藏</button>-->
+  <!--<button ion-button *ngIf="relation!=='3'" (click)="changeRelation(4)">收藏</button>-->
+  <!--<button ion-button (click)="eachCommunicate()">打招呼</button>-->
+  <!--<br/>-->
 
-  <div class="neirong">
+  <img src="assets/img/go_back.png" class="back_icon" (click)="back()">
+
+  <div class="first_line">
     <div class="name">
       {{ baseInfo.nickName }}
     </div>
