@@ -46,6 +46,12 @@ export class HomeIntroducePage {
      */
   public allPictures = [];
 
+  /**
+   * 是否显示弹窗
+   * @type {boolean}
+     */
+  public display_dialog=false;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,public alert:AlertController,
               public myHttp : MyHttp, public imgService:ImgService, public memory: Memory,
               public calculateService: CalculateService, public loadingCtrl:LoadingController) {
@@ -58,6 +64,10 @@ export class HomeIntroducePage {
    */
   back() {
     this.navCtrl.pop();
+  }
+
+  changeDisplayDialog() {
+    this.display_dialog = !this.display_dialog;
   }
 
   /**

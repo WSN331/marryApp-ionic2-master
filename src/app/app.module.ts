@@ -62,7 +62,8 @@ import {PayPage} from "../pages/purchase/pay";
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp, {
-      backButtonIcon: 'arrow-back'
+      backButtonIcon: 'arrow-back',
+      tabsHideOnSubPages: 'true'
     })
   ],
   bootstrap: [IonicApp],

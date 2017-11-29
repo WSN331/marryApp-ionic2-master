@@ -1,8 +1,4 @@
 page-homeIntroduce{
-  ion-item span{
-    color: #A0A0A0;
-  }
-
   .back_icon {
     width: 35px;
     position:absolute;
@@ -12,42 +8,52 @@ page-homeIntroduce{
   }
 
   .main_pic img{
-    z-index: 98
-  }
-
-  ion-item p.content {
-    color: black;
-    font-family: 黑体;
-    font-size: 20px;
-    margin-top: 3px;
   }
 
   .first_line{
-    margin: 30px;
+    margin: 5% 8% 0px;
 
   }
+
   .name{
     font-size: 22px;
     display: inline-block;
   }
-  .pic{
+
+  .first_line .pic{
+    margin: 5px 10px;
+    width: 20px;
     position: absolute;
     text-align: center;
     display: inline-block;
+  }
+
+  .little_info{
+    margin: 0px 7%;
+  }
+
+  .btn_like {
+    width: 25%;
+    position:absolute;
+    left:70%;
+    top:50%;
+    z-index: 99;
   }
 
   .all-pic {
     float: left;
   }
 
-  .all-pic img {
-    width: 44%;
-    margin: 3%;
-    float: left;
+  .all-pic p {
+    margin-left: 8%;
+    font-size: 20px;
+    font-weight: bold;
   }
 
-  .des{
-    text-align: center;
+  .all-pic img {
+    width: 30%;
+    margin-left: 2.5%;
+    float: left;
   }
 
   p.line-one {
@@ -56,58 +62,92 @@ page-homeIntroduce{
     border-radius: 5px;
   }
 
-  .meinfo{
-    text-align: center;
-  }
-
-  .yue{
-    overflow: hidden;
-    text-align: center;
-    margin-left: 35%;
-  }
-  .yueta{
-    width: 50%;
-    background-color:transparent;
-    border-radius:20px;
-    color:#ffaa00;
-    border: 2px solid #ffaa00;
-  }
-  .yueta:active{
-    background-color:#ffaa00;
-    color:white;
-  }
-  .yueta:hover{
-    background-color:#ffaa00;
-    color:white;
-  }
-
-
   ion-list {
     clear: both;
     float: left;
     width: 100%;
   }
 
-  button {
+  .pass_audit {
+    clear: both;
     float: left;
+    width: 100%;
+    margin-top: 10%;
+    text-align: center;
+    font-size: 25px;
+  }
+
+  .pass_audit img {
+    width: 30px;
+  }
+
+  ion-list.both-info ion-item span {
+    float: left;
+    margin-right: 30px;
+  }
+
+  ion-list.both-info ion-item p {
+    white-space:normal;
+    word-break: break-all;
   }
 
   br{
     clear: both;
   }
 
-  .button{
-    background-color:transparent;
-    border-radius:20px;
-    color:#ffaa00;
-    border: 2px solid #ffaa00;
+  .both-info {
+    margin-bottom: 30%;
   }
-  .button:active{
-    background-color:#ffaa00;
-    color:white;
+
+  .both-info .bath {
+    float: left;
+    width: 60%;
   }
-  .button:hover{
-    background-color:#ffaa00;
-    color:white;
+
+  .both-info .bath p{
+    float: left;
+    color: #FF975A;
+    background: #FFF6F1;
+    margin-left: 10px;
+    padding: 2px;
+  }
+
+  .execute_btn {
+    position: fixed;
+    bottom: 0%;
+    z-index: 99;
+    background: #FFF6F1;
+    width: 100%;
+    clear: both;
+    float: left;
+  }
+
+  .execute_btn .item {
+    float: left;
+    width: 33.3%;
+    text-align: center;
+  }
+
+  .execute_btn .item img {
+    margin-top: 10%;
+    width: 30%;
+  }
+
+  .more_execute {
+    position: fixed;
+    bottom: 15%;
+    right: 0%;
+    z-index: 100;
+    clear: both;
+    float: left;
+    background: #FFFFFF;
+    border: solid gray;
+  }
+
+  .more_execute p{
+    font-size: 30px;
+    font-weight: 500;
+    margin: 10px 30px;
+
   }
 }

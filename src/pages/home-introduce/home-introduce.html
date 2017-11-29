@@ -5,21 +5,15 @@
 </ion-header>
 
 <ion-content>
+  <!--头像高清图片-->
   <div class="main_pic">
     <img [src]="imgService.safeImage(baseInfo.picture)">
   </div>
 
-  <!--<button ion-button *ngIf="relation==='1'" (click)="changeRelation(2)">取消喜欢</button>-->
-  <!--<button ion-button *ngIf="relation!=='1'" (click)="changeRelation(0)">喜欢</button>-->
-  <!--<button ion-button *ngIf="relation==='2'" (click)="changeRelation(3)">取消无感</button>-->
-  <!--<button ion-button *ngIf="relation!=='2'" (click)="changeRelation(1)">无感</button>-->
-  <!--<button ion-button *ngIf="relation==='3'" (click)="changeRelation(5)">取消收藏</button>-->
-  <!--<button ion-button *ngIf="relation!=='3'" (click)="changeRelation(4)">收藏</button>-->
-  <!--<button ion-button (click)="eachCommunicate()">打招呼</button>-->
-  <!--<br/>-->
-
+  <!--返回键-->
   <img src="assets/img/go_back.png" class="back_icon" (click)="back()">
 
+  <!--显示昵称-->
   <div class="first_line">
     <div class="name">
       {{ baseInfo.nickName }}
@@ -29,96 +23,116 @@
     </div>
   </div>
 
-  <div class="des">
-    <p class="line-one">{{ ['男','女'][baseInfo.sex] }}</p>
+  <!--简单信息-->
+  <div class="little_info">
+    <p class="line-one" *ngIf="detailInfo.newDistrict !== undefined && detailInfo.newDistrict !== null">
+      {{detailInfo.newDistrict.city.name}}
+    </p>
     <p class="line-one">|</p>
-    <p class="line-one">{{ calculateService.getAge(baseInfo.birthday) }}岁</p>
+    <p class="line-one">{{ detailInfo.edu }}</p>
+    <p class="line-one">|</p>
+    <p class="line-one">{{ detailInfo.hopeTime }}结婚</p>
   </div>
 
+  <img class="btn_like" src="assets/img/btn_like.png">
 
+  <!--全部图片-->
   <div class="all-pic">
+    <p>{{['他','她'][baseInfo.sex]}}的照片</p>
     <img *ngFor="let picture of allPictures" [src]="imgService.safeImage(picture)">
   </div>
-  <!--<div class="yue">-->
-    <!--<button ion-button full *ngIf="baseInfo.sex==0 " class="yueta">约他</button>-->
-    <!--<button ion-button full *ngIf="baseInfo.sex==1 " class="yueta">约她</button>-->
-  <!--</div>-->
 
-  <ion-list no-lines>
+  <!--已认证的信息-->
+  <div class="pass_audit">
+    <div class="title">
+      <img src="assets/img/pass_audit.png">
+      <span>已认证</span>
+    </div>
+    <!--TODO:-->
+    <ion-list>
+      <ion-item>xxxx</ion-item>
+      <ion-item>yyyy</ion-item>
+      <ion-item *ngFor="let cred of creds">{{cred}};</ion-item>
+    </ion-list>
+  </div>
+
+  <!--其他信息-->
+  <ion-list class="both-info">
     <ion-item>
-      <span>通过审核的</span>
-      <div>
-        <strong *ngFor="let cred of creds">{{cred}};</strong>
+      <span>自我介绍</span>
+      <p>{{ detailInfo.introduce }}</p>
+    </ion-item>
+
+    <ion-item>
+      <span>基本资料</span>
+      <div class="bath">
+        <p>{{ calculateService.getAge(baseInfo.birthday) }}岁</p>
+        <p>{{ calculateService.getConstellation(baseInfo.birthday) }}</p>
+        <p>身高 {{ detailInfo.height }}</p>
+        <p>体重 {{ detailInfo.weight }}</p>
+        <p>爱好 {{ baseInfo.hobby }}</p>
+        <p>
+          收入 {{ detailInfo.income }}
+        </p>
+        <p *ngIf="detailInfo.newDistrict !== undefined && detailInfo.newDistrict !== null">
+          所在地 {{detailInfo.newDistrict.city.province.name}}-{{detailInfo.newDistrict.city.name}}-{{detailInfo.newDistrict.name}}
+        </p>
+        <p  *ngIf="detailInfo.oldDistrict !== undefined && detailInfo.oldDistrict !== null">
+          故乡 {{detailInfo.oldDistrict.city.province.name}}-{{detailInfo.oldDistrict.city.name}}-{{detailInfo.oldDistrict.name}}
+        </p>
+        <p *ngIf="detailInfo.forthSchool !== undefined && detailInfo.forthSchool !== null">
+          本科 {{detailInfo.forthSchool.name}}
+        </p>
+        <!--<p *ngIf="detailInfo.graduate === 1">已毕业</p>-->
+        <p *ngIf="detailInfo.thirdSchool !== undefined && detailInfo.thirdSchool !== null">
+          高中 {{detailInfo.thirdSchool.name}}
+        </p>
+        <p *ngIf="detailInfo.secondSchool !== undefined && detailInfo.secondSchool !== null">
+          初中 {{detailInfo.secondSchool.name}}
+        </p>
+        <p *ngIf="detailInfo.firstSchool !== undefined && detailInfo.firstSchool !== null">
+          小学 {{detailInfo.firstSchool.name}}
+        </p>
       </div>
     </ion-item>
+
     <ion-item>
-      <span>身高：</span>{{ detailInfo.height }}
-      <span>体重：</span>{{ detailInfo.weight }}
-    </ion-item>
-    <ion-item>
-      <span>爱好：</span>
-      <p class="content">{{ baseInfo.hobby }}</p>
-    </ion-item>
-    <ion-item>
-      <span>所在地：</span>
-      <p class="content" *ngIf="detailInfo.newDistrict !== undefined && detailInfo.newDistrict !== null">
-        {{detailInfo.newDistrict.city.province.name}}-{{detailInfo.newDistrict.city.name}}-{{detailInfo.newDistrict.name}}
-      </p>
-    </ion-item>
-    <ion-item>
-      <span>故乡：</span>
-      <p class="content" *ngIf="detailInfo.oldDistrict !== undefined && detailInfo.oldDistrict !== null">
-        {{detailInfo.oldDistrict.city.province.name}}-{{detailInfo.oldDistrict.city.name}}-{{detailInfo.oldDistrict.name}}
-      </p>
-    </ion-item>
-    <ion-item>
-      <span>择偶标准：</span>
-      <p class="content">{{ detailInfo.chooseStandard }}</p>
-    </ion-item>
-    <ion-item>
-      <span>星座：</span>
-      <p class="content">{{ calculateService.getConstellation(baseInfo.birthday) }}</p>
-    </ion-item>
-    <ion-item>
-      <span>学历：</span>
-      <p class="content">{{ detailInfo.edu }}</p>
-    </ion-item>
-    <ion-item>
-      <span>大学：</span>
-      <p class="content" *ngIf="detailInfo.forthSchool !== undefined && detailInfo.forthSchool !== null">
-        {{detailInfo.forthSchool.name}}
-      </p>
-      <p *ngIf="detailInfo.graduate === 1">已毕业</p>
-    </ion-item>
-    <ion-item>
-      <span>高中：</span>
-      <p class="content" *ngIf="detailInfo.thirdSchool !== undefined && detailInfo.thirdSchool !== null">
-        {{detailInfo.thirdSchool.name}}
-      </p>
-    </ion-item>
-    <ion-item>
-      <span>初中：</span>
-      <p class="content" *ngIf="detailInfo.secondSchool !== undefined && detailInfo.secondSchool !== null">
-        {{detailInfo.secondSchool.name}}
-      </p>
-    </ion-item>
-    <ion-item>
-      <span>小学：</span>
-      <p class="content" *ngIf="detailInfo.firstSchool !== undefined && detailInfo.firstSchool !== null">
-        {{detailInfo.firstSchool.name}}
-      </p>
-    </ion-item>
-    <ion-item>
-      <span>期望婚时：</span>
-      <p class="content">{{ detailInfo.hopeTime }}</p>
-    </ion-item>
-    <ion-item>
-      <span>收入：</span>
-      <p class="content">{{ detailInfo.income }}</p>
-    </ion-item>
-    <ion-item>
-      <span>自我介绍：</span>
-      <p class="content">{{ detailInfo.introduce }}</p>
+      <span>择偶标准</span>
+      <p>{{ detailInfo.chooseStandard }}</p>
     </ion-item>
   </ion-list>
+
+  <!--所有操作-->
+  <div class="execute_btn">
+    <div class="item" *ngIf="relation==='1'" (click)="changeRelation(2)">
+      <img src="assets/img/btn_like.png">
+      <p >取消喜欢</p>
+    </div>
+    <div class="item" *ngIf="relation!=='1'" (click)="changeRelation(0)">
+      <img src="assets/img/btn_like.png">
+      <p >喜欢</p>
+    </div>
+    <div class="item" (click)="eachCommunicate()">
+      <img src="assets/img/icon_msg.png">
+      <p>聊天</p>
+    </div>
+    <div class="item" (click)="changeDisplayDialog()">
+      <img src="assets/img/icon_more.png">
+      <p>更多</p>
+    </div>
+  </div>
+  <!--更多的弹框-->
+  <div class="more_execute" *ngIf="display_dialog">
+    <p *ngIf="relation==='2'" (click)="changeRelation(3)">取消无感</p>
+    <p *ngIf="relation!=='2'" (click)="changeRelation(1)">无感</p>
+    <p *ngIf="relation==='3'" (click)="changeRelation(5)">取消收藏</p>
+    <p *ngIf="relation!=='3'" (click)="changeRelation(4)">收藏</p>
+  </div>
+  <!--<button ion-button *ngIf="relation==='1'" (click)="changeRelation(2)">取消喜欢</button>-->
+  <!--<button ion-button *ngIf="relation!=='1'" (click)="changeRelation(0)">喜欢</button>-->
+  <!--<button ion-button *ngIf="relation==='2'" (click)="changeRelation(3)">取消无感</button>-->
+  <!--<button ion-button *ngIf="relation!=='2'" (click)="changeRelation(1)">无感</button>-->
+  <!--<button ion-button *ngIf="relation==='3'" (click)="changeRelation(5)">取消收藏</button>-->
+  <!--<button ion-button *ngIf="relation!=='3'" (click)="changeRelation(4)">收藏</button>-->
+  <!--<button ion-button (click)="eachCommunicate()">打招呼</button>-->
 </ion-content>
