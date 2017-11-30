@@ -2,19 +2,19 @@ page-everyPerson{
 
   div{
     overflow:hidden;
+    text-align: center;
   }
 
-  div.man{
+  div img {
+    margin-top: 10%;
+    width: 40%;
+  }
+
+  div.switch{
     height:50%;
-    display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  div.woman{
-    height:50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+
 }

@@ -20,12 +20,6 @@ export class RegisterPage {
   public registerForm = {
     account: '',
     password: '',
-    name: '',
-    sex: 0,
-    hobby: '',
-    birthday: '',
-    email:'',
-    nickName:'',
     verifyCode:''
   };
 

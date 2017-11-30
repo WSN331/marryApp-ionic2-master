@@ -6,6 +6,8 @@ import { NavController } from 'ionic-angular';
 import { Events } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 
+import { UserDetail2Page } from "../user-detail2/user-detail2"
+
 import { MyHttp } from '../../util/MyHttp';
 import { Memory } from '../../util/Memory'
 
@@ -26,35 +28,29 @@ export class UserDetailPage {
   public detailInfo = {}
 
   /**
-   * 各个复选框
-   * @type {{provinceList: {}, cityList: {}, districtList: {}}}
+   *
+   * @type {number}
      */
-  public selectOption = {
-    provinceList : [],
-    newDistrictSelect : {cityList: [], districtList: []},
-    oldDistrictSelect : {cityList: [], districtList: []},
-    firstSchoolSelect : {cityList: [], districtList: []},
-    secondSchoolSelect : {cityList: [], districtList: []},
-    thirdSchoolSelect : {schoolList: []},
-    forthSchoolSelect : {schoolList: []},
-  }
+  private userId;
 
   /**
-   * 等级划分
-   * @type {{firstSchoolSelect: number, secondSchoolSelect: number, thirdSchoolSelect: number, forthSchoolSelect: number}}
+   * 待填写的字符串
+   * @type {{income: string[], hopeTime: string[], edu: string[]}}
      */
-  private scales = {firstSchoolSelect: 1, secondSchoolSelect: 2, thirdSchoolSelect: 3, forthSchoolSelect:4};
-
-  /**
-   * 需要复选的内容
-   * @type {string}
-     */
-  private detailInfoSelect = "newDistrict oldDistrict firstSchool secondSchool thirdSchool forthSchool";
+  private strForChoose = {
+    income: ['5万以下','5-10万','10-20万','20-30万','30-100万','100万以上'],
+    hopeTime: ['半年内','一年内','1-3年内','3年以上'],
+    edu: ['初中及以下','高中','大学','研究生及以上']
+  };
 
   constructor(public navCtrl:NavController, private myHttp:MyHttp, public memory:Memory,
               public events: Events, public alertCtrl: AlertController) {
+    this.getUserId();
     this.getUserInfo();
-    this.getProvinceList();
+  }
+
+  getUserId() {
+    this.userId = 16;
   }
 
   /**
@@ -63,33 +59,11 @@ export class UserDetailPage {
      */
   getUserInfo(callBack?) {
     this.myHttp.post(MyHttp.URL_USER_INTRODUCE, {
-      userId: this.memory.getUser().id,
-      otherUserId: this.memory.getUser().id
+      userId: this.userId,
+      otherUserId: this.userId
     }, (data) => {
       this.baseInfo = data.baseInfo || {};
       this.detailInfo = data.detailInfo || {};
-      let detailInfoSelects = this.detailInfoSelect.split(" ");
-      // 遍历所有的select选项
-      for (let i in detailInfoSelects) {
-        let name = detailInfoSelects[i]
-        if (typeof this.detailInfo[name] === 'undefined' || this.detailInfo[name] == null) {
-          continue;
-        }
-        if (name.indexOf("District") != -1) {
-          // 初始化选中的地区和地区列表
-          this.selectOption[name + 'Select'].provinceId = this.detailInfo[name].city.province.id;
-          this.getCityList(name+'Select');
-          this.selectOption[name + 'Select'].cityId = this.detailInfo[name].city.id;
-          this.getDistrictList(name+'Select');
-        } else {
-          // 初始化选中的学校列表
-          this.selectOption[name+'Select'].provinceId = this.detailInfo[name].province.id;
-          this.getSchoolList(name+'Select');
-        }
-        this.selectOption[name + 'Select'].id = this.detailInfo[name].id;
-      }
-      console.log(this.selectOption);
-
       if (callBack !== null && typeof callBack === 'function') {
         callBack();
       }
@@ -97,193 +71,70 @@ export class UserDetailPage {
   }
 
   /**
-   * 完善个人信息
+   * 下一步
    */
-  detail() {
-    let json = {
-      userId: this.baseInfo['id']
-    };
-    for (let name in this.baseInfo) {
-      if (name!=="picture"){
-        json[name] = this.baseInfo[name];
-      }
-    }
-    for (let name in this.detailInfo) {
-      if (this.detailInfoSelect.indexOf(name)==-1) {
-        json[name] = this.detailInfo[name];
-      } else {
-        json[name]=this.selectOption[name+'Select'].id
-      }
-    }
-    this.myHttp.post(MyHttp.URL_USER_COMPLETE, json, (data)=> {
-      this.getUserInfo(() => {
-        this.memory.setUser(this.baseInfo);
-        this.events.publish("e-user-self");
-        this.events.publish('e-user-introduce');
-        this.events.publish('e-home-list');
-      });
-      this.navCtrl.pop();
+  nextStep() {
+    console.log(this.baseInfo)
+    this.navCtrl.push(UserDetail2Page, {
+      userId : this.userId,
+      baseInfo: this.baseInfo,
+      detailInfo: this.detailInfo
     })
   }
 
   /**
-   * 获取省份列表
-   */
-  getProvinceList() {
-    this.myHttp.post(MyHttp.URL_GET_PROVINCE_LIST, {}, (data)=>{
-      console.log(data);
-      this.selectOption.provinceList=data.list;
-      console.log(this.selectOption);
-    });
-  }
-
-  /**
-   * 获取城市列表
-   * @param selectName 选择参数名
+   * 选择性别
      */
-  getCityList(selectName:string) {
-    this.selectOption[selectName].id=null;
-    this.selectOption[selectName].districtList=[];
-    this.myHttp.post(MyHttp.URL_GET_CITY_LIST, {
-      provinceId: this.selectOption[selectName].provinceId
-    }, (data)=>{
-      console.log(data);
-      this.selectOption[selectName].cityList=data.list;
-    });
-  }
-
-  /**
-   * 获取学校列表
-   * @param selectName 选择参数名
-   */
-  getSchoolList(selectName:string) {
-    this.myHttp.post(MyHttp.URL_GET_SCHOOL_LIST, {
-      provinceId: this.selectOption[selectName].provinceId,
-      scale: this.scales[selectName]
-    }, (data)=>{
-      console.log(data);
-      this.selectOption[selectName].schoolList=data.list;
-    });
-  }
-
-  /**
-   * 获取地区列表
-   * @param selectName 选择参数名
-   */
-  getDistrictList(selectName:string) {
-    this.myHttp.post(MyHttp.URL_GET_DISTRICT_LIST, {
-      cityId: this.selectOption[selectName].cityId
-    }, (data)=>{
-      console.log(data);
-      this.selectOption[selectName].districtList=data.list;
-    });
-  }
-
-  /**
-   * 跳出添加学校第一步弹窗
-   */
-  public alertAddSchoolStep1() {
+  private chooseSex() {
     let alert = this.alertCtrl.create();
-    alert.setTitle("选择省份");
-    for (let province of this.selectOption.provinceList) {
-      alert.addInput({
-        type : 'radio',
-        label: province['name'],
-        value: province['id'],
-      });
-    }
-    alert.addButton("关闭");
-    alert.addButton({
-      text: '下一步',
-      handler: data => {
-        this.alertAddSchoolStep2(data);
-      }
-    })
-    alert.present();
-  }
-
-  /**
-   * 跳出添加学校第二步弹窗
-   * @param provinceId 省份
-     */
-  private alertAddSchoolStep2(provinceId) {
-    let alert = this.alertCtrl.create();
-    alert.setTitle("选择学校类型");
+    alert.setTitle("您的性别是");
     alert.addInput({
       type : 'radio',
-      label: '小学',
+      label: '男',
+      value: '0',
+    });
+    alert.addInput({
+      type : 'radio',
+      label: '女',
       value: '1',
     });
-    alert.addInput({
-      type : 'radio',
-      label: '初中',
-      value: '2',
-    });
-    alert.addInput({
-      type : 'radio',
-      label: '高中',
-      value: '3',
-    });
-    alert.addInput({
-      type : 'radio',
-      label: '大学',
-      value: '4',
-    });
     alert.addButton("关闭");
     alert.addButton({
-      text: '下一步',
+      text: '确定',
       handler: data => {
-        this.alertAddSchoolStep3(provinceId, data);
+        this.baseInfo['sex'] = data;
       }
     })
     alert.present();
   }
 
   /**
-   * 添加学校的第三步
-   * @param provinceId 省份
-   * @param scale 学校类型
+   * 弹出选择文字的弹框
+   * @param type
      */
-  private alertAddSchoolStep3(provinceId, scale) {
-    this.alertCtrl.create({
-      title: '填写学校名',
-      inputs: [{
-        name: 'name',
-        placeholder: '学校全名'
-      }],
-      buttons:[{
-        text: "提交",
-        handler: data => {
-          this.addSchool(provinceId, scale, data.name);
-        }
-      }]
-    }).present();
+  private chooseStr(type) {
+    let alert = this.alertCtrl.create();
+    alert.setTitle("请选择");
+    for(let i in this.strForChoose[type]) {
+      let str = this.strForChoose[type][i];
+      alert.addInput({
+        type : 'radio',
+        label: str,
+        value: str,
+      })
+    }
+    alert.addButton("关闭");
+    alert.addButton({
+      text: '确定',
+      handler: data => {
+        this.detailInfo[type] = data;
+      }
+    })
+    alert.present();
   }
 
-  /**
-   * 执行添加学校
-   */
-  private addSchool(provinceId, scale, name) {
-    console.log(provinceId)
-    console.log(scale)
-    console.log(name)
-    this.myHttp.post(MyHttp.URL_ADD_SCHOOL, {
-      provinceId: provinceId,
-      scale: scale,
-      name: name
-    }, (data)=>{
-      console.log(data);
-      let message = '';
-      if (data.addSchoolResult === '0') {
-        message = '添加成功，待审核通过即可使用';
-      } else if (data.addSchoolResult === '1') {
-        message = '学校已存在';
-      }
-      this.alertCtrl.create({
-        title: '结果',
-        subTitle: message,
-        buttons: ['关闭']
-      }).present();
-    });
+  private isStrNull(str) {
+    return str == null || str == "";
   }
+
 }

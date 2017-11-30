@@ -16,4 +16,38 @@ page-userDetail{
     color:white;
   }
 
+  .item {
+    margin-left: 5%;
+    width: 90%;
+  }
+
+  .item span {
+    float: left;
+    margin-top: 7px;
+    font-size: 20px;
+    font-weight: 400;
+    clear: both;
+  }
+
+  .item input {
+    font-size: 15px;
+    float: right;
+    overflow:auto;
+    text-align: right;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    border-style: solid;
+    border-color: #FFFFFF
+  }
+
+  .item p {
+    font-size: 15px;
+    float: right;
+  }
+
+  ion-datetime {
+    font-size: 15px;
+    float: right;
+  }
+
 }

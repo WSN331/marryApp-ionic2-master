@@ -1,16 +1,22 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>选择性别</ion-title>
+    <ion-title>您的性别</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
 
-  <div class="man">
-    <img src="assets/img/man.png" (click)="goToWomList()">
+  <div class="switch man" (click)="goToWomList()">
+    <img src="assets/img/man.png">
+    <br/>
+    <p>男</p>
+    <p>Male</p>
   </div>
-  <div class="woman">
-    <img src="assets/img/woman.png" (click)="goToManList()">
+  <div class="switch woman" (click)="goToManList()">
+    <img src="assets/img/woman.png">
+    <br/>
+    <p>女</p>
+    <p>Female</p>
   </div>
 
 </ion-content>

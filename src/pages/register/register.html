@@ -21,39 +21,26 @@
       <ion-input type="password" placeholder="密码" [(ngModel)]="registerForm.password"></ion-input>
     </ion-item>
 
-    <ion-item>
-      <ion-input type="text" placeholder="姓名" [(ngModel)]="registerForm.name"></ion-input>
-    </ion-item>
+    <!--<ion-item>-->
+      <!--<ion-label>出生年月日</ion-label>-->
+      <!--<ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="registerForm.birthday"></ion-datetime>-->
+    <!--</ion-item>-->
 
-    <ion-item>
-      <ion-input type="email" placeholder="邮箱" [(ngModel)]="registerForm.email"></ion-input>
-    </ion-item>
+    <!--<ion-list radio-group [(ngModel)]="registerForm.sex">-->
 
-    <ion-item>
-      <ion-input type="text" placeholder="昵称" [(ngModel)]="registerForm.nickName"></ion-input>
-    </ion-item>
+      <!--<ion-list-header>性别</ion-list-header>-->
+      <!--<ion-item>-->
+        <!--<ion-label>男</ion-label>-->
+        <!--<ion-radio checked="true" value="0"></ion-radio>-->
+      <!--</ion-item>-->
 
-    <ion-item>
-      <ion-label>出生年月日</ion-label>
-      <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="registerForm.birthday"></ion-datetime>
-    </ion-item>
+      <!--<ion-item>-->
+        <!--<ion-label>女</ion-label>-->
+        <!--<ion-radio checked="true" value="1"></ion-radio>-->
+      <!--</ion-item>-->
 
-    <ion-list radio-group [(ngModel)]="registerForm.sex">
+    <!--</ion-list>-->
 
-      <ion-list-header>性别</ion-list-header>
-      <ion-item>
-        <ion-label>男</ion-label>
-        <ion-radio checked="true" value="0"></ion-radio>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>女</ion-label>
-        <ion-radio checked="true" value="1"></ion-radio>
-      </ion-item>
-
-    </ion-list>
-
-    <textarea class="hobby" placeholder="爱好" [(ngModel)]="registerForm.hobby"></textarea>
 
   </ion-list>
 

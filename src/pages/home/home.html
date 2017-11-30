@@ -1,7 +1,7 @@
 <ion-header>
-  <ion-navbar color="light">
+  <ion-navbar>
 
-    <ion-title>LOGO</ion-title>
+    <ion-title text-center>主页</ion-title>
 
     <ion-buttons end>
 
@@ -15,19 +15,18 @@
 </ion-header>
 
 <ion-content>
-
-  <ion-slides #homeSlides [pager]="true" class="slide-title">
-    <ion-slide *ngFor="let user of userList; let i = index;" (click)="getIntroduce(user.id)">
+  <!--用户列表-->
+  <div class="user_list">
+    <!--每个用户的卡片-->
+    <div class="user_card" *ngFor="let user of userList; let i = index;" (click)="getIntroduce(user.id)">
       <div>
         <div class="picture">
           <img [src]="imgService.safeImage(user.picture)" />
         </div>
 
-        <!--<ion-icon class="ion-ios-arrow-back icon"></ion-icon>-->
-        <!--<ion-icon class="ion-ios-arrow-forward icon"></ion-icon>-->
-
         <div class="message">
-          <div class="neirong">
+
+          <div class="line_one">
             <div class="name">
               {{ user.nickName }}
             </div>
@@ -36,17 +35,17 @@
             </div>
           </div>
 
-          <div class="descript">
-            <p class="one">{{ ['男','女'][user.sex] }}</p>
-            <p class="two">{{ calculateService.getAge(user.birthday) }}岁</p>
+          <div class="line_third">
+            <p>{{ calculateService.getAge(user.birthday) }}岁</p>
+            <p>{{ calculateService.getConstellation(user.birthday) }}</p>
+            <p>爱好：{{ user.hobby }}</p>
           </div>
 
-          <div class="hobby"><span>爱好：</span>{{ user.hobby }}</div>
         </div>
 
 
       </div>
-    </ion-slide>
-  </ion-slides>
+    </div>
+  </div>
 
 </ion-content>

@@ -14,6 +14,7 @@ import { AboutPage } from '../pages/about/about';
 import { HomeIntroducePage } from '../pages/home-introduce/home-introduce'
 import { UserIntroducePage } from '../pages/user-introduce/user-introduce'
 import { UserDetailPage } from '../pages/user-detail/user-detail'
+import { UserDetail2Page } from '../pages/user-detail2/user-detail2'
 import { CredListPage } from '../pages/credList/credList'
 import { AddCredPage } from '../pages/addCred/addCred'
 import { AuthorInformationPage } from "../pages/authorInformation/authorInformation"
@@ -48,6 +49,7 @@ import {PayPage} from "../pages/purchase/pay";
     HomeIntroducePage,
     UserIntroducePage,
     UserDetailPage,
+    UserDetail2Page,
     EveryPersonPage,
     SearchPage,
     MessagePage,
@@ -79,6 +81,7 @@ import {PayPage} from "../pages/purchase/pay";
     HomeIntroducePage,
     UserIntroducePage,
     UserDetailPage,
+    UserDetail2Page,
     EveryPersonPage,
     SearchPage,
     MessagePage,
