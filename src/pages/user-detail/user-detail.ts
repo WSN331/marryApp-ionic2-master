@@ -2,7 +2,7 @@
  * Created by ASUS on 2017/9/4 0004.
  */
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController,NavParams } from 'ionic-angular';
 import { Events } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 
@@ -43,14 +43,14 @@ export class UserDetailPage {
     edu: ['初中及以下','高中','大学','研究生及以上']
   };
 
-  constructor(public navCtrl:NavController, private myHttp:MyHttp, public memory:Memory,
+  constructor(public navCtrl:NavController,public navParams:NavParams, private myHttp:MyHttp, public memory:Memory,
               public events: Events, public alertCtrl: AlertController) {
     this.getUserId();
     this.getUserInfo();
   }
 
   getUserId() {
-    this.userId = 16;
+    this.userId = this.navParams.get("userId")||this.memory.getUser().id;
   }
 
   /**

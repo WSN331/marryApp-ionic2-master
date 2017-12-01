@@ -5,6 +5,8 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 
+import { UserDetailPage } from "../user-detail/user-detail"
+
 import { MyHttp } from '../../util/MyHttp';
 
 @Component({
@@ -39,8 +41,11 @@ export class RegisterPage {
     }
     this.myHttp.post(MyHttp.URL_REGISTER, this.registerForm, (data) => {
       if (data.registerResult === "0") {
-        this.registerMessage("注册成功");
+        this.registerMessage("注册成功,请继续完善信息");
         this.navCtrl.pop();
+        this.navCtrl.push(UserDetailPage,{
+          userId: data.userId
+        })
       } else if (data.registerResult === "1") {
         this.registerMessage("账号已存在");
       }

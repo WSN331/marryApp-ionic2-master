@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { AboutPage } from '../about/about';
+import { UserIntroducePage } from '../user-introduce/user-introduce';
 import { HomePage } from '../home/home';
 import {MessagePage} from "../message/message";
 import {CommunicateService} from "../../util/CommunicateService";
@@ -14,7 +14,7 @@ import {Memory} from "../../util/Memory";
 export class TabsPage {
 
   tab1Root = HomePage;
-  tab2Root = AboutPage;
+  tab2Root = UserIntroducePage;
   tab3Root = MessagePage;
 
   constructor(public comCate:CommunicateService,public memory:Memory) {

@@ -1,64 +1,112 @@
 page-userIntroduce {
-  ion-item span {
-    color: #A0A0A0;
+
+  .main_pic {
+    width: 100%;
   }
 
-  ion-item p.content {
-    color: black;
-    font-family: 黑体;
-    font-size: 20px;
-    margin-top: 3px;
+  .main_pic img{
+    width: 100%
   }
 
-  div.title-right {
-    float: left;
+  .btn_setting {
+    position: absolute;
+    top:3%;
+    right: 5%;
+    width: 8%;
   }
 
-  p.line-one {
-    float: left;
-    margin-right: 10px;
-    padding: 2px;
-    border-radius: 5px;
-    background: #cccccc;
+  .first_line{
+    margin: 5% 8% 0px;
   }
 
-  div.picture img{
-    clear: both;
-    float: left;
-    width: 30%;
-    margin: 10px;
-    border-radius:50%;
-    overflow:hidden;
+  .name{
+    font-size: 22px;
+    display: inline-block;
   }
 
-  p.change_image {
-    color: grey;
+  .first_line .pic{
+    margin: 5px 10px;
+    width: 20px;
+    position: absolute;
+    text-align: center;
+    display: inline-block;
   }
 
   .update{
-    background-color:transparent;
-    border-radius:20px;
-    color:#ffaa00;
-    border: 2px solid #ffaa00;
-    width:50%;
-    margin:0 auto;
-  }
-  .update:active{
-    background-color:#ffaa00;
-    color:white;
-  }
-  .update:hover{
-    background-color:#ffaa00;
-    color:white;
+    float: right;
   }
 
-  .all-pic {
-    float: left;
+  .update p {
+    float: right;
+    color: gray;
   }
 
-  .all-pic img {
-    width: 44%;
-    margin: 3%;
-    float: left;
+  .update img {
+    float: right;
+    width: 25px;
+    margin: 10px;
   }
+
+  .little_info{
+    margin: 0px 7%;
+  }
+
+
+  p.line-one {
+    display: inline-block;
+    padding: 2px;
+    border-radius: 5px;
+  }
+
+  ion-list {
+    clear: both;
+    float: left;
+    width: 100%;
+  }
+
+  .pass_audit {
+    clear: both;
+    float: left;
+    width: 100%;
+    margin-top: 10%;
+    text-align: center;
+    font-size: 25px;
+  }
+
+  .pass_audit img {
+    width: 30px;
+  }
+
+  ion-list.both-info ion-item span {
+    float: left;
+    margin-right: 30px;
+  }
+
+  ion-list.both-info ion-item p {
+    white-space:normal;
+    word-break: break-all;
+  }
+
+  br{
+    clear: both;
+  }
+
+  .both-info {
+  }
+
+  .both-info .bath {
+    float: left;
+    width: 60%;
+  }
+
+  .both-info .bath p {
+    float: left;
+    color: #FF975A;
+    background: #FFF6F1;
+    margin-left: 10px;
+    padding: 2px;
+  }
+
+
+
 }

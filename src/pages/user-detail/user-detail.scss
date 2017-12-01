@@ -1,11 +1,11 @@
 page-userDetail{
   .btn_detail{
-    background-color:transparent;
+    margin: 10% 5%;
+    background-image:url('../assets/img/btn_background.png');
+    border: none;
+    text-align: center;
+    width: 90%;
     border-radius:20px;
-    color:#ffaa00;
-    border: 2px solid #ffaa00;
-    width:50%;
-    margin:0 auto;
   }
   .btn_detail:active{
     background-color:#ffaa00;
