@@ -4,6 +4,8 @@ import { NavController } from 'ionic-angular';
 import { MyHttp } from '../../util/MyHttp';
 import { Memory } from '../../util/Memory'
 import { ImgService } from '../../util/ImgService'
+import {CalculateService} from "../../util/CalculateService";
+import {HomeIntroducePage} from "../home-introduce/home-introduce";
 
 @Component({
   selector: 'page-contact',
@@ -26,7 +28,8 @@ export class ContactPage {
    */
   public collectList;
 
-  constructor(public navCtrl: NavController, private myHttp : MyHttp, public imgService: ImgService, public memory: Memory) {
+  constructor(public navCtrl: NavController, private myHttp : MyHttp, public imgService: ImgService, public memory: Memory,
+              public calculateService:CalculateService) {
     this.doRefresh();
   }
 
@@ -58,6 +61,7 @@ export class ContactPage {
     this.myHttp.post(MyHttp.URL_BE_LIKE_LIST, {
       userId: this.memory.getUser().id
     }, (data) => {
+      console.log(data)
       this.beLikeList = data.userList;
       if (typeof refresher !== 'undefined') {
         refresher.complete();
@@ -80,5 +84,31 @@ export class ContactPage {
     })
   }
 
+  public select = "beLiked"
+  /*
+  * 将该页面拿出堆栈
+  * */
+  back(){
+    this.navCtrl.pop();
+  }
+  /**
+   * 进去详细界面
+   * @param userId
+   */
+  getIntroduce(userId:any) {
+    this.navCtrl.push(HomeIntroducePage, {otherUserId: userId})
+  }
+
+  /**
+   * 不喜欢了
+   */
+  disLove(userId:any){
+    this.myHttp.post(MyHttp.URL_DIS_LIKE, {
+      userId: this.memory.getUser().id,
+      toUserId: userId
+    }, (data) => {
+      this.doRefresh();
+    })
+  }
 
 }

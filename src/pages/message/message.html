@@ -1,37 +1,58 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>消息</ion-title>
-  </ion-navbar>
+  <div class="head">
+    <div class="head_title">
+      消息
+    </div>
+    <div class="line">
+    </div>
+  </div>
 </ion-header>
 
 <ion-content padding>
 
-  <div class="one" no-lines (click)="goToContact()">
-    <div class="xindong">
-      <img src="assets/img/xindong.png"/>
+  <div class="love" (click)="goToContact()">
+    <div class="image_show">
+      <img src="assets/img/love.png"/>
+      <div class="circle"></div>
     </div>
-    <div class="miaoshu">
-      心动记录
+    <div class="describe">
+      <span class="span1">心动</span><br/>
+      <span class="span2">查询对你心动的人和你心动的记录</span>
     </div>
+    <div class="btIcon">
+      <img src="assets/img/next.png"/>
+    </div>
+    <div class="divide_line"></div>
   </div>
 
-  <div class="two" no-lines (click)="goToPeople()">
-    <div class="xindong">
-      <img src="assets/img/zuijin.png"/>
+  <div class="visit" (click)="goToPeople()">
+    <div class="image_show">
+      <img src="assets/img/visit.png"/>
+      <div *ngIf="this.memory.getMsg()==true" class="circle"></div>
     </div>
-    <div class="miaoshu">
-      最近来访
-      <div *ngIf="this.memory.getMsg()==true" class="msg"></div>
+    <div class="describe">
+      <span class="span1">最近来访</span><br/>
+      <span class="span2">查看最近聊天对象</span>
     </div>
+    <div class="btIcon">
+      <img src="assets/img/next.png"/>
+    </div>
+    <div class="divide_line"></div>
   </div>
 
-  <div class="three" no-lines>
-    <div class="xindong">
-      <img src="assets/img/hongniang.png"/>
+  <div class="redWomen">
+    <div class="image_show">
+      <img src="assets/img/redWomen.png"/>
+      <div class="circle"></div>
     </div>
-    <div class="miaoshu">
-      小红娘
+    <div class="describe">
+      <span class="span1">小红娘</span><br/>
+      <span class="span2">红娘又给你介绍新对象了，快去看一下吧</span>
     </div>
+    <div class="btIcon">
+      <img src="assets/img/next.png"/>
+    </div>
+    <div class="divide_line"></div>
   </div>
 
 </ion-content>

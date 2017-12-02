@@ -10,7 +10,7 @@ import {HomeIntroducePage} from "../home-introduce/home-introduce";
 export class SearchPage{
 
   /**
-   *
+   * 搜索的Id
    */
   private userId;
 

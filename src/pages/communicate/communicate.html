@@ -1,20 +1,39 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>聊天</ion-title>
-  </ion-navbar>
+  <div class="head">
+    <div class="head_back" (click)="back()">
+      <span></span>
+      <img src="assets/img/back.png"/>
+    </div>
+    <div class="head_title">
+      {{otherSelfMsg.nickName}}
+    </div>
+    <div class="line">
+    </div>
+  </div>
 </ion-header>
 
 <ion-content>
-
   <div class="messageShow">
     <div class="first" id="first">
       <ng-container *ngFor="let msg of subMsgList">
-        <div *ngIf="msg.from==this.mySelf" class="sendMs">
-          {{msg.text}}
+        <div *ngIf="msg.from==this.mySelf" class="main_send">
+          <div class="send_picture">
+            <img [src]="imgService.safeImage(mySelfMsg.picture)">
+          </div>
+          <div class="sendMs">
+            {{msg.text}}
+          </div>
         </div>
-        <div *ngIf="msg.from!=this.mySelf" class="receiveMs">
-          {{msg.text}}
+
+        <div *ngIf="msg.from!=this.mySelf" class="main_receive">
+          <div class="receive_picture">
+            <img [src]="imgService.safeImage(otherSelfMsg.picture)">
+          </div>
+          <div class="receiveMs">
+            {{msg.text}}
+          </div>
         </div>
+
       </ng-container>
     </div>
   </div>

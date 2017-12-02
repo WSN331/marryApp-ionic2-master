@@ -5,7 +5,7 @@
       <img src="assets/img/login_back.png"/>
     </div>
     <div class="head_title">
-      登录
+      找回密码
     </div>
   </div>
 </ion-header>
@@ -15,19 +15,22 @@
 
     <ion-item class="phone">
       <img item-start src="assets/img/phone.png"/>
-      <ion-input type="text" placeholder="手机号" [(ngModel)]="loginForm.account"></ion-input>
+      <ion-input type="text" placeholder="手机号" [(ngModel)]="forgetForm.account"></ion-input>
+    </ion-item>
+
+    <ion-item class="code">
+      <img item-start src="assets/img/code.png"/>
+      <ion-input type="text" placeholder="验证码" [(ngModel)]="forgetForm.code"></ion-input>
+      <p item-end>获取验证码</p>
     </ion-item>
 
     <ion-item class="password">
       <img item-start src="assets/img/password.png"/>
-      <ion-input type="{{pasType}}" placeholder="密码(6-20位数据或者字母)" [(ngModel)]="loginForm.password"></ion-input>
+      <ion-input type="{{pasType}}" placeholder="新密码(6-20密码或数字)" [(ngModel)]="forgetForm.newPassword"></ion-input>
       <img item-end src="assets/img/passhow.png" (click)="showPas()" />
     </ion-item>
-    <button ion-button full (click)="login()">登录</button>
+    <button ion-button full (click)="getPassword()">确认</button>
 
-    <div class="forget" (click)="gotoForget()">
-    <p>忘记密码？</p>
-    </div>
 
   </ion-list>
 

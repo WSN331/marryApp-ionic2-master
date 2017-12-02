@@ -21,8 +21,6 @@ export class PeoplePage{
   public mySelf;
   //通话记录
   public conversations:any = [];
-
-
   constructor(public navCtrl:NavController,public memory:Memory,
               public loadingCtrl:LoadingController,public events: Events,
               public changeDetectorRef:ChangeDetectorRef,public myHttp : MyHttp,
@@ -148,6 +146,14 @@ export class PeoplePage{
       callBack(baseInfo);
     })
   }
+
+  /*
+  * 将该页面拿出堆栈
+  * */
+  back(){
+    this.navCtrl.pop();
+  }
+
 
 }
 

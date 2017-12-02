@@ -1,37 +1,76 @@
 page-message{
+  /*标题*/
+  .head{
+    height: 50px;
+  }
+  .head_title {
+    font-size: 22px;
+    text-align: center;
+    line-height: 50px;
+    color: #ff975a;
+  }
+  .line{
+    height: 1px;
+    background-color:#eeeeee;
+  }
+  .divide_line{
+    height: 1px;
+    background-color:#eeeeee;
+    margin-top:20px;
+  }
 
-  .one{
+  /*心动*/
+  .love{
     position: relative;
   }
-  .xindong{
+  .image_show{
     display: inline-block;
+    width:60px;
+    height:60px;
   }
-  .miaoshu{
-    font-size: 25px;
-    display: inline-block;
-    position: absolute;
-    height:88px;
-    line-height: 88px;
-    text-align: center;
-    margin-left:10%;
-  }
-
-  .two{
-    margin-top:20px;
-  }
-  .three{
-    margin-top:20px;
-  }
-
-  .msg{
+  .circle{
     width:20px;
     height:20px;
     border-radius:50px;
-    border:solid #ffaa00 1px;
     display: inline-block;
     position: absolute;
-    background: #ffaa00;
-    margin-left: 70%;
-    margin-top:-85%;
+    margin-top:-70px;
+    margin-left:40px;
+    background: #ff0000;
+  }
+  .describe{
+    display: inline-block;
+    position:absolute;
+    margin-left:5%;
+    height:60px;
+  }
+  .span1{
+    font-size:22px;
+    padding-top: 15px;
+  }
+  .span2{
+    color:#cccccc;
+    padding-top: 15px;
+    white-space: nowrap;  /*!*强制span不换行*!*/
+    display: inline-block;  /*!*将span当做块级元素对待*!*/
+    width: 236px;  /*限制宽度*/
+    overflow: hidden;  /*超出宽度部分隐藏*/
+    text-overflow: ellipsis;  /*超出部分以点号代替*/
+  }
+  .btIcon{
+    display: inline-block;
+    float: right;
+    height:104px;
+    line-height:104px;
+  }
+
+  /*最近来访*/
+  .visit{
+    margin-top:20px;
+  }
+
+  /*小红娘*/
+  .redWomen{
+    margin-top:20px;
   }
 }

@@ -1,9 +1,15 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
+  <div class="head">
+    <div class="head_back" (click)="back()">
+      <span></span>
+      <img src="assets/img/back.png"/>
+    </div>
+    <div class="head_title">
       设置
-    </ion-title>
-  </ion-navbar>
+    </div>
+    <div class="line">
+    </div>
+  </div>
 </ion-header>
 
 <ion-content padding>
@@ -13,6 +19,11 @@
     </div>
     <h2>{{ user.nickName }}</h2>
   </div>
+
+  <ion-item>
+    <ion-toggle checked="true"></ion-toggle>
+    <ion-label>消息通知</ion-label>
+  </ion-item>
 
   <ion-item (click)="goToCredList()">
     <ion-label>信息认证</ion-label>

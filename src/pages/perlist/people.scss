@@ -1,9 +1,60 @@
 page-peoples{
-  .list-avatar-page {
-    ion-note {
-      font-size: 12px;
-      align-self: flex-start;
-      margin-top: 14px;
-    }
+  /*标题*/
+  .head{
+    height: 50px;
+  }
+  .head_back{
+    position: absolute;
+    height:50px;
+    vertical-align: middle;
+  }
+  .head_back span{
+    height: 100%;
+    vertical-align: middle;
+    display: inline-block
+  }
+  .head_back img{
+    width:25px;
+    vertical-align: middle;
+  }
+
+  .head_title {
+    font-size: 22px;
+    text-align: center;
+    line-height: 50px;
+    color: #ff975a;
+  }
+  .line{
+    height: 1px;
+    background-color:#eeeeee;
+  }
+
+  .picture{
+    width: 60px;
+    height:60px;
+    border-radius:50%;
+    overflow: hidden;
+  }
+
+  .circle{
+    width:20px;
+    height:20px;
+    border-radius:50%;
+    display: inline-block;
+    background: #ff0000;
+    margin-top:-70px;
+    margin-left:40px;
+    position: absolute;
+    text-align: center;
+    line-height: 20px;
+    color:#ffffff;
+  }
+
+  .h2{
+    font-size: 22px;
+  }
+
+  .p{
+    margin-top:5px;
   }
 }

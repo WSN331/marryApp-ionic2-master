@@ -1,4 +1,4 @@
-page-register{
+page-forget{
   /*标题*/
   .head{
     width:100%;
@@ -40,14 +40,6 @@ page-register{
     border-radius: 20px;
     margin-top:20px;
   }
-
-  .click{
-    color:#ff975a;
-  }
-  .unclick{
-    color:#999999;
-  }
-
   .password{
     background-color: #fafafa;
     border-radius: 20px;
@@ -64,21 +56,6 @@ page-register{
     width:20px;
   }
 
-  .aggrement{
-    margin-top:20px;
-    width:100%;
-    text-align:left;
-  }
-  .checkbox{
-    float: left;
-  }
-  .span1{
-    margin-left:10px;
-    color: #999999;
-  }
-  .span2{
-    color:#ff975a;
-  }
 
   .button{
     margin-top:30px;
@@ -97,7 +74,7 @@ page-register{
   }
 
 
-  //不同浏览器下的显示
+//不同浏览器下的显示
   .text-input::-moz-placeholder {
     color: #cccccc;
   }
@@ -107,4 +84,5 @@ page-register{
   .text-input::-webkit-input-placeholder {
     color: #cccccc;
   }
+
 }

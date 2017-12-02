@@ -4,6 +4,8 @@ import {AlertController, Events, NavController, NavParams} from "ionic-angular";
 import {Memory} from "../../util/Memory";
 
 import * as AV from "leancloud-realtime"
+import {MyHttp} from "../../util/MyHttp";
+import {ImgService} from "../../util/ImgService";
 
 
 
@@ -19,6 +21,10 @@ export class CommunicatePage{
   public mySelf;
   //通话用户
   public otherSelf;
+  //登录用户的信息
+  public mySelfMsg={};
+  //通话用户的信息
+  public otherSelfMsg={};
   //需要发送的信息
   public realSend;
   public sendText;
@@ -28,11 +34,12 @@ export class CommunicatePage{
   public MsgList:any=[];
   //存储接收的信息
   public RsgList:any = [];
-  //接收多有信息
+  //接收所有信息
   public subMsgList:any = [];
 
   constructor(public navCtrl:NavController,public navParams:NavParams,public memory:Memory,
-              public events: Events,public alertCtrl:AlertController){
+              public events: Events,public alertCtrl:AlertController,private myHttp:MyHttp,
+              public imgService: ImgService){
     this.initAVcom();
     //得到最近20条聊天记录
     this.receiveMessageList();
@@ -82,10 +89,21 @@ export class CommunicatePage{
   /**
    * 初始化
    */
+  private myInfo;
   initAVcom(){
     this.realtime = this.memory.getTiming();
     this.mySelf = this.memory.getUser().id;
     this.otherSelf = this.navParams.get('person');
+    //获取自己的信息
+    this.getOtherPersonMsg(this.mySelf,(baseInfo)=>{
+      console.log(baseInfo.nickName+"自己的信息BaseInfo");
+      this.mySelfMsg = baseInfo;
+    });
+    //获取他人的信息
+    this.getOtherPersonMsg(this.otherSelf,(baseInfo)=>{
+      console.log(baseInfo.nickName+"别人的信息BaseInfo");
+      this.otherSelfMsg = baseInfo;
+    })
   }
 
   /**
@@ -181,4 +199,27 @@ export class CommunicatePage{
       buttons: ["关闭"]
     }).present();
   }
+
+  /**
+   * 获取信息
+   */
+  getOtherPersonMsg(otherUserId,callBack:Function) {
+    this.myHttp.post(MyHttp.URL_USER_INTRODUCE, {
+      userId: this.mySelf,
+      otherUserId: otherUserId
+    }, (data) => {
+      console.log(data)
+      let baseInfo = data.baseInfo || {};
+      console.log(baseInfo);
+      callBack(baseInfo);
+    })
+  }
+
+  /**
+   * 返回
+   */
+  back(){
+    this.navCtrl.pop();
+  }
+
 }

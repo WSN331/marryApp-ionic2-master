@@ -1,5 +1,167 @@
 page-pay{
-  ion-card {
+  /*标题*/
+  .head{
+    background-color: #ffffff;
+    height: 50px;
+  }
+  .head_back{
+    position: absolute;
+    height:50px;
+    vertical-align: middle;
+  }
+  .head_back span{
+    height: 100%;
+    vertical-align: middle;
+    display: inline-block
+  }
+  .head_back img{
+    width:25px;
+    vertical-align: middle;
+  }
+  .head_title {
+    font-size: 22px;
+    text-align: center;
+    line-height: 50px;
+    color: #ff975a;
+  }
+  .line{
+    height: 1px;
+    background-color:#eeeeee;
+  }
+  .ion-content{
+    background-color: #fafafa;
+  }
+  //个人信息部分
+
+  .ion-list{
+    margin-top:10px;
+  }
+  .picture{
+    width: 60px;
+    height:60px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  .span1{
+    float: left;
+    font-size:20px;
+  }
+  .describe img{
+    width:23px;
+    height:23px;
+    margin-left:10px;
+  }
+  .p{
+    margin-top:5px;
+  }
+  .p span{
+    color:#d9a961;
+  }
+
+  //第二部分购买VIP
+  .buy{
+    width:100%;
+    background-color:#ffffff;
+    margin-top:10px;
+    overflow: hidden;
+  }
+  .buy_member{
+    margin-left:3%;
+    font-size:18px;
+    text-align: center;
+    margin-top:15px;
+  }
+  .buy_first{
+    margin-top:10px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .buy_one{
+    text-align: left;
+    padding:10px;
+    display: inline-block;
+    width:170px;
+    border: 1px solid #cccccc ;
+    margin-left:2%;
+    margin-top:10px;
+  }
+  .buy_name{
+    font-size:20px;
+    color: #d9a961;
+  }
+  .buy_name img{
+    height:20px;
+    width:20px;
+  }
+  .buy_name span{
+    font-size:15px;
+    color: #d9a961;
+  }
+  .buy_newprice{
+    font-size:20px;
+    color: #ec584e;
+  }
+  .buy_price_span2{
+    text-align: center;
+    width:60px;
+    height:1px;
+    background-color:black;
+    margin-top:-8px;
+  }
+  .buy_img{
+    width:60px;
+    position: absolute;
+    margin-left:99px;
+    margin-top:-12px;
+  }
+
+
+
+
+
+  //第三部分会员权益
+  .member{
+    display: inline-block;
+    width:100%;
+    background-color:#ffffff;
+    margin-top:10px;
+    overflow: hidden;
+
+  }
+  .member_right{
+    margin-top:15px;
+    font-size: 20px;
+    text-align: center;
+  }
+  .first_line{
+    margin-top:20px;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+  }
+  .second_line{
+    display: inline-block;
+    margin-top:20px;
+    width:100%;
+    text-align: center;
+  }
+  .vip_img1{
+    display: inline-block;
+  }
+  .vip_img1 img{
+    width:50px;
+    height:50px;
+  }
+  .vip_img {
+    display: inline-block;
+    margin-left:60px;
+  }
+  .vip_img img{
+    width:50px;
+    height:50px;
+  }
+
+/*  ion-card {
     position: relative;
     text-align: center;
   }
@@ -19,5 +181,5 @@ page-pay{
     top: 52%;
     width: 100%;
     color: #fff;
-  }
+  }*/
 }

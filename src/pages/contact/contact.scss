@@ -1,22 +1,100 @@
 page-contact {
-  .span{
-    clear: both;
-    float: left;
-    margin: 30px 10px 10px 10px;
+  /*标题*/
+  .head{
+    height: 50px;
+  }
+  .head_back{
+    position: absolute;
+    height:50px;
+    vertical-align: middle;
+  }
+  .head_back span{
+    width:0px;
+    height: 100%;
+    vertical-align: middle;
+    display: inline-block;
+  }
+  .head_back img{
+    width:25px;
+    vertical-align: middle;
   }
 
-  div.picture img{
-    clear: both;
-    float: left;
-    width: 15%;
-    margin: 10px;
+  .head_title {
+    font-size: 22px;
+    text-align: center;
+    line-height: 50px;
+    color: #ff975a;
+  }
+  .line{
+    height: 1px;
+    background-color:#eeeeee;
+  }
+
+
+  .people{
+    margin-top:15px;
+    height:100px;
+    width:auto;
+  }
+  .people_picture{
+    width: 60px;
+    height:60px;
     border-radius:50%;
-    overflow:hidden;
+    clear:both;
+    float: left;
+    overflow: hidden;
+  }
+  .people_describe{
+    margin-left: 10px;
+    display: inline-block;
+    position: absolute;
+  }
+  .people_date{
+    display: inline-block;
+    height:93px;
+    line-height: 93px;
+    float: right;
+    color:#999999;
+    font-size:14px;
   }
 
-  .name{
-    float: left;
-    margin: 20px;
-    font-size: 30px;
+
+  .people_describe_img{
+    margin-top:5px;
+  }
+  .people_describe_img img{
+    float:left;
+  }
+  .people_describe_img span{
+    text-align: center;
+    margin-left: 10px;
+    font-size:16px;
+    color:#ff975a;
+  }
+  span{
+    white-space: nowrap;  /*强制span不换行*/
+    /*display: inline-block;*/  /*将span当做块级元素对待*/
+    width: 236px;  /*限制宽度*/
+    overflow: hidden;  /*超出宽度部分隐藏*/
+    text-overflow: ellipsis;  /*超出部分以点号代替*/
+  }
+  .span1{
+    font-size:22px;
+  }
+  .span2{
+    margin-left:10px;
+    font-size: 22px;
+  }
+  .span3{
+    margin-top: -10px;
+    display: inline-block;
+    color:#666666;
+    font-size:14px;
+    clear: both;
+  }
+  .span4{
+    display: inline-block;
+    color:#999999;
+    font-size:14px;
   }
 }

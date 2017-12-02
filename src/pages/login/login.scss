@@ -1,11 +1,60 @@
 page-login{
+  /*标题*/
+  .head{
+    width:100%;
+    height:176px;
+    background-size:cover;
+    background-image: url('../assets/img/background.png');
+  }
+  .head_back{
+    position: absolute;
+    height:50px;
+    vertical-align: middle;
+  }
+  .head_back span{
+    height: 100%;
+    vertical-align: middle;
+    display: inline-block
+  }
+  .head_back img{
+    width:25px;
+    vertical-align: middle;
+  }
+  .head_title {
+    font-size: 22px;
+    text-align: center;
+    line-height: 50px;
+    color: #ffffff;
+  }
+  .line{
+    height: 1px;
+    background-color:#eeeeee;
+  }
+
+  .phone{
+    background-color: #fafafa;
+    border-radius: 20px;
+  }
+  .password{
+    background-color: #fafafa;
+    border-radius: 20px;
+    margin-top:20px;
+  }
+
+  .phone img{
+    width:20px;
+  }
+  .password img{
+    width:20px;
+  }
+
+
   .button{
-    background-color:transparent;
-    border-radius:20px;
-    color:#ffaa00;
-    border: 2px solid #ffaa00;
-    width:50%;
-    margin:0 auto;
+    margin-top:30px;
+    background-image: url('../assets/img/btn_background.png');
+    background-size:cover;
+    border-radius:15px;
+    color:#ffffff;
   }
   .button:active{
     background-color:#ffaa00;
@@ -16,12 +65,10 @@ page-login{
     color:white;
   }
 
-  .mm{
-    color:#cccccc;
-    position:absolute;
-    bottom:46px;
+  .forget{
+    color:#ff975a;
     width:100%;
-    text-align:center;
+    text-align:right;
   }
 
 //不同浏览器下的显示

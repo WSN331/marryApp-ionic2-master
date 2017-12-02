@@ -1,49 +1,43 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>注册</ion-title>
-  </ion-navbar>
+  <div class="head">
+    <div class="head_back" (click)="backMessage()">
+      <span></span>
+      <img src="assets/img/login_back.png"/>
+    </div>
+    <div class="head_title">
+      注册
+    </div>
+  </div>
 </ion-header>
 
 <ion-content padding>
+  <ion-list inset no-lines>
 
-  <ion-list inset>
-
-    <ion-item>
-      <ion-input type="tel" placeholder="手机号" [(ngModel)]="registerForm.account"></ion-input>
+    <ion-item class="phone">
+      <img item-start src="assets/img/phone.png"/>
+      <ion-input type="text" placeholder="手机号" [(ngModel)]="registerForm.account"></ion-input>
     </ion-item>
 
-    <button ion-button (click)="sendVerify()">获取验证码</button>
-    <ion-item>
+    <ion-item class="code">
+      <img item-start src="assets/img/code.png"/>
       <ion-input type="text" placeholder="验证码" [(ngModel)]="registerForm.verifyCode"></ion-input>
+      <p item-end (click)="sendVerify()" class="{{show}}">{{getCode}}</p>
     </ion-item>
 
-    <ion-item>
-      <ion-input type="password" placeholder="密码" [(ngModel)]="registerForm.password"></ion-input>
+    <ion-item class="password">
+      <img item-start src="assets/img/password.png"/>
+      <ion-input type="{{pasType}}" placeholder="新密码(6-20密码或数字)" [(ngModel)]="registerForm.password"></ion-input>
+      <img item-end src="assets/img/passhow.png" (click)="showPas()" />
     </ion-item>
+    <button ion-button full (click)="register()">注册</button>
 
-    <!--<ion-item>-->
-      <!--<ion-label>出生年月日</ion-label>-->
-      <!--<ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="registerForm.birthday"></ion-datetime>-->
-    <!--</ion-item>-->
-
-    <!--<ion-list radio-group [(ngModel)]="registerForm.sex">-->
-
-      <!--<ion-list-header>性别</ion-list-header>-->
-      <!--<ion-item>-->
-        <!--<ion-label>男</ion-label>-->
-        <!--<ion-radio checked="true" value="0"></ion-radio>-->
-      <!--</ion-item>-->
-
-      <!--<ion-item>-->
-        <!--<ion-label>女</ion-label>-->
-        <!--<ion-radio checked="true" value="1"></ion-radio>-->
-      <!--</ion-item>-->
-
-    <!--</ion-list>-->
-
+    <div class="aggrement">
+      <ion-checkbox color="danger" [(ngModel)]="cucumber"></ion-checkbox>
+      <span class="span1">我同意</span>
+      <span class="span2" (click)="seeProtocol()">《邂逅斯年用户协议》</span>
+    </div>
 
   </ion-list>
 
-  <button class="btn_register" ion-button full (click)="register()">注册</button>
 
 </ion-content>

@@ -1,9 +1,10 @@
 import {Component} from "@angular/core";
 
-import {AlertController, LoadingController} from "ionic-angular";
+import {AlertController, LoadingController, NavController} from "ionic-angular";
 
 import {MyHttp} from "../../util/MyHttp";
 import {Memory} from "../../util/Memory";
+import {ImgService} from "../../util/ImgService";
 
 
 declare var AliPay:any;
@@ -15,8 +16,10 @@ declare var AliPay:any;
 
 export class PayPage{
 
-  constructor(private myHttp:MyHttp,public alertCtrl: AlertController,public loadingCtrl:LoadingController,
-              public memory:Memory){
+  constructor(public navCtrl: NavController,private myHttp:MyHttp,
+              public alertCtrl: AlertController,public loadingCtrl:LoadingController,
+              public memory:Memory,public imgService: ImgService){
+    this.getUserMsg();
     this.getOrder();
   }
 
@@ -27,10 +30,23 @@ export class PayPage{
   //订单信息
   public payInfo = null;
 
-  public images = ['assets/img/card-saopaolo.png',
-                   'assets/img/card-amsterdam.png',
-                   'assets/img/card-sf.png'];
-  public dcs = ['每天仅需3.9元','每天仅需3.2元','原价2688元'];
+  public imgs = [
+    'assets/img/vip.png',
+    'assets/img/vip.png',
+    'assets/img/vip.png',
+    'assets/img/crown.png'
+  ];
+  public dcs = ['199.00元','299.00元','499.00元','799.00元'];
+  public month = ['1个月','3个月','1年','永久'];
+
+
+  public user = {};
+  getUserMsg(){
+    if(this.memory.getUser()!=" " && this.memory.getUser()!="undefined"&&this.memory.getUser()!=null){
+      this.user = this.memory.getUser();
+      console.log(this.user+"个人信息"+this.memory.getUser());
+    }
+  }
 
 
   /**
@@ -47,14 +63,22 @@ export class PayPage{
 
       for(let i=0;i<this.vipTypes.length;i++){
         let order = {
-          image:'',
+          img:'',
+          name:'',
           price:'',
           des:'',
+          month:'',
           id:''
         }
-
-        order.image = this.images[i];
-        order.price = this.vipTypes[i].price+"元/"+this.vipTypes[i].name;
+        //图标
+        order.img = this.imgs[i];
+        //什么会员
+        order.name = this.vipTypes[i].name;
+        //几个月
+        order.month = this.month[i];
+        //价格
+        order.price = this.vipTypes[i].price+"元";
+        //原价
         order.des = this.dcs[i];
         order.id = this.vipTypes[i].id;
         this.orders.push(order);
@@ -76,9 +100,11 @@ export class PayPage{
         //第二步：调用支付插件
         AliPay.pay(this.payInfo, function success(e){
             console.log("这里是成功信息"+e.result.toString()+"提示信息"+e.memo);
+            this.paySorE("支付成功");
           },function error(e){
             console.log("这里是失败信息"+e.result.toString()+"错误代码"+e.resultStatus+"提示信息"+e.memo);
-          });
+            this.paySorE("支付失败");
+        });
       }
     })
 
@@ -99,4 +125,10 @@ export class PayPage{
     }).present();
   }
 
+  /**
+   * 返回
+   */
+  back(){
+    this.navCtrl.pop();
+  }
 }
