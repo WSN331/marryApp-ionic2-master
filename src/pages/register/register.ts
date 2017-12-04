@@ -1,11 +1,13 @@
 /**
  * Created by ASUS on 2017/9/4 0004.
  */
-import {ChangeDetectorRef, Component} from '@angular/core';
+import {ChangeDetectorRef, Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 
 import { MyHttp } from '../../util/MyHttp';
+
+import { UserDetailPage } from "../user-detail/user-detail"
 
 @Component({
   selector: 'page-register',
@@ -23,14 +25,19 @@ export class RegisterPage {
     password: '',
   };
 
-  constructor(public navCtrl:NavController, private myHttp:MyHttp,
-              public alertCtrl:AlertController,public changeDetectorRef:ChangeDetectorRef) {
-  }
   //界面刷新
   public getCode = "获取验证码";
   public show = "click";
   public timeShow = 60;
   public timer;
+
+  //是否同意协议
+  public cucumber=false;
+
+  constructor(public navCtrl:NavController, private myHttp:MyHttp,
+              public alertCtrl:AlertController,public changeDetectorRef:ChangeDetectorRef) {
+  }
+
   ngReFresh(){
     //设置一个定时器，每秒刷新该界面
     this.timer = setInterval(()=>{
@@ -48,8 +55,6 @@ export class RegisterPage {
     },1000);
   }
 
-  //是否同意协议
-  public cucumber=true;
   /**
    * 注册
    */
@@ -76,11 +81,13 @@ export class RegisterPage {
       return;
     }
 
-
     this.myHttp.post(MyHttp.URL_REGISTER, this.registerForm, (data) => {
       if (data.registerResult === "0") {
-        this.registerMessage("注册成功");
+        this.registerMessage("注册成功,请继续完善信息");
         this.navCtrl.pop();
+        this.navCtrl.push(UserDetailPage,{
+          userId: data.userId
+        })
       } else if (data.registerResult === "1") {
         this.registerMessage("该手机已经注册!");
       }
@@ -90,7 +97,9 @@ export class RegisterPage {
   /**
    * 发送验证码
    */
-  sendVerify() {
+  sendVerify(event : Event) {
+    event.stopPropagation();
+    console.log("xxxxxx")
     if(this.show == "click"){
       this.ngReFresh()
       this.timeShow = 60;
@@ -120,7 +129,10 @@ export class RegisterPage {
     }).present();
   }
 
-  private seeProtocol(){
+  /**
+   * 弹出用户协议
+   */
+  seeProtocol(){
     let protocol = "邂逅斯年软件服务协议\n" +
       "特别提示\n" +
       "\n" +
@@ -143,7 +155,7 @@ export class RegisterPage {
    * 返回信息
    * @param {string} subTitle
    */
-  private backMessage() {
+  backMessage() {
     let prompt = "婚姻是件严肃的事情，需要认真对待，宁确定要放弃吗？";
     this.alertCtrl.create({
       subTitle: prompt,

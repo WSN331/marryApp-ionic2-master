@@ -21,7 +21,7 @@
     <ion-item class="code">
       <img item-start src="assets/img/code.png"/>
       <ion-input type="text" placeholder="验证码" [(ngModel)]="registerForm.verifyCode"></ion-input>
-      <p item-end (click)="sendVerify()" class="{{show}}">{{getCode}}</p>
+      <p item-end (click)="sendVerify($event)" class="{{show}}">{{getCode}}</p>
     </ion-item>
 
     <ion-item class="password">

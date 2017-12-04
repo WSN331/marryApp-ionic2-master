@@ -85,7 +85,7 @@ export class UserDetailPage {
   /**
    * 选择性别
      */
-  private chooseSex() {
+  chooseSex() {
     let alert = this.alertCtrl.create();
     alert.setTitle("您的性别是");
     alert.addInput({
@@ -112,7 +112,7 @@ export class UserDetailPage {
    * 弹出选择文字的弹框
    * @param type
      */
-  private chooseStr(type) {
+  chooseStr(type) {
     let alert = this.alertCtrl.create();
     alert.setTitle("请选择");
     for(let i in this.strForChoose[type]) {
@@ -133,7 +133,7 @@ export class UserDetailPage {
     alert.present();
   }
 
-  private isStrNull(str) {
+  isStrNull(str) {
     return str == null || str == "";
   }
 
