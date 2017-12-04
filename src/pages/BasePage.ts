@@ -3,6 +3,8 @@
  */
 import { NavController } from 'ionic-angular';
 
+
+
 export class BasePage {
 
   constructor(public navCtrl: NavController) {}

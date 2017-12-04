@@ -137,4 +137,11 @@ export class UserDetailPage {
     return str == null || str == "";
   }
 
+  /**
+   * 返回
+   */
+  back(){
+    this.navCtrl.pop();
+  }
+
 }

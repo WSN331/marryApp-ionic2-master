@@ -24,6 +24,9 @@ export class EveryPersonPage{
     this.navCtrl.push(HomePage)
   }
 
+  back(){
+    this.navCtrl.pop();
+  }
 }
 
 

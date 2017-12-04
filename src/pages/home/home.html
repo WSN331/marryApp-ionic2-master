@@ -1,17 +1,17 @@
 <ion-header>
-  <ion-navbar>
+  <div class="head">
+    <div class="head_back" (click)="goToSearch()">
+      <span></span>
+      <img src="assets/img/search.png"/>
+    </div>
+    <div class="head_title">
+      LOGO
+    </div>
+    <div class="line">
+    </div>
+  </div>
 
-    <ion-title text-center>主页</ion-title>
 
-    <ion-buttons end>
-
-      <button ion-button icon-only (click)="goToSearch()">
-         <ion-icon ios="ios-search-outline" md="md-search"></ion-icon>
-       </button>
-
-    </ion-buttons>
-
-  </ion-navbar>
 </ion-header>
 
 <ion-content>

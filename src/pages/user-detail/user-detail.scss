@@ -1,4 +1,40 @@
 page-userDetail{
+  /*标题*/
+  .head{
+    height: 50px;
+  }
+  .head_back{
+    position: absolute;
+    height:50px;
+    vertical-align: middle;
+  }
+  .head_back span{
+    width:0px;
+    height: 100%;
+    vertical-align: middle;
+    display: inline-block;
+  }
+  .head_back img{
+    width:25px;
+    vertical-align: middle;
+  }
+
+  .head_title {
+    font-size: 22px;
+    text-align: center;
+    line-height: 50px;
+    color: #ff975a;
+  }
+  .line{
+    height: 1px;
+    background-color:#eeeeee;
+  }
+
+
+
+
+
+
   .btn_detail{
     margin: 10% 5%;
     background-image:url('../assets/img/btn_background.png');

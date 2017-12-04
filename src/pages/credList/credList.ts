@@ -79,4 +79,11 @@ export class CredListPage {
     }
   }
 
+  /**
+   * 返回
+   */
+  back(){
+    this.navCtrl.pop();
+  }
+
 }

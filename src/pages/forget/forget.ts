@@ -1,11 +1,9 @@
-import { Component } from '@angular/core';
+import {ChangeDetectorRef, Component} from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 
 import { MyHttp } from '../../util/MyHttp';
-import { Memory } from '../../util/Memory'
 
-import {TabsPage} from "../tabs/tabs";
 
 @Component({
   selector: 'page-forget',
@@ -14,21 +12,45 @@ import {TabsPage} from "../tabs/tabs";
 
 export class ForgetPage {
 
-  constructor(public navCtrl: NavController, private myHttp : MyHttp, public alertCtrl: AlertController, public memory: Memory) {
-  }
-
   /**
    * 找回密码表单数据
    * @type {{account: string, password: string}}
-     */
+   */
   public forgetForm = {
     account: '',
-    code:'',
+    verifyCode:'',
     newPassword: ''
   }
 
+  //界面刷新
+  public getCode = "获取验证码";
+  public show = "click";
+  public timeShow = 60;
+  public timer;
+
+  constructor(public navCtrl: NavController, private myHttp : MyHttp,
+              public alertCtrl: AlertController, public changeDetectorRef:ChangeDetectorRef) {
+  }
+
+  ngReFresh(){
+    //设置一个定时器，每秒刷新该界面
+    this.timer = setInterval(()=>{
+      this.changeDetectorRef.detectChanges();
+      if(this.timeShow>=1){
+        this.timeShow -= 1;
+        this.show="unclick";
+        this.getCode = "获取验证码 ("+this.timeShow+")";
+      }else{
+        this.show="click";
+        this.getCode="获取验证码"
+        clearInterval(this.timer);
+      }
+      console.log("1");
+    },1000);
+  }
+
   //password类型
-  public pasType="password";
+  public pasType="text";
   showPas(){
     console.log("change");
     if(this.pasType=="password"){
@@ -51,38 +73,55 @@ export class ForgetPage {
         return;
       }
     }
-    if(!rulePhone.test(this.forgetForm.account)){
+/*    if(!rulePhone.test(this.forgetForm.account)){
       this.loginFailError("请输入正确的手机号码");
       return;
     }
     if(!rulePas.test(this.forgetForm.newPassword)){
       this.loginFailError("请按密码格式输入");
       return;
-    }
-
-/*    if (typeof this.forgetForm.account === "undefined" || this.forgetForm.account === "") {
-      this.loginFailError("账号不能为空");
-    }else if(typeof this.forgetForm.code === "undefined" || this.forgetForm.code === ""){
-      this.loginFailError("请输入验证码");
-    }else if (typeof this.forgetForm.newPassword === "undefined" || this.forgetForm.newPassword === "") {
-      this.loginFailError("密码不能为空");
-    } */
+    }*/
 
       //找回密码逻辑
-/*      this.myHttp.post(MyHttp.URL_LOGIN, this.forgetForm, (data) => {
+      this.myHttp.post(MyHttp.URL_GET_PAS, this.forgetForm, (data) => {
         console.log(data)
-        let loginResult = data.loginResult;
-        if (loginResult==='3') {
+        let loginResult = data.resetPasswordResult;
+        if (loginResult==='0') {
+          this.loginFailError("修改成功请登录");
+          clearInterval(this.timer);
+          this.changeDetectorRef.detach();
+          this.navCtrl.pop();
+        } else if (loginResult === '1') {
           this.loginFailError("账号不存在");
         } else if (loginResult === '2') {
-          this.loginFailError("密码错误");
-        } else if(loginResult === '2'){
-          console.log(data.user)
-          this.memory.setUser(data.user);
-          this.navCtrl.push(TabsPage);
+          this.loginFailError("验证码错误");
         }
-      })*/
+      })
   }
+
+  /**
+   * 发送验证码
+   */
+  sendVerify(event : Event) {
+    event.stopPropagation();
+    console.log("xxxxxx")
+    if(this.show == "click"){
+      this.ngReFresh()
+      this.timeShow = 60;
+      this.myHttp.post(MyHttp.URL_SEND_VERIFY, {
+        phone: this.forgetForm.account
+      }, (data) => {
+        console.log(data);
+        if (data.sendResult === "0") {
+          this.loginFailError("发送验证码成功，请在10分钟内验证");
+        } else if (data.sendResult === "1") {
+          this.loginFailError("发送验证码失败：" + data.message);
+        }
+      })
+    }
+  }
+
+
 
   /**
    * 找回密码失败的提示框
@@ -100,6 +139,8 @@ export class ForgetPage {
   * 将该页面拿出堆栈
   * */
   back(){
+    clearInterval(this.timer);
+    this.changeDetectorRef.detach();
     this.navCtrl.pop();
   }
 

@@ -36,6 +36,7 @@ import {CommunicateService} from "../util/CommunicateService";
 import {CommunicatePage} from "../pages/communicate/communicate";
 import {PayPage} from "../pages/purchase/pay";
 import {ForgetPage} from "../pages/forget/forget";
+import {BasePage} from "../pages/BasePage";
 
 @NgModule({
   declarations: [
@@ -93,7 +94,7 @@ import {ForgetPage} from "../pages/forget/forget";
     CommunicatePage,
     PayPage,
     AuthorInformationPage,
-    ForgetPage
+    ForgetPage,
   ],
   providers: [
     StatusBar,

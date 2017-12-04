@@ -44,7 +44,8 @@ export class ContactPage {
    */
   getLikeList(refresher?) {
     this.myHttp.post(MyHttp.URL_LIKE_LIST, {
-      userId: this.memory.getUser().id
+      /*userId: this.memory.getUser().id*/
+      userId:1
     }, (data) => {
       console.log(data)
       this.likeList = data.userList;
@@ -74,7 +75,8 @@ export class ContactPage {
    */
   getCollectList(refresher?) {
     this.myHttp.post(MyHttp.URL_COLLECT_LIST, {
-      userId: this.memory.getUser().id
+      /*userId: this.memory.getUser().id*/
+      userId:1
     }, (data) => {
       console.log(data)
       this.collectList = data.userList;

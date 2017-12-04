@@ -290,4 +290,11 @@ export class UserDetail2Page {
       }).present();
     });
   }
+
+  /**
+   * 返回
+   */
+  back(){
+    this.navCtrl.pop();
+  }
 }

@@ -31,7 +31,7 @@
   <div [ngSwitch]="select">
     <!--对我心动的-->
     <div *ngSwitchCase="'beLiked'">
-          <div class="people" *ngFor="let user of beLikeList" (click)="getIntroduce(user.id)">
+          <div class="people" *ngFor="let user of collectList" (click)="getIntroduce(user.id)">
             <div class="people_picture">
               <img [src]="imgService.safeImage(user.picture)"/>
             </div>
@@ -48,7 +48,7 @@
               <span class="span3">兴趣爱好: {{user.hobby}}</span>
             </div>
             <div class="people_date">
-              2017.11.24
+              {{user.createTime}}
             </div>
           </div>
     </div>
@@ -73,7 +73,7 @@
               </div>
               <span></span><br/>
               <span class="span3">兴趣爱好: {{user.hobby}}</span><br/>
-              <span class="span4">2017.11.24</span>
+              <span class="span4">{{user.createTime}}</span>
             </div>
             <div class="people_date" >
                 <img src="assets/img/lovehert.png"/>

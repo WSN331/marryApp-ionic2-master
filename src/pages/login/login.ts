@@ -15,8 +15,10 @@ import {ForgetPage} from "../forget/forget";
 
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, private myHttp : MyHttp, public alertCtrl: AlertController, public memory: Memory) {
+  constructor(public navCtrl: NavController, private myHttp : MyHttp,
+              public alertCtrl: AlertController, public memory: Memory) {
   }
+
 
   /**
    * 登录表单数据

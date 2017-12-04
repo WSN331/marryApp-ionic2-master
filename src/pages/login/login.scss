@@ -44,23 +44,23 @@ page-login{
   .phone img{
     width:20px;
   }
+
   .password img{
     width:20px;
   }
 
-
-  .button{
+  .login{
     margin-top:30px;
     background-image: url('../assets/img/btn_background.png');
     background-size:cover;
     border-radius:15px;
     color:#ffffff;
   }
-  .button:active{
+  .login:active{
     background-color:#ffaa00;
     color:white;
   }
-  .button:hover{
+  .login:hover{
     background-color:#ffaa00;
     color:white;
   }

@@ -21,15 +21,21 @@
     <ion-item class="code">
       <img item-start src="assets/img/code.png"/>
       <ion-input type="text" placeholder="验证码" [(ngModel)]="registerForm.verifyCode"></ion-input>
-      <p item-end (click)="sendVerify($event)" class="{{show}}">{{getCode}}</p>
+      <button ion-button clear item-end>
+        <p (click)="sendVerify($event)" class="{{show}}">{{getCode}}</p>
+      </button>
+
     </ion-item>
 
     <ion-item class="password">
       <img item-start src="assets/img/password.png"/>
       <ion-input type="{{pasType}}" placeholder="新密码(6-20密码或数字)" [(ngModel)]="registerForm.password"></ion-input>
-      <img item-end src="assets/img/passhow.png" (click)="showPas()" />
+      <button ion-button clear item-end>
+        <img item-end src="assets/img/passhow.png" (click)="showPas()" />
+      </button>
+
     </ion-item>
-    <button ion-button full (click)="register()">注册</button>
+    <button class="register" ion-button full (click)="register()">注册</button>
 
     <div class="aggrement">
       <ion-checkbox color="danger" [(ngModel)]="cucumber"></ion-checkbox>

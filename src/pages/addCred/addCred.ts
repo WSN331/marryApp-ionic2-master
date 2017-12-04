@@ -80,5 +80,7 @@ export class AddCredPage {
     return this.base64 != null && this.base64 != undefined;
   }
 
-
+  back(){
+    this.navCtrl.pop();
+  }
 }

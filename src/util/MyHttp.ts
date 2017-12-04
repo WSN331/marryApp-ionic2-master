@@ -82,7 +82,8 @@ export class MyHttp {
   static URL_ORDER_INFO = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/aliPay/getPayInfo2";
   // 获取短信验证码
   static URL_SEND_VERIFY = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/sendVerify";
-
+  // 找回密码
+  static URL_GET_PAS = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/resetPassword";
   constructor (private http : Http, public loadingCtrl:LoadingController) {
 
   }

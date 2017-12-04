@@ -1,4 +1,4 @@
-page-userDetail2{
+page-contact {
   /*标题*/
   .head{
     height: 50px;
@@ -28,31 +28,6 @@ page-userDetail2{
   .line{
     height: 1px;
     background-color:#eeeeee;
-  }
-
-
-  .btn_detail{
-    margin: 10% 5%;
-    background-image:url('../assets/img/btn_background.png');
-    border: none;
-    text-align: center;
-    width: 90%;
-    border-radius:20px;
-  }
-
-  ion-label {
-    font-size: 25px;
-    font-weight: bold;
-    padding-left: 10%;
-  }
-
-  .addSchool {
-    float: right;
-    color: blue;
-  }
-
-  hr {
-    clear: both;
   }
 
 }

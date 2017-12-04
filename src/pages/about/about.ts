@@ -17,13 +17,12 @@ import { AuthorInformationPage } from "../authorInformation/authorInformation"
   selector: 'page-about',
   templateUrl: 'about.html'
 })
-export class AboutPage extends BasePage{
+export class AboutPage{
 
   public user;
 
   constructor(public navCtrl: NavController, public imgService: ImgService, public memory: Memory,
               public app:App, public events: Events, public calculateService: CalculateService) {
-    super(navCtrl);
     this.getUser();
     this.events.subscribe('e-user-self', () => {
       this.getUser();
@@ -68,5 +67,12 @@ export class AboutPage extends BasePage{
 
   authorInformation() {
     this.navCtrl.push(AuthorInformationPage);
+  }
+
+  /**
+   * 返回
+   */
+  back(){
+    this.navCtrl.pop();
   }
 }

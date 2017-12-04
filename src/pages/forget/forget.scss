@@ -40,6 +40,14 @@ page-forget{
     border-radius: 20px;
     margin-top:20px;
   }
+
+  .click{
+    color:#ff975a;
+  }
+  .unclick{
+    color:#999999;
+  }
+
   .password{
     background-color: #fafafa;
     border-radius: 20px;
@@ -57,18 +65,18 @@ page-forget{
   }
 
 
-  .button{
+  .btn_sure{
     margin-top:30px;
     background-image: url('../assets/img/btn_background.png');
     background-size:cover;
     border-radius:15px;
     color:#ffffff;
   }
-  .button:active{
+  .btn_sure:active{
     background-color:#ffaa00;
     color:white;
   }
-  .button:hover{
+  .btn_sure:hover{
     background-color:#ffaa00;
     color:white;
   }
