@@ -16,7 +16,8 @@
 
   <!--全部图片-->
   <div class="all-pic">
-    <img *ngFor="let picture of pictures" [src]="imgService.safeImage(picture)">
+    <img *ngFor="let picture of pictures; let i = index" [src]="imgService.safeImage(picture)" (click)="controlImage(i)" >
+    <img src="assets/img/btn_add.png" (click)="addPicture()">
   </div>
 
 </ion-content>
