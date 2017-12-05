@@ -1,0 +1,22 @@
+<ion-header>
+  <div class="head">
+    <div class="head_back" (click)="back()">
+      <span></span>
+      <img src="assets/img/back.png"/>
+    </div>
+    <div class="head_title">
+      我的照片
+    </div>
+    <div class="line">
+    </div>
+  </div>
+</ion-header>
+
+<ion-content padding>
+
+  <!--全部图片-->
+  <div class="all-pic">
+    <img *ngFor="let picture of pictures" [src]="imgService.safeImage(picture)">
+  </div>
+
+</ion-content>

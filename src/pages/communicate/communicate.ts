@@ -89,7 +89,7 @@ export class CommunicatePage{
   /**
    * 初始化
    */
-  private myInfo;
+  // private myInfo;
   initAVcom(){
     this.realtime = this.memory.getTiming();
     this.mySelf = this.memory.getUser().id;

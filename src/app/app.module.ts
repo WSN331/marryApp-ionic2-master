@@ -18,6 +18,7 @@ import { UserDetail2Page } from '../pages/user-detail2/user-detail2'
 import { CredListPage } from '../pages/credList/credList'
 import { AddCredPage } from '../pages/addCred/addCred'
 import { AuthorInformationPage } from "../pages/authorInformation/authorInformation"
+import { ControlImagePage } from "../pages/control-image/control-image"
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -36,7 +37,6 @@ import {CommunicateService} from "../util/CommunicateService";
 import {CommunicatePage} from "../pages/communicate/communicate";
 import {PayPage} from "../pages/purchase/pay";
 import {ForgetPage} from "../pages/forget/forget";
-import {BasePage} from "../pages/BasePage";
 
 @NgModule({
   declarations: [
@@ -61,7 +61,8 @@ import {BasePage} from "../pages/BasePage";
     CommunicatePage,
     PayPage,
     AuthorInformationPage,
-    ForgetPage
+    ForgetPage,
+    ControlImagePage
   ],
   imports: [
     BrowserModule,
@@ -95,6 +96,7 @@ import {BasePage} from "../pages/BasePage";
     PayPage,
     AuthorInformationPage,
     ForgetPage,
+    ControlImagePage
   ],
   providers: [
     StatusBar,

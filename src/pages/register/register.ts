@@ -59,8 +59,8 @@ export class RegisterPage {
    * 注册
    */
   public register() {
-    let rulePhone = /^1[3|4|5|7|8][0-9]{9}$/;
-    let rulePas = /^[a-zA-Z0-9]{6,20}$/;
+    // let rulePhone = /^1[3|4|5|7|8][0-9]{9}$/;
+    // let rulePas = /^[a-zA-Z0-9]{6,20}$/;
     console.log(this.registerForm)
     if(!this.cucumber){
       this.registerMessage("请同意协议内容");

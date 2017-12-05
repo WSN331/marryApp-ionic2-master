@@ -12,8 +12,8 @@ export class MyHttp {
    * 服务器的IP
    * @type {string}
    */
-  static IP = "47.95.212.171";
-  // static IP = "localhost"
+  // static IP = "47.95.212.171";
+  static IP = "localhost"
   // static IP = "192.168.1.179"
 
   /**
@@ -84,6 +84,7 @@ export class MyHttp {
   static URL_SEND_VERIFY = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/sendVerify";
   // 找回密码
   static URL_GET_PAS = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/resetPassword";
+
   constructor (private http : Http, public loadingCtrl:LoadingController) {
 
   }

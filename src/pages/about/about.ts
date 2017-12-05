@@ -6,7 +6,6 @@ import { Memory } from '../../util/Memory'
 import { ImgService } from '../../util/ImgService'
 import { CalculateService } from '../../util/CalculateService'
 
-import { BasePage } from "../basePage"
 import { StartPage } from '../start/start'
 import { UserIntroducePage } from '../user-introduce/user-introduce'
 import { CredListPage } from '../credList/credList'

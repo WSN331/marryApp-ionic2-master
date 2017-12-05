@@ -14,6 +14,7 @@ import {CalculateService} from '../../util/CalculateService'
 
 import { UserDetailPage } from '../user-detail/user-detail'
 import { AboutPage } from "../about/about"
+import { ControlImagePage } from "../control-image/control-image"
 
 @Component({
   selector: 'page-userIntroduce',
@@ -44,11 +45,15 @@ export class UserIntroducePage {
     this.getAllPicture();
     this.events.subscribe('e-user-introduce', () => {
       this.getUserInfo();
-    }) 
+    })
   }
-  
+
   goToSetting() {
     this.navCtrl.push(AboutPage);
+  }
+  
+  gotToControlImage() {
+    this.navCtrl.push(ControlImagePage, {pictures : this.allPictures})
   }
 
   /**

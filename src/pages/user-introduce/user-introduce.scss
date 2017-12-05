@@ -15,6 +15,30 @@ page-userIntroduce {
     width: 8%;
   }
 
+  .control_img {
+    position: absolute;
+    left: 5%;
+    top: 53%;
+    z-index: 200;
+    background-color:rgba(0,0,0,0.5);
+    width: 110px;
+    height: 35px;
+    border-radius: 25px;
+  }
+
+  .control_img img {
+    float: left;
+    margin: 10px 5px 5px 15px;
+    width: 15px;
+  }
+
+  .control_img p {
+    float: left;
+    color: white;
+    font-size: 15px;
+    line-height: 5px;
+  }
+
   .first_line{
     margin: 5% 8% 0px;
   }

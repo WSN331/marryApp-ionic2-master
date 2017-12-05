@@ -3,7 +3,6 @@ import {Injectable} from "@angular/core";
 import {Memory} from "./Memory";
 
 import * as AV from "leancloud-realtime"
-import {SearchPage} from "../pages/search/search";
 
 @Injectable()
 export class CommunicateService{

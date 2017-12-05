@@ -64,8 +64,8 @@ export class ForgetPage {
    * 找回密码控制
    */
   getPassword() {
-    let rulePhone = /^1[3|4|5|7|8][0-9]{9}$/;
-    let rulePas = /^[a-zA-Z0-9]{6,20}$/;
+    // let rulePhone = /^1[3|4|5|7|8][0-9]{9}$/;
+    // let rulePas = /^[a-zA-Z0-9]{6,20}$/;
     console.log(this.forgetForm)
     for(let name in this.forgetForm){
       if (typeof this.forgetForm[name] === "undefined" || this.forgetForm[name] === "") {

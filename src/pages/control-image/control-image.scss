@@ -1,0 +1,44 @@
+page-controlImage{
+  /*标题*/
+  .head{
+    background-color: #ffffff;
+    height: 50px;
+  }
+  .head_back{
+    position: absolute;
+    height:50px;
+    vertical-align: middle;
+  }
+  .head_back span{
+    height: 100%;
+    vertical-align: middle;
+    display: inline-block
+  }
+  .head_back img{
+    width:25px;
+    vertical-align: middle;
+  }
+  .head_title {
+    font-size: 22px;
+    text-align: center;
+    line-height: 50px;
+    color: #ff975a;
+  }
+
+
+  .all-pic {
+    float: left;
+  }
+
+
+
+  .all-pic img {
+    width: 30%;
+    margin-left: 2.5%;
+    float: left;
+  }
+
+
+
+
+}
