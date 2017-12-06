@@ -14,7 +14,7 @@ export class MyHttp {
    */
   // static IP = "47.95.212.171";
   // static IP = "localhost"
-  static IP = "192.168.2.170"
+  static IP = "192.168.2.178"
 
   /**
    * 服务端端口号

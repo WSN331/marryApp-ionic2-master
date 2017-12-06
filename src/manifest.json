@@ -1,6 +1,6 @@
 {
-  "name": "Ionic",
-  "short_name": "Ionic",
+  "name": "MarryApp",
+  "short_name": "MarryApp",
   "start_url": "index.html",
   "display": "standalone",
   "icons": [{

@@ -1,6 +1,6 @@
 {
   "name": "marryApp",
-  "app_id": "",
+  "app_id": "com.frz.marryApp",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
