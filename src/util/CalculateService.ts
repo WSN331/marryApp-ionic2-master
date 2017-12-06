@@ -19,6 +19,9 @@ export class CalculateService {
       return 0
     }
     let birth = birthday.split('-');
+    if (birthday === null || birth === undefined) {
+      return 0
+    }
     let year = Number(birth[0]);
     let month = Number(birth[1]);
     let day = Number(birth[2]);
@@ -36,6 +39,9 @@ export class CalculateService {
       return ""
     }
     let birth = birthday.split('-');
+    if (birthday === null || birth === undefined) {
+      return ""
+    }
     let month = Number(birth[1]);
     let day = Number(birth[2]);
     let constellations = {
@@ -52,7 +58,10 @@ export class CalculateService {
       11:[23, '天蝎座', '射手座'],
       12:[22, '射手座', '摩羯座']
     };
-    let select = constellations[month]
+    let select = constellations[month];
+    if (typeof select === 'undefined') {
+      return "";
+    }
     return select[day>select[0] ? 2 : 1];
   }
 }
