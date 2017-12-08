@@ -59,7 +59,7 @@ export class UserDetail2Page {
 
   constructor(public navCtrl:NavController, public navParams:NavParams, private myHttp:MyHttp, public memory:Memory,
               public events:Events, public alertCtrl:AlertController) {
-    this.getUserInfo();
+/*    this.getUserInfo();*/
     this.getProvinceList();
   }
 

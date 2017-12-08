@@ -24,8 +24,11 @@
     <div class="name">
       {{ baseInfo.nickName }}
     </div>
-    <div class="pic">
+    <div class="pic" *ngIf="baseInfo.vipTime!=''">
       <img src="assets/img/vrz.png"/>
+    </div>
+    <div class="openvip" *ngIf="baseInfo.vipTime==''" (click)="goToOpenVip()">
+      <img src="assets/img/openvip.png"/>
     </div>
   </div>
 

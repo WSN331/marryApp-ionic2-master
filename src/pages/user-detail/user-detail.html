@@ -13,99 +13,71 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list>
 
     <div class="item">
-      <span>姓名</span>
-      <input [(ngModel)]="baseInfo.name" placeholder="请输入（最多8个汉字）">
+      <ion-label>姓名</ion-label>
+      <ion-input type="text" [(ngModel)]="baseInfo.name" text-right placeholder="请输入（最多8个汉字）"></ion-input>
     </div>
-
-    <hr/>
 
     <div class="item">
-      <span>昵称</span>
-      <input [(ngModel)]="baseInfo.nickName" placeholder="请输入（最多8个汉字）"/>
+      <ion-label>昵称</ion-label>
+      <ion-input type="text" [(ngModel)]="baseInfo.nickName" text-right placeholder="请输入（最多8个汉字）"></ion-input>
     </div>
-
-    <hr/>
 
     <div class="item">
-      <span>性别</span>
-      <p *ngIf="baseInfo.sex !== 0 && baseInfo.sex !== 1" (click)="chooseSex()" style="color: gray">请选择</p>
-      <p (click)="chooseSex()">{{['男','女'][baseInfo.sex]}}</p>
+      <ion-label>性别</ion-label>
+      <p text-right *ngIf="baseInfo.sex=== -1" (click)="chooseSex()" style="color: gray">请选择</p>
+      <p text-right (click)="chooseSex()">{{['男','女'][baseInfo.sex]}}</p>
     </div>
-
-    <hr/>
 
     <div class="item">
-      <span>出生日期</span>
-      <ion-datetime placeholder="请选择" displayFormat="YYYY-MM-DD" [(ngModel)]="baseInfo.birthday"></ion-datetime>
+      <ion-label>出生日期</ion-label>
+      <ion-datetime text-right placeholder="请选择" displayFormat="YYYY-MM-DD" [(ngModel)]="baseInfo.birthday"></ion-datetime>
     </div>
-
-    <hr/>
 
     <div class="item">
-      <span>身高（cm）</span>
-      <input type="number" placeholder="请填写" [(ngModel)]="detailInfo.height"/>
+      <ion-label>身高（cm）</ion-label>
+      <ion-input text-right type="number" placeholder="请填写" [(ngModel)]="detailInfo.height"></ion-input>
     </div>
-
-    <hr/>
 
     <div class="item">
-      <span>体重（kg）</span>
-      <input type="number"  placeholder="请填写" [(ngModel)]="detailInfo.weight"/>
+      <ion-label>体重（kg）</ion-label>
+      <ion-input text-right type="number"  placeholder="请填写" [(ngModel)]="detailInfo.weight"></ion-input>
     </div>
-
-    <hr/>
 
     <div class="item">
-      <span>学历</span>
-      <p *ngIf="isStrNull(detailInfo.edu)" (click)="chooseStr('edu')" style="color: gray">请选择</p>
-      <p (click)="chooseStr('edu')">{{detailInfo.edu}}</p>
+      <ion-label>学历</ion-label>
+      <p text-right *ngIf="isStrNull(detailInfo.edu)" (click)="chooseStr('edu')" style="color: gray">请选择</p>
+      <p text-right (click)="chooseStr('edu')">{{detailInfo.edu}}</p>
     </div>
-
-    <hr/>
 
     <div class="item">
-      <span>期望婚时</span>
-      <p *ngIf="isStrNull(detailInfo.hopeTime)" (click)="chooseStr('hopeTime')" style="color: gray">请选择</p>
-      <p (click)="chooseStr('hopeTime')">{{detailInfo.hopeTime}}</p>
+      <ion-label>期望婚时</ion-label>
+      <p text-right *ngIf="isStrNull(detailInfo.hopeTime)" (click)="chooseStr('hopeTime')" style="color: gray">请选择</p>
+      <p text-right (click)="chooseStr('hopeTime')">{{detailInfo.hopeTime}}</p>
     </div>
-
-    <hr/>
 
     <div class="item">
-      <span>收入</span>
-      <p *ngIf="isStrNull(detailInfo.income)" (click)="chooseStr('income')" style="color: gray">请选择</p>
-      <p (click)="chooseStr('income')">{{detailInfo.income}}</p>
+      <ion-label>收入</ion-label>
+      <p text-right *ngIf="isStrNull(detailInfo.income)" (click)="chooseStr('income')" style="color: gray">请选择</p>
+      <p text-right (click)="chooseStr('income')">{{detailInfo.income}}</p>
     </div>
-
-    <hr/>
 
     <div class="item">
-      <span>爱好</span>
-      <input placeholder="请填写"  [(ngModel)]="baseInfo.hobby"/>
+      <ion-label>爱好</ion-label>
+      <ion-input text-right placeholder="请填写"  [(ngModel)]="baseInfo.hobby"></ion-input>
     </div>
-
-    <hr/>
 
     <div class="item">
-      <span>择偶标准</span>
-      <input placeholder="请填写" [(ngModel)]="detailInfo.chooseStandard"/>
+      <ion-label>择偶标准</ion-label>
+      <ion-input text-right placeholder="请填写" [(ngModel)]="detailInfo.chooseStandard"></ion-input>
     </div>
-
-    <hr/>
 
     <div class="item">
-      <span>自我介绍</span>
-      <input placeholder="请填写" [(ngModel)]="detailInfo.introduce"/>
+      <ion-label>自我介绍</ion-label>
+      <ion-input text-right placeholder="请填写" [(ngModel)]="detailInfo.introduce"></ion-input>
     </div>
 
-    <hr/>
-
-
-  </ion-list>
-
-  <button class="btn_detail" ion-button full (click)="nextStep()">下一步</button>
+    <button class="btn_detail" ion-button full (click)="nextStep()">下一步</button>
 
 </ion-content>

@@ -15,6 +15,7 @@ import {CalculateService} from '../../util/CalculateService'
 import { UserDetailPage } from '../user-detail/user-detail'
 import { AboutPage } from "../about/about"
 import { ControlImagePage } from "../control-image/control-image"
+import {PayPage} from "../purchase/pay";
 
 @Component({
   selector: 'page-userIntroduce',
@@ -40,14 +41,19 @@ export class UserIntroducePage {
       this.getUserInfo();
     })
   }
-
+  //设置界面
   goToSetting() {
     this.navCtrl.push(AboutPage);
   }
-
+  //去到图片管理界面
   gotToControlImage() {
     this.navCtrl.push(ControlImagePage);
   }
+  //开通Vip界面
+  goToOpenVip(){
+    this.navCtrl.push(PayPage);
+  }
+
 
   /**
    * 获取用户信息

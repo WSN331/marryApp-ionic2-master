@@ -64,16 +64,16 @@
   </ion-item>
   <hr/>
 
-  <ion-label>小学：</ion-label>
+ <!-- <ion-label>小学：</ion-label>
   <ion-item no-lines>
-    <!--省-->
+    &lt;!&ndash;省&ndash;&gt;
     <ion-select [(ngModel)]="selectOption.firstSchoolSelect.provinceId"
                 (ngModelChange)="getSchoolList('firstSchoolSelect')">
       <ion-option *ngFor="let province of selectOption.provinceList" value="{{province.id}}">
         {{province.name}}
       </ion-option>
     </ion-select>
-    <!--学校-->
+    &lt;!&ndash;学校&ndash;&gt;
     <ion-select [(ngModel)]="selectOption.firstSchoolSelect.id">
       <ion-option *ngFor="let school of selectOption.firstSchoolSelect.schoolList" value="{{school.id}}">
         {{school.name}}
@@ -84,14 +84,14 @@
 
   <ion-label>初中：</ion-label>
   <ion-item no-lines>
-    <!--省-->
+    &lt;!&ndash;省&ndash;&gt;
     <ion-select [(ngModel)]="selectOption.secondSchoolSelect.provinceId"
                 (ngModelChange)="getSchoolList('secondSchoolSelect')">
       <ion-option *ngFor="let province of selectOption.provinceList" value="{{province.id}}">
         {{province.name}}
       </ion-option>
     </ion-select>
-    <!--学校-->
+    &lt;!&ndash;学校&ndash;&gt;
     <ion-select [(ngModel)]="selectOption.secondSchoolSelect.id">
       <ion-option *ngFor="let school of selectOption.secondSchoolSelect.schoolList" value="{{school.id}}">
         {{school.name}}
@@ -102,21 +102,21 @@
 
   <ion-label>高中：</ion-label>
   <ion-item no-lines>
-    <!--省-->
+    &lt;!&ndash;省&ndash;&gt;
     <ion-select [(ngModel)]="selectOption.thirdSchoolSelect.provinceId"
                 (ngModelChange)="getSchoolList('thirdSchoolSelect')">
       <ion-option *ngFor="let province of selectOption.provinceList" value="{{province.id}}">
         {{province.name}}
       </ion-option>
     </ion-select>
-    <!--学校-->
+    &lt;!&ndash;学校&ndash;&gt;
     <ion-select [(ngModel)]="selectOption.thirdSchoolSelect.id">
       <ion-option *ngFor="let school of selectOption.thirdSchoolSelect.schoolList" value="{{school.id}}">
         {{school.name}}
       </ion-option>
     </ion-select>
 
-  </ion-item>
+  </ion-item>-->
 
   <hr/>
   <ion-label>大学：</ion-label>

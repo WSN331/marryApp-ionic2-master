@@ -22,10 +22,11 @@
 
       <div class="describe">
         <span class="span1">{{user.nickName}}</span>
-        <img src="assets/img/vrz.png"/>
+        <div *ngIf="user.vipTime!=''">
+          <img src="assets/img/vrz.png"/>
+        </div>
       </div>
-
-      <p class="p">您的vip于<span>2018年11月4日</span>到期</p>
+      <p class="p" *ngIf="user.vipTime!=''">您的vip于<span>{{user.vipTime}}</span>到期</p>
     </ion-item>
   </div>
 

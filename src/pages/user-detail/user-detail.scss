@@ -30,11 +30,7 @@ page-userDetail{
     background-color:#eeeeee;
   }
 
-
-
-
-
-
+  //下一步按钮
   .btn_detail{
     margin: 10% 5%;
     background-image:url('../assets/img/btn_background.png');
@@ -52,39 +48,25 @@ page-userDetail{
     color:white;
   }
 
-  .item {
-    margin-left: 5%;
-    width: 90%;
+  .item{
+    height:45px;
   }
-
-  .item span {
-    float: left;
-    margin-top: 7px;
-    font-size: 20px;
-    font-weight: 400;
-    clear: both;
+  .item ion-label{
+    position:absolute;
+    font-size:18px;
+    height:100%;
+    line-height:100%;
   }
-
-  .item input {
-    font-size: 15px;
-    float: right;
-    overflow:auto;
-    text-align: right;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    border-style: solid;
-    border-color: #FFFFFF;
-    width: 50%;
+  .item ion-input{
+    font-size:16px;
   }
-
-  .item p {
-    font-size: 15px;
-    float: right;
+  .item p{
+    margin-right:8px;
+    font-size:16px;
+    margin-top:8px;
   }
-
-  ion-datetime {
-    font-size: 15px;
-    float: right;
+  .item ion-datetime{
+    font-size:16px;
   }
 
 }

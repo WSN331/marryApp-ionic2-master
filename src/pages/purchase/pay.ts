@@ -36,15 +36,15 @@ export class PayPage{
     'assets/img/vip.png',
     'assets/img/crown.png'
   ];
-  public dcs = ['199.00元','299.00元','499.00元','799.00元'];
-  public month = ['1个月','3个月','1年','永久'];
+  public dcs = ['3.00元','50.00元','100.00元','200.00元'];
+  public month = ['1天','1个月','3个月','1年'];
 
 
   public user = {};
   getUserMsg(){
     if(this.memory.getUser()!=" " && this.memory.getUser()!="undefined"&&this.memory.getUser()!=null){
       this.user = this.memory.getUser();
-      console.log(this.user+"个人信息"+this.memory.getUser());
+      console.log(this.user+"个人信息"+this.memory.getUser()+"个人信息");
     }
   }
 
