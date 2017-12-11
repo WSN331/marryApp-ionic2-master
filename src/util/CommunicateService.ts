@@ -23,8 +23,9 @@ export class CommunicateService{
       this.realTime = AV.Realtime;
       this.textMessage = AV.TextMessage;
       this.realTiming = new this.realTime({
-        appId: 'gWV7xx6uRXGtsqAdsP2SeBAf-gzGzoHsz',
-        pushOfflineMessages: true,
+        appId: 'EBxBJcMjbxzDsIiRPTUzfCNY-gzGzoHsz',
+        appKey: 'abhs8KVq3rqPpj9Lzubgi9tk',
+        pushOfflineMessages: true,//推送离线消息
         region: 'cn', //美国节点为 "us"
       });
       this.memory.setTiming(this.realTiming);

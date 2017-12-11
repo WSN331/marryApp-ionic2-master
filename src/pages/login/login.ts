@@ -19,7 +19,6 @@ export class LoginPage {
               public alertCtrl: AlertController, public memory: Memory) {
   }
 
-
   /**
    * 登录表单数据
    * @type {{account: string, password: string}}

@@ -47,9 +47,11 @@ export class HomePage {
    */
   getUserList() {
     this.id = this.memory.getUser().id;
+    console.log(this.id+"现在登录的id")
     if (!this.id) {
       //TODO: testtesttest
       this.id = this.memory.getSex();
+      console.log(this.id+"观光的id")
     }
     let loader = this.loadingCtrl.create({
       content: "Please wait...",
