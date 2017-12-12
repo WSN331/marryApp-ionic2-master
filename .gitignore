@@ -32,3 +32,10 @@ $RECYCLE.BIN/
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
+
+
+
+
+.idea
+.node_modules
+node_modules

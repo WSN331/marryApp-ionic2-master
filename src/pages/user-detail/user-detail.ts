@@ -52,6 +52,7 @@ export class UserDetailPage {
   getUserId() {
     this.userId = this.navParams.get("userId")||this.memory.getUser().id;
     //this.userId="1";
+    console.log(this.userId)
   }
 
   /**
