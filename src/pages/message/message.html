@@ -13,7 +13,7 @@
   <div class="love" (click)="goToContact()">
     <div class="image_show">
       <img src="assets/img/love.png"/>
-      <div class="circle"></div>
+      <div *ngIf="this.memory.getLike()==true" class="circle"></div>
     </div>
     <div class="describe">
       <span class="span1">心动</span><br/>

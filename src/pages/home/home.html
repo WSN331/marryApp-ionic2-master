@@ -30,7 +30,7 @@
             <div class="name">
               {{ user.nickName }}
             </div>
-            <div class="pic" *ngIf="user.vipTime!=''">
+            <div class="pic" *ngIf="calculateService.isVip(user.vipTime)==true">
               <img src="assets/img/vrz.png"/>
             </div>
           </div>

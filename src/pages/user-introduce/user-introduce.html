@@ -24,10 +24,10 @@
     <div class="name">
       {{ baseInfo.nickName }}
     </div>
-    <div class="pic" *ngIf="baseInfo.vipTime!=''">
+    <div class="pic" *ngIf="calculateService.isVip(baseInfo.vipTime)==true">
       <img src="assets/img/vrz.png"/>
     </div>
-    <div class="openvip" *ngIf="baseInfo.vipTime==''" (click)="goToOpenVip()">
+    <div class="openvip" *ngIf="calculateService.isVip(baseInfo.vipTime)==false" (click)="goToOpenVip()">
       <img src="assets/img/openvip.png"/>
     </div>
   </div>

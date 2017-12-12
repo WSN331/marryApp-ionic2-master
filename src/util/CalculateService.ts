@@ -10,6 +10,49 @@ export class CalculateService {
   }
 
   /**
+   *  判断VIP是否过期
+   * @param vipTime yyyy-MM-dd格式的vip时间
+   * @returns {number}
+   */
+  public isVip(vipTime):boolean{
+    if (vipTime === null || vipTime === undefined || typeof vipTime !== 'string') {
+      return false;
+    }
+    let vipLong = vipTime.split('-');
+    if (vipLong === null || vipLong === undefined) {
+      return false;
+    }
+    let year = Number(vipLong[0]);
+    let month = Number(vipLong[1]);
+    let day = Number(vipLong[2]);
+
+    let now = new Date();
+    let now_year = now.getFullYear();
+    let now_month = now.getMonth()+1;
+    let now_day = now.getDate();
+
+    if(now_year==year){
+      if(now_month==month){
+        if(now_day<=day){
+          return true;
+        }else{
+          return false;
+        }
+      }else if(now_month<month){
+        return true;
+      }else{
+        return false;
+      }
+    }else if(now_year<year){
+      return true;
+    }else{
+      return false;
+    }
+
+  }
+
+
+  /**
    * 计算年龄
    * @param birthday yyyy-MM-dd格式的出生年月日
    * @returns {number} 年龄

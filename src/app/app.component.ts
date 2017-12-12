@@ -7,11 +7,13 @@ import {StartPage} from "../pages/start/start";
 
 
 
+
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  //rootPage:any = UserIntroducePage;
+  //rootPage:any = AuthorInformationPage;
   rootPage:any = StartPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {

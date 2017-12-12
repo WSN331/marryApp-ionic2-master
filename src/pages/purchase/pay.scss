@@ -46,17 +46,28 @@ page-pay{
     float: left;
     font-size:20px;
   }
-  .describe img{
+/*  .describe img{
     width:23px;
     height:23px;
     margin-left:10px;
-  }
+  }*/
   .p{
     margin-top:5px;
   }
   .p span{
     color:#d9a961;
   }
+  .describe_pic{
+    width:20px;
+    margin: 5px 10px;
+    display: inline-block;
+  }
+  .describe_openvip{
+    margin: 2px 10px;
+    width: 110px;
+    display: inline-block;
+  }
+
 
   //第二部分购买VIP
   .buy{

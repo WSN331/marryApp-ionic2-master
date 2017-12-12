@@ -9,8 +9,19 @@
   private sex = {};
   //未读消息设置
   private msg = false;
+  //添加喜欢设置
+  private like=false;
+
   //通信工具初始化
   private realTiming=null;
+
+  public setLike(like){
+    this.like = like;
+  }
+
+  public getLike(){
+    return this.like;
+  }
 
   public getTiming() {
     return this.realTiming;

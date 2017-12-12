@@ -6,6 +6,8 @@ import {NavController} from 'ionic-angular';
 import {LoginPage} from "../login/login";
 import {RegisterPage} from '../register/register';
 import {EveryPersonPage} from "../every-person/every-person";
+import {Memory} from "../../util/Memory";
+import {TabsPage} from "../tabs/tabs";
 
 
 @Component({
@@ -14,9 +16,9 @@ import {EveryPersonPage} from "../every-person/every-person";
 })
 export class StartPage {
 
-  constructor(public navCtrl:NavController) {
-
+  constructor(public navCtrl:NavController,public memory:Memory) {
   }
+
 
   ionViewDidLoad() {
     console.log("starting");

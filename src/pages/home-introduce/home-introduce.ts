@@ -139,6 +139,10 @@ export class HomeIntroducePage {
       userId: this.memory.getUser().id,
       toUserId: this.navParams.get('otherUserId')
     }, (data) => {
+      //点击喜欢
+      if(type===0){
+        this.memory.setLike(true);
+      }
       this.getUserInfo();
     })
   }

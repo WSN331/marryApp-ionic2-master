@@ -18,6 +18,8 @@ export class MessagePage {
   //心动记录
   goToContact() {
     this.navCtrl.push(ContactPage);
+    //红色小点显示
+    this.memory.setLike(false);
   }
 
   //最近访问

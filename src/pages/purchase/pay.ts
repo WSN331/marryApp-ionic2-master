@@ -5,6 +5,7 @@ import {AlertController, LoadingController, NavController} from "ionic-angular";
 import {MyHttp} from "../../util/MyHttp";
 import {Memory} from "../../util/Memory";
 import {ImgService} from "../../util/ImgService";
+import {CalculateService} from "../../util/CalculateService";
 
 
 declare var AliPay:any;
@@ -18,7 +19,8 @@ export class PayPage{
 
   constructor(public navCtrl: NavController,private myHttp:MyHttp,
               public alertCtrl: AlertController,public loadingCtrl:LoadingController,
-              public memory:Memory,public imgService: ImgService){
+              public memory:Memory,public imgService: ImgService,
+              public calCulate:CalculateService){
     this.getUserMsg();
     this.getOrder();
   }
