@@ -7,8 +7,6 @@ import {LoginPage} from "../login/login";
 import {RegisterPage} from '../register/register';
 import {EveryPersonPage} from "../every-person/every-person";
 import {Memory} from "../../util/Memory";
-import {TabsPage} from "../tabs/tabs";
-
 
 @Component({
   selector: 'page-start',
