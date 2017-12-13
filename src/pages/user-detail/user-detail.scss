@@ -48,25 +48,29 @@ page-userDetail{
     color:white;
   }
 
-  .item{
+  .divItem{
     height:45px;
   }
-  .item ion-label{
+
+  .divItem ion-label{
     position:absolute;
     font-size:18px;
     height:100%;
     line-height:100%;
   }
-  .item ion-input{
+
+  .divItem ion-input{
     font-size:16px;
   }
-  .item p{
+
+  .divItem p{
     margin-right:8px;
     font-size:16px;
     margin-top:8px;
   }
-  .item ion-datetime{
-    font-size:16px;
-  }
+
+
+
+
 
 }
