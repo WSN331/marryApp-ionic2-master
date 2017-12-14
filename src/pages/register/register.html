@@ -24,7 +24,6 @@
       <button ion-button clear item-end>
         <p (click)="sendVerify($event)" class="{{show}}">{{getCode}}</p>
       </button>
-
     </ion-item>
 
     <ion-item class="password">
@@ -33,8 +32,13 @@
       <button ion-button clear item-end>
         <img item-end src="assets/img/passhow.png" (click)="showPas()" />
       </button>
-
     </ion-item>
+
+    <ion-item class="invitation">
+      <img item-start src="assets/img/code.png"/>
+      <ion-input type="text" placeholder="邀请码" [(ngModel)]="registerForm.invitaCode"></ion-input>
+    </ion-item>
+
     <button class="register" ion-button full (click)="register()">注册</button>
 
     <div class="aggrement">

@@ -69,19 +69,6 @@ page-homeIntroduce{
     width: 100%;
   }
 
-  .pass_audit {
-    clear: both;
-    float: left;
-    width: 100%;
-    margin-top: 10%;
-    text-align: center;
-    font-size: 25px;
-  }
-
-  .pass_audit img {
-    width: 30px;
-  }
-
   ion-list.both-info ion-item span {
     float: left;
     margin-right: 30px;
@@ -152,5 +139,32 @@ page-homeIntroduce{
 
   }
 
+  .pass_audit {
+    clear: both;
+    float: left;
+    width: 100%;
+    margin-top: 10%;
+    text-align: center;
+  }
 
+  .pass_audit .title img {
+    width: 25px;
+  }
+  .pass_audit .title span{
+    font-size:21px;
+    overflow: hidden;
+    display: inline-block;
+  }
+
+  .unpass_audit{
+    clear: both;
+    float: left;
+    width: 100%;
+    text-align: center;
+  }
+  .unpass_audit .title{
+    padding-bottom: 3px;
+    font-size: 21px;
+    color:#ff5c5c;
+  }
 }

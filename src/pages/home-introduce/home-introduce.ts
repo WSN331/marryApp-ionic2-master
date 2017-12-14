@@ -57,6 +57,7 @@ export class HomeIntroducePage {
               public calculateService: CalculateService, public loadingCtrl:LoadingController) {
     this.getUserInfo();
     this.getAllPicture();
+    this.initCred();
   }
 
   /**
@@ -156,5 +157,38 @@ export class HomeIntroducePage {
     });
   }
 
+  //验证信息
+  public myCred = [];
+  //需要验证的项目
+  public credTypes = [];
+  /**
+   * 判定用户验证信息
+   */
+  private initCred() {
+    this.myHttp.post(MyHttp.URL_CRED_INFO, {
+      userId: this.navParams.get('otherUserId')
+    }, (data) => {
+      //验证信息
+      this.myCred = data.myCred;
+      //所有需要验证的项目
+      this.credTypes = data.credTypes;
+    })
+  }
+
+  /**
+   * 获取身份验证状态
+   * @param typeId
+   * @returns {any} -2 ~ 1分别表示 未认证、未通过、等待审核、审核通过
+   */
+  getStatus(typeId) : boolean {
+    for (let cred of this.myCred) {
+      if (cred.type['id'] === typeId) {
+        if(cred.auditStatus===1){
+          return true;
+        }
+      }
+    }
+    return false;
+  }
 
 }

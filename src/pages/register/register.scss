@@ -35,10 +35,10 @@ page-register{
     background-color: #fafafa;
     border-radius: 20px;
   }
-  .code{
+  .code,.password,.invitation{
     background-color: #fafafa;
     border-radius: 20px;
-    margin-top:20px;
+    margin-top: 20px;
   }
 
   .click{
@@ -54,14 +54,14 @@ page-register{
     margin-top:20px;
   }
 
-  .phone img{
-    width:20px;
+  .invitation{
+    background-color: #fafafa;
+    border-radius: 20px;
+    margin-top:20px;
   }
-  .code img{
-    width:20px;
-  }
-  .password img{
-    width:20px;
+
+  .phone img,.code img,.password img,.invitation img{
+    width: 20px;
   }
 
   .aggrement{

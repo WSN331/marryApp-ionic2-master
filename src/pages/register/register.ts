@@ -23,6 +23,7 @@ export class RegisterPage {
     account: '',
     verifyCode:'',
     password: '',
+    invitaCode:''
   };
 
   //界面刷新
@@ -94,6 +95,8 @@ export class RegisterPage {
         this.registerMessage("该手机已经注册!");
       }else if(data.registerResult ==="4"){
         this.registerMessage("验证码错误");
+      }else{
+        this.registerMessage("应该是邀请码错误")
       }
     })
   }

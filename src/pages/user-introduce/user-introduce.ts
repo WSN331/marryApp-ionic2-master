@@ -37,8 +37,10 @@ export class UserIntroducePage {
               public memory:Memory, public events: Events, public calculateService: CalculateService,
               public alertCtrl: AlertController, public loadingCtrl:LoadingController) {
     this.getUserInfo();
+    this.initCred();
     this.events.subscribe('e-user-introduce', () => {
       this.getUserInfo();
+      this.initCred();
     })
   }
   //设置界面
@@ -83,6 +85,40 @@ export class UserIntroducePage {
    */
   detail() {
     this.navCtrl.push(UserDetailPage);
+  }
+
+  //验证信息
+  public myCred = [];
+  //需要验证的项目
+  public credTypes = [];
+  /**
+   * 判定用户验证信息
+   */
+  private initCred() {
+    this.myHttp.post(MyHttp.URL_CRED_INFO, {
+      userId: this.memory.getUser().id
+    }, (data) => {
+      //验证信息
+      this.myCred = data.myCred;
+      //所有需要验证的项目
+      this.credTypes = data.credTypes;
+    })
+  }
+
+  /**
+   * 获取身份验证状态
+   * @param typeId
+   * @returns {any} -2 ~ 1分别表示 未认证、未通过、等待审核、审核通过
+   */
+  getStatus(typeId) : boolean {
+    for (let cred of this.myCred) {
+      if (cred.type['id'] === typeId) {
+        if(cred.auditStatus===1){
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
 }

@@ -71,6 +71,15 @@
                 <img src="assets/img/rz.png">
                 <span>认证用户</span>
               </div>
+
+<!--              <ng-container *ngFor="let credType of initCred(user)">
+                <div class="people_describe_img" *ngIf="getStatus(credType.id)==true">
+                  <img src="assets/img/rz.png">
+                  <span>认证用户{{credType.name}}</span>
+                </div>
+              </ng-container>-->
+
+
               <span></span><br/>
               <span class="span3">兴趣爱好: {{user.hobby}}</span><br/>
               <span class="span4">{{user.createTime}}</span>
