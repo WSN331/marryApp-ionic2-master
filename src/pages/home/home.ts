@@ -97,11 +97,29 @@ export class HomePage {
    * @param userId
    */
   getIntroduce(userId:any) {
-    if (this.isLogin()) {
-      this.navCtrl.push(HomeIntroducePage, {otherUserId: userId})
-    } else {
+    if (!this.isLogin()) {
       this.goToLogin();
+    } else if (!this.isCredMain()) {
+      this.goToCred();
+    } else {
+      this.navCtrl.push(HomeIntroducePage, {otherUserId: userId})
     }
+  }
+
+  isCredMain() {
+    return this.memory.getUser().mainCredNum >= 3;
+  }
+
+  goToCred() {
+    this.alertCtrl.create({
+      message: '亲~请先认证信息才能查看更多完整信息',
+      buttons: [{
+        text: 'OK',
+        handler: ()=> {
+
+        }
+      }]
+    }).present();
   }
 
   /**

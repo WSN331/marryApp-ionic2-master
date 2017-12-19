@@ -93,10 +93,10 @@ export class RegisterPage {
         })
       } else if (data.registerResult === "1") {
         this.registerMessage("该手机已经注册!");
-      }else if(data.registerResult ==="4"){
+      } else if (data.registerResult ==="4"){
         this.registerMessage("验证码错误");
-      }else{
-        this.registerMessage("应该是邀请码错误")
+      } else if (data.registerResult ==="5"){
+        this.registerMessage("邀请码错误")
       }
     })
   }

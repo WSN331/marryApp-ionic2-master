@@ -75,10 +75,6 @@ export class HomeIntroducePage {
    * 获取用户信息
    */
   getUserInfo(callBack?) {
-    let loader = this.loadingCtrl.create({
-      content: "Please wait...",
-    });
-    loader.present();
     this.myHttp.post(MyHttp.URL_USER_INTRODUCE, {
       userId: this.memory.getUser().id,
       otherUserId: this.navParams.get('otherUserId')
@@ -86,7 +82,7 @@ export class HomeIntroducePage {
       console.log(data)
       this.baseInfo = data.baseInfo || {};
       this.detailInfo = data.detailInfo || {};
-      this.relation = data.relation || {};
+      this.relation = data.relation || "0";
       this.creds = data.creds || [];
       if(data.introduceResult==='1'){
         this.pushPrompt();
@@ -94,7 +90,6 @@ export class HomeIntroducePage {
       if (callBack !== null && typeof callBack === 'function') {
         callBack();
       }
-      loader.dismiss();
     })
   }
 
@@ -102,16 +97,12 @@ export class HomeIntroducePage {
    * 获取全部图片
    */
   getAllPicture() {
-    let loader = this.loadingCtrl.create({
-      content: "Please wait...",
-    });
-    loader.present();
     this.myHttp.post(MyHttp.URL_GET_ALL_PICTURE, {
-      userId: this.navParams.get('otherUserId'),
+      userId: this.memory.getUser().id,
+      otherUserId: this.navParams.get('otherUserId')
     }, (data) => {
       console.log(data)
       this.allPictures = data.allPicture;
-      loader.dismiss();
     })
   }
 
