@@ -1,10 +1,12 @@
 import {ChangeDetectorRef, Component} from "@angular/core";
-import {Events, LoadingController, NavController} from "ionic-angular";
+import {AlertController, Events, LoadingController, NavController} from "ionic-angular";
 
 import {Memory} from "../../util/Memory";
 import {CommunicatePage} from "../communicate/communicate";
 import {MyHttp} from "../../util/MyHttp";
 import {ImgService} from "../../util/ImgService";
+import {CalculateService} from "../../util/CalculateService";
+import {PayPage} from "../purchase/pay";
 
 
 
@@ -24,7 +26,8 @@ export class PeoplePage{
   constructor(public navCtrl:NavController,public memory:Memory,
               public loadingCtrl:LoadingController,public events: Events,
               public changeDetectorRef:ChangeDetectorRef,public myHttp : MyHttp,
-              public imgService: ImgService){
+              public imgService: ImgService,public calculateService: CalculateService,
+              public alertCtrl:AlertController){
     this.login();
     this.ngReFresh();
     this.events.subscribe('e-people', () => {
@@ -77,6 +80,8 @@ export class PeoplePage{
    * 开始对话
    */
   goToTalk(talk:any) {
+    //如果当前用户是vip用户则可以开始聊天
+    if(this.isVipOrNot()){
       this.comTalk = talk;
       //通话对象
       let personId = null;
@@ -99,7 +104,11 @@ export class PeoplePage{
       }else{
         console.log("聊天对象id有问题");
       }
+    }else{
+      //当前用户不是vip用户,那么就发出善意的提醒
+      this.backMessage();
     }
+  }
 
 
   /**
@@ -140,7 +149,7 @@ export class PeoplePage{
       userId: this.memory.getUser().id,
       otherUserId: otherUserId
     }, (data) => {
-      console.log(data)
+      console.log(data+"聊天人的信息")
       let baseInfo = data.baseInfo || {};
 
       callBack(baseInfo);
@@ -154,6 +163,38 @@ export class PeoplePage{
     this.navCtrl.pop();
   }
 
+  /**
+   * 判断当前用户是否是VIP用户
+   */
+  isVipOrNot():boolean{
+    return this.calculateService.isVip(this.memory.getUser().vipTime)
+  }
+
+
+  /**
+   *
+   */
+  backMessage() {
+    let prompt = "亲~成为尊敬的Vip用户才能查看对方给你发来的信息哦";
+    this.alertCtrl.create({
+      message: prompt,
+      buttons: [
+        {
+          text:'立刻成为',
+          handler:()=>{
+            //去到vip页面
+            this.navCtrl.push(PayPage);
+/*            clearInterval(this.timer);
+            this.changeDetectorRef.detach();
+            this.navCtrl.pop();*/
+          }
+        },
+        {
+          text:'狠心放弃'
+        }
+      ]
+    }).present();
+  }
 
 }
 

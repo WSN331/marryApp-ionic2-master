@@ -18,7 +18,7 @@
     <div class="name">
       {{ baseInfo.nickName }}
     </div>
-    <div class="pic" *ngIf="baseInfo.vipTime!=''">
+    <div class="pic" *ngIf="calculateService.isVip(baseInfo.vipTime)==true">
       <img src="assets/img/vrz.png"/>
     </div>
   </div>

@@ -111,7 +111,8 @@ export class ControlImagePage {
    */
   getAllPicture() {
     this.myHttp.post(MyHttp.URL_GET_ALL_PICTURE, {
-      userId: this.userId
+      userId: this.userId,
+      otherUserId:this.userId
     }, (data) => {
       this.pictures = data.allPicture;
     })
