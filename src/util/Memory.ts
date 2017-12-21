@@ -14,6 +14,15 @@
 
   //通信工具初始化
   private realTiming=null;
+  //数据库初始化
+  private dataBase = null;
+
+  public setDB(dataBase){
+    this.dataBase = dataBase;
+  }
+  public getDB(){
+    return this.dataBase;
+  }
 
   public setLike(like){
     this.like = like;

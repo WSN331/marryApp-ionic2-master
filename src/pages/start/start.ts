@@ -2,11 +2,16 @@
  * Created by ASUS on 2017/8/29 0029.
  */
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {AlertController, NavController} from 'ionic-angular';
+import {Storage} from '@ionic/storage'
+
 import {LoginPage} from "../login/login";
 import {RegisterPage} from '../register/register';
 import {EveryPersonPage} from "../every-person/every-person";
 import {Memory} from "../../util/Memory";
+import {MyHttp} from "../../util/MyHttp";
+import {TabsPage} from "../tabs/tabs";
+
 
 @Component({
   selector: 'page-start',
@@ -14,9 +19,11 @@ import {Memory} from "../../util/Memory";
 })
 export class StartPage {
 
-  constructor(public navCtrl:NavController,public memory:Memory) {
-  }
+  constructor(public navCtrl:NavController,public memory:Memory,public storage:Storage,
+              private myHttp:MyHttp, public alertCtrl: AlertController) {
 
+    this.isLoginBefore()
+  }
 
   ionViewDidLoad() {
     console.log("starting");
@@ -33,5 +40,50 @@ export class StartPage {
   goToSeeEachPerson() {
     this.navCtrl.push(EveryPersonPage);
   }
+
+
+  //之前是否登录过
+  public loginInfo = {
+    account:'',
+    password:''
+  }
+  isLoginBefore(){
+    this.storage.get('account').then((val)=>{
+      if(val!=null){
+        console.log(val)
+        this.loginInfo.account = val;
+        this.storage.get('password').then((val)=>{
+          if(val!=null){
+            console.log(val)
+            this.loginInfo.password = val;
+            //获取了之前登陆过的信息
+            this.myHttp.post(MyHttp.URL_LOGIN, this.loginInfo, (data) => {
+              console.log(data)
+              let loginResult = data.loginResult;
+              if (loginResult==='2' || loginResult==='1') {
+                console.log("账号密码错误")
+              } else {
+                console.log(data.user)
+                this.memory.setUser(data.user);
+                this.navCtrl.push(TabsPage);
+              }
+            })
+          }else{
+            console.log("val中password为空")
+          }
+        })
+      }else{
+        console.log("val中account为空")
+      }
+    })
+  }
+
+/*  loginFailError(subTitle: string) {
+    this.alertCtrl.create({
+      title: "登录失败",
+      subTitle: subTitle,
+      buttons: ["关闭"]
+    }).present();
+  }*/
 
 }

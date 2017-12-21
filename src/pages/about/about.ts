@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { App, NavController} from 'ionic-angular';
 import { Events } from 'ionic-angular';
+import {Storage} from '@ionic/storage'
 
 import { Memory } from '../../util/Memory'
 import { ImgService } from '../../util/ImgService'
@@ -21,7 +22,8 @@ export class AboutPage{
   public user;
 
   constructor(public navCtrl: NavController, public imgService: ImgService, public memory: Memory,
-              public app:App, public events: Events, public calculateService: CalculateService) {
+              public app:App, public events: Events, public calculateService: CalculateService,
+              public storage:Storage) {
     this.getUser();
     this.events.subscribe('e-user-self', () => {
       this.getUser();
@@ -53,6 +55,8 @@ export class AboutPage{
    * 登出
    */
   logout() {
+    this.storage.set("account",null);
+    this.storage.set("password",null);
     this.app.getRootNav().setRoot(StartPage);
     this.memory.setUser({});
   }

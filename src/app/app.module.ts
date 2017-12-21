@@ -4,6 +4,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HttpModule } from '@angular/http';
 
+
 import { StartPage } from '../pages/start/start'
 import { LoginPage } from '../pages/login/login'
 import { RegisterPage } from '../pages/register/register'
@@ -24,6 +25,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Camera } from '@ionic-native/camera';
 import { ImagePicker } from '@ionic-native/image-picker';
+import {IonicStorageModule} from '@ionic/storage';
 
 import { MyHttp } from '../util/MyHttp'
 import { Memory } from '../util/Memory'
@@ -37,6 +39,7 @@ import {CommunicateService} from "../util/CommunicateService";
 import {CommunicatePage} from "../pages/communicate/communicate";
 import {PayPage} from "../pages/purchase/pay";
 import {ForgetPage} from "../pages/forget/forget";
+
 
 @NgModule({
   declarations: [
@@ -70,6 +73,10 @@ import {ForgetPage} from "../pages/forget/forget";
     IonicModule.forRoot(MyApp, {
       backButtonIcon: 'arrow-back',
       tabsHideOnSubPages: 'true'
+    }),
+    IonicStorageModule.forRoot({
+      name:'mydb',
+      driverOrder:['indexeddb','sqlite','websql']
     })
   ],
   bootstrap: [IonicApp],

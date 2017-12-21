@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
+import {Storage} from "@ionic/storage";
 
 import { MyHttp } from '../../util/MyHttp';
 import { Memory } from '../../util/Memory'
 
 import {TabsPage} from "../tabs/tabs";
 import {ForgetPage} from "../forget/forget";
+
 
 @Component({
   selector: 'page-login',
@@ -16,7 +18,8 @@ import {ForgetPage} from "../forget/forget";
 export class LoginPage {
 
   constructor(public navCtrl: NavController, private myHttp : MyHttp,
-              public alertCtrl: AlertController, public memory: Memory) {
+              public alertCtrl: AlertController, public memory: Memory,
+              public storage:Storage) {
   }
 
   /**
@@ -71,6 +74,14 @@ export class LoginPage {
         this.loginFailError("密码错误");
       } else {
         console.log(data.user)
+        //插入数据
+/*        if(this.memory.getDB()!=null){
+          this.sqLite.insert(this.memory.getDB(),this.loginForm);
+        }else{
+          console.log("在登录的时候显示db为空")
+        }*/
+        this.storage.set("account",this.loginForm.account);
+        this.storage.set("password",this.loginForm.password);
         this.memory.setUser(data.user);
         this.navCtrl.push(TabsPage);
       }

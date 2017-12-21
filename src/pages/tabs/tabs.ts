@@ -18,6 +18,7 @@ export class TabsPage {
   tab3Root = MessagePage;
 
   constructor(public comCate:CommunicateService,public memory:Memory) {
+    //初始化聊天
     this.comCate.init();
     this.receiveMessage();
   }
