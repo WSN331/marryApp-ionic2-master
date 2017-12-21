@@ -43,8 +43,8 @@ page-home {
   }
 
   .user_card {
-    width: 95%;
-    margin: 5% 2.5%;
+    width: 90%;
+    margin: 5% 5%;
     box-shadow: 5px 5px 5px #888888;
     border-radius:7px;
   }
@@ -82,5 +82,13 @@ page-home {
     border-radius: 5px;
   }
 
+  .next_page {
+    width: 100%;
+    margin: 10px 0px;
+    padding: 10px;
+    background: floralwhite;
+    text-align: center;
+    font-size: 32px;
+  }
 
 }

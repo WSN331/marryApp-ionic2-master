@@ -278,7 +278,7 @@ export class RegisterPage {
    * @param {string} subTitle
    */
   backMessage() {
-    let prompt = "婚姻是件严肃的事情，需要认真对待，宁确定要放弃吗？";
+    let prompt = "婚姻是件严肃的事情，需要认真对待，您确定要放弃吗？";
     this.alertCtrl.create({
       subTitle: prompt,
       buttons: [

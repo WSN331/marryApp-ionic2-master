@@ -25,22 +25,35 @@ export class HomePage {
    */
   public userList = [];
   public id;
+  public pageIndex;
 
   // @ViewChild("homeSlides") slides: Slides;
 
   constructor(public navCtrl:NavController, private myHttp:MyHttp, public alertCtrl:AlertController, public memory:Memory,
               public imgService:ImgService, public loadingCtrl:LoadingController, public events: Events,
               public calculateService: CalculateService) {
+    this.pageIndex = 1;
     this.getUserList();
     this.events.subscribe('e-home-list', () => {
       this.getUserList();
     })
   }
 
-  // goToSlide(action: number) {
-  //   console.log(this.sildes.getActiveIndex())
-  //   this.slides.slideTo(this.sildes.getActiveIndex() + action);
-  // }
+  nextPage() {
+    if (this.calculateService.isVip(this.memory.getUser().vipTime)) {
+      this.pageIndex ++;
+      this.getUserList();
+    } else {
+      this.alertCtrl.create({
+        message: '亲~请先购买VIP',
+        buttons: [{
+          text: 'OK',
+          handler: ()=> {
+          }
+        }]
+      }).present();
+    }
+  }
 
   /**
    * 获取用户列表
@@ -61,7 +74,7 @@ export class HomePage {
       this.myHttp.post(MyHttp.URL_USER_LIST, {
         userId: this.id,
         size: 10,
-        index: 1
+        index: this.pageIndex
       }, (data) => {
 
         loader.dismiss();
@@ -69,6 +82,15 @@ export class HomePage {
         if (data.listResult === '0') {
           this.userList = data.userList;
         } else if (data.listResult === '1'){
+          this.alertCtrl.create({
+            message: '没有更多用户啦',
+            buttons: [{
+              text: 'OK',
+              handler: ()=> {
+              }
+            }]
+          }).present();
+        } else if (data.listResult === '2'){
 
           this.alertCtrl.create({
             message: '亲~请先完善您的信息',
@@ -106,10 +128,17 @@ export class HomePage {
     }
   }
 
+  /**
+   *
+   * @returns {boolean}
+     */
   isCredMain() {
     return this.memory.getUser().mainCredNum >= 3;
   }
 
+  /**
+   *
+   */
   goToCred() {
     this.alertCtrl.create({
       message: '亲~请先认证信息才能查看更多完整信息',
