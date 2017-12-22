@@ -60,21 +60,22 @@
       <ng-container *ngFor="let credType of credTypes">
           <ion-item class="credMsg" *ngIf="getStatus(credType.id)==true">{{credType.name}}</ion-item>
       </ng-container>
+      <ion-item class="creMsg" *ngIf="count==0">所有证件均未认证</ion-item>
     </ion-list>
   </div>
 
   <!--未认证的信息-->
-  <div class="unpass_audit">
+<!--  <div class="unpass_audit">
     <div class="title">
       未通过认证
     </div>
-    <!--TODO:-->
+    &lt;!&ndash;TODO:&ndash;&gt;
     <ion-list>
       <ng-container *ngFor="let credType of credTypes">
         <ion-item class="credMsg" *ngIf="getStatus(credType.id)==false">{{credType.name}}</ion-item>
       </ng-container>
     </ion-list>
-  </div>
+  </div>-->
 
   <!--其他信息-->
   <ion-list class="both-info">

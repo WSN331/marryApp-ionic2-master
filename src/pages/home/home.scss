@@ -49,9 +49,13 @@ page-home {
     border-radius:7px;
   }
 
+  .mypic{
+    height:300px;
+  }
   .user_card img {
+    position: relative;
     border-radius: 7px 7px 0 0;
-    width: 100%
+    width: 100%;
   }
 
   .line_one{
@@ -67,6 +71,7 @@ page-home {
     font-size: 22px;
     display: inline-block;
   }
+
   .pic{
     position: absolute;
     text-align: center;
@@ -83,12 +88,11 @@ page-home {
   }
 
   .next_page {
-    width: 100%;
     margin: 10px 0px;
     padding: 10px;
-    background: floralwhite;
     text-align: center;
-    font-size: 32px;
+    font-size: 20px;
+    color:#FF975A;
   }
 
 }

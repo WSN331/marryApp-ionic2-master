@@ -5,7 +5,8 @@ page-userIntroduce {
   }
 
   .main_pic img{
-    width: 100%
+    width: 100%;
+    height: 380px;
   }
 
   .btn_setting {
@@ -18,7 +19,7 @@ page-userIntroduce {
   .control_img {
     position: absolute;
     left: 5%;
-    top: 53%;
+    top: 50%;
     z-index: 200;
     background-color:rgba(0,0,0,0.5);
     width: 110px;

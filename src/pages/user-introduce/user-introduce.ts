@@ -110,10 +110,12 @@ export class UserIntroducePage {
    * @param typeId
    * @returns {any} -2 ~ 1分别表示 未认证、未通过、等待审核、审核通过
    */
+  public count = 0;
   getStatus(typeId) : boolean {
     for (let cred of this.myCred) {
       if (cred.type['id'] === typeId) {
         if(cred.auditStatus===1){
+          this.count++;
           return true;
         }
       }

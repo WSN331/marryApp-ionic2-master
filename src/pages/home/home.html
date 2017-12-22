@@ -5,7 +5,7 @@
       <img src="assets/img/search.png"/>
     </div>
     <div class="head_title">
-      LOGO
+      邂逅思念
     </div>
     <div class="line">
     </div>
@@ -21,7 +21,7 @@
     <div class="user_card" *ngFor="let user of userList; let i = index;" (click)="getIntroduce(user.id)">
       <div>
         <div class="picture">
-          <img [src]="imgService.safeImage(user.picture)" />
+          <img [src]="imgService.safeImage(user.picture)" class="mypic" />
         </div>
 
         <div class="message">
@@ -47,7 +47,7 @@
       </div>
     </div>
 
-    <div class="next_page" (click)="nextPage()">换页</div>
+    <div class="next_page" (click)="nextPage()">显示更多</div>
   </div>
 
 </ion-content>

@@ -64,8 +64,8 @@ export class ForgetPage {
    * 找回密码控制
    */
   getPassword() {
-    // let rulePhone = /^1[3|4|5|7|8][0-9]{9}$/;
-    // let rulePas = /^[a-zA-Z0-9]{6,20}$/;
+    let rulePhone = /^1[3|4|5|7|8][0-9]{9}$/;
+    let rulePas = /^[a-zA-Z0-9]{6,20}$/;
     console.log(this.forgetForm)
     for(let name in this.forgetForm){
       if (typeof this.forgetForm[name] === "undefined" || this.forgetForm[name] === "") {
@@ -73,14 +73,14 @@ export class ForgetPage {
         return;
       }
     }
-/*    if(!rulePhone.test(this.forgetForm.account)){
+    if(!rulePhone.test(this.forgetForm.account)){
       this.loginFailError("请输入正确的手机号码");
       return;
     }
     if(!rulePas.test(this.forgetForm.newPassword)){
       this.loginFailError("请按密码格式输入");
       return;
-    }*/
+    }
 
       //找回密码逻辑
       this.myHttp.post(MyHttp.URL_GET_PAS, this.forgetForm, (data) => {
