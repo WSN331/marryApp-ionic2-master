@@ -7,7 +7,7 @@ import {LoadingController} from 'ionic-angular';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
-export class MyHttp {
+export class MyHttp { 
   /**
    * 服务器的IP
    * @type {string}
