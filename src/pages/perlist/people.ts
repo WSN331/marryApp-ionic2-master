@@ -145,6 +145,7 @@ export class PeoplePage{
    * 获取用户信息
    */
   getUserInfo(otherUserId,callBack:Function) {
+    console.log(this.memory.getUser().id+"-"+otherUserId+"对话")
     this.myHttp.post(MyHttp.URL_USER_INTRODUCE, {
       userId: this.memory.getUser().id,
       otherUserId: otherUserId
