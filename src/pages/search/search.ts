@@ -57,5 +57,7 @@ export class SearchPage{
   inputClear(){
     this.navCtrl.pop();
   }
+
+
 }
 

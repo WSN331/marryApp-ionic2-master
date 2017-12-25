@@ -38,7 +38,7 @@ export class PayPage{
     'assets/img/vip.png',
     'assets/img/crown.png'
   ];
-  public dcs = ['3.00元','50.00元','100.00元','200.00元'];
+  public dcs = ['19.90元','199.00元','399.00元','599.00元'];
   public month = ['1天','1个月','3个月','1年'];
 
 

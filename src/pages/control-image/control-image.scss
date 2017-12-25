@@ -26,15 +26,37 @@ page-controlImage{
   }
 
 
+
   .all-pic {
+    display: inline-block;
+  }
+  .all-dex{
+    color: #ff975a;
+    font-size:20px;
+    margin-left: 2.5%;
+  }
+  .all-pic img {
+    width: 30%;
+    margin-left: 2.5%;
+    margin-top:2.5%;
     float: left;
   }
 
 
 
-  .all-pic img {
+  .live-pic {
+    display: inline-block;
+    margin-top:30px;
+  }
+  .live-des{
+    color: #ff975a;
+    font-size:20px;
+    margin-left: 2.5%;
+  }
+  .live-pic img {
     width: 30%;
     margin-left: 2.5%;
+    margin-top:2.5%;
     float: left;
   }
 

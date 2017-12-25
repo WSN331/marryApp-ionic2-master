@@ -32,6 +32,8 @@
     </div>
   </div>
 
+  <div class="remainPay" *ngIf="calculateService.isVip(baseInfo.vipTime)==true" (click)="goToOpenVip()">续费Vip</div>
+
   <!--编辑资料-->
   <div class="update" (click)="detail()">
     <img src="assets/img/btn_next.png">
@@ -61,6 +63,7 @@
           <ion-item class="credMsg" *ngIf="getStatus(credType.id)==true">{{credType.name}}</ion-item>
       </ng-container>
       <ion-item class="creMsg" *ngIf="count==0">所有证件均未认证</ion-item>
+      <p class="creMsgVS" *ngIf="count<5" (click)="goToCred()">完善认证</p>
     </ion-list>
   </div>
 

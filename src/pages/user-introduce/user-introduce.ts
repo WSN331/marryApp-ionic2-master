@@ -16,6 +16,7 @@ import { UserDetailPage } from '../user-detail/user-detail'
 import { AboutPage } from "../about/about"
 import { ControlImagePage } from "../control-image/control-image"
 import {PayPage} from "../purchase/pay";
+import {CredListPage} from "../credList/credList";
 
 @Component({
   selector: 'page-userIntroduce',
@@ -123,4 +124,11 @@ export class UserIntroducePage {
     return false;
   }
 
+
+  /**
+   * 去认证界面
+   */
+  goToCred(){
+    this.navCtrl.push(CredListPage);
+  }
 }

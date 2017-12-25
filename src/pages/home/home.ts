@@ -13,6 +13,8 @@ import {HomeIntroducePage} from '../../pages/home-introduce/home-introduce'
 import {StartPage} from "../start/start";
 import {SearchPage} from "../search/search";
 import {UserDetailPage} from "../user-detail/user-detail"
+import {CredListPage} from "../credList/credList";
+import {PayPage} from "../purchase/pay";
 
 @Component({
   selector: 'page-home',
@@ -39,6 +41,9 @@ export class HomePage {
     })
   }
 
+  /**
+   * 请先购买VIP
+   */
   nextPage() {
     if (this.calculateService.isVip(this.memory.getUser().vipTime)) {
       this.pageIndex ++;
@@ -47,10 +52,16 @@ export class HomePage {
       this.alertCtrl.create({
         message: '亲~请先购买VIP',
         buttons: [{
-          text: 'OK',
-          handler: ()=> {
+          text:'NO'
+        },
+          {
+            text: 'OK',
+            handler: ()=> {
+              this.navCtrl.push(PayPage);
+            }
           }
-        }]
+
+        ]
       }).present();
     }
   }
@@ -137,17 +148,22 @@ export class HomePage {
   }
 
   /**
-   *
+   * 认证信息提示
    */
   goToCred() {
     this.alertCtrl.create({
       message: '亲~请先认证信息才能查看更多完整信息',
-      buttons: [{
-        text: 'OK',
-        handler: ()=> {
-
+      buttons: [
+        {
+          text: 'NO'
+        },
+        {
+          text: 'OK',
+          handler: ()=> {
+            this.navCtrl.push(CredListPage);
+          }
         }
-      }]
+      ]
     }).present();
   }
 
@@ -171,10 +187,12 @@ export class HomePage {
    * 进入查询界面
    */
   goToSearch() {
-    if (this.isLogin()) {
-      this.navCtrl.push(SearchPage);
-    } else {
+    if (!this.isLogin()) {
       this.goToLogin()
+    } else if(!this.isCredMain()){
+      this.goToCred();
+    }else{
+      this.navCtrl.push(SearchPage);
     }
   }
 

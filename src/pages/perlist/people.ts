@@ -181,18 +181,16 @@ export class PeoplePage{
       message: prompt,
       buttons: [
         {
+          text:'狠心放弃'
+        },
+        {
           text:'立刻成为',
           handler:()=>{
             //去到vip页面
             this.navCtrl.push(PayPage);
-/*            clearInterval(this.timer);
-            this.changeDetectorRef.detach();
-            this.navCtrl.pop();*/
           }
-        },
-        {
-          text:'狠心放弃'
         }
+
       ]
     }).present();
   }
