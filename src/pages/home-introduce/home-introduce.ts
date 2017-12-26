@@ -102,7 +102,7 @@ export class HomeIntroducePage {
       otherUserId: this.navParams.get('otherUserId')
     }, (data) => {
       console.log(data)
-      this.allPictures = data.allPicture;
+      this.allPictures = data.allIcon.concat(data.allPicture);
     })
   }
 

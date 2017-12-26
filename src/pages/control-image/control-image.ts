@@ -22,6 +22,7 @@ export class ControlImagePage {
    * @type {Array}
      */
   private pictures = [];
+  private icons = [];
 
   private userId;
 
@@ -107,6 +108,20 @@ export class ControlImagePage {
   }
 
   /**
+   * 添加头像
+   */
+  addIcon() {
+    this.imgService.chooseCamera((imageData) => {
+      this.myHttp.post(MyHttp.URL_USER_COMPLETE, {
+        addIcon: imageData,
+        userId: this.memory.getUser().id
+      }, (data)=>{
+        this.getAllPicture();
+      })
+    })
+  }
+
+  /**
    * 获取全部图片
    */
   getAllPicture() {
@@ -115,6 +130,7 @@ export class ControlImagePage {
       otherUserId:this.userId
     }, (data) => {
       this.pictures = data.allPicture;
+      this.icons = data.allIcon;
     })
   }
 
