@@ -116,7 +116,11 @@ export class ControlImagePage {
         addIcon: imageData,
         userId: this.memory.getUser().id
       }, (data)=>{
-        this.getAllPicture();
+        this.alertCtrl.create({
+          title: "上传成功",
+          subTitle: "请耐心等待审核结果",
+          buttons: ["关闭"]
+        }).present();
       })
     })
   }
