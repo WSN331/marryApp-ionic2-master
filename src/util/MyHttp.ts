@@ -130,6 +130,7 @@ export class MyHttp {
     let loader = this.loadingCtrl.create({
       content: "Please wait...",
     });
+    loader.present();
     options.headers.append('Content-Type', 'application/x-www-form-urlencoded');
     this.http.post(url, this.body(body), options).subscribe((data) => {
       console.log(data)

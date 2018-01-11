@@ -28,6 +28,9 @@ export class ForgetPage {
   public timeShow = 60;
   public timer;
 
+  //password类型
+  public pasType="text";
+
   constructor(public navCtrl: NavController, private myHttp : MyHttp,
               public alertCtrl: AlertController, public changeDetectorRef:ChangeDetectorRef) {
   }
@@ -48,9 +51,6 @@ export class ForgetPage {
       console.log("1");
     },1000);
   }
-
-  //password类型
-  public pasType="text";
   showPas(){
     console.log("change");
     if(this.pasType=="password"){
@@ -82,21 +82,21 @@ export class ForgetPage {
       return;
     }
 
-      //找回密码逻辑
-      this.myHttp.post(MyHttp.URL_GET_PAS, this.forgetForm, (data) => {
-        console.log(data)
-        let loginResult = data.resetPasswordResult;
-        if (loginResult==='0') {
-          this.loginFailError("修改成功请登录");
-          clearInterval(this.timer);
-          this.changeDetectorRef.detach();
-          this.navCtrl.pop();
-        } else if (loginResult === '1') {
-          this.loginFailError("账号不存在");
-        } else if (loginResult === '2') {
-          this.loginFailError("验证码错误");
-        }
-      })
+    //找回密码逻辑
+    this.myHttp.post(MyHttp.URL_GET_PAS, this.forgetForm, (data) => {
+      console.log(data)
+      let loginResult = data.resetPasswordResult;
+      if (loginResult==='0') {
+        this.loginFailError("修改成功请登录");
+        clearInterval(this.timer);
+        this.changeDetectorRef.detach();
+        this.navCtrl.pop();
+      } else if (loginResult === '1') {
+        this.loginFailError("账号不存在");
+      } else if (loginResult === '2') {
+        this.loginFailError("验证码错误");
+      }
+    })
   }
 
   /**

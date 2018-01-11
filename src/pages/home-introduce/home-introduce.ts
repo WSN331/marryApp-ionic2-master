@@ -52,6 +52,22 @@ export class HomeIntroducePage {
      */
   public display_dialog=false;
 
+  /**
+   * 验证信息
+   * @type {Array}
+   */
+  public myCred = [];
+  /**
+   * 需要验证的项目
+   */
+  public credTypes = [];
+
+  /**
+   *
+   * @type {number}
+   */
+  public credSuccessCount = 0;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,public alert:AlertController,
               public myHttp : MyHttp, public imgService:ImgService, public memory: Memory,
               public calculateService: CalculateService, public loadingCtrl:LoadingController) {
@@ -148,10 +164,6 @@ export class HomeIntroducePage {
     });
   }
 
-  //验证信息
-  public myCred = [];
-  //需要验证的项目
-  public credTypes = [];
   /**
    * 判定用户验证信息
    */
@@ -171,15 +183,10 @@ export class HomeIntroducePage {
    * @param typeId
    * @returns {any} -2 ~ 1分别表示 未认证、未通过、等待审核、审核通过
    */
-  count = 0;
-  getStatus(typeId) : boolean {
-    for (let cred of this.myCred) {
-      if (cred.type['id'] === typeId) {
-        if(cred.auditStatus===1){
-          this.count++;
-          return true;
-        }
-      }
+  getStatus(cred) : boolean {
+    if(cred.auditStatus===1){
+      this.credSuccessCount++;
+      return true;
     }
     return false;
   }

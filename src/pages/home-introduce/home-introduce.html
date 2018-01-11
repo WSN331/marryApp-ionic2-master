@@ -53,7 +53,7 @@
       <ng-container *ngFor="let credType of credTypes">
         <ion-item class="credMsg" *ngIf="getStatus(credType.id)==true">{{credType.name}}</ion-item>
       </ng-container>
-      <ion-item class="credMsg" *ngIf="count==0">所有证件均未认证</ion-item>
+      <ion-item class="credMsg" *ngIf="credSuccessCount==0">所有证件均未认证</ion-item>
     </ion-list>
   </div>
 

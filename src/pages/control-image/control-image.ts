@@ -52,6 +52,23 @@ export class ControlImagePage {
     this.alertCtrl.create({
       title: '图片操作',
       buttons: [{
+        text:'删除图片',
+        handler: ()=> {
+          this.delPicture(index);
+        }
+      },'取消']
+    }).present();
+  }
+
+  /**
+   * 图片操作
+   * @param index 图片序号
+   */
+  controlIcon(index) {
+    console.log(index)
+    this.alertCtrl.create({
+      title: '图片操作',
+      buttons: [{
         text:'设为头像',
         handler: ()=> {
           this.changeImage(index);
@@ -59,7 +76,7 @@ export class ControlImagePage {
       },{
         text:'删除图片',
         handler: ()=> {
-          this.delPicture(index);
+          this.delIcon(index);
         }
       },'取消']
     }).present();
@@ -77,7 +94,6 @@ export class ControlImagePage {
       this.events.publish("e-user-introduce");
 
     })
-
   }
 
   /**
@@ -87,6 +103,19 @@ export class ControlImagePage {
   delPicture(index) {
     this.myHttp.post(MyHttp.URL_USER_COMPLETE, {
       delPicture: index,
+      userId: this.memory.getUser().id
+    }, (data)=>{
+      this.getAllPicture();
+    })
+  }
+
+  /**
+   * 删除头像图片
+   * @param index 下标
+   */
+  delIcon(index) {
+    this.myHttp.post(MyHttp.URL_USER_COMPLETE, {
+      delIcon: index,
       userId: this.memory.getUser().id
     }, (data)=>{
       this.getAllPicture();

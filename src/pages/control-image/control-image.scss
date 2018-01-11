@@ -1,21 +1,21 @@
-page-controlImage{
+page-controlImage {
   /*标题*/
-  .head{
+  .head {
     background-color: #ffffff;
     height: 50px;
   }
-  .head_back{
+  .head_back {
     position: absolute;
-    height:50px;
+    height: 50px;
     vertical-align: middle;
   }
-  .head_back span{
+  .head_back span {
     height: 100%;
     vertical-align: middle;
     display: inline-block
   }
-  .head_back img{
-    width:25px;
+  .head_back img {
+    width: 25px;
     vertical-align: middle;
   }
   .head_title {
@@ -25,42 +25,35 @@ page-controlImage{
     color: #ff975a;
   }
 
-
-
   .all-pic {
     display: inline-block;
   }
-  .all-dex{
+  .all-dex {
     color: #ff975a;
-    font-size:20px;
+    font-size: 20px;
     margin-left: 2.5%;
   }
   .all-pic img {
     width: 30%;
     margin-left: 2.5%;
-    margin-top:2.5%;
+    margin-top: 2.5%;
     float: left;
   }
 
-
-
   .live-pic {
     display: inline-block;
-    margin-top:30px;
+    margin-top: 30px;
   }
-  .live-des{
+  .live-des {
     color: #ff975a;
-    font-size:20px;
+    font-size: 20px;
     margin-left: 2.5%;
   }
   .live-pic img {
     width: 30%;
     margin-left: 2.5%;
-    margin-top:2.5%;
+    margin-top: 2.5%;
     float: left;
   }
-
-
-
 
 }

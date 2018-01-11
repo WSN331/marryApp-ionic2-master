@@ -60,10 +60,10 @@
     <!--TODO:-->
     <ion-list>
       <ng-container *ngFor="let credType of credTypes">
-          <ion-item class="credMsg" *ngIf="getStatus(credType.id)==true">{{credType.name}}</ion-item>
+          <ion-item class="credMsg" *ngIf="getStatus(credType)==true">{{credType.name}}</ion-item>
       </ng-container>
-      <ion-item class="creMsg" *ngIf="count==0">所有证件均未认证</ion-item>
-      <p class="creMsgVS" *ngIf="count<5" (click)="goToCred()">完善认证</p>
+      <ion-item class="creMsg" *ngIf="credSuccessCount==0">所有证件均未认证</ion-item>
+      <p class="creMsgVS" *ngIf="credSuccessCount<5" (click)="goToCred()">完善认证</p>
     </ion-list>
   </div>
 

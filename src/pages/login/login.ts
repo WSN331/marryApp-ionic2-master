@@ -17,21 +17,26 @@ import {ForgetPage} from "../forget/forget";
 
 export class LoginPage {
 
+  //password类型
+  public pasType="password";
+
+  /**
+   * 登录表单数据
+   * @type {{account: string, password: string}}
+   */
+  public loginForm = {
+    account: '',
+    password: ''
+  }
+  
   constructor(public navCtrl: NavController, private myHttp : MyHttp,
               public alertCtrl: AlertController, public memory: Memory,
               public storage:Storage) {
   }
 
   /**
-   * 登录表单数据
-   * @type {{account: string, password: string}}
-     */
-  public loginForm = {
-    account: '',
-    password: ''
-  }
-  //password类型
-  public pasType="password";
+   * 显示密码
+   */
   showPas(){
     console.log("change");
     if(this.pasType=="password"){
@@ -110,7 +115,7 @@ export class LoginPage {
   /**
    * 去到找回密码界面
    */
-  gotoForget(){
+  goToForget(){
     this.navCtrl.push(ForgetPage);
   }
 

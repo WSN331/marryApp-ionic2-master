@@ -18,11 +18,15 @@ import {PayPage} from "../purchase/pay";
 export class PeoplePage{
 
   //通信初始化有关
-  public realtime;
+  public realTime;
   //本人
   public mySelf;
   //通话记录
   public conversations:any = [];
+  public timer;
+  public comTalk;
+  public loader;
+
   constructor(public navCtrl:NavController,public memory:Memory,
               public loadingCtrl:LoadingController,public events: Events,
               public changeDetectorRef:ChangeDetectorRef,public myHttp : MyHttp,
@@ -32,9 +36,11 @@ export class PeoplePage{
     this.ngReFresh();
     this.events.subscribe('e-people', () => {
     });
+    this.loader = this.loadingCtrl.create({
+      content: "Please wait...",
+    });
   }
 
-  public timer;
   ngReFresh(){
     //设置一个定时器，每秒刷新该界面
     this.timer = setInterval(()=>{
@@ -42,6 +48,7 @@ export class PeoplePage{
       console.log("1");
     },1000);
   }
+
   ngOnDestroy(){
     if(this.timer){
       this.changeDetectorRef.detach();
@@ -49,19 +56,16 @@ export class PeoplePage{
     }
   }
 
-  public loader = this.loadingCtrl.create({
-    content: "Please wait...",
-  });
   /**
    * 用户登录并监听消息
    */
   login(){
-    this.realtime = this.memory.getTiming();
+    this.realTime = this.memory.getTiming();
     this.mySelf = this.memory.getUser().id;
 
     this.loader.present();
 
-    this.realtime.createIMClient(this.mySelf+'').then((my)=>{
+    this.realTime.createIMClient(this.mySelf+'').then((my)=>{
       //查找对话是否存在
       my.getQuery().limit(100).containsMembers([this.mySelf+'']).find().then((conversations)=>{
         console.log(conversations.length);
@@ -72,10 +76,7 @@ export class PeoplePage{
       }).catch(console.error.bind(console));
     }).catch(console.error);
   }
-
-
-
-  public comTalk;
+  
   /**
    * 开始对话
    */
