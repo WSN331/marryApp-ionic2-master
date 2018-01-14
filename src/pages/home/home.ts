@@ -41,6 +41,14 @@ export class HomePage {
     })
   }
 
+  doRefresh(refresher) {
+    this.pageIndex = 1;
+    this.getUserList();
+    setTimeout(() => {
+      refresher.complete();
+    },2000);
+  }
+
   /**
    * 请先购买VIP
    */
