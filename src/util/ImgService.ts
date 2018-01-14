@@ -97,4 +97,5 @@ export class ImgService {
   safeImage(image: String) : SafeUrl{
     return this.sanitize.bypassSecurityTrustUrl("data:image/jpg;base64," + image)
   }
+
 }

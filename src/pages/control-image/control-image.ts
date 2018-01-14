@@ -9,6 +9,7 @@ import { ImgService } from '../../util/ImgService'
 import { MyHttp } from '../../util/MyHttp';
 import { Memory } from '../../util/Memory'
 
+import {LargeImagePage} from "../large-image/large-image";
 
 @Component({
   selector: 'page-controlImage',
@@ -52,12 +53,27 @@ export class ControlImagePage {
     this.alertCtrl.create({
       title: '图片操作',
       buttons: [{
+        text:'查看大图',
+        handler: ()=> {
+          this.toLargeImage(this.pictures[index]);
+        }
+      },{
         text:'删除图片',
         handler: ()=> {
           this.delPicture(index);
         }
       },'取消']
     }).present();
+  }
+
+  /**
+   * 查看大图
+   * @param base64
+   */
+  toLargeImage(base64) {
+    this.navCtrl.push(LargeImagePage, {
+      imageBase64 : base64
+    });
   }
 
   /**
@@ -69,6 +85,11 @@ export class ControlImagePage {
     this.alertCtrl.create({
       title: '图片操作',
       buttons: [{
+        text:'查看大图',
+        handler: ()=> {
+          this.toLargeImage(this.icons[index]);
+        }
+      },{
         text:'设为头像',
         handler: ()=> {
           this.changeImage(index);

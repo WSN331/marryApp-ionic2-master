@@ -39,7 +39,7 @@ import {CommunicateService} from "../util/CommunicateService";
 import {CommunicatePage} from "../pages/communicate/communicate";
 import {PayPage} from "../pages/purchase/pay";
 import {ForgetPage} from "../pages/forget/forget";
-
+import {LargeImagePage} from "../pages/large-image/large-image"
 
 @NgModule({
   declarations: [
@@ -65,7 +65,8 @@ import {ForgetPage} from "../pages/forget/forget";
     PayPage,
     AuthorInformationPage,
     ForgetPage,
-    ControlImagePage
+    ControlImagePage,
+    LargeImagePage
   ],
   imports: [
     BrowserModule,
@@ -77,7 +78,7 @@ import {ForgetPage} from "../pages/forget/forget";
     IonicStorageModule.forRoot({
       name:'mydb',
       driverOrder:['indexeddb','sqlite','websql']
-    })
+    }),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -103,7 +104,8 @@ import {ForgetPage} from "../pages/forget/forget";
     PayPage,
     AuthorInformationPage,
     ForgetPage,
-    ControlImagePage
+    ControlImagePage,
+    LargeImagePage
   ],
   providers: [
     StatusBar,

@@ -10,6 +10,7 @@ import { Memory } from '../../util/Memory'
 import { ImgService } from '../../util/ImgService'
 import {CalculateService} from '../../util/CalculateService'
 import {CommunicatePage} from "../communicate/communicate";
+import {LargeImagePage} from "../large-image/large-image";
 
 @Component({
   selector: 'page-homeIntroduce',
@@ -74,6 +75,16 @@ export class HomeIntroducePage {
     this.getUserInfo();
     this.getAllPicture();
     this.initCred();
+  }
+
+  /**
+   * 查看大图
+   * @param base64
+   */
+  toLargeImage(base64) {
+    this.navCtrl.push(LargeImagePage, {
+      imageBase64 : base64
+    });
   }
 
   /**

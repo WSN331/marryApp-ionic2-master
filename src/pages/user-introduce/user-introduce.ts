@@ -17,6 +17,7 @@ import { AboutPage } from "../about/about"
 import { ControlImagePage } from "../control-image/control-image"
 import {PayPage} from "../purchase/pay";
 import {CredListPage} from "../credList/credList";
+import {LargeImagePage} from "../large-image/large-image";
 
 @Component({
   selector: 'page-userIntroduce',
@@ -60,6 +61,17 @@ export class UserIntroducePage {
       this.initCred();
     })
   }
+
+  /**
+   * 查看大图
+   * @param base64
+   */
+  toLargeImage(base64) {
+    this.navCtrl.push(LargeImagePage, {
+      imageBase64 : base64
+    });
+  }
+
   //设置界面
   goToSetting() {
     this.navCtrl.push(AboutPage);

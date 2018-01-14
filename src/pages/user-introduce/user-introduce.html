@@ -7,7 +7,7 @@
 <ion-content>
   <!--头像高清图片-->
   <div class="main_pic">
-    <img [src]="imgService.safeImage(baseInfo.picture)">
+    <img [src]="imgService.safeImage(baseInfo.picture)" (click)="toLargeImage(baseInfo.picture)">
   </div>
 
   <!--设置按钮-->
