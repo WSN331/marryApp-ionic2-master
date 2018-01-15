@@ -195,13 +195,14 @@ export class HomePage {
    * 进入查询界面
    */
   goToSearch() {
-    if (!this.isLogin()) {
+/*    if (!this.isLogin()) {
       this.goToLogin()
     } else if(!this.isCredMain()){
       this.goToCred();
     }else{
       this.navCtrl.push(SearchPage);
-    }
+    }*/
+    this.searchPub("暂未开放");
   }
 
   /**
