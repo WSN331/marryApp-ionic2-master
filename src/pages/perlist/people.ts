@@ -36,9 +36,11 @@ export class PeoplePage{
     this.ngReFresh();
     this.events.subscribe('e-people', () => {
     });
-    this.loader = this.loadingCtrl.create({
+
+/*    this.loader = this.loadingCtrl.create({
       content: "Please wait...",
-    });
+    });*/
+
   }
 
   ngReFresh(){
@@ -63,7 +65,7 @@ export class PeoplePage{
     this.realTime = this.memory.getTiming();
     this.mySelf = this.memory.getUser().id;
 
-    this.loader.present();
+/*    this.loader.present();*/
 
     this.realTime.createIMClient(this.mySelf+'').then((my)=>{
       //查找对话是否存在
@@ -72,11 +74,11 @@ export class PeoplePage{
         for(let talk of conversations){
           this.showMember(talk);
         }
-        this.loader.dismiss();
+/*        this.loader.dismiss();*/
       }).catch(console.error.bind(console));
     }).catch(console.error);
   }
-  
+
   /**
    * 开始对话
    */
@@ -174,10 +176,10 @@ export class PeoplePage{
 
 
   /**
-   *
+   *  成为VIP
    */
   backMessage() {
-    let prompt = "亲~成为尊敬的Vip用户才能查看对方给你发来的信息哦";
+    let prompt = "亲~成为尊敬的Vip用户才能给对方发信息哦";
     this.alertCtrl.create({
       message: prompt,
       buttons: [
