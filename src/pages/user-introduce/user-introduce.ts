@@ -49,7 +49,9 @@ export class UserIntroducePage {
    *
    * @type {number}
      */
-  public credSuccessCount = 0;
+  public noCredSuccess = true;
+
+  public allCredSuccess = true;
 
   constructor(public navCtrl:NavController, private myHttp:MyHttp, public imgService:ImgService,
               public memory:Memory, public events: Events, public calculateService: CalculateService,
@@ -135,11 +137,14 @@ export class UserIntroducePage {
    * @param typeId
    * @returns {any} -2 ~ 1分别表示 未认证、未通过、等待审核、审核通过
    */
-  getStatus(cred) : boolean {
-    if(cred.auditStatus===1){
-      this.credSuccessCount++;
-      return true;
+  getStatus(typeId) : boolean {
+    for (let cred of this.myCred) {
+      if (cred.type.id == typeId && cred.auditStatus == 1) {
+        this.noCredSuccess = false;
+        return true;
+      }
     }
+    this.allCredSuccess = false;
     return false;
   }
 
