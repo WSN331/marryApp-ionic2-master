@@ -103,15 +103,26 @@ export class PayPage{
         AliPay.pay(this.payInfo, function success(e){
             console.log("这里是成功信息"+e.result.toString()+"提示信息"+e.memo);
             this.paySorE("支付成功");
+
+            this.doRefresh();
+
           },function error(e){
             console.log("这里是失败信息"+e.result.toString()+"错误代码"+e.resultStatus+"提示信息"+e.memo);
             this.paySorE("支付失败");
+
         });
       }
     })
 
     /*this.paySorE("请求支付");*/
 
+  }
+
+  /**
+   * 刷新界面
+   */
+  doRefresh() {
+    this.getUserMsg();
   }
 
 

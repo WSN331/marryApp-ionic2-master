@@ -11,6 +11,7 @@ import { ImgService } from '../../util/ImgService'
 import {CalculateService} from '../../util/CalculateService'
 import {CommunicatePage} from "../communicate/communicate";
 import {LargeImagePage} from "../large-image/large-image";
+import {PayPage} from "../purchase/pay";
 
 @Component({
   selector: 'page-homeIntroduce',
@@ -71,7 +72,8 @@ export class HomeIntroducePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public alert:AlertController,
               public myHttp : MyHttp, public imgService:ImgService, public memory: Memory,
-              public calculateService: CalculateService, public loadingCtrl:LoadingController) {
+              public calculateService: CalculateService, public loadingCtrl:LoadingController
+              ,public alertCtrl:AlertController) {
     this.getUserInfo();
     this.getAllPicture();
     this.initCred();
@@ -170,9 +172,14 @@ export class HomeIntroducePage {
    * 切换到聊天界面
    */
   eachCommunicate(){
-    this.navCtrl.push(CommunicatePage,{
-      person:this.navParams.get('otherUserId')
-    });
+    if(this.isVipOrNot()){
+      this.navCtrl.push(CommunicatePage,{
+        person:this.navParams.get('otherUserId')
+      });
+    }else{
+      //当前用户不是vip用户,那么就发出善意的提醒
+      this.backMessage();
+    }
   }
 
   /**
@@ -202,4 +209,33 @@ export class HomeIntroducePage {
     return false;
   }
 
+  /**
+   * 判断当前用户是否是VIP用户
+   */
+  isVipOrNot():boolean{
+    return this.calculateService.isVip(this.memory.getUser().vipTime)
+  }
+
+  /**
+   * 提示成为vip
+   */
+  backMessage() {
+    let prompt = "亲~成为尊敬的Vip用户才能查看对方给你发来的信息哦";
+    this.alertCtrl.create({
+      message: prompt,
+      buttons: [
+        {
+          text:'狠心放弃'
+        },
+        {
+          text:'立刻成为',
+          handler:()=>{
+            //去到vip页面
+            this.navCtrl.push(PayPage);
+          }
+        }
+
+      ]
+    }).present();
+  }
 }
