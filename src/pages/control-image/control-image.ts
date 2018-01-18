@@ -70,9 +70,10 @@ export class ControlImagePage {
    * 查看大图
    * @param base64
    */
-  toLargeImage(base64) {
+  toLargeImage(picture) {
     this.navCtrl.push(LargeImagePage, {
-      imageBase64 : base64
+      imageBase64 : picture.img,
+      bigImageName : picture.bigImageName
     });
   }
 
@@ -179,7 +180,7 @@ export class ControlImagePage {
    * 获取全部图片
    */
   getAllPicture() {
-    this.myHttp.post(MyHttp.URL_GET_ALL_PICTURE, {
+    this.myHttp.post(MyHttp.URL_GET_ALL_SMALL_PICTURE, {
       userId: this.userId,
       otherUserId:this.userId
     }, (data) => {

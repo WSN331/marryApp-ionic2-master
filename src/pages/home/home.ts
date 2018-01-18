@@ -11,7 +11,6 @@ import {CalculateService} from '../../util/CalculateService'
 
 import {HomeIntroducePage} from '../../pages/home-introduce/home-introduce'
 import {StartPage} from "../start/start";
-import {SearchPage} from "../search/search";
 import {UserDetailPage} from "../user-detail/user-detail"
 import {CredListPage} from "../credList/credList";
 import {PayPage} from "../purchase/pay";

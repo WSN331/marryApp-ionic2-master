@@ -66,9 +66,9 @@ export class HomeIntroducePage {
 
   /**
    *
-   * @type {number}
+   * @type {boolean}
    */
-  public credSuccessCount = 0;
+  public noCredSuccess = true;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public alert:AlertController,
               public myHttp : MyHttp, public imgService:ImgService, public memory: Memory,
@@ -83,9 +83,10 @@ export class HomeIntroducePage {
    * 查看大图
    * @param base64
    */
-  toLargeImage(base64) {
+  toLargeImage(picture) {
     this.navCtrl.push(LargeImagePage, {
-      imageBase64 : base64
+      imageBase64 : picture.img,
+      bigImageName : picture.bigImageName
     });
   }
 
@@ -126,7 +127,7 @@ export class HomeIntroducePage {
    * 获取全部图片
    */
   getAllPicture() {
-    this.myHttp.post(MyHttp.URL_GET_ALL_PICTURE, {
+    this.myHttp.post(MyHttp.URL_GET_ALL_SMALL_PICTURE, {
       userId: this.memory.getUser().id,
       otherUserId: this.navParams.get('otherUserId')
     }, (data) => {
@@ -201,10 +202,12 @@ export class HomeIntroducePage {
    * @param typeId
    * @returns {any} -2 ~ 1分别表示 未认证、未通过、等待审核、审核通过
    */
-  getStatus(cred) : boolean {
-    if(cred.auditStatus===1){
-      this.credSuccessCount++;
-      return true;
+  getStatus(typeId) : boolean {
+    for (let cred of this.myCred) {
+      if (cred.type.id == typeId && cred.auditStatus == 1) {
+        this.noCredSuccess = false;
+        return true;
+      }
     }
     return false;
   }

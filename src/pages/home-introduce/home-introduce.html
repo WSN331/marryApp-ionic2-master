@@ -39,7 +39,7 @@
   <!--全部图片-->
   <div class="all-pic">
     <p>{{['他','她'][baseInfo.sex]}}的照片</p>
-    <img *ngFor="let picture of allPictures" [src]="imgService.safeImage(picture)" (click)="toLargeImage(picture)">
+    <img *ngFor="let picture of allPictures" [src]="imgService.safeImage(picture.img)" (click)="toLargeImage(picture)">
   </div>
 
   <!--已认证的信息-->
@@ -53,7 +53,7 @@
       <ng-container *ngFor="let credType of credTypes">
         <ion-item class="credMsg" *ngIf="getStatus(credType.id)==true">{{credType.name}}</ion-item>
       </ng-container>
-      <ion-item class="credMsg" *ngIf="credSuccessCount==0">所有证件均未认证</ion-item>
+      <ion-item class="creMsg" *ngIf="noCredSuccess">所有证件均未认证</ion-item>
     </ion-list>
   </div>
 

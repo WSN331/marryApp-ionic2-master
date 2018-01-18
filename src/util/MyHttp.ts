@@ -14,7 +14,7 @@ export class MyHttp {
    */
   static IP = "47.95.212.171";
   // static IP = "localhost"
-  // static IP = "192.168.2.105"
+  // static IP = "192.168.2.178"
   // static IP ="192.168.2.180";
 
   /**
@@ -45,6 +45,8 @@ export class MyHttp {
   static URL_USER_INTRODUCE = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/home/introduce";
   // 获取全部图片
   static URL_GET_ALL_PICTURE = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/home/getAllPicture";
+  // 获取全部缩略图
+  static URL_GET_ALL_SMALL_PICTURE = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/home/getAllSmallPicture";
   // 喜欢的列表
   static URL_LIKE_LIST = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/relation/likeList";
   // 被喜欢的列表
@@ -85,6 +87,8 @@ export class MyHttp {
   static URL_SEND_VERIFY = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/sendVerify";
   // 找回密码
   static URL_GET_PAS = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/resetPassword";
+  // 获取大图
+  static URL_GET_BIG_IMAGE = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/home/getBigImage";
 
   constructor (private http : Http, public loadingCtrl:LoadingController) {
 
@@ -131,6 +135,7 @@ export class MyHttp {
       content: "Please wait...",
     });
     loader.present();
+    console.log("xxxxxxxxxxxxxxxxxxxxx")
     options.headers.append('Content-Type', 'application/x-www-form-urlencoded');
     this.http.post(url, this.body(body), options).subscribe((data) => {
       console.log(data)

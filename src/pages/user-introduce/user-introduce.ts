@@ -47,7 +47,7 @@ export class UserIntroducePage {
 
   /**
    *
-   * @type {number}
+   * @type {boolean}
      */
   public noCredSuccess = true;
 
