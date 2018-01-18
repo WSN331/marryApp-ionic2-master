@@ -25,10 +25,8 @@ export class PeoplePage{
   public conversations:any = [];
   public timer;
   public comTalk;
-  public loader;
 
-  constructor(public navCtrl:NavController,public memory:Memory,
-              public loadingCtrl:LoadingController,public events: Events,
+  constructor(public navCtrl:NavController,public memory:Memory, public events: Events,
               public changeDetectorRef:ChangeDetectorRef,public myHttp : MyHttp,
               public imgService: ImgService,public calculateService: CalculateService,
               public alertCtrl:AlertController){
@@ -37,9 +35,6 @@ export class PeoplePage{
     this.events.subscribe('e-people', () => {
     });
 
-/*    this.loader = this.loadingCtrl.create({
-      content: "Please wait...",
-    });*/
 
   }
 
@@ -62,19 +57,19 @@ export class PeoplePage{
    * 用户登录并监听消息
    */
   login(){
+    if(this.memory.getConversion().size>0 && this.memory.getConversion()!=null){
+      this.conversations = this.memory.getConversion();
+    }
     this.realTime = this.memory.getTiming();
     this.mySelf = this.memory.getUser().id;
-
-/*    this.loader.present();*/
 
     this.realTime.createIMClient(this.mySelf+'').then((my)=>{
       //查找对话是否存在
       my.getQuery().limit(100).containsMembers([this.mySelf+'']).find().then((conversations)=>{
-        console.log(conversations.length);
-        for(let talk of conversations){
-          this.showMember(talk);
-        }
-/*        this.loader.dismiss();*/
+        conversations.map((conversation)=> {
+          console.log(conversation.lastMessageAt.toString(), conversation.members);
+          this.showMember(conversation);
+        });
       }).catch(console.error.bind(console));
     }).catch(console.error);
   }
@@ -119,6 +114,13 @@ export class PeoplePage{
    * @param talk
    */
   showMember(talk:any){
+    let conversation:any = {
+      baseInfo:'',
+      talk:''
+    }
+    conversation.talk = talk;
+    this.conversations.push(conversation);
+
     //对话人账户
     let otherPerson = null;
     let comPeople = talk.members.toString().split(',');
@@ -132,14 +134,12 @@ export class PeoplePage{
       console.log(otherPerson+"对话人的id");
       this.getUserInfo(otherPerson,(baseInfo)=>{
         console.log(baseInfo.nickName+"用户姓名");
-        let conversation:any = {
-            baseInfo:'',
-            talk:''
-          }
+
         conversation.baseInfo = baseInfo;
+        this.memory.setConversion(this.conversations);
+/*        conversation.baseInfo = baseInfo;
         conversation.talk = talk;
-        this.conversations.push(conversation);
-        /*this.changeDetectorRef.detectChanges();*/
+        this.conversations.push(conversation);*/
       })
     }
   }

@@ -17,6 +17,16 @@
   //数据库初始化
   private dataBase = null;
 
+  //添加聊天人缓存
+  private conversions:any = [];
+
+  public setConversion(conversions){
+    this.conversions = conversions;
+  }
+  public getConversion(){
+    return this.conversions;
+  }
+
   public setDB(dataBase){
     this.dataBase = dataBase;
   }
