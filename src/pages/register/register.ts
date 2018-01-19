@@ -82,7 +82,7 @@ export class RegisterPage {
       return;
     }
 
-    this.myHttp.post(MyHttp.URL_REGISTER, this.registerForm, (data) => {
+    this.myHttp.post(MyHttp.URL_REGISTER_NO_INVITATION_CODE, this.registerForm, (data) => {
       if (data.registerResult === "0") {
         this.registerMessage("注册成功,请继续完善信息");
         clearInterval(this.timer);

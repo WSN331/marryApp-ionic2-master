@@ -37,6 +37,8 @@ export class MyHttp {
   static URL_LOGIN = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/login";
   // 注册
   static URL_REGISTER = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/register";
+  // 注册
+  static URL_REGISTER_NO_INVITATION_CODE = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/registerNoInvitaCodeStr";
   // 完善个人信息
   static URL_USER_COMPLETE = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/complete";
   // 用户列表
