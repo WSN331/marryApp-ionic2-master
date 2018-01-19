@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component} from "@angular/core";
-import {AlertController, Events, LoadingController, NavController} from "ionic-angular";
+import {AlertController, Events, NavController} from "ionic-angular";
 
 import {Memory} from "../../util/Memory";
 import {CommunicatePage} from "../communicate/communicate";
