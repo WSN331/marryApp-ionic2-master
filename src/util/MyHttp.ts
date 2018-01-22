@@ -43,6 +43,8 @@ export class MyHttp {
   static URL_USER_COMPLETE = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/complete";
   // 用户列表
   static URL_USER_LIST = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/home/list";
+  // 筛选用户列表
+  static URL_USER_SCREEN_LIST = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/home/screenList";
   // 用户详情
   static URL_USER_INTRODUCE = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/home/introduce";
   // 获取全部图片
@@ -143,6 +145,9 @@ export class MyHttp {
       console.log(data)
       loader.dismiss();
       this.callBack(success, data);
+    }, (error) => {
+      console.log(error)
+      loader.dismiss();
     });
   }
 

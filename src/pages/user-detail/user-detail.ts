@@ -10,6 +10,7 @@ import { UserDetail2Page } from "../user-detail2/user-detail2"
 
 import { MyHttp } from '../../util/MyHttp';
 import { Memory } from '../../util/Memory'
+import { Constants } from '../../util/Constants'
 
 @Component({
   selector: 'page-userDetail',
@@ -38,9 +39,9 @@ export class UserDetailPage {
    * @type {{income: string[], hopeTime: string[], edu: string[]}}
      */
   private strForChoose = {
-    income: ['5万以下','5-10万','10-20万','20-30万','30-100万','100万以上'],
-    hopeTime: ['半年内','一年内','1-3年内','3年以上'],
-    edu: ['初中及以下','高中','大学','研究生及以上']
+    income: Constants.SELECT.income,
+    hopeTime: Constants.SELECT.hopeTime,
+    edu: Constants.SELECT.edu
   };
 
   constructor(public navCtrl:NavController,public navParams:NavParams, private myHttp:MyHttp, public memory:Memory,

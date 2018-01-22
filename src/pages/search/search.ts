@@ -1,9 +1,11 @@
 import {Component} from "@angular/core";
 import {AlertController, NavController} from "ionic-angular";
-import {HomeIntroducePage} from "../home-introduce/home-introduce";
+import { Events } from 'ionic-angular';
+
 import {MyHttp} from "../../util/MyHttp";
 import {CalculateService} from "../../util/CalculateService";
 import {Memory} from "../../util/Memory";
+import { Constants } from '../../util/Constants'
 
 @Component({
   selector:"page-search",
@@ -15,13 +17,18 @@ export class SearchPage{
 /*  private userId;*/
 
   //基本搜索部分的信息
-  public searchInfo = {};
+  public searchInfo = {
+    high : '',
+    age : '',
+    income : '',
+    edu : ''
+  };
 
   private strForChoose = {
-    high:['165以下','165-170','170-175','175-180','180以上'],
-    age:['25以下','25-30','30-35','35-40','40以上'],
-    edu:['本科','硕士','博士','博士后'],
-    income:['5万以下','5-10万','10-20万','20-30万','30-100万','100万以上'],
+    high:Constants.SELECT.high,
+    age:Constants.SELECT.age,
+    income: Constants.SELECT.income,
+    edu: Constants.SELECT.edu
   };
 
   //VIP搜索部分的信息
@@ -33,13 +40,14 @@ export class SearchPage{
 
   constructor(public navCtrl:NavController,public alertCtrl: AlertController,
               public myHttp:MyHttp,public calculateService: CalculateService,
-              public memory:Memory){
+              public memory:Memory, public events: Events){
     this.getProvinceList();
   }
 
   //普通搜索
   searchCom(){
-
+    this.events.publish('e-home-search', this.searchInfo);
+    this.navCtrl.pop();
   }
 
   //Vip搜索

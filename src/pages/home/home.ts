@@ -29,20 +29,33 @@ export class HomePage {
   public id;
   public pageIndex;
 
+  public searchInfo =  {
+    high : '',
+    age : '',
+    income : '',
+    edu : ''
+  };
+
   // @ViewChild("homeSlides") slides: Slides;
 
-  constructor(public navCtrl:NavController, private myHttp:MyHttp, public alertCtrl:AlertController, public memory:Memory,
-              public imgService:ImgService, public loadingCtrl:LoadingController, public events: Events,
+  constructor(public navCtrl:NavController, private myHttp:MyHttp, public alertCtrl:AlertController,
+              public memory:Memory, public imgService:ImgService, public loadingCtrl:LoadingController, public events: Events,
               public calculateService: CalculateService) {
     this.pageIndex = 1;
     this.getUserList();
     this.events.subscribe('e-home-list', () => {
+      this.getUserList();
+    });
+    this.events.subscribe('e-home-search', (searchInfo)=>{
+      this.searchInfo = searchInfo;
+      this.userList = [];
       this.getUserList();
     })
   }
 
   doRefresh(refresher) {
     this.pageIndex = 1;
+    this.userList = [];
     this.getUserList();
     setTimeout(() => {
       refresher.complete();
@@ -81,7 +94,6 @@ export class HomePage {
     this.id = this.memory.getUser().id;
     console.log(this.id+"现在登录的id")
     if (!this.id) {
-      //TODO: testtesttest
       this.id = this.memory.getSex();
       console.log(this.id+"观光的id")
     }
@@ -89,17 +101,15 @@ export class HomePage {
       content: "Please wait...",
     });
     loader.present();
+    this.searchInfo['userId'] = this.id;
+    this.searchInfo['size'] = 10;
+    this.searchInfo['index'] = this.pageIndex;
     if (this.id) {
-      this.myHttp.post(MyHttp.URL_USER_LIST, {
-        userId: this.id,
-        size: 10,
-        index: this.pageIndex
-      }, (data) => {
-
+      this.myHttp.post(MyHttp.URL_USER_SCREEN_LIST, this.searchInfo, (data) => {
         loader.dismiss();
         console.log(data)
         if (data.listResult === '0') {
-          this.userList = data.userList;
+          this.userList = this.userList.concat(data.userList);
         } else if (data.listResult === '1'){
           this.alertCtrl.create({
             message: '没有更多用户啦',
