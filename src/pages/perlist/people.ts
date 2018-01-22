@@ -7,6 +7,7 @@ import {MyHttp} from "../../util/MyHttp";
 import {ImgService} from "../../util/ImgService";
 import {CalculateService} from "../../util/CalculateService";
 import {PayPage} from "../purchase/pay";
+import {HomeIntroducePage} from "../home-introduce/home-introduce";
 
 
 
@@ -155,10 +156,18 @@ export class PeoplePage{
     }, (data) => {
       console.log(data+"聊天人的信息")
       let baseInfo = data.baseInfo || {};
-
       callBack(baseInfo);
     })
   }
+
+  /**
+   * 去到个人详情界面
+   */
+  goToIntroduce(userId:any){
+    this.navCtrl.push(HomeIntroducePage, {otherUserId: userId});
+  }
+
+
 
   /*
   * 将该页面拿出堆栈

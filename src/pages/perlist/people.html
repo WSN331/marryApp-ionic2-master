@@ -17,11 +17,15 @@
 
   <ion-list>
     <ion-list-header>Today is HappyDay</ion-list-header><!--(click)="goToTalk(conTalk.talk)"-->
-    <button ion-item  *ngFor="let conTalk of conversations" (click)="goToTalk(conTalk.talk)">
+    <ion-item *ngFor="let conTalk of conversations">
 
-      <div class="picture" item-start>
+      <div class="picture" item-start (click)="goToIntroduce(conTalk.baseInfo.id)">
         <img [src]="imgService.safeImage(conTalk.baseInfo.picture)">
         <div class="circle" *ngIf="conTalk.talk.unreadMessagesCount>0">{{conTalk.talk.unreadMessagesCount}}</div>
+      </div>
+
+      <div class="toTalk" (click)="goToTalk(conTalk.talk)">
+
       </div>
 
       <h2 class="h2">{{conTalk.baseInfo.nickName}}</h2>
@@ -29,7 +33,7 @@
       <div *ngIf="conTalk.talk.unreadMessagesCount>0">{{this.memory.setMsg(true)}}</div>
       <ion-note item-end *ngIf="conTalk.talk.lastMessageAt.getMinutes()<10">{{conTalk.talk.lastMessageAt.getMonth()+1}}-{{conTalk.talk.lastMessageAt.getDate()}} {{conTalk.talk.lastMessageAt.getHours()}}:{{'0'+conTalk.talk.lastMessageAt.getMinutes()}}</ion-note>
       <ion-note item-end *ngIf="conTalk.talk.lastMessageAt.getMinutes()>=10">{{conTalk.talk.lastMessageAt.getMonth()+1}}-{{conTalk.talk.lastMessageAt.getDate()}} {{conTalk.talk.lastMessageAt.getHours()}}:{{conTalk.talk.lastMessageAt.getMinutes()}}</ion-note>
-    </button>
+    </ion-item>
   </ion-list>
 
 </ion-content>
