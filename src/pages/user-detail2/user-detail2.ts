@@ -71,6 +71,7 @@ export class UserDetail2Page {
     this.userId = this.navParams.get('userId');
     this.baseInfo = this.navParams.get('baseInfo');
     this.detailInfo = this.navParams.get('detailInfo');
+
     let detailInfoSelects = this.detailInfoSelect.split(" ");
     // 遍历所有的select选项
     for (let i in detailInfoSelects) {

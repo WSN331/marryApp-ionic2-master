@@ -1,4 +1,37 @@
 page-search{
+  /*标题*/
+  .head{
+    height: 50px;
+  }
+  .head_back{
+    position: absolute;
+    height:50px;
+    vertical-align: middle;
+  }
+  .head_back span{
+    width:0px;
+    height: 100%;
+    vertical-align: middle;
+    display: inline-block;
+  }
+  .head_back img{
+    width:25px;
+    vertical-align: middle;
+  }
+
+  .head_title {
+    font-size: 22px;
+    text-align: center;
+    line-height: 50px;
+    color: #ff975a;
+  }
+  .line{
+    height: 1px;
+    background-color:#eeeeee;
+  }
+
+
+
 
   .div{
     position: relative;
@@ -31,78 +64,6 @@ page-search{
     overflow:hidden;
   }
 
-  .divhigh{
-    overflow: hidden;
-    position: relative;
-  }
-  .divhigh ion-label{
-    position: absolute;
-    font-size: 18px;
-    height: 100%;
-    line-height: 100%;
-    text-align: center;
-    width:auto;
-    float: left;
-  }
-  .divhigh ion-input{
-    width:100%;
-    display: inline-block;
-  }
-
-  .divage{
-    clear: both;
-    position: relative;
-  }
-  .divage ion-label{
-    position: absolute;
-    font-size: 18px;
-    height: 100%;
-    line-height: 100%;
-    text-align: center;
-    width:auto;
-    float: left;
-  }
-  .divage ion-input{
-    width:100%;
-    display: inline-block;
-  }
-
-  .divincome{
-    clear: both;
-    position: relative;
-  }
-  .divincome ion-label{
-    position: absolute;
-    font-size: 18px;
-    height: 100%;
-    line-height: 100%;
-    text-align: center;
-    width:auto;
-    float: left;
-  }
-  .divincome ion-input{
-    width:100%;
-    display: inline-block;
-  }
-
-  .divwork{
-    clear: both;
-    position: relative;
-  }
-  .divwork ion-label{
-    position: absolute;
-    font-size: 18px;
-    height: 100%;
-    line-height: 100%;
-    text-align: center;
-    width:auto;
-    float: left;
-  }
-  .divwork ion-input{
-    width:100%;
-    display: inline-block;
-  }
-
   p{
     color: #ff975a;
     font-size:20px;
@@ -124,101 +85,65 @@ page-search{
     background-size:cover;
   }
 
-  .divhome{
-    clear: both;
-    position: relative;
-  }
-  .divhome ion-label{
-    position: absolute;
-    font-size: 18px;
-    height: 100%;
-    line-height: 100%;
-    text-align: center;
-    width:auto;
-    float: left;
-  }
-  .divhome ion-input{
-    width:100%;
-    display: inline-block;
-  }
-
-  .divedu{
-    clear: both;
-    position: relative;
-  }
-  .divedu ion-label{
-    position: absolute;
-    font-size: 18px;
-    height: 100%;
-    line-height: 100%;
-    text-align: center;
-    width:auto;
-    float: left;
-  }
-  .divedu ion-input{
-    width:100%;
-    display: inline-block;
-  }
-
-  .divconslletation{
-    clear: both;
-    position: relative;
-  }
-  .divconslletation ion-label{
-    position: absolute;
-    font-size: 18px;
-    height: 100%;
-    line-height: 100%;
-    text-align: center;
-    width:auto;
-    float: left;
-  }
-  .divconslletation ion-input{
-    width:100%;
-    display: inline-block;
-  }
-
-  .divzodiac{
-    clear: both;
-    position: relative;
-  }
-  .divzodiac ion-label{
-    position: absolute;
-    font-size: 18px;
-    height: 100%;
-    line-height: 100%;
-    text-align: center;
-    width:auto;
-    float: left;
-  }
-  .divzodiac ion-input{
-    width:100%;
-    display: inline-block;
-  }
-
-  .divmarriage{
-    clear: both;
-    position: relative;
-  }
-  .divmarriage ion-label{
-    position: absolute;
-    font-size: 18px;
-    height: 100%;
-    line-height: 100%;
-    text-align: center;
-    width:auto;
-    float: left;
-  }
-  .divmarriage ion-input{
-    width:100%;
-    display: inline-block;
-  }
-
   .basic{
-    margin-top:10%;
   }
   .detail{
-    margin-top: 10%;
+    margin-top: 5%;
   }
 
+
+
+  .divItem{
+    height:45px;
+  }
+
+  .divItem ion-label{
+    position:absolute;
+    font-size:18px;
+    line-height:100%;
+  }
+
+  .divItem p{
+    margin:0px 8px;
+    font-size:16px;
+    padding-top: 8px;
+  }
+
+  ion-label{
+    font-size: 18px;
+    line-height: 100%;
+  }
+
+
+  .common{
+    position: relative;
+    background-color:transparent;
+    border-radius:20px;
+    color:#ff975a;
+    border: 2px solid #ff975a;
+    width:40%;
+    margin:0 auto;
+    float: left;
+  }
+
+  .vip{
+    position: fixed;
+    display: inline-block;
+    background-color:#ff975a;
+    border-radius:20px;
+    color:white;
+    border: 2px solid #ff975a;
+    width:40%;
+    right:5%;
+    margin:0 auto;
+  }
+
+  .button:active{
+    background-color:#ffaa00;
+    color:white;
+  }
+  .button:hover{
+    background-color:#ffaa00;
+    color:white;
+  }
 }

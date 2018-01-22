@@ -14,6 +14,7 @@ import {StartPage} from "../start/start";
 import {UserDetailPage} from "../user-detail/user-detail"
 import {CredListPage} from "../credList/credList";
 import {PayPage} from "../purchase/pay";
+import {SearchPage} from "../search/search";
 
 @Component({
   selector: 'page-home',
@@ -138,8 +139,10 @@ export class HomePage {
    */
   getIntroduce(userId:any) {
     if (!this.isLogin()) {
+      //是否登录
       this.goToLogin();
     } else if (!this.isCredMain()) {
+      //是否通过认证
       this.goToCred();
     } else {
       this.navCtrl.push(HomeIntroducePage, {otherUserId: userId})
@@ -194,14 +197,14 @@ export class HomePage {
    * 进入查询界面
    */
   goToSearch() {
-/*    if (!this.isLogin()) {
+    if (!this.isLogin()) {
       this.goToLogin()
     } else if(!this.isCredMain()){
       this.goToCred();
     }else{
       this.navCtrl.push(SearchPage);
-    }*/
-    this.searchPub("暂未开放");
+    }
+    /*this.searchPub("暂未开放");*/
   }
 
   /**

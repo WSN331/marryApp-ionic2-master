@@ -4,13 +4,14 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import {StartPage} from "../pages/start/start";
+import {SearchPage} from "../pages/search/search";
 
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  //rootPage:any = UserIntroducePage;
+  //rootPage:any = SearchPage;
   rootPage:any = StartPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
