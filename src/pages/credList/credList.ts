@@ -29,6 +29,12 @@ export class CredListPage {
      */
   private credTypes = [];
 
+  /**
+   * 证件标题
+   * @type {Array}
+     */
+  private credTitles = [];
+
   constructor(public navCtrl: NavController, public myHttp : MyHttp, public loadingCtrl:LoadingController,
               public memory: Memory, public events: Events) {
     this.initCred();
@@ -45,13 +51,14 @@ export class CredListPage {
       content: "Please wait...",
     });
     loader.present();
-    this.myHttp.post(MyHttp.URL_CRED_INFO, {
+    this.myHttp.post(MyHttp.URL_CRED_INFO_BY_TITLE, {
       userId: this.memory.getUser().id
     }, (data) => {
       console.log(data)
       loader.dismiss();
       this.myCred = data.myCred;
       this.credTypes = data.credTypes;
+      this.credTitles = data.credTitles;
     })
   }
 
@@ -70,14 +77,40 @@ export class CredListPage {
   }
 
   /**
+   * 根据标题
+   * @param titleId
+     */
+  getStatusByTitle (titleId) {
+    let result = 1;
+    for (let type of this.credTypes) {
+      if (type.title['id'] === titleId) {
+        let status = this.getStatus(type.id);
+        if (status < result) {
+          result = status;
+        }
+      }
+    }
+    return result;
+  }
+
+  /**
    * 点击触发
    * @param typeId
      */
-  clickItem(type) {
-    if (this.getStatus(type["id"]) < 0) {
-      this.navCtrl.push(AddCredPage, {type: type})
+  clickItem(title) {
+    if (this.getStatusByTitle(title["id"]) < 0) {
+      let types = [];
+      let i = 0;
+      for (let type of this.credTypes) {
+        if (type.title['id'] === title.id) {
+          types[i++] = type;
+        }
+      }
+      this.navCtrl.push(AddCredPage, {title: title, types: types})
     }
   }
+
+
 
   /**
    * 返回

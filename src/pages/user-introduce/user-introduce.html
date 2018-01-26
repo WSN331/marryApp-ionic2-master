@@ -57,10 +57,9 @@
       <img src="assets/img/pass_audit.png">
       <span>已认证</span>
     </div>
-    <!--TODO:-->
     <ion-list>
-      <ng-container *ngFor="let credType of credTypes">
-          <ion-item class="credMsg" *ngIf="getStatus(credType.id)==true">{{credType.name}}</ion-item>
+      <ng-container *ngFor="let credTitle of credTitles">
+          <ion-item class="credMsg" *ngIf="getStatusByTitle(credTitle.id)==true">{{credTitle.name}}</ion-item>
       </ng-container>
       <ion-item class="creMsg" *ngIf="noCredSuccess">所有证件均未认证</ion-item>
       <p class="creMsgVS" *ngIf="!allCredSuccess" (click)="goToCred()">完善认证</p>

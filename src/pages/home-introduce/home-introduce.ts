@@ -64,11 +64,15 @@ export class HomeIntroducePage {
    */
   public credTypes = [];
 
+  public credTitles = [];
+
   /**
    *
    * @type {boolean}
    */
   public noCredSuccess = true;
+
+  public allCredSuccess = true;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public alert:AlertController,
               public myHttp : MyHttp, public imgService:ImgService, public memory: Memory,
@@ -187,13 +191,15 @@ export class HomeIntroducePage {
    * 判定用户验证信息
    */
   private initCred() {
-    this.myHttp.post(MyHttp.URL_CRED_INFO, {
+    this.myHttp.post(MyHttp.URL_CRED_INFO_BY_TITLE, {
       userId: this.navParams.get('otherUserId')
     }, (data) => {
       //验证信息
       this.myCred = data.myCred;
       //所有需要验证的项目
       this.credTypes = data.credTypes;
+
+      this.credTitles = data.credTitles;
     })
   }
 
@@ -205,11 +211,27 @@ export class HomeIntroducePage {
   getStatus(typeId) : boolean {
     for (let cred of this.myCred) {
       if (cred.type.id == typeId && cred.auditStatus == 1) {
-        this.noCredSuccess = false;
         return true;
       }
     }
     return false;
+  }
+
+  /**
+   * 根据标题
+   * @param titleId
+   */
+  getStatusByTitle (titleId) {
+    for (let type of this.credTypes) {
+      if (type.title['id'] === titleId) {
+        let status = this.getStatus(type.id);
+        if (!status) {
+          return false;
+        }
+      }
+    }
+    this.noCredSuccess = false;
+    return true;
   }
 
   /**

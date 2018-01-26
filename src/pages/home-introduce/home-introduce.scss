@@ -104,7 +104,7 @@ page-homeIntroduce{
     position: fixed;
     bottom: 0%;
     z-index: 99;
-    background: #FFF6F1;
+    background: rgba(100, 100, 100, 0.5);
     width: 100%;
     clear: both;
     float: left;
@@ -123,7 +123,7 @@ page-homeIntroduce{
 
   .more_execute {
     position: fixed;
-    bottom: 15%;
+    bottom: 10%;
     right: 0%;
     z-index: 100;
     clear: both;
@@ -133,10 +133,10 @@ page-homeIntroduce{
   }
 
   .more_execute p{
+    clear: both;
     font-size: 30px;
-    font-weight: 500;
-    margin: 10px 30px;
-
+    font-weight: 100;
+    margin: 0px 10px;
   }
 
   .pass_audit {

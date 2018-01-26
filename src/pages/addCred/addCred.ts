@@ -20,37 +20,53 @@ export class AddCredPage {
   /**
    * 图片的base64格式
    */
-  private base64;
+  private base64 = [];
 
-  private type;
+  private title;
+  private types = [];
 
   constructor(public myHttp : MyHttp, /*public loadingCtrl:LoadingController, */public memory: Memory,
               public navParams: NavParams, public imgService:ImgService, public navCtrl: NavController,
               public events: Events, public alertCtrl: AlertController) {
-    this.getType();
+    this.getTitle();
   }
 
   /**
    * 获取信息类型
    */
-  getType() {
-    this.type = this.navParams.get('type')
+  getTitle() {
+    this.title = this.navParams.get('title')
+    this.types = this.navParams.get('types')
   }
 
   /**
    * 添加图片
    */
-  addPicture() {
+  addPicture(typeId) {
     this.imgService.chooseCamera((imageData) => {
-      this.base64 = imageData;
+      this.base64[typeId] = imageData;
     })
+  }
+
+  /**
+   * 是否有图片存在
+   * @returns {boolean}
+   */
+  havePic(typeId : number) {
+    return this.base64[typeId] != null && this.base64[typeId] != undefined;
+  }
+
+  saveBtn() {
+    for (let type of this.types) {
+      this.addCred(type)
+    }
   }
 
   /**
    * 初始化身份验证的信息
    */
-  addCred() {
-    if (!this.havePic()) {
+  addCred(type) {
+    if (!this.havePic(type.id)) {
       this.alertCtrl.create({
         title: '请先选中图片',
         buttons: ['关闭']
@@ -63,21 +79,13 @@ export class AddCredPage {
     // loader.present();
     this.myHttp.post(MyHttp.URL_ADD_CRED, {
       userId: this.memory.getUser().id,
-      picture: this.base64,
-      typeId: this.type['id']
+      picture: this.base64[type['id']],
+      typeId: type['id']
     }, (data) => {
       console.log(data)
       this.events.publish("e-get-cred");
       this.navCtrl.pop();
     })
-  }
-
-  /**
-   * 是否有图片存在
-   * @returns {boolean}
-     */
-  havePic() {
-    return this.base64 != null && this.base64 != undefined;
   }
 
   back(){

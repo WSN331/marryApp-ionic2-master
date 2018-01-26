@@ -5,7 +5,7 @@
       <img src="assets/img/back.png"/>
     </div>
     <div class="head_title">
-      {{ type['name'] }}
+      {{ title['name'] }}
     </div>
     <div class="line">
     </div>
@@ -13,12 +13,15 @@
 </ion-header>
 
 <ion-content padding>
-  <div *ngIf="havePic()">
-    <img [src]="imgService.safeImage(base64)" (click)="addPicture()" >
+  <div *ngFor="let type of types" class="image_picker">
+    <p class="type_name">{{type.name}}</p>
+    <div *ngIf="havePic(type.id)">
+      <img [src]="imgService.safeImage(base64[type.id])" (click)="addPicture(type.id)" >
+    </div>
+    <div *ngIf="!havePic(type.id)">
+      <img src="assets/img/btn_add_img.png"  (click)="addPicture(type.id)" >
+    </div>
   </div>
-  <div *ngIf="!havePic()">
-    <img src="assets/img/add.jpg"  (click)="addPicture()" >
-  </div>
-  <button ion-button full (click)="addCred()">提交</button>
+  <button ion-button full (click)="saveBtn()">提交</button>
 
 </ion-content>

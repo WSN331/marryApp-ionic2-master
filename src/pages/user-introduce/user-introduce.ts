@@ -45,6 +45,8 @@ export class UserIntroducePage {
    */
   public credTypes = [];
 
+  public credTitles = [];
+
   /**
    *
    * @type {boolean}
@@ -122,13 +124,15 @@ export class UserIntroducePage {
    * 判定用户验证信息
    */
   private initCred() {
-    this.myHttp.post(MyHttp.URL_CRED_INFO, {
+    this.myHttp.post(MyHttp.URL_CRED_INFO_BY_TITLE, {
       userId: this.memory.getUser().id
     }, (data) => {
       //验证信息
       this.myCred = data.myCred;
       //所有需要验证的项目
       this.credTypes = data.credTypes;
+      //
+      this.credTitles = data.credTitles;
     })
   }
 
@@ -140,12 +144,28 @@ export class UserIntroducePage {
   getStatus(typeId) : boolean {
     for (let cred of this.myCred) {
       if (cred.type.id == typeId && cred.auditStatus == 1) {
-        this.noCredSuccess = false;
         return true;
       }
     }
     this.allCredSuccess = false;
     return false;
+  }
+
+  /**
+   * 根据标题
+   * @param titleId
+   */
+  getStatusByTitle (titleId) {
+    for (let type of this.credTypes) {
+      if (type.title['id'] === titleId) {
+        let status = this.getStatus(type.id);
+        if (!status) {
+          return false;
+        }
+      }
+    }
+    this.noCredSuccess = false;
+    return true;
   }
 
 

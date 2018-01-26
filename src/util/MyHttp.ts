@@ -79,8 +79,10 @@ export class MyHttp {
   static URL_GET_SCHOOL_LIST = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/select/getSchoolList";
   // 添加学校
   static URL_ADD_SCHOOL = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/select/addSchool";
-  // 获取证件信息
+  // 获取证件信息旧接口
   static URL_CRED_INFO = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/credInfo";
+  // 获取证件信息第二版接口
+  static URL_CRED_INFO_BY_TITLE = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/credInfoByTitle";
   // 添加证件
   static URL_ADD_CRED = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/addCred";
   //获取会员价格
@@ -98,6 +100,9 @@ export class MyHttp {
 
   }
 
+  loader = this.loadingCtrl.create({
+    content: "Please wait...",
+  });
 
   /**
    * 生成post请求的body
@@ -139,7 +144,6 @@ export class MyHttp {
       content: "Please wait...",
     });
     loader.present();
-    console.log("xxxxxxxxxxxxxxxxxxxxx")
     options.headers.append('Content-Type', 'application/x-www-form-urlencoded');
     this.http.post(url, this.body(body), options).subscribe((data) => {
       console.log(data)
