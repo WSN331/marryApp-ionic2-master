@@ -128,6 +128,7 @@ export class UserDetail2Page {
       });
       this.navCtrl.pop();
       this.navCtrl.pop();
+      this.navCtrl.pop();
     })
   }
 

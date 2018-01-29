@@ -23,8 +23,10 @@
       refreshingText="Refreshing...">
     </ion-refresher-content>
   </ion-refresher>
+
   <!--用户列表-->
   <div class="user_list">
+    <!--<div class="glass"></div>-->
     <!--每个用户的卡片-->
     <div class="user_card" *ngFor="let user of userList; let i = index;" (click)="getIntroduce(user.id)">
       <div>

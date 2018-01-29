@@ -1,0 +1,52 @@
+<ion-header>
+  <div class="head">
+    <div class="head_back" (click)="back()">
+      <span></span>
+      <img src="assets/img/back.png"/>
+    </div>
+    <div class="head_title">
+      编辑基本资料
+    </div>
+    <div class="line">
+    </div>
+  </div>
+</ion-header>
+
+<ion-content padding>
+
+    <div class="divItem">
+      <ion-label>学历</ion-label>
+      <p text-right *ngIf="isStrNull(detailInfo.edu)" (click)="chooseStr('edu')" style="color: gray">请选择</p>
+      <p text-right (click)="chooseStr('edu')">{{detailInfo.edu}}</p>
+    </div>
+
+    <div class="divItem">
+      <ion-label>期望婚时</ion-label>
+      <p text-right *ngIf="isStrNull(detailInfo.hopeTime)" (click)="chooseStr('hopeTime')" style="color: gray">请选择</p>
+      <p text-right (click)="chooseStr('hopeTime')">{{detailInfo.hopeTime}}</p>
+    </div>
+
+    <div class="divItem">
+      <ion-label>收入</ion-label>
+      <p text-right *ngIf="isStrNull(detailInfo.income)" (click)="chooseStr('income')" style="color: gray">请选择</p>
+      <p text-right (click)="chooseStr('income')">{{detailInfo.income}}</p>
+    </div>
+
+    <div class="divItem">
+      <ion-label>爱好</ion-label>
+      <ion-input text-right placeholder="请填写"  [(ngModel)]="baseInfo.hobby"></ion-input>
+    </div>
+
+    <div class="divItem">
+      <ion-label>择偶标准</ion-label>
+      <ion-input text-right placeholder="请填写" [(ngModel)]="detailInfo.chooseStandard"></ion-input>
+    </div>
+
+    <div class="divItem">
+      <ion-label>自我介绍</ion-label>
+      <ion-input text-right placeholder="请填写" [(ngModel)]="detailInfo.introduce"></ion-input>
+    </div>
+
+    <button class="btn_detail" ion-button full (click)="nextStep()">下一步</button>
+
+</ion-content>

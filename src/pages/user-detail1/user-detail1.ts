@@ -6,18 +6,17 @@ import { NavController,NavParams } from 'ionic-angular';
 import { Events } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 
-import { UserDetail1Page } from "../user-detail1/user-detail1"
+import { UserDetail2Page } from "../user-detail2/user-detail2"
 
-import { MyHttp } from '../../util/MyHttp';
 import { Memory } from '../../util/Memory'
 import { Constants } from '../../util/Constants'
 
 @Component({
-  selector: 'page-userDetail',
-  templateUrl: 'user-detail.html'
+  selector: 'page-userDetail1',
+  templateUrl: 'user-detail1.html'
 })
 
-export class UserDetailPage {
+export class UserDetail1Page {
   /**
    * 基本信息
    */
@@ -44,16 +43,9 @@ export class UserDetailPage {
     edu: Constants.SELECT.edu
   };
 
-  constructor(public navCtrl:NavController,public navParams:NavParams, private myHttp:MyHttp, public memory:Memory,
+  constructor(public navCtrl:NavController,public navParams:NavParams, public memory:Memory,
               public events: Events, public alertCtrl: AlertController) {
-    this.getUserId();
     this.getUserInfo();
-  }
-
-  getUserId() {
-    this.userId = this.navParams.get("userId")||this.memory.getUser().id;
-    //this.userId="1";
-    console.log(this.userId)
   }
 
   /**
@@ -61,16 +53,9 @@ export class UserDetailPage {
    * @param callBack 可能存在的回调
      */
   getUserInfo(callBack?) {
-    this.myHttp.post(MyHttp.URL_USER_INTRODUCE, {
-      userId: this.userId,
-      otherUserId: this.userId
-    }, (data) => {
-      this.baseInfo = data.baseInfo || {};
-      this.detailInfo = data.detailInfo || {};
-      if (callBack !== null && typeof callBack === 'function') {
-        callBack();
-      }
-    })
+    this.userId = this.navParams.get('userId');
+    this.baseInfo = this.navParams.get('baseInfo');
+    this.detailInfo = this.navParams.get('detailInfo');
   }
 
   /**
@@ -78,37 +63,11 @@ export class UserDetailPage {
    */
   nextStep() {
     console.log(this.baseInfo)
-    this.navCtrl.push(UserDetail1Page, {
+    this.navCtrl.push(UserDetail2Page, {
       userId : this.userId,
       baseInfo: this.baseInfo,
       detailInfo: this.detailInfo
     })
-  }
-
-  /**
-   * 选择性别
-     */
-  chooseSex() {
-    let alert = this.alertCtrl.create();
-    alert.setTitle("您的性别是");
-    alert.addInput({
-      type : 'radio',
-      label: '男',
-      value: '0',
-    });
-    alert.addInput({
-      type : 'radio',
-      label: '女',
-      value: '1',
-    });
-    alert.addButton("关闭");
-    alert.addButton({
-      text: '确定',
-      handler: data => {
-        this.baseInfo['sex'] = data;
-      }
-    })
-    alert.present();
   }
 
   /**

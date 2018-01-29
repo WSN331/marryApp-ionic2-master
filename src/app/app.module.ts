@@ -15,6 +15,7 @@ import { AboutPage } from '../pages/about/about';
 import { HomeIntroducePage } from '../pages/home-introduce/home-introduce'
 import { UserIntroducePage } from '../pages/user-introduce/user-introduce'
 import { UserDetailPage } from '../pages/user-detail/user-detail'
+import { UserDetail1Page } from '../pages/user-detail1/user-detail1'
 import { UserDetail2Page } from '../pages/user-detail2/user-detail2'
 import { CredListPage } from '../pages/credList/credList'
 import { AddCredPage } from '../pages/addCred/addCred'
@@ -54,6 +55,7 @@ import {LargeImagePage} from "../pages/large-image/large-image"
     HomeIntroducePage,
     UserIntroducePage,
     UserDetailPage,
+    UserDetail1Page,
     UserDetail2Page,
     EveryPersonPage,
     SearchPage,
@@ -93,6 +95,7 @@ import {LargeImagePage} from "../pages/large-image/large-image"
     HomeIntroducePage,
     UserIntroducePage,
     UserDetailPage,
+    UserDetail1Page,
     UserDetail2Page,
     EveryPersonPage,
     SearchPage,

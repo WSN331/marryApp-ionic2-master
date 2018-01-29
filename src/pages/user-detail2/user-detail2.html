@@ -64,60 +64,6 @@
   </ion-item>
   <hr/>
 
- <!-- <ion-label>小学：</ion-label>
-  <ion-item no-lines>
-    &lt;!&ndash;省&ndash;&gt;
-    <ion-select [(ngModel)]="selectOption.firstSchoolSelect.provinceId"
-                (ngModelChange)="getSchoolList('firstSchoolSelect')">
-      <ion-option *ngFor="let province of selectOption.provinceList" value="{{province.id}}">
-        {{province.name}}
-      </ion-option>
-    </ion-select>
-    &lt;!&ndash;学校&ndash;&gt;
-    <ion-select [(ngModel)]="selectOption.firstSchoolSelect.id">
-      <ion-option *ngFor="let school of selectOption.firstSchoolSelect.schoolList" value="{{school.id}}">
-        {{school.name}}
-      </ion-option>
-    </ion-select>
-  </ion-item>
-  <hr/>
-
-  <ion-label>初中：</ion-label>
-  <ion-item no-lines>
-    &lt;!&ndash;省&ndash;&gt;
-    <ion-select [(ngModel)]="selectOption.secondSchoolSelect.provinceId"
-                (ngModelChange)="getSchoolList('secondSchoolSelect')">
-      <ion-option *ngFor="let province of selectOption.provinceList" value="{{province.id}}">
-        {{province.name}}
-      </ion-option>
-    </ion-select>
-    &lt;!&ndash;学校&ndash;&gt;
-    <ion-select [(ngModel)]="selectOption.secondSchoolSelect.id">
-      <ion-option *ngFor="let school of selectOption.secondSchoolSelect.schoolList" value="{{school.id}}">
-        {{school.name}}
-      </ion-option>
-    </ion-select>
-  </ion-item>
-  <hr/>
-
-  <ion-label>高中：</ion-label>
-  <ion-item no-lines>
-    &lt;!&ndash;省&ndash;&gt;
-    <ion-select [(ngModel)]="selectOption.thirdSchoolSelect.provinceId"
-                (ngModelChange)="getSchoolList('thirdSchoolSelect')">
-      <ion-option *ngFor="let province of selectOption.provinceList" value="{{province.id}}">
-        {{province.name}}
-      </ion-option>
-    </ion-select>
-    &lt;!&ndash;学校&ndash;&gt;
-    <ion-select [(ngModel)]="selectOption.thirdSchoolSelect.id">
-      <ion-option *ngFor="let school of selectOption.thirdSchoolSelect.schoolList" value="{{school.id}}">
-        {{school.name}}
-      </ion-option>
-    </ion-select>
-
-  </ion-item>-->
-
   <hr/>
   <ion-label>大学：</ion-label>
   <ion-item no-lines>
@@ -136,20 +82,6 @@
     </ion-select>
   </ion-item>
   <hr/>
-
-  <!--<ion-label>是否毕业</ion-label>-->
-  <!--<ion-list radio-group [(ngModel)]="detailInfo.graduate" no-lines>-->
-    <!--<ion-item>-->
-      <!--<ion-label>否</ion-label>-->
-      <!--<ion-radio value="0"></ion-radio>-->
-    <!--</ion-item>-->
-    <!--<ion-item>-->
-      <!--<ion-label>是</ion-label>-->
-      <!--<ion-radio value="1"></ion-radio>-->
-    <!--</ion-item>-->
-  <!--</ion-list>-->
-
-  <!--<p class="addSchool" (click)="alertAddSchoolStep1()">自定义添加学校</p>-->
 
   <button class="btn_detail" ion-button full (click)="detail()">保存</button>
 
