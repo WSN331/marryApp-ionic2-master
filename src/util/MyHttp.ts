@@ -12,8 +12,8 @@ export class MyHttp {
    * 服务器的IP
    * @type {string}
    */
-  static IP = "47.95.212.171";
-  // static IP = "localhost"
+  // static IP = "47.95.212.171";
+  static IP = "localhost"
   // static IP = "192.168.2.178"
   // static IP ="192.168.2.180";
 
@@ -95,6 +95,10 @@ export class MyHttp {
   static URL_GET_PAS = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/resetPassword";
   // 获取大图
   static URL_GET_BIG_IMAGE = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/home/getBigImage";
+  // 获取最新app版本
+  static URL_GET_LATEST_APP_VERSION = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/version/getLatestAppVersion";
+  // 获取app下载url
+  static URL_GET_APP_DOWNLOAD_URL = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/version/getAppDownloadUrl";
 
   constructor (private http : Http, public loadingCtrl:LoadingController) {
 
