@@ -66,6 +66,10 @@ export class UserIntroducePage {
     })
   }
 
+  ionViewDidEnter() {
+    this.getUserInfo(null, true);
+  }
+
   /**
    * 查看大图
    * @param base64
@@ -94,11 +98,8 @@ export class UserIntroducePage {
    * 获取用户信息
    * @param callBack 可能存在的回调
    */
-  getUserInfo(callBack?) {
-    let loader = this.loadingCtrl.create({
-      content: "Please wait...",
-    });
-    loader.present();
+  getUserInfo(callBack?, unLoader?) {
+    console.log(unLoader)
     this.myHttp.post(MyHttp.URL_USER_INTRODUCE, {
       userId: this.memory.getUser().id,
       otherUserId: this.memory.getUser().id
@@ -106,11 +107,10 @@ export class UserIntroducePage {
       console.log(data)
       this.baseInfo = data.baseInfo || {};
       this.detailInfo = data.detailInfo || {};
-      loader.dismiss();
       if (callBack !== null && typeof callBack === 'function') {
         callBack();
       }
-    })
+    }, null, unLoader);
   }
 
   /**

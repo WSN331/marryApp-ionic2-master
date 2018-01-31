@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
-import { App, NavController} from 'ionic-angular';
+import { App, NavController, AlertController} from 'ionic-angular';
 import { Events } from 'ionic-angular';
 import {Storage} from '@ionic/storage'
+import { AppVersion } from '@ionic-native/app-version';
+import { AppUpdate } from '@ionic-native/app-update';
 
 import { Memory } from '../../util/Memory'
 import { ImgService } from '../../util/ImgService'
 import { CalculateService } from '../../util/CalculateService'
+import { MyHttp } from '../../util/MyHttp';
 
 import { StartPage } from '../start/start'
 import { UserIntroducePage } from '../user-introduce/user-introduce'
@@ -21,13 +24,71 @@ export class AboutPage{
 
   public user;
 
+  versionNumber = 'test-1.0.8';
+
+  isLatestVersion = true;
+
+  appType = "android";
+
   constructor(public navCtrl: NavController, public imgService: ImgService, public memory: Memory,
               public app:App, public events: Events, public calculateService: CalculateService,
-              public storage:Storage) {
+              public storage:Storage, private appVersion: AppVersion, private myHttp : MyHttp,
+              public alertCtrl: AlertController, private appUpdate : AppUpdate) {
     this.getUser();
     this.events.subscribe('e-user-self', () => {
       this.getUser();
+    });
+    this.appVersion.getVersionNumber().then(versionNumber => {
+      this.versionNumber = versionNumber;
+      this.getLatestVersion();
+    }).catch(error => {
+      alert(error);
     })
+  }
+
+  /**
+   * 获取最新版本
+   */
+  getLatestVersion() {
+    this.myHttp.post(MyHttp.URL_GET_LATEST_APP_VERSION, {}, (data) => {
+      let appVersion = data.app_version;
+      if (appVersion != null) {
+        this.isLatestVersion = this.versionNumber == appVersion;
+      }
+    })
+  }
+
+  /**
+   * 获取最新的appURL
+   */
+  getAppDownLoadUrl() {
+    if (!this.isLatestVersion) {
+      this.alertCtrl.create({
+        title: "下载最新版",
+        subTitle: "是否下载最新版本",
+        buttons: [{
+          text: '确定',
+          handler: data => {
+            this.appUpdate.checkAppUpdate(MyHttp.URL_GET_APP_DOWNLOAD_URL).catch(error => {
+              console.log(JSON.stringify(error));
+            });
+          }
+        },"关闭"]
+      }).present();
+    }
+
+  }
+
+  /**
+   * 下载app
+   * @param url
+     */
+  downLoadApp(url : string) {
+    this.alertCtrl.create({
+      title : "下载地址",
+      subTitle: url,
+      buttons: ["关闭"]
+    }).present();
   }
 
   /**
@@ -55,10 +116,20 @@ export class AboutPage{
    * 登出
    */
   logout() {
-    this.storage.set("account",null);
-    this.storage.set("password",null);
-    this.app.getRootNav().setRoot(StartPage);
-    this.memory.setUser({});
+    this.alertCtrl.create({
+      title: "退出登录",
+      subTitle: "确定退出？",
+      buttons: [{
+        text: '确定',
+        handler: data => {
+          this.storage.set("account",null);
+          this.storage.set("password",null);
+          this.app.getRootNav().setRoot(StartPage);
+          this.memory.setUser({});
+        }
+      },"关闭"]
+    }).present();
+
   }
 
   /**

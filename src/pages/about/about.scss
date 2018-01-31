@@ -53,6 +53,10 @@ page-about {
     float: right;
   }
 
+  ion-label span {
+    float: right;
+  }
+
   .button.logout {
     margin: 10% 5%;
     background-image:url('../assets/img/btn_background.png');
@@ -61,4 +65,14 @@ page-about {
     width: 90%;
     border-radius:20px;
   }
+
+  .circle{
+    float: right;
+    padding: 2px 5px;
+    border-radius:50px;
+    display: inline-block;
+    background: #ff0000;
+  }
+
+
 }

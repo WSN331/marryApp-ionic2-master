@@ -12,8 +12,8 @@ export class MyHttp {
    * 服务器的IP
    * @type {string}
    */
-  // static IP = "47.95.212.171";
-  static IP = "localhost"
+  static IP = "47.95.212.171";
+  // static IP = "localhost"
   // static IP = "192.168.2.178"
   // static IP ="192.168.2.180";
 
@@ -140,14 +140,17 @@ export class MyHttp {
    * @param success 成功的回调函数
    * @param options 请求其他值设置
      */
-  post (url: string, body: any, success : Function, options?: RequestOptionsArgs) {
+  post (url: string, body: any, success : Function, options?: RequestOptionsArgs, unLoader?) {
     if (options == null ) {
       options = {headers: new Headers()}
     }
+    console.log(unLoader)
     let loader = this.loadingCtrl.create({
       content: "Please wait...",
     });
-    loader.present();
+    if (!unLoader) {
+      loader.present();
+    }
     options.headers.append('Content-Type', 'application/x-www-form-urlencoded');
     this.http.post(url, this.body(body), options).subscribe((data) => {
       console.log(data)

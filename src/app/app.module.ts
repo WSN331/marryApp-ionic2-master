@@ -27,6 +27,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Camera } from '@ionic-native/camera';
 import { ImagePicker } from '@ionic-native/image-picker';
 import {IonicStorageModule} from '@ionic/storage';
+import { File } from '@ionic-native/file';
+import { FileOpener } from '@ionic-native/file-opener';
+import { Transfer } from '@ionic-native/transfer';
+import { AppVersion } from '@ionic-native/app-version';
+import { AppUpdate } from '@ionic-native/app-update';
 
 import { MyHttp } from '../util/MyHttp'
 import { Memory } from '../util/Memory'
@@ -121,6 +126,11 @@ import {LargeImagePage} from "../pages/large-image/large-image"
     ImgService,
     CalculateService,
     CommunicateService,
+    AppVersion,
+    File,
+    FileOpener,
+    Transfer,
+    AppUpdate
   ]
 })
 export class AppModule {}
