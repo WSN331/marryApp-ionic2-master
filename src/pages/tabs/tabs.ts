@@ -19,10 +19,24 @@ export class TabsPage {
   tab2Root = UserIntroducePage;
   tab3Root = MessagePage;
 
+  icons: Array<string> = ["tab-home", "tab-message", "tab-user"];
+
   constructor(public comCate:CommunicateService,public memory:Memory) {
     //初始化聊天
     this.comCate.init();
     this.receiveMessage();
+  }
+  change(a: number) {
+    // if (this.platform.is("android")) {
+      for (let i = 0; i < this.icons.length; i++) {
+        if (i === a) {
+          this.icons[i] = this.icons[i] + "-outline";
+        } else {
+          this.icons[i] = this.icons[i].replace("-outline", "");
+        }
+      }
+      console.log(this.icons)
+    // }
   }
 
   ionViewDidEnter(){

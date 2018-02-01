@@ -21,15 +21,19 @@ page-tabs {
     }
 
     // for android
-    .tabs-md .tab-button[aria-selected=false] {
-      .ion-md-tab-#{nth($tabImageName, $i)} {
-        @extend .ion-tab-icon-md-base;
-        content: url("../assets/imgs/tab-icon-#{nth($tabImageName, $i)}-on.png");
-      }
+    .ion-md-tab-#{nth($tabImageName, $i)} {
+      @extend .ion-tab-icon-md-base;
+      content: url("../assets/img/tab-icon-#{nth($tabImageName, $i)}.png");
     }
 
+    .ion-md-tab-#{nth($tabImageName, $i)}-outline {
+      @extend .ion-tab-icon-base;
+      content: url("../assets/img/tab-icon-#{nth($tabImageName, $i)}-on.png");
+    }
+
+
     .tab-button {
-      background: rgba(200, 200, 200, 0.5);
+      background: rgba(255, 255, 255, 0.1);
     }
 
   }
