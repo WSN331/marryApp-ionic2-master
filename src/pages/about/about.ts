@@ -38,6 +38,7 @@ export class AboutPage{
     this.events.subscribe('e-user-self', () => {
       this.getUser();
     });
+    //noinspection TypeScriptUnresolvedFunction
     this.appVersion.getVersionNumber().then(versionNumber => {
       this.versionNumber = versionNumber;
       this.getLatestVersion();

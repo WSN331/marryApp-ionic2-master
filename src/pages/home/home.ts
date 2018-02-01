@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild } from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {AlertController} from 'ionic-angular';
-import {LoadingController} from 'ionic-angular';
+import {LoadingController, Content } from 'ionic-angular';
 import { Events } from 'ionic-angular';
 
 import {MyHttp} from '../../util/MyHttp';
@@ -22,12 +22,16 @@ import {SearchPage} from "../search/search";
 })
 
 export class HomePage {
+  @ViewChild(Content) content: Content;　　//获取界面Content的实例对象
+
   /**
    * 婚配对象列表
    */
   public userList = [];
   public id;
   public pageIndex;
+
+  public displayTitle = true;
 
   public searchInfo =  {
     high : '',
@@ -51,6 +55,19 @@ export class HomePage {
       this.userList = [];
       this.getUserList();
     })
+  }
+
+  ngAfterViewInit() {
+    this.content.ionScroll.subscribe(event => {
+      console.log(event)
+      if (event.directionY == "down") {
+        this.displayTitle = false;
+        document.getElementById("head").style.display="none";
+      } else {
+        this.displayTitle = true;
+        document.getElementById("head").style.display="block";
+      }
+    });
   }
 
   doRefresh(refresher) {

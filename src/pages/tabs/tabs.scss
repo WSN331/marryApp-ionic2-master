@@ -1,76 +1,37 @@
-page-tabs{
-  //.ion-tab-icon-base {
-  //  width: 32px;
-  //  height: 32px;
-  //  padding: 4px 4px 2px;
-  //}
-  //
-  //.ion-tab-icon-md-base {
-  //  min-width: 0 !important;
-  //  height: 32px;
-  //}
-  //
-  //.ion-ios-tab-tab1{
-  //    @extend .ion-tab-icon-base;
-  //    content: url("../../assets/img/huihua2.png");
-  //}
-  //.ion-ios-tab-tab1-outline{
-  //    @extend .ion-tab-icon-base;
-  //    content: url("../../assets/img/huihua1.png");
-  //}
-  //.tabs-md .tab-button[aria-selected=true] {
-  //  .ion-md-tab-tab1{
-  //    @extend .ion-tab-icon-md-base;
-  //    content: url("../../assets/img/huihua2.png");
-  //  }
-  //}
-  //.tabs-md .tab-button[aria-selected=false] {
-  //  .ion-md-tab-tab1{
-  //    @extend .ion-tab-icon-md-base;
-  //    content: url("../../assets/img/huihua1.png");
-  //  }
-  //}
-  //
-  //.ion-ios-tab-tab2{
-  //    @extend .ion-tab-icon-base;
-  //    content: url("../../assets/img/recomment2.png");
-  //}
-  //.ion-ios-tab-tab2-outline{
-  //    @extend .ion-tab-icon-base;
-  //    content: url("../../assets/img/recomment1.png");
-  //}
-  //.tabs-md .tab-button[aria-selected=true] {
-  //  .ion-md-tab-tab2{
-  //    @extend .ion-tab-icon-md-base;
-  //    content: url("../../assets/img/recomment2.png");
-  //  }
-  //}
-  //.tabs-md .tab-button[aria-selected=false] {
-  //  .ion-md-tab-tab2{
-  //    @extend .ion-tab-icon-md-base;
-  //    content: url("../../assets/img/recomment1.png");
-  //  }
-  //}
-  //
-  //.ion-ios-tab-tab3{
-  //    @extend .ion-tab-icon-base;
-  //    content: url("../../assets/img/me2.png");
-  //}
-  //.ion-ios-tab-tab3-outline{
-  //    @extend .ion-tab-icon-base;
-  //    content: url("../../assets/img/me1.png");
-  //}
-  //.tabs-md .tab-button[aria-selected=true] {
-  //  .ion-md-tab-tab3{
-  //    @extend .ion-tab-icon-md-base;
-  //    content: url("../../assets/img/me2.png");
-  //  }
-  //}
-  //.tabs-md .tab-button[aria-selected=false] {
-  //  .ion-md-tab-tab3{
-  //    @extend .ion-tab-icon-md-base;
-  //    content: url("../../assets/img/me1.png");
-  //  }
-  //}
+page-tabs {
+  .ion-tab-icon-base {
+    width: 35px;
+    height: 40px;
+  }
+  .ion-tab-icon-md-base {
+    min-width: 0 !important;
+    height: 2.75rem;
+  }
+
+  $tabImageName: 'home' 'message' 'user';
+  @for $i from 1 to 4 {
+    //for ios
+    .ion-ios-tab-#{nth($tabImageName, $i)}-outline {
+      @extend .ion-tab-icon-base;
+      content: url("../assets/img/tab-icon-#{nth($tabImageName, $i)}.png");
+    }
+    .ion-ios-tab-#{nth($tabImageName, $i)} {
+      @extend .ion-tab-icon-base;
+      content: url("../assets/img/tab-icon-#{nth($tabImageName, $i)}-on.png");
+    }
+
+    // for android
+    .tabs-md .tab-button[aria-selected=false] {
+      .ion-md-tab-#{nth($tabImageName, $i)} {
+        @extend .ion-tab-icon-md-base;
+        content: url("../assets/imgs/tab-icon-#{nth($tabImageName, $i)}-on.png");
+      }
+    }
+
+    .tab-button {
+      background: rgba(200, 200, 200, 0.5);
+    }
+
+  }
 }
 

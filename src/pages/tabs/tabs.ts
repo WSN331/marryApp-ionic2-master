@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component,ViewChild } from '@angular/core';
+import {Tabs} from 'ionic-angular';
 
 import { UserIntroducePage } from '../user-introduce/user-introduce';
 import { HomePage } from '../home/home';
@@ -12,6 +13,7 @@ import {Memory} from "../../util/Memory";
 })
 
 export class TabsPage {
+  @ViewChild('mainTabs') tabRef:Tabs;
 
   tab1Root = HomePage;
   tab2Root = UserIntroducePage;
@@ -21,6 +23,10 @@ export class TabsPage {
     //初始化聊天
     this.comCate.init();
     this.receiveMessage();
+  }
+
+  ionViewDidEnter(){
+    let mainTabs = this.tabRef;
   }
 
   public realtime;
