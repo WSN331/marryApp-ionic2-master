@@ -1,7 +1,7 @@
 import {Component, ViewChild } from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {AlertController} from 'ionic-angular';
-import {LoadingController, Content } from 'ionic-angular';
+import {Content } from 'ionic-angular';
 import { Events } from 'ionic-angular';
 
 import {MyHttp} from '../../util/MyHttp';
@@ -43,7 +43,7 @@ export class HomePage {
   // @ViewChild("homeSlides") slides: Slides;
 
   constructor(public navCtrl:NavController, private myHttp:MyHttp, public alertCtrl:AlertController,
-              public memory:Memory, public imgService:ImgService, public loadingCtrl:LoadingController, public events: Events,
+              public memory:Memory, public imgService:ImgService, public events: Events,
               public calculateService: CalculateService) {
     this.pageIndex = 1;
     this.getUserList();
@@ -59,13 +59,13 @@ export class HomePage {
 
   ngAfterViewInit() {
     this.content.ionScroll.subscribe(event => {
-      console.log(event)
+      // console.log(event)
       if (event.directionY == "down") {
         this.displayTitle = false;
-        document.getElementById("head").style.display="none";
+        document.getElementById("head").style.opacity ="0";
       } else {
         this.displayTitle = true;
-        document.getElementById("head").style.display="block";
+        document.getElementById("head").style.opacity ="1";
       }
     });
   }
@@ -114,16 +114,11 @@ export class HomePage {
       this.id = this.memory.getSex();
       console.log(this.id+"观光的id")
     }
-    let loader = this.loadingCtrl.create({
-      content: "Please wait...",
-    });
-    loader.present();
     this.searchInfo['userId'] = this.id;
     this.searchInfo['size'] = 10;
     this.searchInfo['index'] = this.pageIndex;
     if (this.id) {
       this.myHttp.post(MyHttp.URL_USER_SCREEN_LIST, this.searchInfo, (data) => {
-        loader.dismiss();
         console.log(data)
         if (data.listResult === '0') {
           this.userList = this.userList.concat(data.userList);

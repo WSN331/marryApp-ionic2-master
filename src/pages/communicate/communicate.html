@@ -27,7 +27,7 @@
 
         <div *ngIf="msg.from!=this.mySelf" class="main_receive">
           <div class="receive_picture">
-            <img [src]="imgService.safeImage(otherSelfMsg.picture)">
+            <img [src]="imgService.safeImage(otherSelfMsg.picture)" (click)="goToUserPage()">
           </div>
           <div class="receiveMs">
             {{msg.text}}

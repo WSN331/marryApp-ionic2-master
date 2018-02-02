@@ -1,13 +1,13 @@
 import {Component} from "@angular/core";
 import {AlertController, Events, NavController, NavParams} from "ionic-angular";
 
-import {Memory} from "../../util/Memory";
-
 import * as AV from "leancloud-realtime"
+
+import {Memory} from "../../util/Memory";
 import {MyHttp} from "../../util/MyHttp";
 import {ImgService} from "../../util/ImgService";
 
-
+import {HomeIntroducePage} from '../../pages/home-introduce/home-introduce'
 
 @Component({
   selector:'page-communicate',
@@ -16,7 +16,7 @@ import {ImgService} from "../../util/ImgService";
 
 export class CommunicatePage{
   //实时通信
-  public realtime;
+  public realTime;
   //登录用户
   public mySelf;
   //通话用户
@@ -51,6 +51,11 @@ export class CommunicatePage{
     });
 
     this.ngFresh();
+  }
+
+  goToUserPage () {
+    console.log(this.otherSelf)
+    this.navCtrl.push(HomeIntroducePage, {otherUserId: this.otherSelf})
   }
 
   /**
@@ -91,7 +96,7 @@ export class CommunicatePage{
    */
   // private myInfo;
   initAVcom(){
-    this.realtime = this.memory.getTiming();
+    this.realTime = this.memory.getTiming();
     this.mySelf = this.memory.getUser().id;
     this.otherSelf = this.navParams.get('person');
     //获取自己的信息
@@ -121,7 +126,7 @@ export class CommunicatePage{
 
       this.ngFresh();
 
-      this.realtime.createIMClient(this.mySelf+'').then((my)=>{
+      this.realTime.createIMClient(this.mySelf+'').then((my)=>{
         // 创建与Jerry之间的对话
         return my.createConversation({
           members: [this.otherSelf+''],
@@ -163,7 +168,7 @@ export class CommunicatePage{
    */
   receiveMessage(callBack:Function){
     // Jerry 登录
-    this.realtime.createIMClient(this.mySelf+'').then((my)=> {
+    this.realTime.createIMClient(this.mySelf+'').then((my)=> {
       //在线实时通信
       my.on('message', (message, conversation)=> {
         console.log('在线通信消息' + message.text+'--'+message.type);

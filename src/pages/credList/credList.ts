@@ -2,7 +2,6 @@
  * Created by ASUS on 2017/10/23 0023.
  */
 import { Component } from '@angular/core';
-import {LoadingController} from 'ionic-angular';
 import { NavController } from 'ionic-angular';
 import { Events } from 'ionic-angular';
 
@@ -35,7 +34,7 @@ export class CredListPage {
      */
   private credTitles = [];
 
-  constructor(public navCtrl: NavController, public myHttp : MyHttp, public loadingCtrl:LoadingController,
+  constructor(public navCtrl: NavController, public myHttp : MyHttp,
               public memory: Memory, public events: Events) {
     this.initCred();
     this.events.subscribe('e-get-cred', () => {
@@ -47,15 +46,10 @@ export class CredListPage {
    * 初始化身份验证的信息
    */
   initCred() {
-    let loader = this.loadingCtrl.create({
-      content: "Please wait...",
-    });
-    loader.present();
     this.myHttp.post(MyHttp.URL_CRED_INFO_BY_TITLE, {
       userId: this.memory.getUser().id
     }, (data) => {
       console.log(data)
-      loader.dismiss();
       this.myCred = data.myCred;
       this.credTypes = data.credTypes;
       this.credTitles = data.credTitles;

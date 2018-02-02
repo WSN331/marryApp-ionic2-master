@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, Content } from 'ionic-angular';
 import { ImgService } from "../../util/ImgService"
 import { MyHttp } from "../../util/MyHttp"
 
@@ -15,6 +15,7 @@ import { MyHttp } from "../../util/MyHttp"
   templateUrl: 'large-image.html',
 })
 export class LargeImagePage {
+  @ViewChild(Content) content: Content;　　//获取界面Content的实例对象
 
   private imageBase64;
 
@@ -22,9 +23,20 @@ export class LargeImagePage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LargeImagePage');
     this.imageBase64 = this.navParams.get("imageBase64");
     this.getBigImage();
+  }
+
+  ngAfterViewInit() {
+    console.log(this.content.ionScroll);
+    this.content.ionScroll.subscribe(event => {
+      console.log(event)
+      if (event.directionX == "left") {
+        console.log("left")
+      } else if (event.directionX == "right") {
+        console.log("right")
+      }
+    });
   }
 
   getBigImage() {

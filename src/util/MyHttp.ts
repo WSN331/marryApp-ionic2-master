@@ -146,7 +146,8 @@ export class MyHttp {
     }
     console.log(unLoader)
     let loader = this.loadingCtrl.create({
-      content: "Please wait...",
+      // spinner: "bubbles",
+      showBackdrop : false
     });
     if (!unLoader) {
       loader.present();

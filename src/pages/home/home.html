@@ -1,18 +1,22 @@
-<ion-header id="head" style="display: none">
-  <div class="head">
-    <div class="head_back" (click)="goToSearch()">
-      <span></span>
-      <img src="assets/img/search.png"/>
-    </div>
-    <div class="head_title">
-      邂逅斯年
-    </div>
-    <div class="line">
-    </div>
-  </div>
+<ion-header >
 </ion-header>
 
+
+<div class="head" id="head" style="opacity : 1">
+  <div class="head_back" (click)="goToSearch()">
+    <span></span>
+    <img src="assets/img/search.png"/>
+  </div>
+  <div class="head_title">
+    邂逅斯年
+  </div>
+  <div class="line">
+  </div>
+</div>
+
+
 <ion-content>
+
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
       pullingIcon="arrow-dropdown"

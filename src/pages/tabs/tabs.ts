@@ -1,5 +1,4 @@
-import { Component,ViewChild } from '@angular/core';
-import {Tabs} from 'ionic-angular';
+import { Component } from '@angular/core';
 
 import { UserIntroducePage } from '../user-introduce/user-introduce';
 import { HomePage } from '../home/home';
@@ -13,7 +12,6 @@ import {Memory} from "../../util/Memory";
 })
 
 export class TabsPage {
-  @ViewChild('mainTabs') tabRef:Tabs;
 
   tab1Root = HomePage;
   tab2Root = UserIntroducePage;
@@ -37,10 +35,6 @@ export class TabsPage {
       }
       console.log(this.icons)
     // }
-  }
-
-  ionViewDidEnter(){
-    let mainTabs = this.tabRef;
   }
 
   public realtime;

@@ -7,13 +7,13 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>large-image</ion-title>
+    <!--<ion-title>large-image</ion-title>-->
   </ion-navbar>
 
 </ion-header>
 
 <ion-content padding>
-  <div class="main_pic">
+  <div class="main_pic" ondrag="drag">
     <img [src]="imgService.safeImage(imageBase64)" >
   </div>
 </ion-content>

@@ -1,11 +1,10 @@
 import {Component} from "@angular/core";
 
-import {AlertController, LoadingController, NavController} from "ionic-angular";
+import {AlertController, NavController} from "ionic-angular";
 
 import {MyHttp} from "../../util/MyHttp";
 import {Memory} from "../../util/Memory";
 import {ImgService} from "../../util/ImgService";
-import {CalculateService} from "../../util/CalculateService";
 
 
 declare var AliPay:any;
@@ -17,10 +16,8 @@ declare var AliPay:any;
 
 export class PayPage{
 
-  constructor(public navCtrl: NavController,private myHttp:MyHttp,
-              public alertCtrl: AlertController,public loadingCtrl:LoadingController,
-              public memory:Memory,public imgService: ImgService,
-              public calCulate:CalculateService){
+  constructor(public navCtrl: NavController,private myHttp:MyHttp, public alertCtrl: AlertController,
+              public memory:Memory,public imgService: ImgService){
     this.getUserMsg();
     this.getOrder();
   }
@@ -55,10 +52,6 @@ export class PayPage{
    * 请求订单数据
    */
   getOrder(){
-    let loader = this.loadingCtrl.create({
-      content: "Please wait...",
-    });
-    loader.present();
     this.myHttp.post(MyHttp.URL_ORDER_PRICE,null,(data)=>{
       console.log(data);
       this.vipTypes = data.vipTypes
@@ -85,7 +78,6 @@ export class PayPage{
         order.id = this.vipTypes[i].id;
         this.orders.push(order);
       }
-      loader.dismiss();
     })
 
   }
