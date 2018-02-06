@@ -1,4 +1,4 @@
-import {Component, ViewChild } from '@angular/core';
+import {Component, ViewChild, ChangeDetectorRef  } from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {AlertController} from 'ionic-angular';
 import {Content } from 'ionic-angular';
@@ -15,6 +15,7 @@ import {UserDetailPage} from "../user-detail/user-detail"
 import {CredListPage} from "../credList/credList";
 import {PayPage} from "../purchase/pay";
 import {SearchPage} from "../search/search";
+import {CommunicatePage} from "../communicate/communicate";
 
 @Component({
   selector: 'page-home',
@@ -44,7 +45,7 @@ export class HomePage {
 
   constructor(public navCtrl:NavController, private myHttp:MyHttp, public alertCtrl:AlertController,
               public memory:Memory, public imgService:ImgService, public events: Events,
-              public calculateService: CalculateService) {
+              public calculateService: CalculateService, private cdr: ChangeDetectorRef) {
     this.pageIndex = 1;
     this.getUserList();
     this.events.subscribe('e-home-list', () => {
@@ -248,5 +249,98 @@ export class HomePage {
       subTitle: subTitle,
       buttons: ["关闭"]
     }).present();
+  }
+
+  /**
+   * 喜欢
+   * @param user
+     */
+  like(event, index) {
+    this.cdr.detach();
+    this.changeRelation(0, this.userList[index].id, (data)=> {
+      if (data.likeResult == "0") {
+        this.userList[index].relation = 1;
+        this.cdr.reattach();
+      }
+    })
+    event.stopPropagation();
+  }
+
+  /**
+   * 取消喜欢
+   * @param user
+   */
+  disLike(event, index) {
+    this.cdr.detach();
+    this.changeRelation(2, this.userList[index].id, (data)=> {
+      if (data.disLikeResult == "0") {
+        this.userList[index].relation = 0;
+        this.cdr.reattach();
+      }
+    })
+    event.stopPropagation();
+
+  }
+
+  /**
+   * 无感
+   * @param user
+     */
+  hate(event, index) {
+    this.changeRelation(1, this.userList[index].id, (data)=> {
+      if (data.hateResult == "0") {
+        for (index; index < this.userList.length-1; index++) {
+          this.userList[index] = this.userList[index+1];
+        }
+        this.userList.pop();
+      }
+    })
+    event.stopPropagation();
+  }
+
+  /**
+   *
+   * @param type 0喜欢，1讨厌，2取消喜欢，3取消讨厌，4收藏，5取消收藏
+   */
+  changeRelation(type: number, toUserId, successBack:Function) {
+    let url = [MyHttp.URL_LIKE,MyHttp.URL_HATE,MyHttp.URL_DIS_LIKE,MyHttp.URL_DIS_HATE,MyHttp.URL_COLLECT,MyHttp.URL_DIS_COLLECT][type];
+    this.myHttp.post(url, {
+      userId: this.memory.getUser().id,
+      toUserId: toUserId
+    }, (data) => {
+      //点击喜欢
+      if(type===0){
+        this.memory.setLike(true);
+      }
+      successBack(data);
+    })
+  }
+
+  goToMessage(event, user) {
+    if(this.calculateService.isVip(this.memory.getUser().vipTime)){
+      this.navCtrl.push(CommunicatePage,{
+        person:user.id
+      });
+    }else{
+      //当前用户不是vip用户,那么就发出善意的提醒
+      let prompt = "亲~成为尊敬的Vip用户才能查看对方给你发来的信息哦";
+      this.alertCtrl.create({
+        message: prompt,
+        buttons: [
+          {
+            text:'狠心放弃'
+          },
+          {
+            text:'立刻成为',
+            handler:()=>{
+              //去到vip页面
+              this.navCtrl.push(PayPage);
+            }
+          }
+
+        ]
+      }).present();
+    }
+    event.stopPropagation();
   }
 }
