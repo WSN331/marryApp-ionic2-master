@@ -3,21 +3,6 @@ page-peoples{
   .head{
     height: 50px;
   }
-  .head_back{
-    position: absolute;
-    height:50px;
-    vertical-align: middle;
-  }
-  .head_back span{
-    height: 100%;
-    vertical-align: middle;
-    display: inline-block
-  }
-  .head_back img{
-    width:25px;
-    vertical-align: middle;
-  }
-
   .head_title {
     font-size: 22px;
     text-align: center;
@@ -27,6 +12,66 @@ page-peoples{
   .line{
     height: 1px;
     background-color:#eeeeee;
+  }
+  .divide_line{
+    height: 1px;
+    background-color:#eeeeee;
+    margin-top:20px;
+  }
+
+  /*心动*/
+  .love{
+    position: relative;
+  }
+  .image_show{
+    display: inline-block;
+    width:60px;
+    height:60px;
+  }
+  .circles{
+    width:20px;
+    height:20px;
+    border-radius:50px;
+    display: inline-block;
+    position: absolute;
+    margin-top:-70px;
+    margin-left:40px;
+    background: #ff0000;
+  }
+  .describe{
+    display: inline-block;
+    position:absolute;
+    margin-left:5%;
+    height:60px;
+  }
+  .span1{
+    font-size:22px;
+    padding-top: 15px;
+  }
+  .span2{
+    color:#cccccc;
+    padding-top: 15px;
+    white-space: nowrap;  /*!*强制span不换行*!*/
+    display: inline-block;  /*!*将span当做块级元素对待*!*/
+    width: 236px;  /*限制宽度*/
+    overflow: hidden;  /*超出宽度部分隐藏*/
+    text-overflow: ellipsis;  /*超出部分以点号代替*/
+  }
+  .btIcon{
+    display: inline-block;
+    float: right;
+    height:104px;
+    line-height:104px;
+  }
+
+  /*最近来访*/
+  .visit{
+    margin-top:20px;
+  }
+
+  /*小红娘*/
+  .redWomen{
+    margin-top:20px;
   }
 
   .picture{
@@ -50,6 +95,9 @@ page-peoples{
     color:#ffffff;
   }
 
+  .item{
+    margin-top:15px;
+  }
 
   .toTalk{
     width: 100%;
@@ -61,6 +109,7 @@ page-peoples{
 
   .h2{
     font-size: 22px;
+    padding-top: 5px;
   }
 
   .p{

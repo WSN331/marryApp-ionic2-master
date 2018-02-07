@@ -1,16 +1,18 @@
 <ion-header>
-  <div class="head">
-    <div class="head_title">
-      消息
+    <div class="head">
+    <div class="head_back" (click)="back()">
+      <span></span>
+      <img src="assets/img/back.png"/>
     </div>
-    <div class="line">
+    <div class="head_title">
+      最近来访
     </div>
   </div>
 </ion-header>
 
 <ion-content padding>
 
-  <div class="love" (click)="goToContact()">
+<!--  <div class="love" (click)="goToContact()">
     <div class="image_show">
       <img src="assets/img/love.png"/>
       <div *ngIf="this.memory.getLike()==true" class="circle"></div>
@@ -40,7 +42,7 @@
     <div class="divide_line"></div>
   </div>
 
-<!--  <div class="redWomen">
+  <div class="redWomen">
     <div class="image_show">
       <img src="assets/img/redWomen.png"/>
       <div class="circle"></div>

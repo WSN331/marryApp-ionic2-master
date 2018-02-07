@@ -5,6 +5,7 @@ import { HomePage } from '../home/home';
 import {MessagePage} from "../message/message";
 import {CommunicateService} from "../../util/CommunicateService";
 import {Memory} from "../../util/Memory";
+import {PeoplePage} from "../perlist/people";
 
 @Component({
   selector:'page-tabs',
@@ -15,7 +16,7 @@ export class TabsPage {
 
   tab1Root = HomePage;
   tab2Root = UserIntroducePage;
-  tab3Root = MessagePage;
+  tab3Root = PeoplePage;
 
   icons: Array<string> = ["tab-home", "tab-message", "tab-user"];
 
@@ -24,7 +25,7 @@ export class TabsPage {
     this.comCate.init();
     this.receiveMessage();
   }
-  change(a: number) {
+/*  change(a: number) {
     // if (this.platform.is("android")) {
       for (let i = 0; i < this.icons.length; i++) {
         if (i === a) {
@@ -35,7 +36,7 @@ export class TabsPage {
       }
       console.log(this.icons)
     // }
-  }
+  }*/
 
   public realtime;
   public mySelf;

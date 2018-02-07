@@ -3,6 +3,22 @@ page-message{
   .head{
     height: 50px;
   }
+  .head_back{
+    position: absolute;
+    height:50px;
+    vertical-align: middle;
+  }
+  .head_back span{
+    width:0px;
+    height: 100%;
+    vertical-align: middle;
+    display: inline-block;
+  }
+  .head_back img{
+    width:25px;
+    vertical-align: middle;
+  }
+
   .head_title {
     font-size: 22px;
     text-align: center;
@@ -13,13 +29,8 @@ page-message{
     height: 1px;
     background-color:#eeeeee;
   }
-  .divide_line{
-    height: 1px;
-    background-color:#eeeeee;
-    margin-top:20px;
-  }
 
-  /*心动*/
+/*  !*心动*!
   .love{
     position: relative;
   }
@@ -51,11 +62,11 @@ page-message{
   .span2{
     color:#cccccc;
     padding-top: 15px;
-    white-space: nowrap;  /*!*强制span不换行*!*/
-    display: inline-block;  /*!*将span当做块级元素对待*!*/
-    width: 236px;  /*限制宽度*/
-    overflow: hidden;  /*超出宽度部分隐藏*/
-    text-overflow: ellipsis;  /*超出部分以点号代替*/
+    white-space: nowrap;  !*!*强制span不换行*!*!
+    display: inline-block;  !*!*将span当做块级元素对待*!*!
+    width: 236px;  !*限制宽度*!
+    overflow: hidden;  !*超出宽度部分隐藏*!
+    text-overflow: ellipsis;  !*超出部分以点号代替*!
   }
   .btIcon{
     display: inline-block;
@@ -64,13 +75,13 @@ page-message{
     line-height:104px;
   }
 
-  /*最近来访*/
+  !*最近来访*!
   .visit{
     margin-top:20px;
   }
 
-  /*小红娘*/
+  !*小红娘*!
   .redWomen{
     margin-top:20px;
-  }
+  }*/
 }

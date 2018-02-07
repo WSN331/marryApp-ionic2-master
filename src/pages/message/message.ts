@@ -64,4 +64,12 @@ export class MessagePage {
       ]
     }).present();
   }
+
+
+  /*
+* 将该页面拿出堆栈
+* */
+  back(){
+    this.navCtrl.pop();
+  }
 }

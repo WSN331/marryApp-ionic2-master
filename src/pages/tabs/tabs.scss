@@ -29,7 +29,20 @@ page-tabs {
     .ion-md-tab-#{nth($tabImageName, $i)}-outline {
       @extend .ion-tab-icon-base;
       content: url("../assets/img/tab-icon-#{nth($tabImageName, $i)}-on.png");
+
+    .tabs-md .tab-button[aria-selected=true] {
+      .ion-md-tab-#{nth($tabImageName, $i)}{
+        @extend .ion-tab-icon-md-base;
+        content: url("../assets/img/tab-icon-#{nth($tabImageName, $i)}-on.png");
+      }
     }
+    .tabs-md .tab-button[aria-selected=false] {
+      .ion-md-tab-#{nth($tabImageName, $i)}{
+        @extend .ion-tab-icon-md-base;
+        content: url("../assets/img/tab-icon-#{nth($tabImageName, $i)}.png");
+      }
+    }
+  }
 
 
     .tab-button {

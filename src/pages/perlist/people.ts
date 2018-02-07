@@ -8,6 +8,9 @@ import {ImgService} from "../../util/ImgService";
 import {CalculateService} from "../../util/CalculateService";
 import {PayPage} from "../purchase/pay";
 import {HomeIntroducePage} from "../home-introduce/home-introduce";
+import {ContactPage} from "../contact/contact";
+import {CredListPage} from "../credList/credList";
+import {MessagePage} from "../message/message";
 
 
 
@@ -117,6 +120,7 @@ export class PeoplePage{
   showMember(talk:any){
     let conversation:any = {
       baseInfo:'',
+      detailInfo:'',
       talk:''
     }
     conversation.talk = talk;
@@ -133,10 +137,12 @@ export class PeoplePage{
 
     if(otherPerson!=null){
       console.log(otherPerson+"对话人的id");
-      this.getUserInfo(otherPerson,(baseInfo)=>{
+      this.getUserInfo(otherPerson,(baseInfo,detailInfo)=>{
         console.log(baseInfo.nickName+"用户姓名");
 
         conversation.baseInfo = baseInfo;
+        conversation.detailInfo = detailInfo;
+
         this.memory.setConversion(this.conversations);
 /*        conversation.baseInfo = baseInfo;
         conversation.talk = talk;
@@ -156,7 +162,8 @@ export class PeoplePage{
     }, (data) => {
       console.log(data+"聊天人的信息")
       let baseInfo = data.baseInfo || {};
-      callBack(baseInfo);
+      let detailInfo = data.detailInfo || {};
+      callBack(baseInfo,detailInfo);
     })
   }
 
@@ -206,6 +213,58 @@ export class PeoplePage{
       ]
     }).present();
   }
+
+
+
+  //心动记录
+  goToContact() {
+    if(!this.isCredMain()){
+      this.goToCred();
+    }else{
+      this.navCtrl.push(ContactPage);
+      //红色小点显示
+      this.memory.setLike(false);
+    }
+  }
+
+  //最近访问
+  goToPeople(){
+    if(!this.isCredMain()){
+      this.goToCred();
+    }else{
+      this.navCtrl.push(MessagePage);
+    }
+  }
+
+  //判断是否验证
+  /**
+   *
+   * @returns {boolean}
+   */
+  isCredMain() {
+    return this.memory.getUser().mainCredNum >= 3;
+  }
+
+  /**
+   * 认证信息提示
+   */
+  goToCred() {
+    this.alertCtrl.create({
+      message: '亲~请先认证信息才能查看更多内容',
+      buttons: [
+        {
+          text:'NO'
+        },
+        {
+          text: 'OK',
+          handler: ()=> {
+            this.navCtrl.push(CredListPage);
+          }
+        }
+      ]
+    }).present();
+  }
+
 
 }
 

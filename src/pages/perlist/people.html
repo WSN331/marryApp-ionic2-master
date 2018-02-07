@@ -1,23 +1,64 @@
 <ion-header>
   <div class="head">
-    <div class="head_back" (click)="back()">
-      <span></span>
-      <img src="assets/img/back.png"/>
-    </div>
     <div class="head_title">
-      聊天
+      消息
     </div>
     <div class="line">
     </div>
   </div>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
 
+  <div class="love" (click)="goToContact()">
+    <div class="image_show">
+      <img src="assets/img/love.png"/>
+      <div *ngIf="this.memory.getLike()==true" class="circles"></div>
+    </div>
+    <div class="describe">
+      <span class="span1">心动</span><br/>
+      <span class="span2">查询对你心动的人和你心动的记录</span>
+    </div>
+    <div class="btIcon">
+      <img src="assets/img/next.png"/>
+    </div>
+    <div class="divide_line"></div>
+  </div>
 
-  <ion-list>
+  <div class="visit" (click)="goToPeople()">
+    <div class="image_show">
+      <img src="assets/img/visit.png"/>
+      <div *ngIf="this.memory.getMsg()==true" class="circles"></div>
+    </div>
+    <div class="describe">
+      <span class="span1">最近来访</span><br/>
+      <span class="span2">查看最近聊天对象</span>
+    </div>
+    <div class="btIcon">
+      <img src="assets/img/next.png"/>
+    </div>
+    <div class="divide_line"></div>
+  </div>
+
+  <div class="redWomen">
+    <div class="image_show">
+      <img src="assets/img/redWomen.png"/>
+      <div class="circles"></div>
+    </div>
+    <div class="describe">
+      <span class="span1">小红娘</span><br/>
+      <span class="span2">红娘又给你介绍新对象了，快去看一下吧</span>
+    </div>
+    <div class="btIcon">
+      <img src="assets/img/next.png"/>
+    </div>
+    <div class="divide_line"></div>
+  </div>
+
+  <!-- 下面显示聊天列表 -->
+  <ion-list no-lines>
     <ion-list-header>Today is HappyDay</ion-list-header><!--(click)="goToTalk(conTalk.talk)"-->
-    <ion-item *ngFor="let conTalk of conversations">
+    <ion-item *ngFor="let conTalk of conversations" class="item">
 
       <div class="picture" item-start (click)="goToIntroduce(conTalk.baseInfo.id)">
         <img [src]="imgService.safeImage(conTalk.baseInfo.picture)">
@@ -25,10 +66,13 @@
       </div>
 
       <div class="toTalk" (click)="goToTalk(conTalk.talk)">
-
+        <h2 class="h2">{{conTalk.baseInfo.nickName}}</h2>
+        <p>{{ calculateService.getAge(conTalk.baseInfo.birthday) }}岁<p>
+        <p *ngIf="conTalk.baseInfo.hobby!=null && conTalk.baseInfo.hobby !=''">爱好：{{ conTalk.baseInfo.hobby}}</p>
+        <p *ngIf="conTalk.baseInfo.hobby ==null || conTalk.baseInfo.hobby ==''">爱好：暂无,希望和你一起培养</p>
       </div>
 
-      <h2 class="h2">{{conTalk.baseInfo.nickName}}</h2>
+
       <p class="p" *ngIf="conTalk.talk.unreadMessagesCount>0">您有未读消息</p>
       <div *ngIf="conTalk.talk.unreadMessagesCount>0">{{this.memory.setMsg(true)}}</div>
       <ion-note item-end *ngIf="conTalk.talk.lastMessageAt.getMinutes()<10">{{conTalk.talk.lastMessageAt.getMonth()+1}}-{{conTalk.talk.lastMessageAt.getDate()}} {{conTalk.talk.lastMessageAt.getHours()}}:{{'0'+conTalk.talk.lastMessageAt.getMinutes()}}</ion-note>
