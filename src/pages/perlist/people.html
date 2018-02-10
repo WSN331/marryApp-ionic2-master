@@ -28,7 +28,7 @@
   <div class="visit" (click)="goToPeople()">
     <div class="image_show">
       <img src="assets/img/visit.png"/>
-      <div *ngIf="this.memory.getMsg()==true" class="circles"></div>
+<!--      <div *ngIf="this.memory.getMsg()==true" class="circles"></div>-->
     </div>
     <div class="describe">
       <span class="span1">最近来访</span><br/>
@@ -40,7 +40,7 @@
     <div class="divide_line"></div>
   </div>
 
-  <div class="redWomen">
+  <div class="redWomen" (click)="goToMatcher()">
     <div class="image_show">
       <img src="assets/img/redWomen.png"/>
       <div class="circles"></div>
@@ -74,7 +74,7 @@
 
 
       <p class="p" *ngIf="conTalk.talk.unreadMessagesCount>0">您有未读消息</p>
-      <div *ngIf="conTalk.talk.unreadMessagesCount>0">{{this.memory.setMsg(true)}}</div>
+<!--      <div *ngIf="conTalk.talk.unreadMessagesCount>0">{{this.memory.setMsg(true)}}</div>-->
       <ion-note item-end *ngIf="conTalk.talk.lastMessageAt.getMinutes()<10">{{conTalk.talk.lastMessageAt.getMonth()+1}}-{{conTalk.talk.lastMessageAt.getDate()}} {{conTalk.talk.lastMessageAt.getHours()}}:{{'0'+conTalk.talk.lastMessageAt.getMinutes()}}</ion-note>
       <ion-note item-end *ngIf="conTalk.talk.lastMessageAt.getMinutes()>=10">{{conTalk.talk.lastMessageAt.getMonth()+1}}-{{conTalk.talk.lastMessageAt.getDate()}} {{conTalk.talk.lastMessageAt.getHours()}}:{{conTalk.talk.lastMessageAt.getMinutes()}}</ion-note>
     </ion-item>

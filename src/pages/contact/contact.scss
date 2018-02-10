@@ -33,7 +33,7 @@ page-contact {
 
   .people{
     margin-top:15px;
-    height:100px;
+    height:80px;
     width:auto;
   }
   .people_picture{
@@ -46,17 +46,23 @@ page-contact {
   }
   .people_describe{
     margin-left: 10px;
+    height: 80px;
     display: inline-block;
     position: absolute;
   }
   .people_date{
     display: inline-block;
-    height:93px;
+    height:80px;
     line-height: 93px;
     float: right;
     color:#999999;
     font-size:14px;
   }
+  .people_date img{
+    width: 30px;
+    height: 24px;
+  }
+
 
 
   .people_describe_img{
@@ -64,6 +70,10 @@ page-contact {
   }
   .people_describe_img img{
     float:left;
+    height: 18px;
+    width: 18px;
+    position: relative;
+    top: 2px;
   }
   .people_describe_img span{
     text-align: center;
@@ -83,10 +93,11 @@ page-contact {
   }
   .span2{
     margin-left:10px;
-    font-size: 22px;
+    font-size: 18px;
   }
   .span3{
-    margin-top: -10px;
+    position: relative;
+    top: -15px;
     display: inline-block;
     color:#666666;
     font-size:14px;

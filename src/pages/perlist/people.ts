@@ -11,6 +11,7 @@ import {HomeIntroducePage} from "../home-introduce/home-introduce";
 import {ContactPage} from "../contact/contact";
 import {CredListPage} from "../credList/credList";
 import {MessagePage} from "../message/message";
+import {MatchmakerPage} from "../matchmaker/matchmaker";
 
 
 
@@ -98,7 +99,7 @@ export class PeoplePage{
       //通话对象
       console.log(personId);
       if(personId!=null){
-        this.memory.setMsg(false);
+
         this.navCtrl.push(CommunicatePage,{
           person:personId,
           talkmsg:talk
@@ -233,8 +234,21 @@ export class PeoplePage{
       this.goToCred();
     }else{
       this.navCtrl.push(MessagePage);
+/*      this.memory.setMsg(false);*/
     }
   }
+
+  //小红娘
+  goToMatcher(){
+    if(!this.isCredMain()){
+      this.goToCred();
+    }else{
+      this.navCtrl.push(MatchmakerPage);
+    }
+  }
+
+
+
 
   //判断是否验证
   /**

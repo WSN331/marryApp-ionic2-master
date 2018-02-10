@@ -1,0 +1,35 @@
+page-matchmaker{
+  /*标题*/
+  .head{
+    height: 50px;
+  }
+  .head_back{
+    position: absolute;
+    height:50px;
+    vertical-align: middle;
+  }
+  .head_back span{
+    height: 100%;
+    vertical-align: middle;
+    display: inline-block
+  }
+  .head_back img{
+    width:25px;
+    vertical-align: middle;
+  }
+
+  .head_title {
+    font-size: 22px;
+    text-align: center;
+    line-height: 50px;
+    color: #ff975a;
+  }
+  .line{
+    height: 1px;
+    background-color:#eeeeee;
+  }
+
+  /*分割线*/
+
+
+}

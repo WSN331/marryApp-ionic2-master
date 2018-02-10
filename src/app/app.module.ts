@@ -46,6 +46,7 @@ import {CommunicatePage} from "../pages/communicate/communicate";
 import {PayPage} from "../pages/purchase/pay";
 import {ForgetPage} from "../pages/forget/forget";
 import {LargeImagePage} from "../pages/large-image/large-image"
+import {MatchmakerPage} from "../pages/matchmaker/matchmaker";
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import {LargeImagePage} from "../pages/large-image/large-image"
     AuthorInformationPage,
     ForgetPage,
     ControlImagePage,
-    LargeImagePage
+    LargeImagePage,
+    MatchmakerPage
   ],
   imports: [
     BrowserModule,
@@ -113,7 +115,8 @@ import {LargeImagePage} from "../pages/large-image/large-image"
     AuthorInformationPage,
     ForgetPage,
     ControlImagePage,
-    LargeImagePage
+    LargeImagePage,
+    MatchmakerPage
   ],
   providers: [
     StatusBar,
