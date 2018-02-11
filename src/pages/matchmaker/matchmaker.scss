@@ -31,6 +31,26 @@ page-matchmaker{
 
   /*分割线*/
 
+  /*背景+聊天框*/
+  .first{
+    overflow: scroll;
+    position: absolute;
+    width: 100%;
+    height:90%;
+    scroll-top:100%;
+    scroll-height:100%;
+  }
+  .textArea{
+    position: absolute;
+    width: 100%;
+    top:90%;
+  }
+  .messageShow{
+    position: absolute;
+    width:100%;
+    height:100%;
+    background: #eeeeee;
+  }
 
 
 }
