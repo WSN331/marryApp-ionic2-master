@@ -172,6 +172,18 @@ export class HomePage {
     }
   }
 
+
+  /**
+   * 从List中去掉选中的user
+   * @param user
+   */
+  deleteFromList(event,id){
+    this.userList.splice(id,1);
+    event.stopPropagation();
+  }
+
+
+
   /**
    *
    * @returns {boolean}
