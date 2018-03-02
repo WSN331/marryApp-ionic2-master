@@ -244,6 +244,7 @@ export class PeoplePage{
       this.goToCred();
     }else{
       this.navCtrl.push(MatchmakerPage);
+      this.memory.setMsg(false);
     }
   }
 

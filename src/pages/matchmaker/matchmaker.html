@@ -14,7 +14,30 @@
 
 <ion-content>
   <div class="messageShow">
+    <div class="first" id="first">
+      <ng-container *ngFor="let msg of subMsgList">
+        <div *ngIf="msg.from==this.mySelf" class="main_send">
+          <div class="send_picture">
+            <img [src]="imgService.safeImage(mySelfMsg.picture)">
+          </div>
+          <div class="sendMs">
+            <!--{{parseJsonTo(msg.data)}}-->
+            {{msg.text}}
+          </div>
+        </div>
 
+        <div *ngIf="msg.from!=this.mySelf" class="main_receive">
+          <div class="receive_picture">
+            <img src="assets/img/me2.png"/>
+          </div>
+          <div class="receiveMs">
+            {{msg.text}}
+            <!--{{parseJsonTo(msg.data)}}-->
+          </div>
+        </div>
+
+      </ng-container>
+    </div>
   </div>
 
   <div class="textArea">

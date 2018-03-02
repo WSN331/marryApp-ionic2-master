@@ -43,7 +43,7 @@
   <div class="redWomen" (click)="goToMatcher()">
     <div class="image_show">
       <img src="assets/img/redWomen.png"/>
-      <div class="circles"></div>
+      <div *ngIf="this.memory.getMsg()==true" class="circles"></div>
     </div>
     <div class="describe">
       <span class="span1">邂逅大使</span><br/>
@@ -62,6 +62,7 @@
 
       <div class="picture" item-start (click)="goToIntroduce(conTalk.baseInfo.id)">
         <img [src]="imgService.safeImage(conTalk.baseInfo.picture)">
+        <!--<div class="circle"></div>-->
         <div class="circle" *ngIf="conTalk.talk.unreadMessagesCount>0">{{conTalk.talk.unreadMessagesCount}}</div>
       </div>
 
