@@ -56,8 +56,6 @@ export class MessagePage {
     this.navCtrl.push(HomeIntroducePage, {otherUserId: userId})
   }
 
-
-
   /*
 * 将该页面拿出堆栈
 * */
