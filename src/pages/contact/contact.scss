@@ -30,10 +30,13 @@ page-contact {
     background-color:#eeeeee;
   }
 
+  ion-item{
+
+  }
 
   .people{
-    margin-top:15px;
-    height:80px;
+    margin-top: 5px;
+    height:100px;
     width:auto;
   }
   .people_picture{
@@ -81,6 +84,13 @@ page-contact {
     font-size:16px;
     color:#ff975a;
   }
+  .people_describe_img .NoRz{
+    text-align: center;
+    margin-left: 10px;
+    font-size:16px;
+    color:#515151;
+  }
+
   span{
     white-space: nowrap;  /*强制span不换行*/
     /*display: inline-block;*/  /*将span当做块级元素对待*/
@@ -104,8 +114,12 @@ page-contact {
     clear: both;
   }
   .span4{
+    position: relative;
+    top: -15px;
     display: inline-block;
     color:#999999;
     font-size:14px;
+    clear: both;
   }
+
 }

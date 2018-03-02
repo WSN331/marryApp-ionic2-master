@@ -14,50 +14,35 @@
 
 
 <ion-content padding>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"  refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
 
-<!--  <div class="love" (click)="goToContact()">
-    <div class="image_show">
-      <img src="assets/img/love.png"/>
-      <div *ngIf="this.memory.getLike()==true" class="circle"></div>
+  <div class="people" *ngFor="let user of visiterList" (click)="getIntroduce(user.id)">
+    <div class="people_picture">
+      <img [src]="imgService.safeImage(user.picture)"/>
     </div>
-    <div class="describe">
-      <span class="span1">心动</span><br/>
-      <span class="span2">查询对你心动的人和你心动的记录</span>
+    <div class="people_describe">
+      <span class="span1">{{ user.nickName }}</span>
+      <span class="span2">{{ calculateService.getAge(user.birthday) }}岁</span>
+      <br/>
+
+      <div class="people_describe_img" *ngIf="user.mainCredNum >= 3">
+        <img src="assets/img/rz.png">
+        <span>认证用户</span>
+      </div>
+      <div class="people_describe_img" *ngIf="user.mainCredNum < 3">
+        <img src="assets/img/norz.png">
+        <span class="NoRz">未认证用户</span>
+      </div>
+
+      <span></span><br/>
+      <span class="span3">兴趣爱好: {{user.hobby}}</span>
     </div>
-    <div class="btIcon">
-      <img src="assets/img/next.png"/>
+    <div class="people_date">
+      {{calculateService.transForm(user.createTime.time)}}
     </div>
-    <div class="divide_line"></div>
   </div>
-
-  <div class="visit" (click)="goToPeople()">
-    <div class="image_show">
-      <img src="assets/img/visit.png"/>
-      <div *ngIf="this.memory.getMsg()==true" class="circle"></div>
-    </div>
-    <div class="describe">
-      <span class="span1">最近来访</span><br/>
-      <span class="span2">查看最近聊天对象</span>
-    </div>
-    <div class="btIcon">
-      <img src="assets/img/next.png"/>
-    </div>
-    <div class="divide_line"></div>
-  </div>
-
-  <div class="redWomen">
-    <div class="image_show">
-      <img src="assets/img/redWomen.png"/>
-      <div class="circle"></div>
-    </div>
-    <div class="describe">
-      <span class="span1">小红娘</span><br/>
-      <span class="span2">红娘又给你介绍新对象了，快去看一下吧</span>
-    </div>
-    <div class="btIcon">
-      <img src="assets/img/next.png"/>
-    </div>
-    <div class="divide_line"></div>
-  </div>-->
 
 </ion-content>

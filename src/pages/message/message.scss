@@ -30,58 +30,90 @@ page-message{
     background-color:#eeeeee;
   }
 
-/*  !*心动*!
-  .love{
-    position: relative;
+
+  /*访问过我的人*/
+  .people{
+    margin-top: 5px;
+    height:100px;
+    width:auto;
   }
-  .image_show{
-    display: inline-block;
-    width:60px;
+  .people_picture{
+    width: 60px;
     height:60px;
+    border-radius:50%;
+    clear:both;
+    float: left;
+    overflow: hidden;
   }
-  .circle{
-    width:20px;
-    height:20px;
-    border-radius:50px;
+  .people_describe{
+    margin-left: 10px;
+    height: 80px;
     display: inline-block;
     position: absolute;
-    margin-top:-70px;
-    margin-left:40px;
-    background: #ff0000;
   }
-  .describe{
+  .people_date{
     display: inline-block;
-    position:absolute;
-    margin-left:5%;
-    height:60px;
+    height:80px;
+    line-height: 93px;
+    float: right;
+    color:#999999;
+    font-size:14px;
+  }
+  .people_date img{
+    width: 30px;
+    height: 24px;
+  }
+
+
+
+  .people_describe_img{
+    margin-top:5px;
+  }
+  .people_describe_img img{
+    float:left;
+    height: 18px;
+    width: 18px;
+    position: relative;
+    top: 2px;
+  }
+  .people_describe_img span{
+    text-align: center;
+    margin-left: 10px;
+    font-size:16px;
+    color:#ff975a;
+  }
+  .people_describe_img .NoRz{
+    text-align: center;
+    margin-left: 10px;
+    font-size:16px;
+    color:#515151;
+  }
+
+  span{
+    white-space: nowrap;  /*强制span不换行*/
+    /*display: inline-block;*/  /*将span当做块级元素对待*/
+    width: 236px;  /*限制宽度*/
+    overflow: hidden;  /*超出宽度部分隐藏*/
+    text-overflow: ellipsis;  /*超出部分以点号代替*/
   }
   .span1{
     font-size:22px;
-    padding-top: 15px;
   }
   .span2{
-    color:#cccccc;
-    padding-top: 15px;
-    white-space: nowrap;  !*!*强制span不换行*!*!
-    display: inline-block;  !*!*将span当做块级元素对待*!*!
-    width: 236px;  !*限制宽度*!
-    overflow: hidden;  !*超出宽度部分隐藏*!
-    text-overflow: ellipsis;  !*超出部分以点号代替*!
+    margin-left:10px;
+    font-size: 18px;
   }
-  .btIcon{
+  .span3{
+    position: relative;
+    top: -15px;
     display: inline-block;
-    float: right;
-    height:104px;
-    line-height:104px;
+    color:#666666;
+    font-size:14px;
+    clear: both;
   }
-
-  !*最近来访*!
-  .visit{
-    margin-top:20px;
+  .span4{
+    display: inline-block;
+    color:#999999;
+    font-size:14px;
   }
-
-  !*小红娘*!
-  .redWomen{
-    margin-top:20px;
-  }*/
 }

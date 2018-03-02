@@ -39,8 +39,6 @@ export class PeoplePage{
     this.ngReFresh();
     this.events.subscribe('e-people', () => {
     });
-
-
   }
 
   ngReFresh(){
@@ -175,8 +173,6 @@ export class PeoplePage{
     this.navCtrl.push(HomeIntroducePage, {otherUserId: userId});
   }
 
-
-
   /*
   * 将该页面拿出堆栈
   * */
@@ -229,11 +225,13 @@ export class PeoplePage{
   }
 
   //最近访问
+  public isShow = true;
   goToPeople(){
     if(!this.isCredMain()){
       this.goToCred();
     }else{
       this.navCtrl.push(MessagePage);
+      this.isShow = false;
 /*      this.memory.setMsg(false);*/
     }
   }

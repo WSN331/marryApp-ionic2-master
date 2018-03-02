@@ -11,6 +11,28 @@ export class CalculateService {
   }
 
   /**
+   * 将数据库中的时间转换为当前时间
+   * @param myTime
+   * @returns {string}
+   */
+  transForm(myTime){
+    let time = new Date(myTime);
+    let time_Date,time_Month;
+    if((time.getMonth()+1)<10){
+      time_Month = "0"+(time.getMonth()+1);
+    }else{
+      time_Month = time.getMonth()+1;
+    }
+    if(time.getDate()<10){
+      time_Date = "0"+time.getDate();
+    }else{
+      time_Date = time.getDate()
+    }
+    return time.getFullYear()+"-"+time_Month+"-"+time_Date;
+  }
+
+
+  /**
    *  判断VIP是否过期
    * @param vipTime yyyy-MM-dd格式的vip时间
    * @returns {number}

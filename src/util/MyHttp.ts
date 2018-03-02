@@ -99,6 +99,9 @@ export class MyHttp {
   static URL_GET_LATEST_APP_VERSION = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/version/getLatestAppVersion";
   // 获取app下载url
   static URL_GET_APP_DOWNLOAD_URL = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/version/getAppDownloadUrl";
+  // 获取Visiter谁访问过自己的url
+  static URL_VISITER = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/home/getVisiters ";
+
 
   constructor (private http : Http, public loadingCtrl:LoadingController) {
 

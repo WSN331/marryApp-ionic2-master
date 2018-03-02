@@ -28,11 +28,12 @@
   <div class="visit" (click)="goToPeople()">
     <div class="image_show">
       <img src="assets/img/visit.png"/>
+      <div class="circles" *ngIf="isShow == true"></div>
 <!--      <div *ngIf="this.memory.getMsg()==true" class="circles"></div>-->
     </div>
     <div class="describe">
       <span class="span1">最近来访</span><br/>
-      <span class="span2">查看最近聊天对象</span>
+      <span class="span2">查看最近谁访问了您</span>
     </div>
     <div class="btIcon">
       <img src="assets/img/next.png"/>

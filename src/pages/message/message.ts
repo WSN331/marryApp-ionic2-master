@@ -5,6 +5,10 @@ import {ContactPage} from "../contact/contact";
 import {PeoplePage} from "../perlist/people";
 import {Memory} from "../../util/Memory";
 import {CredListPage} from "../credList/credList";
+import {MyHttp} from "../../util/MyHttp";
+import {ImgService} from "../../util/ImgService";
+import {CalculateService} from "../../util/CalculateService";
+import {HomeIntroducePage} from "../home-introduce/home-introduce";
 
 @Component({
   selector: 'page-message',
@@ -13,57 +17,45 @@ import {CredListPage} from "../credList/credList";
 
 export class MessagePage {
 
-  constructor(public navCtrl:NavController,public memory:Memory,public alertCtrl:AlertController) {
-  }
+  public visiterList;
 
-  //心动记录
-  goToContact() {
-    if(!this.isCredMain()){
-      this.goToCred();
-    }else{
-      this.navCtrl.push(ContactPage);
-      //红色小点显示
-      this.memory.setLike(false);
-    }
-  }
-
-  //最近访问
-  goToPeople(){
-    if(!this.isCredMain()){
-      this.goToCred();
-    }else{
-      this.navCtrl.push(PeoplePage);
-    }
-  }
-
-  //判断是否验证
-  /**
-   *
-   * @returns {boolean}
-   */
-  isCredMain() {
-    return this.memory.getUser().mainCredNum >= 3;
+  constructor(public navCtrl:NavController,public memory:Memory, private myHttp : MyHttp,
+              public imgService: ImgService, public calculateService:CalculateService) {
+    this.doRefresh();
   }
 
   /**
-   * 认证信息提示
+   * 下拉刷新界面
+   * @param refresher
    */
-  goToCred() {
-    this.alertCtrl.create({
-      message: '亲~请先认证信息才能查看更多内容',
-      buttons: [
-        {
-          text:'NO'
-        },
-        {
-          text: 'OK',
-          handler: ()=> {
-            this.navCtrl.push(CredListPage);
-          }
-        }
-      ]
-    }).present();
+  doRefresh(refresher?) {
+    this.getVisiters(refresher);
   }
+
+  /**
+   * 获取访问过我的人
+   */
+  getVisiters(refresher?){
+    this.myHttp.post(MyHttp.URL_VISITER, {
+      userId: this.memory.getUser().id
+      /*userId:1*/
+    }, (data) => {
+      console.log(data)
+      this.visiterList = data.visiters;
+      if (typeof refresher !== 'undefined') {
+        refresher.complete();
+      }
+    })
+  }
+
+  /**
+   * 进去详细界面
+   * @param userId
+   */
+  getIntroduce(userId:any) {
+    this.navCtrl.push(HomeIntroducePage, {otherUserId: userId})
+  }
+
 
 
   /*

@@ -13,10 +13,10 @@
 </ion-header>
 
 <ion-content padding>
-<!--  <ion-refresher (ionRefresh)="doRefresh($event)">
+  <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"  refreshingText="Refreshing...">
     </ion-refresher-content>
-  </ion-refresher>-->
+  </ion-refresher>
   <div>
     <ion-segment [(ngModel)]="select" color="danger">
       <ion-segment-button value="beLiked">
@@ -40,10 +40,15 @@
               <span class="span2">{{ calculateService.getAge(user.birthday) }}岁</span>
               <br/>
 
-              <div class="people_describe_img">
+              <div class="people_describe_img" *ngIf="user.mainCredNum >= 3">
                 <img src="assets/img/rz.png">
                 <span>认证用户</span>
               </div>
+              <div class="people_describe_img" *ngIf="user.mainCredNum < 3">
+                <img src="assets/img/norz.png">
+                <span class="NoRz">未认证用户</span>
+              </div>
+
               <span></span><br/>
               <span class="span3">兴趣爱好: {{user.hobby}}</span>
             </div>
@@ -67,9 +72,13 @@
               <span class="span2">{{ calculateService.getAge(user.birthday) }}岁</span>
               <br/>
 
-              <div class="people_describe_img">
-                <img src="assets/img/rz.png">
-                <span>认证用户</span>
+                <div class="people_describe_img" *ngIf="user.mainCredNum >= 3">
+                  <img src="assets/img/rz.png">
+                  <span>认证用户</span>
+                </div>
+              <div class="people_describe_img" *ngIf="user.mainCredNum < 3">
+                <img src="assets/img/norz.png">
+                <span class="NoRz">未认证用户</span>
               </div>
 
 <!--              <ng-container *ngFor="let credType of initCred(user)">
@@ -78,11 +87,11 @@
                   <span>认证用户{{credType.name}}</span>
                 </div>
               </ng-container>-->
-
-
               <span></span><br/>
               <span class="span3">兴趣爱好: {{user.hobby}}</span><br/>
               <span class="span4">{{user.createTime}}</span>
+
+
             </div>
             <div class="people_date" >
                 <img src="assets/img/lovehert.png"/>
