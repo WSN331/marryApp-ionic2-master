@@ -22,14 +22,14 @@
 
       <div class="describe">
         <span class="span1">{{user.nickName}}</span>
-        <div class="describe_pic" *ngIf="calCulate.isVip(user.vipTime)==true">
+        <div class="describe_pic" *ngIf="calculate.isVip(user.vipTime)==true">
           <img src="assets/img/vrz.png"/>
         </div>
-        <div class="describe_openvip" *ngIf="calCulate.isVip(user.vipTime)==false">
+        <div class="describe_openvip" *ngIf="calculate.isVip(user.vipTime)==false">
           <img src="assets/img/openvip.png"/>
         </div>
       </div>
-      <p class="p" *ngIf="calCulate.isVip(user.vipTime)==true">您的vip于<span>{{user.vipTime}}</span>到期</p>
+      <p class="p" *ngIf="calculate.isVip(user.vipTime)==true">您的vip于<span>{{user.vipTime}}</span>到期</p>
     </ion-item>
   </div>
 
