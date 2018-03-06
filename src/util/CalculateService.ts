@@ -10,6 +10,11 @@ export class CalculateService {
 
   }
 
+  cutString(myTime){
+    let visitTime = myTime.split(' ');
+    return visitTime[0];
+  }
+
   /**
    * 将数据库中的时间转换为当前时间
    * @param myTime

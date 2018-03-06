@@ -64,6 +64,12 @@
               <span>Vip用户</span>
             </div>
           </div>
+          <!--学校显示-->
+          <div class="school_forth">
+            <p *ngIf="user.detailInfo.forthSchool !== undefined && user.detailInfo.forthSchool !== null">
+              {{user.detailInfo.forthSchool.name}}
+            </p>
+          </div>
 
           <div class="line_third">
             <p>{{ calculateService.getAge(user.birthday) }}岁</p>
@@ -77,7 +83,8 @@
           </div>
 
           <div class="line_five">
-            <p>遇到便是一种缘分~</p>
+            <p *ngIf="user.detailInfo.chooseStandard !== '' ">期待的他(她)：{{user.detailInfo.chooseStandard}}</p>
+            <p *ngIf="user.detailInfo.chooseStandard == '' ">遇见便是一种缘分~</p>
           </div>
         </div>
 
