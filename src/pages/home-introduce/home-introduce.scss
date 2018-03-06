@@ -85,7 +85,7 @@ page-homeIntroduce{
   }
 
   .both-info {
-    margin-bottom: 30%;
+    margin-bottom: 23%;
   }
 
   .both-info .bath {
@@ -103,11 +103,10 @@ page-homeIntroduce{
 
   .execute_btn {
     position: fixed;
-    bottom: 5%;
-    z-index: 99;
-    background: rgba(100, 100, 100, 0);
+    background: rgba(255, 255, 255, 1);
+    bottom: 0.1%;
+    padding: 5px;
     width: 100%;
-    clear: both;
     float: left;
   }
 
@@ -118,26 +117,23 @@ page-homeIntroduce{
   }
 
   .execute_btn .item img {
-    margin-top: 10%;
-    width: 40%;
+    width: 25%;
   }
 
   .more_execute {
     position: fixed;
     bottom: 10%;
-    right: 0%;
-    z-index: 100;
+    right: 5%;
     clear: both;
     float: left;
     background: #FFFFFF;
-    border: solid gray;
+    border:1px solid gray;
   }
 
   .more_execute p{
     clear: both;
     font-size: 30px;
-    font-weight: 100;
-    margin: 0px 10px;
+    margin: 10px 10px;
   }
 
   .pass_audit {

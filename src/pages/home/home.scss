@@ -97,7 +97,8 @@ page-home {
     margin : -88% 5%;
     z-index: 10;
     hight: 46px;
-    background: #FFF6F1;
+    /*background: rgba(255,246,241,0.5);*/
+    background: rgba(0,0,0,0.5);
     border-radius:10px;
     padding:5px;
   }
@@ -117,11 +118,14 @@ page-home {
 
   /*删除按钮*/
   .delete{
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    display: inline-block;
     position: absolute;
     margin : -88% 80%;
-    z-index: 10;
-    hight: 30px;
-    width: 30px;
+    padding: 5px;
+    background: rgba(0,0,0,0.5);
   }
 
   .bar {
