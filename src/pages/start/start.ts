@@ -19,6 +19,8 @@ import {TabsPage} from "../tabs/tabs";
 })
 export class StartPage {
 
+  public isLoginOnce = true;
+
   constructor(public navCtrl:NavController,public memory:Memory,public storage:Storage,
               private myHttp:MyHttp, public alertCtrl: AlertController) {
 
@@ -30,7 +32,12 @@ export class StartPage {
   }
 
   goToLogin() {
-    this.navCtrl.push(LoginPage);
+    //判断是否第一次登录
+    if(this.isLoginOnce){
+      this.navCtrl.push(LoginPage);
+    }else{
+      this.isLoginBefore();
+    }
   }
 
   goToRegister() {
@@ -47,6 +54,7 @@ export class StartPage {
     account:'',
     password:''
   }
+
   isLoginBefore(){
     this.storage.get('account').then((val)=>{
       if(val!=null){
@@ -65,6 +73,8 @@ export class StartPage {
               } else {
                 console.log(data.user)
                 this.memory.setUser(data.user);
+
+                this.isLoginOnce = false;
                 this.navCtrl.push(TabsPage);
               }
             })

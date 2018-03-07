@@ -20,7 +20,7 @@ export class EveryPersonPage{
   }
 
   goToWomList(){
-    this.memory.setSex(1);
+    this.memory.setSex(16);
     this.navCtrl.push(HomePage)
   }
 

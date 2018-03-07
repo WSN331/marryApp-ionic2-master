@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
+import {IonicApp, Nav, Platform, Tabs, ToastController} from "ionic-angular";
 
 import { UserIntroducePage } from '../user-introduce/user-introduce';
 import { HomePage } from '../home/home';
@@ -7,24 +8,34 @@ import {CommunicateService} from "../../util/CommunicateService";
 import {Memory} from "../../util/Memory";
 import {PeoplePage} from "../perlist/people";
 
+
 @Component({
   selector:'page-tabs',
   templateUrl: 'tabs.html'
 })
 
 export class TabsPage {
+  @ViewChild('mainTabs') tabs:Tabs;
 
-  tab1Root = HomePage;
-  tab2Root = UserIntroducePage;
-  tab3Root = PeoplePage;
+  tab1Root:any = HomePage;
+  tab2Root:any = UserIntroducePage;
+  tab3Root:any = PeoplePage;
+
 
   icons: Array<string> = ["tab-home", "tab-message", "tab-user"];
 
-  constructor(public comCate:CommunicateService,public memory:Memory) {
+  constructor(public comCate:CommunicateService,public memory:Memory,
+              public ionicApp: IonicApp, public platform: Platform,
+              public toastCtrl: ToastController) {
     //初始化聊天
     this.comCate.init();
     this.receiveMessage();
+
+
   }
+
+
+
 /*  change(a: number) {
     // if (this.platform.is("android")) {
       for (let i = 0; i < this.icons.length; i++) {

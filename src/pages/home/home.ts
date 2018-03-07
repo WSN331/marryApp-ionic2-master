@@ -1,5 +1,5 @@
 import {Component, ViewChild, ChangeDetectorRef  } from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {NavController, ToastController} from 'ionic-angular';
 import {AlertController} from 'ionic-angular';
 import {Content } from 'ionic-angular';
 import { Events } from 'ionic-angular';
@@ -25,6 +25,9 @@ import {CommunicatePage} from "../communicate/communicate";
 export class HomePage {
   @ViewChild(Content) content: Content;　　//获取界面Content的实例对象
 
+  //
+
+
   /**
    * 婚配对象列表
    */
@@ -45,7 +48,8 @@ export class HomePage {
 
   constructor(public navCtrl:NavController, private myHttp:MyHttp, public alertCtrl:AlertController,
               public memory:Memory, public imgService:ImgService, public events: Events,
-              public calculateService: CalculateService, private cdr: ChangeDetectorRef) {
+              public calculateService: CalculateService, private cdr: ChangeDetectorRef,
+              public toastCtrl: ToastController) {
     this.pageIndex = 1;
     this.getUserList();
     this.events.subscribe('e-home-list', () => {
@@ -84,24 +88,18 @@ export class HomePage {
    * 请先购买VIP
    */
   nextPage() {
-    if (this.calculateService.isVip(this.memory.getUser().vipTime)) {
-      this.pageIndex ++;
-      this.getUserList();
-    } else {
-      this.alertCtrl.create({
-        message: '亲~请先购买VIP',
-        buttons: [{
-          text:'NO'
-        },
-          {
-            text: 'OK',
-            handler: ()=> {
-              this.navCtrl.push(PayPage);
-            }
-          }
-
-        ]
-      }).present();
+    if(!this.isLogin()){
+      //没有登录
+      this.goToLogin();
+    }else{
+      if (this.calculateService.isVip(this.memory.getUser().vipTime)) {
+        //登录了，且是VIP
+        this.pageIndex ++;
+        this.getUserList();
+      }else{
+        //登录了，不是VIP
+        this.goToBuyVip()
+      }
     }
   }
 
@@ -109,9 +107,10 @@ export class HomePage {
    * 获取用户列表
    */
   getUserList() {
-    this.id = this.memory.getUser().id;
-    console.log(this.id+"现在登录的id")
-    if (!this.id) {
+    if (this.isLogin()) {
+      this.id = this.memory.getUser().id;
+      console.log(this.id+"现在登录的id")
+    }else{
       this.id = this.memory.getSex();
       console.log(this.id+"观光的id")
     }
@@ -190,6 +189,26 @@ export class HomePage {
      */
   isCredMain() {
     return this.memory.getUser().mainCredNum >= 3;
+  }
+
+  /**
+   * 去到购买Vip界面
+   */
+  goToBuyVip(){
+    this.alertCtrl.create({
+      message: '亲~请先购买VIP',
+      buttons: [{
+        text:'NO'
+      },
+        {
+          text: 'OK',
+          handler: ()=> {
+            this.navCtrl.push(PayPage);
+          }
+        }
+
+      ]
+    }).present();
   }
 
   /**

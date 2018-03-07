@@ -19,3 +19,57 @@
   display:none !important;
 }
 
+/*toast*/
+.toastcss{
+  .toast-wrapper {
+    width: 80%;
+    margin:auto;
+    background-color: rgba(204,204,204,0.8);
+    border-radius: 5px;
+    text-align: center;
+  }
+
+/*tab*/
+  .ion-tab-icon-base {
+    width: 35px;
+    height: 40px;
+  }
+
+  .ion-tab-icon-md-base {
+    min-width: 0 !important;
+    height: 2.75rem;
+  }
+
+  $tabImageName: 'home' 'message' 'user';
+  @for $i from 1 to 4 {
+    //for ios
+    .ion-ios-tab-#{nth($tabImageName, $i)} {
+      @extend .ion-tab-icon-base;
+      content: url("../assets/img/tab-icon-#{nth($tabImageName, $i)}-on.png");
+    }
+    .ion-ios-tab-#{nth($tabImageName, $i)}-outline {
+      @extend .ion-tab-icon-base;
+      content: url("../assets/img/tab-icon-#{nth($tabImageName, $i)}.png");
+    }
+
+    // for android
+    .tabs-md .tab-button[aria-selected=true] {
+      .ion-md-tab-#{nth($tabImageName, $i)} {
+        @extend .ion-tab-icon-md-base;
+        content: url("../assets/img/tab-icon-#{nth($tabImageName, $i)}-on.png");
+      }
+    }
+    .tabs-md .tab-button[aria-selected=false] {
+      .ion-md-tab-#{nth($tabImageName, $i)} {
+        @extend .ion-tab-icon-md-base;
+        content: url("../assets/img/tab-icon-#{nth($tabImageName, $i)}.png");
+      }
+    }
+  }
+
+  .tab-button {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+}
+
