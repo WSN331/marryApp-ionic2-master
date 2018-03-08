@@ -8,6 +8,7 @@ import { AlertController } from 'ionic-angular';
 import { MyHttp } from '../../util/MyHttp';
 
 import { UserDetailPage } from "../user-detail/user-detail"
+import {LoginPage} from "../login/login";
 
 @Component({
   selector: 'page-register',
@@ -87,10 +88,8 @@ export class RegisterPage {
         this.registerMessage("注册成功,请继续完善信息");
         clearInterval(this.timer);
         this.changeDetectorRef.detach();
-        this.navCtrl.pop();
-        this.navCtrl.push(UserDetailPage,{
-          userId: data.userId
-        })
+        /*this.navCtrl.pop();*/
+        this.navCtrl.push(LoginPage);
       } else if (data.registerResult === "1") {
         this.registerMessage("该手机已经注册!");
       } else if (data.registerResult ==="4"){
@@ -106,7 +105,11 @@ export class RegisterPage {
    */
   sendVerify(event : Event) {
     event.stopPropagation();
-    console.log("xxxxxx")
+    let rulePhone = /^1[3|4|5|7|8][0-9]{9}$/;
+    if(!rulePhone.test(this.registerForm.account)){
+      this.registerMessage("请输入正确的手机号码");
+      return;
+    }
     if(this.show == "click"){
       this.ngReFresh()
       this.timeShow = 60;

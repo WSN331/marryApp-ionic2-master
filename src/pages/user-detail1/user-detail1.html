@@ -32,19 +32,19 @@
       <p text-right (click)="chooseStr('income')">{{detailInfo.income}}</p>
     </div>
 
-    <div class="divItem">
-      <ion-label>爱好</ion-label>
-      <ion-input text-right placeholder="请填写"  [(ngModel)]="baseInfo.hobby"></ion-input>
+    <div class="divTextarea">
+      <p>爱好</p>
+      <ion-textarea placeholder="请填写" [(ngModel)]="baseInfo.hobby"></ion-textarea>
     </div>
 
-    <div class="divItem">
-      <ion-label>择偶标准</ion-label>
-      <ion-input text-right placeholder="请填写" [(ngModel)]="detailInfo.chooseStandard"></ion-input>
+    <div class="divTextarea">
+      <p>择偶标准</p>
+      <ion-textarea placeholder="请填写" [(ngModel)]="detailInfo.chooseStandard"></ion-textarea>
     </div>
 
-    <div class="divItem">
-      <ion-label>自我介绍</ion-label>
-      <ion-input text-right placeholder="请填写" [(ngModel)]="detailInfo.introduce"></ion-input>
+    <div class="divTextarea">
+      <p>自我介绍</p>
+      <ion-textarea placeholder="请填写" [(ngModel)]="detailInfo.introduce"></ion-textarea>
     </div>
 
     <button class="btn_detail" ion-button full (click)="nextStep()">下一步</button>

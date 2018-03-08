@@ -24,7 +24,7 @@ export class AboutPage{
 
   public user;
 
-  versionNumber = 'test-1.0.8';
+  versionNumber = '1.0';
 
   isLatestVersion = true;
 

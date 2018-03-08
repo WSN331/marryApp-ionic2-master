@@ -44,6 +44,9 @@ export class HomePage {
     edu : ''
   };
 
+  //判断是否是从搜索页面过来的
+  public isSearch;
+
   // @ViewChild("homeSlides") slides: Slides;
 
   constructor(public navCtrl:NavController, private myHttp:MyHttp, public alertCtrl:AlertController,
@@ -53,10 +56,14 @@ export class HomePage {
     this.pageIndex = 1;
     this.getUserList();
     this.events.subscribe('e-home-list', () => {
+      this.pageIndex = 1;
+      this.userList = [];
       this.getUserList();
     });
-    this.events.subscribe('e-home-search', (searchInfo)=>{
+    this.events.subscribe('e-home-search', (searchInfo,isSearch)=>{
+      this.pageIndex = 1;
       this.searchInfo = searchInfo;
+      this.isSearch = isSearch;
       this.userList = [];
       this.getUserList();
     })
@@ -76,6 +83,15 @@ export class HomePage {
   }
 
   doRefresh(refresher) {
+    if(this.isSearch){
+      //刷新后重新显示
+      this.searchInfo = {
+        high : '',
+        age : '',
+        income : '',
+        edu : ''
+      };
+    }
     this.pageIndex = 1;
     this.userList = [];
     this.getUserList();
@@ -92,13 +108,26 @@ export class HomePage {
       //没有登录
       this.goToLogin();
     }else{
-      if (this.calculateService.isVip(this.memory.getUser().vipTime)) {
-        //登录了，且是VIP
-        this.pageIndex ++;
-        this.getUserList();
+      //第一次登陆
+      if(this.isLoginOnce()){
+        //去完善信息
+        this.goToDetail();
       }else{
-        //登录了，不是VIP
-        this.goToBuyVip()
+        //是否通过认证
+        if(this.isCredMain()){
+          //通过认证就可以
+          this.pageIndex ++;
+          this.getUserList();
+/*          if (this.calculateService.isVip(this.memory.getUser().vipTime)) {
+            //登录了，且是VIP
+          }else{
+            //登录了，不是VIP
+            this.goToBuyVip()
+          }*/
+        }else{
+          //没有通过认证
+          this.goToCred();
+        }
       }
     }
   }
@@ -115,13 +144,17 @@ export class HomePage {
       console.log(this.id+"观光的id")
     }
     this.searchInfo['userId'] = this.id;
-    this.searchInfo['size'] = 10;
+    this.searchInfo['size'] = 5;
     this.searchInfo['index'] = this.pageIndex;
     if (this.id) {
       this.myHttp.post(MyHttp.URL_USER_SCREEN_LIST, this.searchInfo, (data) => {
         console.log(data)
         if (data.listResult === '0') {
-          this.userList = this.userList.concat(data.userList);
+          if(!this.isLoginOnce()){
+            this.userList = this.userList.concat(data.userList);
+          }else{
+            this.goToDetail();
+          }
         } else if (data.listResult === '1'){
           this.alertCtrl.create({
             message: '没有更多用户啦',
@@ -133,15 +166,6 @@ export class HomePage {
           }).present();
         } else if (data.listResult === '2'){
 
-          this.alertCtrl.create({
-            message: '亲~请先完善您的信息',
-            buttons: [{
-              text: 'OK',
-              handler: ()=> {
-                this.navCtrl.push(UserDetailPage);
-              }
-            }]
-          }).present();
         }
 
         //提示用户有未读消息
@@ -184,11 +208,40 @@ export class HomePage {
 
 
   /**
-   *
+   * 是否认证
    * @returns {boolean}
      */
   isCredMain() {
     return this.memory.getUser().mainCredNum >= 3;
+  }
+
+  /**
+   * 判断是否是第一次登陆
+   */
+  isLoginOnce(){
+    let user = this.memory.getUser();
+    //判断是否是真实登录
+    if(this.isLogin()){
+      if(user.nickName === ''||user.name===''||(user.sex !==0 && user.sex !==1)||user.birthday===''){
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /**
+   * 去完善信息
+   */
+  goToDetail(){
+    this.alertCtrl.create({
+      message: '亲~请先完善您的信息(第一页信息必须填写完整)',
+      buttons: [{
+        text: 'OK',
+        handler: ()=> {
+          this.navCtrl.push(UserDetailPage);
+        }
+      }]
+    }).present();
   }
 
   /**

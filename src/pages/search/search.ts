@@ -46,7 +46,7 @@ export class SearchPage{
 
   //普通搜索
   searchCom(){
-    this.events.publish('e-home-search', this.searchInfo);
+    this.events.publish('e-home-search', this.searchInfo,true);
     this.navCtrl.pop();
   }
 

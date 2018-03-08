@@ -10,6 +10,11 @@ export class CalculateService {
 
   }
 
+  /**
+   * 转换得到的时间为正常时间显示
+   * @param myTime
+   * @returns {any}
+   */
   cutString(myTime){
     let visitTime = myTime.split(' ');
     return visitTime[0];

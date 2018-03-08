@@ -104,7 +104,13 @@ export class ForgetPage {
    */
   sendVerify(event : Event) {
     event.stopPropagation();
-    console.log("xxxxxx")
+
+    let rulePhone = /^1[3|4|5|7|8][0-9]{9}$/;
+    if(!rulePhone.test(this.forgetForm.account)){
+      this.loginFailError("请输入正确的手机号码");
+      return;
+    }
+
     if(this.show == "click"){
       this.ngReFresh()
       this.timeShow = 60;

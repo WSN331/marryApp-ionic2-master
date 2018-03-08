@@ -31,7 +31,7 @@ page-addCred {
   }
 
   .type_name {
-    font-size: 32px;
+    font-size: 26px;
     width: 100%;
     text-align: center;
   }
@@ -39,6 +39,22 @@ page-addCred {
   .image_picker img {
     width: 50%;
     margin-left: 25%;
+  }
+
+  .subImg{
+    margin-top:30px;
+    background-image: url('../assets/img/btn_background.png');
+    background-size:cover;
+    border-radius:15px;
+    color:#ffffff;
+  }
+  .subImg:active{
+    background-color:#ffaa00;
+    color:white;
+  }
+  .subImg:hover{
+    background-color:#ffaa00;
+    color:white;
   }
 
 }

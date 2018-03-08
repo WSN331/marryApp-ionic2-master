@@ -1,10 +1,15 @@
 page-homeIntroduce{
   .back_icon {
+  }
+  .main_back{
     width: 30px;
+    height: 30px;
     position:absolute;
-    left:0px;
-    top:20px;
-    z-index: 99;
+    left:3%;
+    top:3%;
+    padding: 5px;
+    background: rgba(0,0,0,0.5);
+    border-radius:50%;
   }
 
   .main_pic img{

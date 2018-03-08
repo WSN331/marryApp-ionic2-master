@@ -51,7 +51,7 @@ export class ImgService {
       success(this.encodeAdd(imageData));
     }, (err) => {
       console.log(err);
-      this.failError("调用相机失败");
+      //this.failError("调用相机失败");
     });
   }
 
@@ -64,7 +64,7 @@ export class ImgService {
       success(this.encodeAdd(imageData));
     }, (err) => {
       console.log(err);
-      this.failError("调用相机失败");
+      //this.failError("调用相机失败");
     });
   }
 
