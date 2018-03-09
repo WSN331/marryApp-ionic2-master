@@ -39,6 +39,7 @@ export class UserDetail2Page {
     forthSchoolSelect: {schoolList: []},
   }
 
+
   /**
    * 等级划分
    * @type {{firstSchoolSelect: number, secondSchoolSelect: number, thirdSchoolSelect: number, forthSchoolSelect: number}}
@@ -61,6 +62,7 @@ export class UserDetail2Page {
               public events:Events, public alertCtrl:AlertController) {
     this.getUserInfo();
     this.getProvinceList();
+
   }
 
   /**

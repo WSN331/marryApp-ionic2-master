@@ -37,11 +37,22 @@ export class HomePage {
 
   public displayTitle = true;
 
+  /*
+  * 身高，年龄，收入，学历，当前所在地，故乡
+  * */
   public searchInfo =  {
     high : '',
     age : '',
     income : '',
     edu : ''
+  };
+  public searchVipInfo =  {
+    high : '',
+    age : '',
+    income : '',
+    edu : '',
+    newDistrictId:{},
+    oldDistrictId:{}
   };
 
   //判断是否是从搜索页面过来的
@@ -63,6 +74,15 @@ export class HomePage {
     this.events.subscribe('e-home-search', (searchInfo,isSearch)=>{
       this.pageIndex = 1;
       this.searchInfo = searchInfo;
+      console.log(this.searchInfo);
+      this.isSearch = isSearch;
+      this.userList = [];
+      this.getUserList();
+    })
+    this.events.subscribe('e-home-vipsearch', (searchVipInfo,isSearch)=>{
+      this.pageIndex = 1;
+      this.searchVipInfo = searchVipInfo;
+      console.log(this.searchVipInfo);
       this.isSearch = isSearch;
       this.userList = [];
       this.getUserList();
@@ -89,7 +109,7 @@ export class HomePage {
         high : '',
         age : '',
         income : '',
-        edu : ''
+        edu : '',
       };
     }
     this.pageIndex = 1;

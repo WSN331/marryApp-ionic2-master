@@ -24,6 +24,16 @@ export class SearchPage{
     edu : ''
   };
 
+  //Vip搜索信息
+  public searchVipInfo = {
+    high : '',
+    age : '',
+    income : '',
+    edu : '',
+    newDistrict:{},
+    oldDistrict:{}
+  }
+
   private strForChoose = {
     high:Constants.SELECT.high,
     age:Constants.SELECT.age,
@@ -37,6 +47,7 @@ export class SearchPage{
     newDistrictSelect: {cityList: [], districtList: []},
     oldDistrictSelect: {cityList: [], districtList: []},
   }
+  private detailInfoSelect = "newDistrict oldDistrict";
 
   constructor(public navCtrl:NavController,public alertCtrl: AlertController,
               public myHttp:MyHttp,public calculateService: CalculateService,
@@ -52,7 +63,38 @@ export class SearchPage{
 
   //Vip搜索
   searchVip(){
+    this.getDetailJson();
+    this.events.publish('e-home-vipsearch', this.searchVipInfo,true);
+    console.log(this.searchVipInfo);
+    this.navCtrl.pop();
+  }
 
+  /*
+  * 补全信息
+  * */
+  getDetailJson(){
+    let detailInfoSelects = this.detailInfoSelect.split(" ");
+    for(let i in detailInfoSelects){
+      let name = detailInfoSelects[i]
+      //省
+      if(this.selectOption[name + 'Select'].provinceId !== undefined){
+        this.searchVipInfo[name]['provinceId']= this.selectOption[name + 'Select'].provinceId;
+      }else{
+        this.searchVipInfo[name]['provinceId'] = null;
+      }
+      //市
+      if(this.selectOption[name + 'Select'].cityId !== undefined){
+        this.searchVipInfo[name]['cityId']= this.selectOption[name + 'Select'].cityId;
+      }else{
+        this.searchVipInfo[name]['cityId'] = null;
+      }
+      //区
+      if(this.selectOption[name + 'Select'].id !==undefined){
+        this.searchVipInfo[name]['id'] = this.selectOption[name + 'Select'].id;
+      }else{
+        this.searchVipInfo[name]['id'] = null;
+      }
+    }
   }
 
 
@@ -117,6 +159,7 @@ export class SearchPage{
   getCityList(selectName:string) {
     this.selectOption[selectName].id = null;
     this.selectOption[selectName].districtList = [];
+
     this.myHttp.post(MyHttp.URL_GET_CITY_LIST, {
       provinceId: this.selectOption[selectName].provinceId
     }, (data)=> {
