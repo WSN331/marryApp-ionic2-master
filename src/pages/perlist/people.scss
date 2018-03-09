@@ -82,7 +82,7 @@ page-peoples{
   }
 
   .circle{
-    width:15px;
+    width:20px;
     height:15px;
     border-radius:50%;
     display: inline-block;
@@ -93,6 +93,10 @@ page-peoples{
     text-align: center;
     line-height: 20px;
     color:#ffffff;
+
+    font-size: 15px;
+    text-align: center;
+    line-height: 15px;
   }
 
   .item{
@@ -112,7 +116,8 @@ page-peoples{
     padding-top: 5px;
   }
 
-  .p{
-    margin-top:5px;
+  .p_msg{
+    margin-left: 30%;
   }
+
 }

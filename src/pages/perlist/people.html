@@ -64,7 +64,7 @@
       <div class="picture" item-start (click)="goToIntroduce(conTalk.baseInfo.id)">
         <img [src]="imgService.safeImage(conTalk.baseInfo.picture)">
         <!--<div class="circle"></div>-->
-        <div class="circle" *ngIf="conTalk.talk.unreadMessagesCount>0">{{conTalk.talk.unreadMessagesCount}}</div>
+        <div class="circle" *ngIf="conTalk.talk.unreadMessagesCount>0" >{{conTalk.talk.unreadMessagesCount}}</div>
       </div>
 
       <div class="toTalk" (click)="goToTalk(conTalk.talk)">
@@ -75,7 +75,7 @@
       </div>
 
 
-      <p class="p" *ngIf="conTalk.talk.unreadMessagesCount>0">您有未读消息</p>
+      <p class="p_msg" *ngIf="conTalk.talk.unreadMessagesCount>0">您有未读消息</p>
 <!--      <div *ngIf="conTalk.talk.unreadMessagesCount>0">{{this.memory.setMsg(true)}}</div>-->
       <ion-note item-end *ngIf="conTalk.talk.lastMessageAt.getMinutes()<10">{{conTalk.talk.lastMessageAt.getMonth()+1}}-{{conTalk.talk.lastMessageAt.getDate()}} {{conTalk.talk.lastMessageAt.getHours()}}:{{'0'+conTalk.talk.lastMessageAt.getMinutes()}}</ion-note>
       <ion-note item-end *ngIf="conTalk.talk.lastMessageAt.getMinutes()>=10">{{conTalk.talk.lastMessageAt.getMonth()+1}}-{{conTalk.talk.lastMessageAt.getDate()}} {{conTalk.talk.lastMessageAt.getHours()}}:{{conTalk.talk.lastMessageAt.getMinutes()}}</ion-note>

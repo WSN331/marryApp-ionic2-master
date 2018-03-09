@@ -19,29 +19,31 @@
     </ion-refresher-content>
   </ion-refresher>
 
-  <div class="people" *ngFor="let user of visiterList" (click)="getIntroduce(user.id)">
-    <div class="people_picture">
-      <img [src]="imgService.safeImage(user.picture)"/>
-    </div>
-    <div class="people_describe">
-      <span class="span1">{{ user.nickName }}</span>
-      <span class="span2">{{ calculateService.getAge(user.birthday) }}岁</span>
-      <br/>
-
-      <div class="people_describe_img" *ngIf="user.mainCredNum >= 3">
-        <img src="assets/img/rz.png">
-        <span>认证用户</span>
+  <div *ngFor="let user of visiterList">
+    <div class="people" *ngIf="user.id !== this.memory.getUser().id" (click)="getIntroduce(user.id)">
+      <div class="people_picture">
+        <img [src]="imgService.safeImage(user.picture)"/>
       </div>
-      <div class="people_describe_img" *ngIf="user.mainCredNum < 3">
-        <img src="assets/img/norz.png">
-        <span class="NoRz">未认证用户</span>
-      </div>
+      <div class="people_describe">
+        <span class="span1">{{ user.nickName }}</span>
+        <span class="span2">{{ calculateService.getAge(user.birthday) }}岁</span>
+        <br/>
 
-      <span></span><br/>
-      <span class="span3">兴趣爱好: {{user.hobby}}</span>
-    </div>
-    <div class="people_date">
-      {{calculateService.cutString(user.visitTime)}}
+        <div class="people_describe_img" *ngIf="user.mainCredNum >= 3">
+          <img src="assets/img/rz.png">
+          <span>认证用户</span>
+        </div>
+        <div class="people_describe_img" *ngIf="user.mainCredNum < 3">
+          <img src="assets/img/norz.png">
+          <span class="NoRz">未认证用户</span>
+        </div>
+
+        <span></span><br/>
+        <span class="span3">兴趣爱好: {{user.hobby}}</span>
+      </div>
+      <div class="people_date">
+        {{calculateService.cutString(user.visitTime)}}
+      </div>
     </div>
   </div>
 
