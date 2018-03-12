@@ -12,7 +12,9 @@ export class MyHttp {
    * 服务器的IP
    * @type {string}
    */
-  static IP = "47.95.212.171";
+  /*static IP = "47.95.212.171";*/
+
+  static IP = "39.108.97.130";
   // static IP = "localhost"
   // static IP = "192.168.2.178"
   // static IP ="192.168.2.180";

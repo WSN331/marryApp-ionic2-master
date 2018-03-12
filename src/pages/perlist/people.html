@@ -59,7 +59,10 @@
   <!-- 下面显示聊天列表 -->
   <ion-list no-lines>
     <ion-list-header>Today is HappyDay</ion-list-header><!--(click)="goToTalk(conTalk.talk)"-->
-    <ion-item *ngFor="let conTalk of conversations" class="item">
+
+    <div *ngFor="let conTalk of conversations" >
+    <ion-item *ngIf="conTalk.isDefaultPic !== true" class="item">
+
 
       <div class="picture" item-start (click)="goToIntroduce(conTalk.baseInfo.id)">
         <img [src]="imgService.safeImage(conTalk.baseInfo.picture)">
@@ -79,7 +82,11 @@
 <!--      <div *ngIf="conTalk.talk.unreadMessagesCount>0">{{this.memory.setMsg(true)}}</div>-->
       <ion-note item-end *ngIf="conTalk.talk.lastMessageAt.getMinutes()<10">{{conTalk.talk.lastMessageAt.getMonth()+1}}-{{conTalk.talk.lastMessageAt.getDate()}} {{conTalk.talk.lastMessageAt.getHours()}}:{{'0'+conTalk.talk.lastMessageAt.getMinutes()}}</ion-note>
       <ion-note item-end *ngIf="conTalk.talk.lastMessageAt.getMinutes()>=10">{{conTalk.talk.lastMessageAt.getMonth()+1}}-{{conTalk.talk.lastMessageAt.getDate()}} {{conTalk.talk.lastMessageAt.getHours()}}:{{conTalk.talk.lastMessageAt.getMinutes()}}</ion-note>
+
+
+
     </ion-item>
+    </div>
   </ion-list>
 
 </ion-content>

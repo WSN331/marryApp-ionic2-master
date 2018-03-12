@@ -106,6 +106,7 @@ export class UserDetail2Page {
    * 完善个人信息
    */
   detail() {
+    console.log("json数据展示")
     let json = {
       userId: this.baseInfo['id']
     };
@@ -121,6 +122,10 @@ export class UserDetail2Page {
         json[name] = this.selectOption[name + 'Select'].id
       }
     }
+
+    console.log(json)
+    console.log("json数据展示")
+
     this.myHttp.post(MyHttp.URL_USER_COMPLETE, json, (data)=> {
       this.getUserInfo(() => {
         this.memory.setUser(this.baseInfo);

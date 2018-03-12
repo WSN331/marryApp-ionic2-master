@@ -21,18 +21,10 @@ export class SearchPage{
     high : '',
     age : '',
     income : '',
-    edu : ''
-  };
-
-  //Vip搜索信息
-  public searchVipInfo = {
-    high : '',
-    age : '',
-    income : '',
     edu : '',
-    newDistrict:{},
-    oldDistrict:{}
-  }
+    newDistrict:[],
+    oldDistrict:[]
+  };
 
   private strForChoose = {
     high:Constants.SELECT.high,
@@ -64,8 +56,7 @@ export class SearchPage{
   //Vip搜索
   searchVip(){
     this.getDetailJson();
-    this.events.publish('e-home-vipsearch', this.searchVipInfo,true);
-    console.log(this.searchVipInfo);
+    this.events.publish('e-home-search', this.searchInfo,true);
     this.navCtrl.pop();
   }
 
@@ -78,21 +69,21 @@ export class SearchPage{
       let name = detailInfoSelects[i]
       //省
       if(this.selectOption[name + 'Select'].provinceId !== undefined){
-        this.searchVipInfo[name]['provinceId']= this.selectOption[name + 'Select'].provinceId;
+        this.searchInfo[name]['provinceId']= this.selectOption[name + 'Select'].provinceId;
       }else{
-        this.searchVipInfo[name]['provinceId'] = null;
+        this.searchInfo[name]['provinceId'] = null;
       }
       //市
       if(this.selectOption[name + 'Select'].cityId !== undefined){
-        this.searchVipInfo[name]['cityId']= this.selectOption[name + 'Select'].cityId;
+        this.searchInfo[name]['cityId']= this.selectOption[name + 'Select'].cityId;
       }else{
-        this.searchVipInfo[name]['cityId'] = null;
+        this.searchInfo[name]['cityId'] = null;
       }
       //区
       if(this.selectOption[name + 'Select'].id !==undefined){
-        this.searchVipInfo[name]['id'] = this.selectOption[name + 'Select'].id;
+        this.searchInfo[name]['id'] = this.selectOption[name + 'Select'].id;
       }else{
-        this.searchVipInfo[name]['id'] = null;
+        this.searchInfo[name]['id'] = null;
       }
     }
   }

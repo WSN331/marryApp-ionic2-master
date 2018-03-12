@@ -46,14 +46,6 @@ export class HomePage {
     income : '',
     edu : ''
   };
-  public searchVipInfo =  {
-    high : '',
-    age : '',
-    income : '',
-    edu : '',
-    newDistrictId:{},
-    oldDistrictId:{}
-  };
 
   //判断是否是从搜索页面过来的
   public isSearch;
@@ -65,29 +57,27 @@ export class HomePage {
               public calculateService: CalculateService, private cdr: ChangeDetectorRef,
               public toastCtrl: ToastController) {
     this.pageIndex = 1;
-    this.getUserList();
+    this.getUserList(this.searchInfo);
     this.events.subscribe('e-home-list', () => {
       this.pageIndex = 1;
       this.userList = [];
-      this.getUserList();
+      this.getUserList(this.searchInfo);
     });
     this.events.subscribe('e-home-search', (searchInfo,isSearch)=>{
       this.pageIndex = 1;
-      this.searchInfo = searchInfo;
+
+      for(let name in searchInfo){
+        this.searchInfo[name] = searchInfo[name];
+      }
       console.log(this.searchInfo);
+
       this.isSearch = isSearch;
       this.userList = [];
-      this.getUserList();
-    })
-    this.events.subscribe('e-home-vipsearch', (searchVipInfo,isSearch)=>{
-      this.pageIndex = 1;
-      this.searchVipInfo = searchVipInfo;
-      console.log(this.searchVipInfo);
-      this.isSearch = isSearch;
-      this.userList = [];
-      this.getUserList();
+      this.getUserList(this.searchInfo);
     })
   }
+
+
 
   ngAfterViewInit() {
     this.content.ionScroll.subscribe(event => {
@@ -114,7 +104,7 @@ export class HomePage {
     }
     this.pageIndex = 1;
     this.userList = [];
-    this.getUserList();
+    this.getUserList(this.searchInfo);
     setTimeout(() => {
       refresher.complete();
     },2000);
@@ -137,7 +127,10 @@ export class HomePage {
         if(this.isCredMain()){
           //通过认证就可以
           this.pageIndex ++;
-          this.getUserList();
+
+          console.log(this.searchInfo);
+
+          this.getUserList(this.searchInfo);
 /*          if (this.calculateService.isVip(this.memory.getUser().vipTime)) {
             //登录了，且是VIP
           }else{
@@ -155,7 +148,7 @@ export class HomePage {
   /**
    * 获取用户列表
    */
-  getUserList() {
+  getUserList(searchInfo:any) {
     if (this.isLogin()) {
       this.id = this.memory.getUser().id;
       console.log(this.id+"现在登录的id")
@@ -163,11 +156,11 @@ export class HomePage {
       this.id = this.memory.getSex();
       console.log(this.id+"观光的id")
     }
-    this.searchInfo['userId'] = this.id;
-    this.searchInfo['size'] = 5;
-    this.searchInfo['index'] = this.pageIndex;
+    searchInfo['userId'] = this.id;
+    searchInfo['size'] = 5;
+    searchInfo['index'] = this.pageIndex;
     if (this.id) {
-      this.myHttp.post(MyHttp.URL_USER_SCREEN_LIST, this.searchInfo, (data) => {
+      this.myHttp.post(MyHttp.URL_USER_SCREEN_LIST, searchInfo, (data) => {
         console.log(data)
         if (data.listResult === '0') {
           if(!this.isLoginOnce()){

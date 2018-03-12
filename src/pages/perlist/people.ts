@@ -120,7 +120,8 @@ export class PeoplePage{
     let conversation:any = {
       baseInfo:'',
       detailInfo:'',
-      talk:''
+      talk:'',
+      isDefaultPic:''
     }
     conversation.talk = talk;
     this.conversations.push(conversation);
@@ -136,11 +137,12 @@ export class PeoplePage{
 
     if(otherPerson!=null){
       console.log(otherPerson+"对话人的id");
-      this.getUserInfo(otherPerson,(baseInfo,detailInfo)=>{
+      this.getUserInfo(otherPerson,(baseInfo,detailInfo,isDefaultPic)=>{
         console.log(baseInfo.nickName+"用户姓名");
 
         conversation.baseInfo = baseInfo;
         conversation.detailInfo = detailInfo;
+        conversation.isDefaultPic = isDefaultPic;
 
         this.memory.setConversion(this.conversations);
 /*        conversation.baseInfo = baseInfo;
@@ -159,10 +161,11 @@ export class PeoplePage{
       userId: this.memory.getUser().id,
       otherUserId: otherUserId
     }, (data) => {
-      console.log(data+"聊天人的信息")
+      console.log(data)
       let baseInfo = data.baseInfo || {};
       let detailInfo = data.detailInfo || {};
-      callBack(baseInfo,detailInfo);
+      let isDefaultPic = data.isNotChangeIcon
+      callBack(baseInfo,detailInfo,isDefaultPic);
     })
   }
 
