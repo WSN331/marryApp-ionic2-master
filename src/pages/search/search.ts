@@ -22,8 +22,8 @@ export class SearchPage{
     age : '',
     income : '',
     edu : '',
-    newDistrict:[],
-    oldDistrict:[]
+    newDistrict:{},
+    oldDistrict:{}
   };
 
   private strForChoose = {
@@ -56,6 +56,8 @@ export class SearchPage{
   //Vip搜索
   searchVip(){
     this.getDetailJson();
+    this.searchInfo.newDistrict = JSON.stringify(this.searchInfo.newDistrict);
+    this.searchInfo.oldDistrict = JSON.stringify(this.searchInfo.oldDistrict);
     this.events.publish('e-home-search', this.searchInfo,true);
     this.navCtrl.pop();
   }
@@ -68,22 +70,16 @@ export class SearchPage{
     for(let i in detailInfoSelects){
       let name = detailInfoSelects[i]
       //省
-      if(this.selectOption[name + 'Select'].provinceId !== undefined){
+      if(typeof this.selectOption[name + 'Select'].provinceId !=='undefined'){
         this.searchInfo[name]['provinceId']= this.selectOption[name + 'Select'].provinceId;
-      }else{
-        this.searchInfo[name]['provinceId'] = null;
       }
       //市
-      if(this.selectOption[name + 'Select'].cityId !== undefined){
+      if(typeof this.selectOption[name + 'Select'].cityId  !=='undefined'){
         this.searchInfo[name]['cityId']= this.selectOption[name + 'Select'].cityId;
-      }else{
-        this.searchInfo[name]['cityId'] = null;
       }
       //区
-      if(this.selectOption[name + 'Select'].id !==undefined){
+      if(typeof this.selectOption[name + 'Select'].id !=='undefined'){
         this.searchInfo[name]['id'] = this.selectOption[name + 'Select'].id;
-      }else{
-        this.searchInfo[name]['id'] = null;
       }
     }
   }
@@ -148,7 +144,6 @@ export class SearchPage{
    * @param selectName 选择参数名
    */
   getCityList(selectName:string) {
-    this.selectOption[selectName].id = null;
     this.selectOption[selectName].districtList = [];
 
     this.myHttp.post(MyHttp.URL_GET_CITY_LIST, {
