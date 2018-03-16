@@ -1,10 +1,7 @@
 import {Component} from "@angular/core";
-import {AlertController, NavController} from "ionic-angular";
+import { NavController } from "ionic-angular";
 
-import {ContactPage} from "../contact/contact";
-import {PeoplePage} from "../perlist/people";
 import {Memory} from "../../util/Memory";
-import {CredListPage} from "../credList/credList";
 import {MyHttp} from "../../util/MyHttp";
 import {ImgService} from "../../util/ImgService";
 import {CalculateService} from "../../util/CalculateService";

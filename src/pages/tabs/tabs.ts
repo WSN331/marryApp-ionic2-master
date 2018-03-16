@@ -1,9 +1,8 @@
 import {Component, ViewChild} from '@angular/core';
-import {IonicApp, Nav, Platform, Tabs, ToastController} from "ionic-angular";
+import {Platform, Tabs} from "ionic-angular";
 
 import { UserIntroducePage } from '../user-introduce/user-introduce';
 import { HomePage } from '../home/home';
-import {MessagePage} from "../message/message";
 import {CommunicateService} from "../../util/CommunicateService";
 import {Memory} from "../../util/Memory";
 import {PeoplePage} from "../perlist/people";
@@ -25,8 +24,7 @@ export class TabsPage {
   icons: Array<string> = ["tab-home", "tab-message", "tab-user"];
 
   constructor(public comCate:CommunicateService,public memory:Memory,
-              public ionicApp: IonicApp, public platform: Platform,
-              public toastCtrl: ToastController) {
+              public platform: Platform) {
     //初始化聊天
     this.comCate.init();
     this.receiveMessage();

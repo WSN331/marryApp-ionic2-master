@@ -7,7 +7,6 @@ import { AlertController } from 'ionic-angular';
 
 import { MyHttp } from '../../util/MyHttp';
 
-import { UserDetailPage } from "../user-detail/user-detail"
 import {LoginPage} from "../login/login";
 
 @Component({
@@ -63,6 +62,7 @@ export class RegisterPage {
   public register() {
     let rulePhone = /^1[3|4|5|7|8][0-9]{9}$/;
     let rulePas = /^[a-zA-Z0-9]{6,20}$/;
+    let ruleMail = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
     console.log(this.registerForm)
     if(!this.cucumber){
       this.registerMessage("请同意协议内容");
@@ -74,8 +74,12 @@ export class RegisterPage {
         return;
       }
     }
-    if(!rulePhone.test(this.registerForm.account)){
-      this.registerMessage("请输入正确的手机号码");
+    if(rulePhone.test(this.registerForm.account)){
+      this.registerForm.type = 0;
+    } else if(ruleMail.test(this.registerForm.account)) {
+      this.registerForm.type = 1;
+    } else {
+      this.registerMessage("请输入正确的手机号码或邮箱");
       return;
     }
     if(!rulePas.test(this.registerForm.password)){
@@ -83,7 +87,7 @@ export class RegisterPage {
       return;
     }
 
-    this.myHttp.post(MyHttp.URL_REGISTER_NO_INVITATION_CODE, this.registerForm, (data) => {
+    this.myHttp.post(MyHttp.URL_REGISTER, this.registerForm, (data) => {
       if (data.registerResult === "0") {
         this.registerMessage("注册成功,请继续完善信息");
         clearInterval(this.timer);
@@ -106,23 +110,37 @@ export class RegisterPage {
   sendVerify(event : Event) {
     event.stopPropagation();
     let rulePhone = /^1[3|4|5|7|8][0-9]{9}$/;
-    if(!rulePhone.test(this.registerForm.account)){
-      this.registerMessage("请输入正确的手机号码");
+    let ruleMail = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+    if(!rulePhone.test(this.registerForm.account) && !ruleMail.test(this.registerForm.account)){
+      this.registerMessage("请输入正确的手机号码或邮箱");
       return;
     }
     if(this.show == "click"){
       this.ngReFresh()
       this.timeShow = 60;
-      this.myHttp.post(MyHttp.URL_SEND_VERIFY, {
-        phone: this.registerForm.account
-      }, (data) => {
-        console.log(data);
-        if (data.sendResult === "0") {
-          this.registerMessage("发送验证码成功，请在10分钟内验证");
-        } else if (data.sendResult === "1") {
-          this.registerMessage("发送验证码失败：" + data.message);
-        }
-      })
+      if(rulePhone.test(this.registerForm.account)) {
+        this.myHttp.post(MyHttp.URL_SEND_VERIFY, {
+          phone: this.registerForm.account
+        }, (data) => {
+          console.log(data);
+          if (data.sendResult === "0") {
+            this.registerMessage("发送验证码成功，请在10分钟内验证");
+          } else if (data.sendResult === "1") {
+            this.registerMessage("发送验证码失败：" + data.message);
+          }
+        })
+      } else {
+        this.myHttp.post(MyHttp.URL_SEND_MAIL_VERIFY, {
+          mailAddress: this.registerForm.account
+        }, (data) => {
+          console.log(data);
+          if (data.sendResult === "0") {
+            this.registerMessage("发送验证码成功，请在10分钟内验证");
+          } else if (data.sendResult === "1") {
+            this.registerMessage("发送验证码失败：" + data.message);
+          }
+        })
+      }
     }
   }
 

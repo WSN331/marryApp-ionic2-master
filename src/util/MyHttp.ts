@@ -103,7 +103,8 @@ export class MyHttp {
   static URL_GET_APP_DOWNLOAD_URL = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/version/getAppDownloadUrl";
   // 获取Visiter谁访问过自己的url
   static URL_VISITER = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/home/getVisiters ";
-
+  // 获取邮箱验证码
+  static URL_SEND_MAIL_VERIFY = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/sendMailVerify";
 
   constructor (private http : Http, public loadingCtrl:LoadingController) {
 
