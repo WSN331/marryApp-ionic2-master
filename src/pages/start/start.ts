@@ -56,7 +56,16 @@ export class StartPage {
   }
 
   isLoginBefore(){
-    this.storage.get('account').then((val)=>{
+
+    this.storage.get('user').then(val => {
+      if(val!=null){
+        this.memory.setUser(val);
+        this.isLoginOnce = false;
+        this.navCtrl.push(TabsPage);
+      }
+    })
+
+/*    this.storage.get('account').then((val)=>{
       if(val!=null){
         console.log(val)
         this.loginInfo.account = val;
@@ -85,7 +94,7 @@ export class StartPage {
       }else{
         console.log("val中account为空")
       }
-    })
+    })*/
   }
 
 /*  loginFailError(subTitle: string) {

@@ -128,6 +128,8 @@ export class PayPage{
 
   //重新设置user信息
   setNewUser(){
+
+
 /*    this.myHttp.post(MyHttp.URL_USER_INTRODUCE, {
       userId: this.memory.getUser().id,
       otherUserId: this.memory.getUser().id
@@ -152,6 +154,8 @@ export class PayPage{
                 this.paySorE("获取信息异常，请关闭应用后重新打开");
               } else {
                 console.log(data.user)
+
+                this.storage.set("user",data.user);
                 this.memory.setUser(data.user);
               }
             })

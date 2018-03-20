@@ -88,7 +88,10 @@ export class LoginPage {
         }*/
         this.storage.set("account",this.loginForm.account);
         this.storage.set("password",this.loginForm.password);
+        this.storage.set("user",data.user);
+
         this.memory.setUser(data.user);
+
         this.navCtrl.push(TabsPage);
       }
     })

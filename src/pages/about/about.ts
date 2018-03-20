@@ -126,6 +126,8 @@ export class AboutPage{
           this.storage.set("account",null);
           this.storage.set("password",null);
           this.app.getRootNav().setRoot(StartPage);
+
+          this.storage.set("user",null);
           this.memory.setUser({});
         }
       },"关闭"]
