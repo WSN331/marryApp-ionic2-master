@@ -19,7 +19,8 @@ export class ForgetPage {
   public forgetForm = {
     account: '',
     verifyCode:'',
-    newPassword: ''
+    newPassword: '',
+    type:''
   }
 
   //界面刷新
@@ -66,17 +67,26 @@ export class ForgetPage {
   getPassword() {
     let rulePhone = /^1[3|4|5|7|8][0-9]{9}$/;
     let rulePas = /^[a-zA-Z0-9]{6,20}$/;
+    let ruleMail = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
     console.log(this.forgetForm)
+
+    if(rulePhone.test(this.forgetForm.account)){
+      this.forgetForm.type = "0";
+    } else if(ruleMail.test(this.forgetForm.account)) {
+      this.forgetForm.type = "1";
+    } else {
+      this.loginFailError("请输入正确的手机号码或邮箱");
+      return;
+    }
+
+
     for(let name in this.forgetForm){
       if (typeof this.forgetForm[name] === "undefined" || this.forgetForm[name] === "") {
         this.loginFailError("请将信息填写完整");
         return;
       }
     }
-    if(!rulePhone.test(this.forgetForm.account)){
-      this.loginFailError("请输入正确的手机号码");
-      return;
-    }
+
     if(!rulePas.test(this.forgetForm.newPassword)){
       this.loginFailError("请按密码格式输入");
       return;
@@ -106,24 +116,38 @@ export class ForgetPage {
     event.stopPropagation();
 
     let rulePhone = /^1[3|4|5|7|8][0-9]{9}$/;
-    if(!rulePhone.test(this.forgetForm.account)){
-      this.loginFailError("请输入正确的手机号码");
+    let ruleMail = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+    if(!rulePhone.test(this.forgetForm.account)&& !ruleMail.test(this.forgetForm.account)){
+      this.loginFailError("请输入正确的手机号码/邮箱");
       return;
     }
 
     if(this.show == "click"){
       this.ngReFresh()
       this.timeShow = 60;
-      this.myHttp.post(MyHttp.URL_SEND_VERIFY, {
-        phone: this.forgetForm.account
-      }, (data) => {
-        console.log(data);
-        if (data.sendResult === "0") {
-          this.loginFailError("发送验证码成功，请在10分钟内验证");
-        } else if (data.sendResult === "1") {
-          this.loginFailError("发送验证码失败：" + data.message);
-        }
-      })
+      if(rulePhone.test(this.forgetForm.account)) {
+        this.myHttp.post(MyHttp.URL_SEND_VERIFY, {
+          phone: this.forgetForm.account
+        }, (data) => {
+          console.log(data);
+          if (data.sendResult === "0") {
+            this.loginFailError("发送验证码成功，请在10分钟内验证");
+          } else if (data.sendResult === "1") {
+            this.loginFailError("发送验证码失败：" + data.message);
+          }
+        })
+      } else {
+        this.myHttp.post(MyHttp.URL_SEND_MAIL_VERIFY, {
+          mailAddress: this.forgetForm.account
+        }, (data) => {
+          console.log(data);
+          if (data.sendResult === "0") {
+            this.loginFailError("发送验证码成功，请在10分钟内验证");
+          } else if (data.sendResult === "1") {
+            this.loginFailError("发送验证码失败：" + data.message);
+          }
+        })
+      }
     }
   }
 
@@ -135,7 +159,7 @@ export class ForgetPage {
      */
   loginFailError(subTitle: string) {
     this.alertCtrl.create({
-      title: "找回失败",
+      title: "找回",
       subTitle: subTitle,
       buttons: ["关闭"]
     }).present();

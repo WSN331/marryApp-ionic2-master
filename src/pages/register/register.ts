@@ -22,7 +22,8 @@ export class RegisterPage {
   public registerForm = {
     account: '',
     verifyCode:'',
-    password: ''
+    password: '',
+    type:''
   };
   //邀请码
   /*    invitaCode:''*/
@@ -68,20 +69,21 @@ export class RegisterPage {
       this.registerMessage("请同意协议内容");
       return;
     }
+    if(rulePhone.test(this.registerForm.account)){
+      this.registerForm.type = "0";
+    } else if(ruleMail.test(this.registerForm.account)) {
+      this.registerForm.type = "1";
+    } else {
+      this.registerMessage("请输入正确的手机号码或邮箱");
+      return;
+    }
     for (let name in this.registerForm) {
       if (this.registerForm[name] === undefined || this.registerForm[name] === '') {
         this.registerMessage("信息必须填全");
         return;
       }
     }
-    if(rulePhone.test(this.registerForm.account)){
-      this.registerForm.type = 0;
-    } else if(ruleMail.test(this.registerForm.account)) {
-      this.registerForm.type = 1;
-    } else {
-      this.registerMessage("请输入正确的手机号码或邮箱");
-      return;
-    }
+
     if(!rulePas.test(this.registerForm.password)){
       this.registerMessage("请按密码格式输入");
       return;
@@ -89,7 +91,7 @@ export class RegisterPage {
 
     this.myHttp.post(MyHttp.URL_REGISTER, this.registerForm, (data) => {
       if (data.registerResult === "0") {
-        this.registerMessage("注册成功,请继续完善信息");
+        this.registerMessage("注册成功,请登录信息");
         clearInterval(this.timer);
         this.changeDetectorRef.detach();
         /*this.navCtrl.pop();*/

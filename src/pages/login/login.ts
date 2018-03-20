@@ -28,7 +28,7 @@ export class LoginPage {
     account: '',
     password: ''
   }
-  
+
   constructor(public navCtrl: NavController, private myHttp : MyHttp,
               public alertCtrl: AlertController, public memory: Memory,
               public storage:Storage) {
@@ -52,6 +52,7 @@ export class LoginPage {
   login() {
     let rulePhone = /^1[3|4|5|7|8][0-9]{9}$/;
     let rulePas = /^[a-zA-Z0-9]{6,20}$/;
+    let ruleMail = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
     console.log(this.loginForm)
     if (typeof this.loginForm.account === "undefined" || this.loginForm.account === "") {
       this.loginFailError("账号不能为空");
@@ -61,8 +62,8 @@ export class LoginPage {
       this.loginFailError("密码不能为空");
       return;
     }
-    if(!rulePhone.test(this.loginForm.account)){
-      this.loginFailError("请输入正确的手机号码");
+    if(!rulePhone.test(this.loginForm.account) && !ruleMail.test(this.loginForm.account)){
+      this.loginFailError("请输入正确的手机号码/邮箱");
       return;
     }
     if(!rulePas.test(this.loginForm.password)){
