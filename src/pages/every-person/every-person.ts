@@ -15,12 +15,12 @@ export class EveryPersonPage{
   }
 
   goToManList(){
-    this.memory.setSex(2);
+    this.memory.setSex(1);
     this.navCtrl.push(HomePage)
   }
 
   goToWomList(){
-    this.memory.setSex(16);
+    this.memory.setSex(0);
     this.navCtrl.push(HomePage)
   }
 

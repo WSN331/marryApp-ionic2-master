@@ -4,10 +4,12 @@
 import {ChangeDetectorRef, Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
+import {Storage} from "@ionic/storage";
 
 import { MyHttp } from '../../util/MyHttp';
-
 import {LoginPage} from "../login/login";
+import {Memory} from "../../util/Memory";
+import {TabsPage} from "../tabs/tabs";
 
 @Component({
   selector: 'page-register',
@@ -25,6 +27,13 @@ export class RegisterPage {
     password: '',
     type:''
   };
+
+  //登录
+  public loginForm = {
+    account: '',
+    password: ''
+  }
+
   //邀请码
   /*    invitaCode:''*/
   //界面刷新
@@ -37,7 +46,8 @@ export class RegisterPage {
   public cucumber=false;
 
   constructor(public navCtrl:NavController, private myHttp:MyHttp,
-              public alertCtrl:AlertController,public changeDetectorRef:ChangeDetectorRef) {
+              public alertCtrl:AlertController,public memory: Memory,
+              public storage:Storage, public changeDetectorRef:ChangeDetectorRef) {
   }
 
   ngReFresh(){
@@ -95,7 +105,12 @@ export class RegisterPage {
         clearInterval(this.timer);
         this.changeDetectorRef.detach();
         /*this.navCtrl.pop();*/
-        this.navCtrl.push(LoginPage);
+        /*this.navCtrl.push(LoginPage);*/
+        this.loginForm.account = this.registerForm.account;
+        this.loginForm.password = this.registerForm.password;
+
+        this.toLogin(this.loginForm);
+
       } else if (data.registerResult === "1") {
         this.registerMessage("该手机已经注册!");
       } else if (data.registerResult ==="4"){
@@ -111,7 +126,7 @@ export class RegisterPage {
    */
   sendVerify(event : Event) {
     event.stopPropagation();
-    let rulePhone = /^1[3|4|5|7|8][0-9]{9}$/;
+    let rulePhone = /^1[0-9]{10}$/;
     let ruleMail = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
     if(!rulePhone.test(this.registerForm.account) && !ruleMail.test(this.registerForm.account)){
       this.registerMessage("请输入正确的手机号码或邮箱");
@@ -330,5 +345,31 @@ export class RegisterPage {
     }else{
       this.pasType="password";
     }
+  }
+
+
+  //直接登录
+  toLogin(loginForm){
+    this.myHttp.post(MyHttp.URL_LOGIN, loginForm, (data) => {
+      console.log(data)
+      let loginResult = data.loginResult;
+      if (loginResult==='2') {
+        this.registerMessage("账号不存在");
+      } else if (loginResult === '1') {
+        this.registerMessage("密码错误");
+      } else {
+        console.log(data.user)
+        //插入数据
+        /*        if(this.memory.getDB()!=null){
+                  this.sqLite.insert(this.memory.getDB(),this.loginForm);
+                }else{
+                  console.log("在登录的时候显示db为空")
+                }*/
+        this.storage.set("account",loginForm.account);
+        this.storage.set("password",loginForm.password);
+        this.memory.setUser(data.user);
+        this.navCtrl.push(TabsPage);
+      }
+    })
   }
 }

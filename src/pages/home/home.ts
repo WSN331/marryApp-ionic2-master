@@ -32,6 +32,7 @@ export class HomePage {
    * 婚配对象列表
    */
   public userList = [];
+
   public id;
   public pageIndex;
 
@@ -152,41 +153,50 @@ export class HomePage {
     if (this.isLogin()) {
       this.id = this.memory.getUser().id;
       console.log(this.id+"现在登录的id")
+
+      searchInfo['userId'] = this.id;
+      searchInfo['size'] = 5;
+      searchInfo['index'] = this.pageIndex;
+      if (this.id) {
+        this.myHttp.post(MyHttp.URL_USER_SCREEN_LIST, searchInfo, (data) => {
+          console.log(data)
+          if (data.listResult === '0') {
+            if(!this.isLoginOnce()){
+              this.userList = this.userList.concat(data.userList);
+            }else{
+              this.goToDetail();
+            }
+          } else if (data.listResult === '1'){
+            this.alertCtrl.create({
+              message: '没有更多用户啦',
+              buttons: [{
+                text: 'OK',
+                handler: ()=> {
+                }
+              }]
+            }).present();
+          } else if (data.listResult === '2'){
+
+          }
+
+          //提示用户有未读消息
+          let isMsg = this.memory.getMsg();
+          if(isMsg){
+            this.searchPub("又有人找您啦~");
+          }
+        })
+      }
     }else{
-      this.id = this.memory.getSex();
+      let sex = this.memory.getSex();
       console.log(this.id+"观光的id")
-    }
-    searchInfo['userId'] = this.id;
-    searchInfo['size'] = 5;
-    searchInfo['index'] = this.pageIndex;
-    if (this.id) {
-      this.myHttp.post(MyHttp.URL_USER_SCREEN_LIST, searchInfo, (data) => {
+
+      this.myHttp.post(MyHttp.URL_SEEEACHOTHER, {
+        sex:sex
+      }, (data) => {
         console.log(data)
         if (data.listResult === '0') {
-          if(!this.isLoginOnce()){
-            this.userList = this.userList.concat(data.userList);
-          }else{
-            this.goToDetail();
-          }
-        } else if (data.listResult === '1'){
-          this.alertCtrl.create({
-            message: '没有更多用户啦',
-            buttons: [{
-              text: 'OK',
-              handler: ()=> {
-              }
-            }]
-          }).present();
-        } else if (data.listResult === '2'){
-
+            this.userList = data.userList;
         }
-
-        //提示用户有未读消息
-        let isMsg = this.memory.getMsg();
-        if(isMsg){
-          this.searchPub("又有人找您啦~");
-        }
-
       })
     }
 

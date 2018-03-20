@@ -50,7 +50,7 @@ export class LoginPage {
    * 登录控制
    */
   login() {
-    let rulePhone = /^1[3|4|5|7|8][0-9]{9}$/;
+    let rulePhone = /^1[0-9]{10}$/;
     let rulePas = /^[a-zA-Z0-9]{6,20}$/;
     let ruleMail = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
     console.log(this.loginForm)
