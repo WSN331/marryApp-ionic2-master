@@ -7,7 +7,6 @@ import { AlertController } from 'ionic-angular';
 import {Storage} from "@ionic/storage";
 
 import { MyHttp } from '../../util/MyHttp';
-import {LoginPage} from "../login/login";
 import {Memory} from "../../util/Memory";
 import {TabsPage} from "../tabs/tabs";
 

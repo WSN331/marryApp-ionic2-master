@@ -24,7 +24,7 @@ import {CommunicatePage} from "../communicate/communicate";
 
 export class HomePage {
   @ViewChild(Content) content: Content;　　//获取界面Content的实例对象
-
+  private PAGE_SIZE = 5;
   //
 
 
@@ -37,6 +37,8 @@ export class HomePage {
   public pageIndex;
 
   public displayTitle = true;
+
+  private showBtnGetMore = false;
 
   /*
   * 身高，年龄，收入，学历，当前所在地，故乡
@@ -148,21 +150,45 @@ export class HomePage {
 
   /**
    * 获取用户列表
-   */
+   * @param searchInfo
+     */
   getUserList(searchInfo:any) {
+    /**
+     * 每次先获取一张
+     */
+    this.showBtnGetMore = false;
+    this.getUserListStep(searchInfo, 1, false);
+
+
+  }
+
+  getUserListStep(searchInfo:any, i:number, notDialog) {
+    this.doGetUserList(searchInfo, 1, this.userList.length + 1,(userList)=>{
+      this.userList = this.userList.concat(userList);
+      if (i < this.PAGE_SIZE) {
+        this.getUserListStep(searchInfo, i+1, true);
+      } else {
+        this.showBtnGetMore = true;
+      }
+    }, notDialog);
+  }
+
+  /**
+   * 实施获取用户列表
+   */
+  doGetUserList(searchInfo:any, pageSize, pageIndex, funcAddList : Function, notDialog) {
     if (this.isLogin()) {
       this.id = this.memory.getUser().id;
       console.log(this.id+"现在登录的id")
-
       searchInfo['userId'] = this.id;
-      searchInfo['size'] = 5;
-      searchInfo['index'] = this.pageIndex;
+      searchInfo['size'] = pageSize;
+      searchInfo['index'] = pageIndex;
       if (this.id) {
         this.myHttp.post(MyHttp.URL_USER_SCREEN_LIST, searchInfo, (data) => {
           console.log(data)
           if (data.listResult === '0') {
             if(!this.isLoginOnce()){
-              this.userList = this.userList.concat(data.userList);
+              funcAddList(data.userList);
             }else{
               this.goToDetail();
             }
@@ -184,7 +210,7 @@ export class HomePage {
           if(isMsg){
             this.searchPub("又有人找您啦~");
           }
-        })
+        }, null, notDialog);
       }
     }else{
       let sex = this.memory.getSex();

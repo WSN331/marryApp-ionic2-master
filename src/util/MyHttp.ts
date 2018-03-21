@@ -12,9 +12,9 @@ export class MyHttp {
    * 服务器的IP
    * @type {string}
    */
-  //static IP = "47.95.212.171";
+  static IP = "47.95.212.171";
   //static IP = "47.98.99.108";
-  static IP = "47.95.212.171"
+  // static IP = "47.95.212.171"
   //static IP = "39.108.97.130";
   // static IP = "localhost"
   // static IP = "192.168.2.178"
@@ -24,7 +24,7 @@ export class MyHttp {
    * 服务端端口号
    * @type {number}
    */
-  //static PORT = 8080;
+  // static PORT = 8080;
   static PORT = 80;
   /**
    * 服务端的接口名
@@ -158,6 +158,7 @@ export class MyHttp {
       // spinner: "bubbles",
       showBackdrop : false
     });
+    console.log(unLoader)
     if (!unLoader) {
       loader.present();
     }

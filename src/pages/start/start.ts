@@ -9,7 +9,6 @@ import {LoginPage} from "../login/login";
 import {RegisterPage} from '../register/register';
 import {EveryPersonPage} from "../every-person/every-person";
 import {Memory} from "../../util/Memory";
-import {MyHttp} from "../../util/MyHttp";
 import {TabsPage} from "../tabs/tabs";
 
 
@@ -22,7 +21,7 @@ export class StartPage {
   public isLoginOnce = true;
 
   constructor(public navCtrl:NavController,public memory:Memory,public storage:Storage,
-              private myHttp:MyHttp, public alertCtrl: AlertController) {
+              public alertCtrl: AlertController) {
 
     this.isLoginBefore()
   }
