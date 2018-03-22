@@ -11,5 +11,9 @@
     age:['25以下','25-30','30-35','35-40','40以上']
   };
 
+  static STORAGE = {
+    userInfo : "userInfoStorage",
+    communicateInfo : "communicateInfo"
+  }
 
 }

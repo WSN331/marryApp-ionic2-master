@@ -121,7 +121,8 @@ export class PeoplePage{
       baseInfo:'',
       detailInfo:'',
       talk:'',
-      isDefaultPic:''
+      isDefaultPic:'',
+      show: false
     }
     conversation.talk = talk;
     this.conversations.push(conversation);
@@ -143,6 +144,7 @@ export class PeoplePage{
         conversation.baseInfo = baseInfo;
         conversation.detailInfo = detailInfo;
         conversation.isDefaultPic = isDefaultPic;
+        conversation.show = true;
 
         this.memory.setConversion(this.conversations);
 /*        conversation.baseInfo = baseInfo;

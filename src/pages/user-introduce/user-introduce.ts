@@ -6,11 +6,13 @@ import { NavController } from 'ionic-angular';
 import { Events } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import {LoadingController} from 'ionic-angular';
+import {Storage} from '@ionic/storage'
 
 import { MyHttp } from '../../util/MyHttp';
 import { Memory } from '../../util/Memory'
 import { ImgService } from '../../util/ImgService'
 import {CalculateService} from '../../util/CalculateService'
+import {Constants} from '../../util/Constants'
 
 import { UserDetailPage } from '../user-detail/user-detail'
 import { AboutPage } from "../about/about"
@@ -57,13 +59,23 @@ export class UserIntroducePage {
 
   constructor(public navCtrl:NavController, private myHttp:MyHttp, public imgService:ImgService,
               public memory:Memory, public events: Events, public calculateService: CalculateService,
-              public alertCtrl: AlertController, public loadingCtrl:LoadingController) {
-    this.getUserInfo();
+              public alertCtrl: AlertController, public loadingCtrl:LoadingController, public storage:Storage) {
+    this.initUserInfo();
+    this.getUserInfo(null, true);
     this.initCred();
     this.events.subscribe('e-user-introduce', () => {
-      this.getUserInfo();
+      this.getUserInfo(null, true);
       this.initCred();
     })
+  }
+
+  initUserInfo() {
+    this.storage.get(this.memory.getUser().id).then((val) =>{
+      if (typeof val !== "undefined" && typeof val[Constants.STORAGE.userInfo] !== "undefined") {
+        this.baseInfo = val[Constants.STORAGE.userInfo].baseInfo || {};
+        this.detailInfo = val[Constants.STORAGE.userInfo].detailInfo || {};
+      }
+    });
   }
 
   ionViewDidEnter() {
@@ -107,6 +119,16 @@ export class UserIntroducePage {
       console.log(data)
       this.baseInfo = data.baseInfo || {};
       this.detailInfo = data.detailInfo || {};
+      this.storage.get(this.memory.getUser().id).then((val) =>{
+        if (val == null) {
+          val = {};
+        }
+        val[Constants.STORAGE.userInfo] = {
+          baseInfo : this.baseInfo,
+          detailInfo : this.detailInfo
+        };
+        this.storage.set(this.memory.getUser().id, val);
+      });
       if (callBack !== null && typeof callBack === 'function') {
         callBack();
       }
@@ -133,7 +155,7 @@ export class UserIntroducePage {
       this.credTypes = data.credTypes;
       //
       this.credTitles = data.credTitles;
-    })
+    }, null, true)
   }
 
   /**

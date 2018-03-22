@@ -164,6 +164,7 @@ export class HomePage {
 
   getUserListStep(searchInfo:any, i:number, notDialog) {
     this.doGetUserList(searchInfo, 1, this.userList.length + 1,(userList)=>{
+      console.log(userList)
       this.userList = this.userList.concat(userList);
       if (i < this.PAGE_SIZE) {
         this.getUserListStep(searchInfo, i+1, true);
@@ -217,7 +218,8 @@ export class HomePage {
       console.log(this.id+"观光的id")
 
       this.myHttp.post(MyHttp.URL_SEEEACHOTHER, {
-        sex:sex
+        sex:sex,
+        size: 2
       }, (data) => {
         console.log(data)
         if (data.listResult === '0') {
