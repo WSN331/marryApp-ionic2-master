@@ -32,6 +32,7 @@ import { FileOpener } from '@ionic-native/file-opener';
 import { Transfer } from '@ionic-native/transfer';
 import { AppVersion } from '@ionic-native/app-version';
 import { AppUpdate } from '@ionic-native/app-update';
+import { InAppPurchase } from '@ionic-native/in-app-purchase';
 
 import { MyHttp } from '../util/MyHttp'
 import { Memory } from '../util/Memory'
@@ -133,7 +134,8 @@ import {MatchmakerPage} from "../pages/matchmaker/matchmaker";
     File,
     FileOpener,
     Transfer,
-    AppUpdate
+    AppUpdate,
+    InAppPurchase
   ]
 })
 export class AppModule {}

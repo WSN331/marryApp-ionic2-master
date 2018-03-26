@@ -2,6 +2,7 @@ import {Component} from "@angular/core";
 
 import {AlertController, NavController} from "ionic-angular";
 import {Storage} from '@ionic/storage'
+import { InAppPurchase } from '@ionic-native/in-app-purchase';
 
 import {MyHttp} from "../../util/MyHttp";
 import {Memory} from "../../util/Memory";
@@ -19,7 +20,7 @@ export class PayPage{
 
   constructor(public navCtrl: NavController,private myHttp:MyHttp, public alertCtrl: AlertController,
               public memory:Memory,public imgService: ImgService,public storage:Storage,
-              public calculate : CalculateService){
+              public calculate : CalculateService, private iap: InAppPurchase){
     this.getUserMsg();
     this.getOrder();
   }
@@ -84,8 +85,12 @@ export class PayPage{
 
   }
 
+  goToPay(order:any) {
+    this.goToPayIap(order);
+  }
+
   //去支付
-  goToPay(order:any){
+  goToPayAli(order:any){
     this.myHttp.post(MyHttp.URL_ORDER_INFO,{
       userId:this.memory.getUser().id,
       vipId:order.id
@@ -187,5 +192,57 @@ export class PayPage{
    */
   back(){
     this.navCtrl.pop();
+  }
+
+  goToPayIap(order:any) {
+    console.log(order)
+
+
+    let protectedId = "com.ICLabs.marryapp0" + order.id;
+    console.log(protectedId)
+    // this.iap
+    //   .getProducts([protectedId])
+    //   .then((products) => {
+    //     console.log(products);
+    //      // [{ productId: 'com.yourapp.prod1', 'title': '...', description: '...', price: '...' }, ...]
+    //     alert(JSON.stringify(products));
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+    // this.test();
+    this.iap
+      .buy(protectedId)
+      .then((data)=> {
+        console.log(data);
+        alert(JSON.stringify(data))
+        // {
+        //   transactionId: ...
+        //   receipt: ...
+        //   signature: ...
+        // }
+      })
+      .catch((err)=> {
+        console.log(err);
+      });
+  }
+
+  test() {
+    this.iap
+      .restorePurchases()
+      .then(function (data) {
+        console.log(data);
+        /*
+          [{
+            transactionId: ...
+            productId: ...
+            state: ...
+            date: ...
+          }]
+        */
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
   }
 }
