@@ -24,8 +24,8 @@ export class MyHttp {
    * 服务端端口号
    * @type {number}
    */
-  // static PORT = 8080;
-  static PORT = 8081;
+  static PORT = 8080;
+
   /**
    * 服务端的接口名
    * @type {string}
