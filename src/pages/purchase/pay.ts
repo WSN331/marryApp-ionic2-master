@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 
-import {AlertController, NavController} from "ionic-angular";
+import {AlertController, NavController, Platform} from "ionic-angular";
 import {Storage} from '@ionic/storage'
 import { InAppPurchase } from '@ionic-native/in-app-purchase';
 
@@ -20,7 +20,7 @@ export class PayPage{
 
   constructor(public navCtrl: NavController,private myHttp:MyHttp, public alertCtrl: AlertController,
               public memory:Memory,public imgService: ImgService,public storage:Storage,
-              public calculate : CalculateService, private iap: InAppPurchase){
+              public calculate : CalculateService, private iap: InAppPurchase, public platform: Platform){
     this.getUserMsg();
     this.getOrder();
   }
@@ -86,7 +86,11 @@ export class PayPage{
   }
 
   goToPay(order:any) {
-    this.goToPayIap(order);
+    if (this.platform.is("android")) {
+      this.goToPayAli(order);
+    } else if (this.platform.is("ios")) {
+      this.goToPayIap(order);
+    }
   }
 
   //去支付
@@ -225,6 +229,20 @@ export class PayPage{
       .catch((err)=> {
         console.log(err);
       });
+  }
+
+  /**
+   *
+   * @param receipt
+     */
+  iapCertificate (receipt) {
+    this.myHttp.post(MyHttp.URL_ORDER_INFO,{
+      userId:this.memory.getUser().id,
+      receipt:receipt,
+      chooseEnv:false
+    },(data)=>{
+      console.log(data)
+    });
   }
 
   test() {

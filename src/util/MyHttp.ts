@@ -106,7 +106,8 @@ export class MyHttp {
   static URL_VISITER = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/home/getVisiters ";
   // 获取邮箱验证码
   static URL_SEND_MAIL_VERIFY = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/sendMailVerify";
-
+  // ios内购验证
+  static URL_IAP_CERTIFICATE = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/iap/iapCertificate";
   //异性逛一逛
   static URL_SEEEACHOTHER = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/home/goagoList";
   constructor (private http : Http, public loadingCtrl:LoadingController) {
