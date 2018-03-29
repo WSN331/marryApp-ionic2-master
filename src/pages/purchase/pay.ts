@@ -204,31 +204,30 @@ export class PayPage{
 
     let protectedId = "com.ICLabs.marryapp0" + order.id;
     console.log(protectedId)
-    // this.iap
-    //   .getProducts([protectedId])
-    //   .then((products) => {
-    //     console.log(products);
-    //      // [{ productId: 'com.yourapp.prod1', 'title': '...', description: '...', price: '...' }, ...]
-    //     alert(JSON.stringify(products));
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
-    // this.test();
     this.iap
-      .buy(protectedId)
-      .then((data)=> {
-        console.log(data);
-        alert(JSON.stringify(data))
-        // {
-        //   transactionId: ...
-        //   receipt: ...
-        //   signature: ...
-        // }
+      .getProducts([protectedId])
+      .then((products) => {
+        console.log(products);
+         // [{ productId: 'com.yourapp.prod1', 'title': '...', description: '...', price: '...' }, ...]
+        this.iap
+          .buy(products[0].productId)
+          .then((data)=> {
+            console.log(data);
+            this.iapCertificate(data);
+            // {
+            //   transactionId: ...
+            //   receipt: ...
+            //   signature: ...
+            // }
+          })
+          .catch((err)=> {
+            console.log(err);
+          });
       })
-      .catch((err)=> {
+      .catch((err) => {
         console.log(err);
       });
+
   }
 
   /**
@@ -236,7 +235,7 @@ export class PayPage{
    * @param receipt
      */
   iapCertificate (receipt) {
-    this.myHttp.post(MyHttp.URL_ORDER_INFO,{
+    this.myHttp.post(MyHttp.URL_IAP_CERTIFICATE,{
       userId:this.memory.getUser().id,
       receipt:receipt,
       chooseEnv:false
@@ -245,22 +244,5 @@ export class PayPage{
     });
   }
 
-  test() {
-    this.iap
-      .restorePurchases()
-      .then(function (data) {
-        console.log(data);
-        /*
-          [{
-            transactionId: ...
-            productId: ...
-            state: ...
-            date: ...
-          }]
-        */
-      })
-      .catch(function (err) {
-        console.log(err);
-      });
-  }
+
 }
