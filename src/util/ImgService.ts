@@ -6,6 +6,7 @@ import {Camera, CameraOptions} from '@ionic-native/camera';
 import { AlertController } from 'ionic-angular';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
+
 @Injectable()
 export class ImgService {
 
@@ -97,5 +98,7 @@ export class ImgService {
   safeImage(image: String) : SafeUrl{
     return this.sanitize.bypassSecurityTrustUrl("data:image/jpg;base64," + image)
   }
+
+
 
 }

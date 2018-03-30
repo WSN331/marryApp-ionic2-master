@@ -3,6 +3,8 @@ import {Component} from "@angular/core";
 import {AlertController, NavController, Platform} from "ionic-angular";
 import {Storage} from '@ionic/storage'
 import { InAppPurchase } from '@ionic-native/in-app-purchase';
+import { Buffer } from 'buffer';
+import {LoadingController, Events} from 'ionic-angular';
 
 import {MyHttp} from "../../util/MyHttp";
 import {Memory} from "../../util/Memory";
@@ -20,7 +22,8 @@ export class PayPage{
 
   constructor(public navCtrl: NavController,private myHttp:MyHttp, public alertCtrl: AlertController,
               public memory:Memory,public imgService: ImgService,public storage:Storage,
-              public calculate : CalculateService, private iap: InAppPurchase, public platform: Platform){
+              public calculate : CalculateService, private iap: InAppPurchase, public platform: Platform,
+              public loadingCtrl:LoadingController, public events:Events){
     this.getUserMsg();
     this.getOrder();
   }
@@ -203,6 +206,11 @@ export class PayPage{
 
 
     let protectedId = "com.ICLabs.marryapp0" + order.id;
+    let loader = this.loadingCtrl.create({
+      // spinner: "bubbles",
+      showBackdrop : false
+    });
+    loader.present();
     console.log(protectedId)
     this.iap
       .getProducts([protectedId])
@@ -213,19 +221,22 @@ export class PayPage{
           .buy(products[0].productId)
           .then((data)=> {
             console.log(data);
-            this.iapCertificate(data);
+            loader.dismiss();
+            this.iapCertificate(data, order.id);
             // {
-            //   transactionId: ...
+            //   transactionId: ...s
             //   receipt: ...
             //   signature: ...
             // }
           })
           .catch((err)=> {
             console.log(err);
+            loader.dismiss();
           });
       })
       .catch((err) => {
         console.log(err);
+        loader.dismiss();
       });
 
   }
@@ -234,13 +245,20 @@ export class PayPage{
    *
    * @param receipt
      */
-  iapCertificate (receipt) {
+  iapCertificate (receipt, vipId) {
+    let receiptBase64 = new Buffer(JSON.stringify(receipt)).toString('base64');
     this.myHttp.post(MyHttp.URL_IAP_CERTIFICATE,{
-      userId:this.memory.getUser().id,
-      receipt:receipt,
-      chooseEnv:false
+      userId: this.memory.getUser().id,
+      receipt: receiptBase64,
+      chooseEnv: true,
+      vipId: vipId
     },(data)=>{
       console.log(data)
+      let result = data.iapCertificateResult;
+      if(result != null && result.status == "0") {
+        this.events.subscribe("e-user-introduce");
+        alert("支付成功")
+      }
     });
   }
 

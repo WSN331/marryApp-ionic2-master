@@ -128,6 +128,11 @@ export class UserIntroducePage {
           detailInfo : this.detailInfo
         };
         this.storage.set(this.memory.getUser().id, val);
+
+        /**
+         * add in 2018-03-30
+         */
+        this.memory.setUser(this.baseInfo)
       });
       if (callBack !== null && typeof callBack === 'function') {
         callBack();

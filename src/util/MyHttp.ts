@@ -12,9 +12,9 @@ export class MyHttp {
    * 服务器的IP
    * @type {string}
    */
-  // static IP = "47.95.212.171"
+  static IP = "47.95.212.171"
   // static IP = "localhost"
-  static IP = "192.168.2.232"
+  // static IP = "192.168.2.232"
 
   /**s
    * 服务端端口号
@@ -106,6 +106,7 @@ export class MyHttp {
   static URL_IAP_CERTIFICATE = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/iap/iapCertificate";
   //异性逛一逛
   static URL_SEEEACHOTHER = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/home/goagoList";
+
   constructor (private http : Http, public loadingCtrl:LoadingController) {
 
   }
