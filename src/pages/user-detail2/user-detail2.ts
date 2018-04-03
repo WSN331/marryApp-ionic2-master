@@ -5,8 +5,9 @@ import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 import {Events} from 'ionic-angular';
 import {AlertController} from 'ionic-angular';
-import {Storage} from "@ionic/storage";
 
+
+import {MyStorage} from "../../util/MyStorage";
 import {MyHttp} from '../../util/MyHttp';
 import {Memory} from '../../util/Memory'
 
@@ -60,7 +61,7 @@ export class UserDetail2Page {
   private userId;
 
   constructor(public navCtrl:NavController, public navParams:NavParams, private myHttp:MyHttp, public memory:Memory,
-              public events:Events, public alertCtrl:AlertController,public storage:Storage) {
+              public events:Events, public alertCtrl:AlertController,public myStorage:MyStorage) {
     this.getUserInfo();
     this.getProvinceList();
 
@@ -130,7 +131,7 @@ export class UserDetail2Page {
     this.myHttp.post(MyHttp.URL_USER_COMPLETE, json, (data)=> {
       this.getUserInfo(() => {
 
-        this.storage.set("user",this.baseInfo);
+        this.myStorage.setUser(this.baseInfo);
         this.memory.setUser(this.baseInfo);
 
         this.events.publish("e-user-self");

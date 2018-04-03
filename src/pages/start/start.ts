@@ -3,12 +3,12 @@
  */
 import {Component} from '@angular/core';
 import {AlertController, NavController} from 'ionic-angular';
-import {Storage} from '@ionic/storage'
 
 import {LoginPage} from "../login/login";
 import {RegisterPage} from '../register/register';
 import {EveryPersonPage} from "../every-person/every-person";
 import {Memory} from "../../util/Memory";
+import {MyStorage} from "../../util/MyStorage";
 import {TabsPage} from "../tabs/tabs";
 
 
@@ -20,7 +20,7 @@ export class StartPage {
 
   public isLoginOnce = true;
 
-  constructor(public navCtrl:NavController,public memory:Memory,public storage:Storage,
+  constructor(public navCtrl:NavController,public memory:Memory,public myStorage:MyStorage,
               public alertCtrl: AlertController) {
 
     this.isLoginBefore()
@@ -56,7 +56,7 @@ export class StartPage {
 
   isLoginBefore(){
 
-    this.storage.get('user').then(val => {
+    this.myStorage.getUser().then(val => {
       if(val!=null){
         this.memory.setUser(val);
         this.isLoginOnce = false;

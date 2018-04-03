@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { App, NavController, AlertController} from 'ionic-angular';
 import { Events } from 'ionic-angular';
-import {Storage} from '@ionic/storage'
 import { AppVersion } from '@ionic-native/app-version';
 import { AppUpdate } from '@ionic-native/app-update';
 
@@ -9,8 +8,10 @@ import { Memory } from '../../util/Memory'
 import { ImgService } from '../../util/ImgService'
 import { CalculateService } from '../../util/CalculateService'
 import { MyHttp } from '../../util/MyHttp';
+import { MyStorage } from '../../util/MyStorage';
 
 import { StartPage } from '../start/start'
+import { BlackPage } from '../black/black'
 import { UserIntroducePage } from '../user-introduce/user-introduce'
 import { CredListPage } from '../credList/credList'
 import { PayPage } from "../purchase/pay";
@@ -32,7 +33,7 @@ export class AboutPage{
 
   constructor(public navCtrl: NavController, public imgService: ImgService, public memory: Memory,
               public app:App, public events: Events, public calculateService: CalculateService,
-              public storage:Storage, private appVersion: AppVersion, private myHttp : MyHttp,
+              public myStorage:MyStorage, private appVersion: AppVersion, private myHttp : MyHttp,
               public alertCtrl: AlertController, private appUpdate : AppUpdate) {
     this.getUser();
     this.events.subscribe('e-user-self', () => {
@@ -114,6 +115,13 @@ export class AboutPage{
   }
 
   /**
+   * 进入黑名单
+   */
+  goToBlack() {
+    this.navCtrl.push(BlackPage);
+  }
+
+  /**
    * 登出
    */
   logout() {
@@ -123,11 +131,10 @@ export class AboutPage{
       buttons: [{
         text: '确定',
         handler: data => {
-          this.storage.set("account",null);
-          this.storage.set("password",null);
+          this.myStorage.setAccount(null);
+          this.myStorage.setPassword(null);
           this.app.getRootNav().setRoot(StartPage);
-
-          this.storage.set("user",null);
+          this.myStorage.setUser(null);
           this.memory.setUser({});
         }
       },"关闭"]

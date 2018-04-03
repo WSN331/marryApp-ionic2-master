@@ -91,7 +91,6 @@
     <plugin name="cordova-plugin-device" spec="^1.1.7" />
     <plugin name="cordova-plugin-file" spec="^4.3.3" />
     <plugin name="cordova-plugin-file-opener2" spec="^2.0.19" />
-    <plugin name="cordova-plugin-inapppurchase" spec="^1.2.0" />
     <plugin name="cordova-plugin-offbye-alipay" spec="git+https://github.com/DreamMoon/cordova-plugin-alipay.git">
         <variable name="PARTNER_ID" value="[2088821549927762]" />
     </plugin>
@@ -102,4 +101,5 @@
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
     <engine name="android" spec="^6.2.3" />
     <engine name="ios" spec="4.5.4" />
+    <plugin name="cordova-plugin-inapppurchase" spec="^1.2.0" />
 </widget>

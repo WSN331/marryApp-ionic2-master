@@ -6,10 +6,10 @@ import { NavController } from 'ionic-angular';
 import { Events } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import {LoadingController} from 'ionic-angular';
-import {Storage} from '@ionic/storage'
 
 import { MyHttp } from '../../util/MyHttp';
 import { Memory } from '../../util/Memory'
+import { MyStorage } from '../../util/MyStorage'
 import { ImgService } from '../../util/ImgService'
 import {CalculateService} from '../../util/CalculateService'
 import {Constants} from '../../util/Constants'
@@ -59,7 +59,7 @@ export class UserIntroducePage {
 
   constructor(public navCtrl:NavController, private myHttp:MyHttp, public imgService:ImgService,
               public memory:Memory, public events: Events, public calculateService: CalculateService,
-              public alertCtrl: AlertController, public loadingCtrl:LoadingController, public storage:Storage) {
+              public alertCtrl: AlertController, public loadingCtrl:LoadingController, public myStorage:MyStorage) {
     this.initUserInfo();
     this.getUserInfo(null, true);
     this.initCred();
@@ -70,7 +70,7 @@ export class UserIntroducePage {
   }
 
   initUserInfo() {
-    this.storage.get(this.memory.getUser().id).then((val) =>{
+    this.myStorage.getUserInfo(this.memory.getUser().id).then((val) =>{
       if (typeof val !== "undefined" && typeof val[Constants.STORAGE.userInfo] !== "undefined") {
         this.baseInfo = val[Constants.STORAGE.userInfo].baseInfo || {};
         this.detailInfo = val[Constants.STORAGE.userInfo].detailInfo || {};
@@ -119,7 +119,7 @@ export class UserIntroducePage {
       console.log(data)
       this.baseInfo = data.baseInfo || {};
       this.detailInfo = data.detailInfo || {};
-      this.storage.get(this.memory.getUser().id).then((val) =>{
+      this.myStorage.getUserInfo(this.memory.getUser().id).then((val) =>{
         if (val == null) {
           val = {};
         }
@@ -127,7 +127,7 @@ export class UserIntroducePage {
           baseInfo : this.baseInfo,
           detailInfo : this.detailInfo
         };
-        this.storage.set(this.memory.getUser().id, val);
+        this.myStorage.setUserInfo(this.memory.getUser().id, val);
 
         /**
          * add in 2018-03-30

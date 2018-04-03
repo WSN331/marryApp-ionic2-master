@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
-import {Storage} from "@ionic/storage";
 
 import { MyHttp } from '../../util/MyHttp';
 import { Memory } from '../../util/Memory'
+import {MyStorage} from "../../util/MyStorage";
 
 import {TabsPage} from "../tabs/tabs";
 import {ForgetPage} from "../forget/forget";
@@ -31,7 +31,7 @@ export class LoginPage {
 
   constructor(public navCtrl: NavController, private myHttp : MyHttp,
               public alertCtrl: AlertController, public memory: Memory,
-              public storage:Storage) {
+              public myStorage:MyStorage) {
   }
 
   /**
@@ -86,9 +86,9 @@ export class LoginPage {
         }else{
           console.log("在登录的时候显示db为空")
         }*/
-        this.storage.set("account",this.loginForm.account);
-        this.storage.set("password",this.loginForm.password);
-        this.storage.set("user",data.user);
+        this.myStorage.setAccount(this.loginForm.account);
+        this.myStorage.setPassword(this.loginForm.password);
+        this.myStorage.setUser(data.user);
 
         this.memory.setUser(data.user);
 

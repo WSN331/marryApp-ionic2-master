@@ -11,6 +11,7 @@ import { RegisterPage } from '../pages/register/register'
 import { TabsPage } from '../pages/tabs/tabs';
 import { HomePage } from '../pages/home/home';
 import { ContactPage } from '../pages/contact/contact';
+import { BlackPage } from '../pages/black/black';
 import { AboutPage } from '../pages/about/about';
 import { HomeIntroducePage } from '../pages/home-introduce/home-introduce'
 import { UserIntroducePage } from '../pages/user-introduce/user-introduce'
@@ -36,6 +37,7 @@ import { InAppPurchase } from '@ionic-native/in-app-purchase';
 
 import { MyHttp } from '../util/MyHttp'
 import { Memory } from '../util/Memory'
+import { MyStorage } from '../util/MyStorage'
 import { ImgService } from '../util/ImgService'
 import {EveryPersonPage} from "../pages/every-person/every-person";
 import {SearchPage} from "../pages/search/search";
@@ -59,6 +61,7 @@ import {MatchmakerPage} from "../pages/matchmaker/matchmaker";
     StartPage,
     LoginPage,
     RegisterPage,
+    BlackPage,
     HomeIntroducePage,
     UserIntroducePage,
     UserDetailPage,
@@ -103,6 +106,7 @@ import {MatchmakerPage} from "../pages/matchmaker/matchmaker";
     HomeIntroducePage,
     UserIntroducePage,
     UserDetailPage,
+    BlackPage,
     UserDetail1Page,
     UserDetail2Page,
     EveryPersonPage,
@@ -127,6 +131,7 @@ import {MatchmakerPage} from "../pages/matchmaker/matchmaker";
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     MyHttp,
     Memory,
+    MyStorage,
     ImgService,
     CalculateService,
     CommunicateService,

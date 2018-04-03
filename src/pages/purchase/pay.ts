@@ -1,13 +1,13 @@
 import {Component} from "@angular/core";
 
 import {AlertController, NavController, Platform} from "ionic-angular";
-import {Storage} from '@ionic/storage'
 import { InAppPurchase } from '@ionic-native/in-app-purchase';
 import { Buffer } from 'buffer';
 import {LoadingController, Events} from 'ionic-angular';
 
 import {MyHttp} from "../../util/MyHttp";
 import {Memory} from "../../util/Memory";
+import {MyStorage} from "../../util/MyStorage";
 import {ImgService} from "../../util/ImgService";
 import {CalculateService} from "../../util/CalculateService"
 
@@ -21,7 +21,7 @@ declare var AliPay:any;
 export class PayPage{
 
   constructor(public navCtrl: NavController,private myHttp:MyHttp, public alertCtrl: AlertController,
-              public memory:Memory,public imgService: ImgService,public storage:Storage,
+              public memory:Memory,public imgService: ImgService,public myStorage:MyStorage,
               public calculate : CalculateService, private iap: InAppPurchase, public platform: Platform,
               public loadingCtrl:LoadingController, public events:Events){
     this.getUserMsg();
@@ -149,11 +149,11 @@ export class PayPage{
       console.log(data)
       this.memory.setUser(data.baseInfo);
     });*/
-    this.storage.get('account').then((val)=>{
+    this.myStorage.getAccount().then((val)=>{
       if(val!=null){
         console.log(val)
         this.loginInfo.account = val;
-        this.storage.get('password').then((val)=>{
+        this.myStorage.getPassword().then((val)=>{
           if(val!=null){
             console.log(val)
             this.loginInfo.password = val;
@@ -167,7 +167,7 @@ export class PayPage{
               } else {
                 console.log(data.user)
 
-                this.storage.set("user",data.user);
+                this.myStorage.setUser(data.user);
                 this.memory.setUser(data.user);
               }
             })

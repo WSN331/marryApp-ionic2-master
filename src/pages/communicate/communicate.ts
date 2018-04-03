@@ -10,11 +10,11 @@ import {ImgService} from "../../util/ImgService";
 import {HomeIntroducePage} from '../../pages/home-introduce/home-introduce'
 
 @Component({
-  selector:'page-communicate',
-  templateUrl:'communicate.html'
+  selector: 'page-communicate',
+  templateUrl: 'communicate.html'
 })
 
-export class CommunicatePage{
+export class CommunicatePage {
   //实时通信
   public realTime;
   //登录用户
@@ -22,29 +22,31 @@ export class CommunicatePage{
   //通话用户
   public otherSelf;
   //登录用户的信息
-  public mySelfMsg={};
+  public mySelfMsg = {};
   //通话用户的信息
-  public otherSelfMsg={};
+  public otherSelfMsg = {};
   //需要发送的信息
   public realSend;
   public sendText;
   //正在交谈的对话
   public conversation = null;
   //存储发送的信息
-  public MsgList:any=[];
+  public MsgList:any = [];
   //存储接收的信息
   public RsgList:any = [];
   //接收所有信息
   public subMsgList:any = [];
 
-  constructor(public navCtrl:NavController,public navParams:NavParams,public memory:Memory,
-              public events: Events,public alertCtrl:AlertController,private myHttp:MyHttp,
-              public imgService: ImgService){
+  public timer;
+
+  constructor(public navCtrl:NavController, public navParams:NavParams, public memory:Memory,
+              public events:Events, public alertCtrl:AlertController, private myHttp:MyHttp,
+              public imgService:ImgService) {
     this.initAVcom();
     //得到最近20条聊天记录
     this.receiveMessageList();
     //得到在线消息
-    this.receiveMessage((msg,conversation)=> {
+    this.receiveMessage((msg, conversation)=> {
       this.subMsgList.push(msg);
       //及时更新页面
       this.ngFresh();
@@ -53,7 +55,7 @@ export class CommunicatePage{
     this.ngFresh();
   }
 
-  goToUserPage () {
+  goToUserPage() {
     console.log(this.otherSelf)
     this.navCtrl.push(HomeIntroducePage, {otherUserId: this.otherSelf})
   }
@@ -61,21 +63,20 @@ export class CommunicatePage{
   /**
    * 界面刷新
    */
-  ngFresh(){
+  ngFresh() {
     //设置一个定时器，每秒刷新该界面
-    this.timer = setInterval(()=>{
+    this.timer = setInterval(()=> {
       this.gotoBottom();
       console.log("1");
-    },1000);
+    }, 1000);
   }
 
-  public timer;
-  ngOnDestroy(){
+  ngOnDestroy() {
     // 当前聊天的对话收到了消息立即标记为已读
-    if(this.conversation!=null){
-/*      this.conversation.on('message', ()=>{
-        this.conversation.read().catch(console.error.bind(console));
-      });*/
+    if (this.conversation != null) {
+      /*      this.conversation.on('message', ()=>{
+       this.conversation.read().catch(console.error.bind(console));
+       });*/
       //更新之前的页面
       this.events.publish("e-people");
     }
@@ -83,9 +84,9 @@ export class CommunicatePage{
 
 
   //聊天窗口变换
-  gotoBottom(){
+  gotoBottom() {
     let div = document.getElementById('first');
-    if(div!=null){
+    if (div != null) {
       div.scrollTop = div.scrollHeight;
     }
     clearInterval(this.timer);
@@ -95,18 +96,18 @@ export class CommunicatePage{
    * 初始化
    */
   // private myInfo;
-  initAVcom(){
+  initAVcom() {
     this.realTime = this.memory.getTiming();
     this.mySelf = this.memory.getUser().id;
     this.otherSelf = this.navParams.get('person');
     //获取自己的信息
-    this.getOtherPersonMsg(this.mySelf,(baseInfo)=>{
-      console.log(baseInfo.nickName+"自己的信息BaseInfo");
+    this.getOtherPersonMsg(this.mySelf, (baseInfo)=> {
+      console.log(baseInfo.nickName + "自己的信息BaseInfo");
       this.mySelfMsg = baseInfo;
     });
     //获取他人的信息
-    this.getOtherPersonMsg(this.otherSelf,(baseInfo)=>{
-      console.log(baseInfo.nickName+"别人的信息BaseInfo");
+    this.getOtherPersonMsg(this.otherSelf, (baseInfo)=> {
+      console.log(baseInfo.nickName + "别人的信息BaseInfo");
       this.otherSelfMsg = baseInfo;
     })
   }
@@ -114,30 +115,30 @@ export class CommunicatePage{
   /**
    * 发送信息
    */
-  sendMessage(){
+  sendMessage() {
     // 用自己的id作为 clientId，获取 IMClient 对象实例
-    if(this.sendText!=null && this.sendText.toString().trim()!=null){
+    if (this.sendText != null && this.sendText.toString().trim() != null) {
       this.realSend = this.sendText;
 
       let msg = new AV.TextMessage(this.realSend);
-      msg.from = this.mySelf;
+      msg["from"] = this.mySelf;
 
       this.subMsgList.push(msg);
 
       this.ngFresh();
 
-      this.realTime.createIMClient(this.mySelf+'').then((my)=>{
+      this.realTime.createIMClient(this.mySelf + '').then((my)=> {
         // 创建与Jerry之间的对话
         return my.createConversation({
-          members: [this.otherSelf+''],
-          name: this.mySelf+'&'+this.otherSelf,
-          unique:true,
+          members: [this.otherSelf + ''],
+          name: this.mySelf + '&' + this.otherSelf,
+          unique: true,
         })
-      }).then((conversation)=>{
+      }).then((conversation)=> {
         // 发送消息
         return conversation.send(new AV.TextMessage(this.realSend));
-      }).then((message) =>{
-        console.log(this.mySelf+'&'+this.otherSelf, '发送成功！');
+      }).then((message) => {
+        console.log(this.mySelf + '&' + this.otherSelf, '发送成功！');
       }).catch(console.error);
 
       this.sendText = null;
@@ -147,11 +148,11 @@ export class CommunicatePage{
   /**
    * 读取最近聊天记录
    */
-  receiveMessageList(){
+  receiveMessageList() {
     this.conversation = this.navParams.get('talkmsg');
 
-    console.log(this.conversation+"最近的聊天记录");
-    if(this.conversation!=null){
+    console.log(this.conversation + "最近的聊天记录");
+    if (this.conversation != null) {
       //读取最近20条消息
       this.getCloudMsgread(this.conversation);
 
@@ -159,20 +160,20 @@ export class CommunicatePage{
       this.conversation.read().then((conversation)=> {
         console.log('对话已标记为已读');
       }).catch(console.error.bind(console));
-        clearInterval(this.timer);
+      clearInterval(this.timer);
     }
   }
 
   /**
    * 上线后接收信息
    */
-  receiveMessage(callBack:Function){
+  receiveMessage(callBack:Function) {
     // Jerry 登录
-    this.realTime.createIMClient(this.mySelf+'').then((my)=> {
+    this.realTime.createIMClient(this.mySelf + '').then((my)=> {
       //在线实时通信
       my.on('message', (message, conversation)=> {
-        console.log('在线通信消息' + message.text+'--'+message.type);
-        callBack(message,conversation);
+        console.log('在线通信消息' + message.text + '--' + message.type);
+        callBack(message, conversation);
       });
     }).catch(console.error);
   }
@@ -180,12 +181,12 @@ export class CommunicatePage{
   /**
    * 获取聊天记录(已读)
    */
-  getCloudMsgread(conversation){
+  getCloudMsgread(conversation) {
     conversation.queryMessages({
       limit: 20, // limit 取值范围 1~1000，默认 20
-    }).then((messages)=>{
+    }).then((messages)=> {
       // 获取消息
-      for(let msg of messages){
+      for (let msg of messages) {
         console.log(msg.from);
         this.subMsgList.push(msg);
       }
@@ -197,7 +198,7 @@ export class CommunicatePage{
   /**
    * 发送图片消息
    */
-  sendImgMsg(){
+  sendImgMsg() {
     this.alertCtrl.create({
       title: "消息",
       subTitle: "神秘功能敬请期待！",
@@ -208,7 +209,7 @@ export class CommunicatePage{
   /**
    * 获取信息
    */
-  getOtherPersonMsg(otherUserId,callBack:Function) {
+  getOtherPersonMsg(otherUserId, callBack:Function) {
     this.myHttp.post(MyHttp.URL_USER_INTRODUCE, {
       userId: this.mySelf,
       otherUserId: otherUserId
@@ -223,7 +224,7 @@ export class CommunicatePage{
   /**
    * 返回
    */
-  back(){
+  back() {
     this.navCtrl.pop();
   }
 

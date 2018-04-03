@@ -4,8 +4,8 @@
 import {ChangeDetectorRef, Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
-import {Storage} from "@ionic/storage";
 
+import { MyStorage } from '../../util/MyStorage';
 import { MyHttp } from '../../util/MyHttp';
 import {Memory} from "../../util/Memory";
 import {TabsPage} from "../tabs/tabs";
@@ -46,7 +46,7 @@ export class RegisterPage {
 
   constructor(public navCtrl:NavController, private myHttp:MyHttp,
               public alertCtrl:AlertController,public memory: Memory,
-              public storage:Storage, public changeDetectorRef:ChangeDetectorRef) {
+              public myStorage:MyStorage, public changeDetectorRef:ChangeDetectorRef) {
   }
 
   ngReFresh(){
@@ -364,8 +364,8 @@ export class RegisterPage {
                 }else{
                   console.log("在登录的时候显示db为空")
                 }*/
-        this.storage.set("account",loginForm.account);
-        this.storage.set("password",loginForm.password);
+        this.myStorage.setAccount(loginForm.account);
+        this.myStorage.setPassword(loginForm.password);
         this.memory.setUser(data.user);
         this.navCtrl.push(TabsPage);
       }

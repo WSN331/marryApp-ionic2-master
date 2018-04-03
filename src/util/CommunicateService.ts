@@ -25,14 +25,14 @@ export class CommunicateService{
       this.realTiming = new this.realTime({
         appId: 'EBxBJcMjbxzDsIiRPTUzfCNY-gzGzoHsz',
         appKey: 'abhs8KVq3rqPpj9Lzubgi9tk',
-        pushOfflineMessages: true,//推送离线消息
-        region: 'cn', //美国节点为 "us"
-      });
-      this.memory.setTiming(this.realTiming);
-    }else{
-      this.memory.setTiming(this.realTiming);
-    }
-  }
+  pushOfflineMessages: true,//推送离线消息
+  region: 'cn', //美国节点为 "us"
+});
+this.memory.setTiming(this.realTiming);
+}else{
+  this.memory.setTiming(this.realTiming);
+}
+}
 
 
 }
