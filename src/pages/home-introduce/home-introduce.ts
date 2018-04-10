@@ -9,9 +9,11 @@ import { MyHttp } from '../../util/MyHttp';
 import { Memory } from '../../util/Memory'
 import { ImgService } from '../../util/ImgService'
 import {CalculateService} from '../../util/CalculateService'
+
 import {CommunicatePage} from "../communicate/communicate";
 import {LargeImagePage} from "../large-image/large-image";
 import {PayPage} from "../purchase/pay";
+import {AddTipPage} from "../addTip/addTip";
 
 @Component({
   selector: 'page-homeIntroduce',
@@ -262,5 +264,11 @@ export class HomeIntroducePage {
 
       ]
     }).present();
+  }
+  
+  goToTip() {
+    this.navCtrl.push(AddTipPage, {
+      toUserId:this.navParams.get('otherUserId')
+    })
   }
 }

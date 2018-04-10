@@ -1,0 +1,34 @@
+<ion-header>
+  <div class="head">
+    <div class="head_back" (click)="back()">
+      <span></span>
+      <img src="assets/img/back.png"/>
+    </div>
+    <div class="head_title">
+      举报
+    </div>
+    <div class="line">
+    </div>
+  </div>
+</ion-header>
+
+<ion-content padding>
+  <div class="type_choose">
+    <ion-list radio-group>
+      <ion-item *ngFor="let type of typeList">
+        <ion-label>{{type}}</ion-label>
+        <!--<ion-radio value="{{type.id}}"></ion-radio>-->
+      </ion-item>
+    </ion-list>
+  </div>
+  <div contenteditable="true" class="content_edit" >
+
+  </div>
+  <div class="image_picker">
+    <p class="type_name">{{type.name}}</p>
+    <img  *ngFor="let item of base64; let i = index" [src]="imgService.safeImage(item)" (click)="deletePicture(i)" >
+    <img src="assets/img/btn_add_img.png"  (click)="addPicture()" >
+  </div>
+  <button class="subImg" ion-button full (click)="addTip()">提交</button>
+
+</ion-content>

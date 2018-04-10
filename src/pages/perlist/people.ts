@@ -58,7 +58,7 @@ export class PeoplePage {
       this.changeDetectorRef.detectChanges();
       this.getCommunicateList(2);
       console.log("1");
-      let commList = this.conversations
+      // let commList = this.conversations
       // console.log((commList))
       // console.log(JSON.stringify(commList))
       // TODO:this.myStorage.setCommunicateList(commList)

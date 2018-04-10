@@ -92,6 +92,11 @@ export class LoginPage {
 
         this.memory.setUser(data.user);
 
+
+        if (data.user.isBeTip == true) {
+          this.loginFailError("您的账号由于被举报，部分功能无法正常使用，若有疑问请联系邂逅大使！！！");
+        }
+
         this.navCtrl.push(TabsPage);
       }
     })

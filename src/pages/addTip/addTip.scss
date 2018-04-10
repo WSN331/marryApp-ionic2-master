@@ -1,0 +1,65 @@
+page-addTip {
+  /*标题*/
+  .head{
+    height: 50px;
+  }
+  .head_back{
+    position: absolute;
+    height:50px;
+    vertical-align: middle;
+  }
+  .head_back span{
+    width:0px;
+    height: 100%;
+    vertical-align: middle;
+    display: inline-block;
+  }
+  .head_back img{
+    width:25px;
+    vertical-align: middle;
+  }
+
+  .head_title {
+    font-size: 22px;
+    text-align: center;
+    line-height: 50px;
+    color: #ff975a;
+  }
+  .line{
+    height: 1px;
+    background-color:#eeeeee;
+  }
+
+  .type_name {
+    font-size: 26px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .image_picker img {
+    width: 50%;
+    margin-left: 25%;
+  }
+
+  .subImg{
+    margin-top:30px;
+    background-image: url('../assets/img/btn_background.png');
+    background-size:cover;
+    border-radius:15px;
+    color:#ffffff;
+  }
+  .subImg:active{
+    background-color:#ffaa00;
+    color:white;
+  }
+  .subImg:hover{
+    background-color:#ffaa00;
+    color:white;
+  }
+
+  .content_edit{
+    width: 100%;
+    hight: 200px;
+  }
+
+}

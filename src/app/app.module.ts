@@ -22,6 +22,7 @@ import { CredListPage } from '../pages/credList/credList'
 import { AddCredPage } from '../pages/addCred/addCred'
 import { AuthorInformationPage } from "../pages/authorInformation/authorInformation"
 import { ControlImagePage } from "../pages/control-image/control-image"
+import { AddTipPage } from "../pages/addTip/addTip"
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -79,7 +80,8 @@ import {MatchmakerPage} from "../pages/matchmaker/matchmaker";
     ForgetPage,
     ControlImagePage,
     LargeImagePage,
-    MatchmakerPage
+    MatchmakerPage,
+    AddTipPage
   ],
   imports: [
     BrowserModule,
@@ -121,7 +123,8 @@ import {MatchmakerPage} from "../pages/matchmaker/matchmaker";
     ForgetPage,
     ControlImagePage,
     LargeImagePage,
-    MatchmakerPage
+    MatchmakerPage,
+    AddTipPage
   ],
   providers: [
     StatusBar,
