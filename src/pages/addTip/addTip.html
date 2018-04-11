@@ -13,19 +13,16 @@
 </ion-header>
 
 <ion-content padding>
-  <div class="type_choose">
-    <ion-list radio-group>
-      <ion-item *ngFor="let type of typeList">
-        <ion-label>{{type}}</ion-label>
-        <!--<ion-radio value="{{type.id}}"></ion-radio>-->
-      </ion-item>
-    </ion-list>
-  </div>
-  <div contenteditable="true" class="content_edit" >
+  <ion-list radio-group  [(ngModel)]="typeId">
+    <ion-item *ngFor="let type of typeList" >
+      <ion-label>{{type.name}}</ion-label>
+      <ion-radio value="{{type.id}}"></ion-radio>
+    </ion-item>
+  </ion-list>
+  <textarea placeholder="输入原因" class="content_edit" [(ngModel)]="content">
 
-  </div>
+  </textarea>
   <div class="image_picker">
-    <p class="type_name">{{type.name}}</p>
     <img  *ngFor="let item of base64; let i = index" [src]="imgService.safeImage(item)" (click)="deletePicture(i)" >
     <img src="assets/img/btn_add_img.png"  (click)="addPicture()" >
   </div>

@@ -23,11 +23,11 @@ export class AddTipPage {
 
   private toUserId;
 
-  private typeId = 0;
+  private typeId;
 
   private typeList = [];
 
-  private content = "输入原因"
+  private content = ""
 
   constructor(public myHttp : MyHttp, public memory: Memory,
               public navParams: NavParams, public imgService:ImgService, public navCtrl: NavController,
@@ -47,6 +47,13 @@ export class AddTipPage {
    * 添加图片
    */
   addPicture() {
+    if (this.base64.length >= 4) {
+      this.alertCtrl.create({
+        title: "失败",
+        subTitle: "不能传那么多图片的啊后台小哥哥小姐姐会不高兴哒！！！",
+        buttons: ["关闭"]
+      }).present();
+    }
     this.imgService.chooseCamera((imageData) => {
       this.base64.push(imageData);
     })
