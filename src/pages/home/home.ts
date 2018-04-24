@@ -133,7 +133,7 @@ export class HomePage {
 
           console.log(this.searchInfo);
 
-          this.getUserList(this.searchInfo);
+          this.getUserList(this.searchInfo, true);
 /*          if (this.calculateService.isVip(this.memory.getUser().vipTime)) {
             //登录了，且是VIP
           }else{
@@ -149,15 +149,33 @@ export class HomePage {
   }
 
   /**
+   * 上拉加载
+   * @param infiniteScroll
+     */
+  doInfinite(infiniteScroll) {
+    console.log(this.showBtnGetMore)
+    if (this.showBtnGetMore) {
+      setTimeout(() => {
+        this.nextPage();
+
+        infiniteScroll.complete();
+      }, 500);
+    }
+  }
+
+  /**
    * 获取用户列表
    * @param searchInfo
      */
-  getUserList(searchInfo:any) {
+  getUserList(searchInfo:any, notDialog?) {
     /**
      * 每次先获取一张
      */
     this.showBtnGetMore = false;
-    this.getUserListStep(searchInfo, 1, false);
+    if (notDialog == null) {
+      notDialog = false;
+    }
+    this.getUserListStep(searchInfo, 1, notDialog);
 
 
   }

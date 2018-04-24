@@ -156,12 +156,11 @@ export class MyHttp {
     if (options == null ) {
       options = {headers: new Headers()}
     }
-    console.log(unLoader)
+    // console.log(unLoader)
     let loader = this.loadingCtrl.create({
       // spinner: "bubbles",
       showBackdrop : false
     });
-    console.log(unLoader)
     if (!unLoader) {
       loader.present();
     }
