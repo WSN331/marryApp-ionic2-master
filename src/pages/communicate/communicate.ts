@@ -210,7 +210,7 @@ export class CommunicatePage {
    * 获取信息
    */
   getOtherPersonMsg(otherUserId, callBack:Function) {
-    this.myHttp.post(MyHttp.URL_USER_INTRODUCE, {
+    this.myHttp.post(MyHttp.URL_USER_BASE_INFO, {
       userId: this.mySelf,
       otherUserId: otherUserId
     }, (data) => {

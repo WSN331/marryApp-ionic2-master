@@ -163,11 +163,11 @@ export class PeoplePage {
 
     if (otherPerson != null) {
       console.log(otherPerson + "对话人的id");
-      this.getUserInfo(otherPerson, (baseInfo, detailInfo, isDefaultPic, relation)=> {
+      this.getUserInfo(otherPerson, (baseInfo, isDefaultPic, relation)=> {
 
         console.log(baseInfo.nickName + "用户姓名");
         conversation.baseInfo = baseInfo;
-        conversation.detailInfo = detailInfo;
+        // conversation.detailInfo = detailInfo;
         conversation.isDefaultPic = isDefaultPic;
         this.addConversation(conversation)
 
@@ -202,16 +202,16 @@ export class PeoplePage {
    */
   getUserInfo(otherUserId, callBack:Function) {
     console.log(this.memory.getUser().id + "-" + otherUserId + "对话")
-    this.myHttp.post(MyHttp.URL_USER_INTRODUCE, {
+    this.myHttp.post(MyHttp.URL_USER_BASE_INFO, {
       userId: this.memory.getUser().id,
       otherUserId: otherUserId
     }, (data) => {
       console.log(data)
       let baseInfo = data.baseInfo || {};
-      let detailInfo = data.detailInfo || {};
+      // let detailInfo = data.detailInfo || {};
       let isDefaultPic = data.isNotChangeIcon;
       let relation = data.relation;
-      callBack(baseInfo, detailInfo, isDefaultPic, relation);
+      callBack(baseInfo, isDefaultPic, relation);
     }, null, true)
   }
 

@@ -63,11 +63,24 @@ export class UserDetail1Page {
    */
   nextStep() {
     console.log(this.baseInfo)
-    this.navCtrl.push(UserDetail2Page, {
-      userId : this.userId,
-      baseInfo: this.baseInfo,
-      detailInfo: this.detailInfo
-    })
+    if (this.isTextInLength(this.baseInfo["hobby"]) && this.isTextInLength(this.detailInfo["chooseStandard"])
+      && this.isTextInLength(this.detailInfo["introduce"])) {
+      this.navCtrl.push(UserDetail2Page, {
+        userId : this.userId,
+        baseInfo: this.baseInfo,
+        detailInfo: this.detailInfo
+      })
+    } else {
+      this.alertCtrl.create({
+        title: "信息错误",
+        subTitle: "文本不要输入太长哦（五十个字以内就够啦）！！！",
+        buttons: ["关闭"]
+      }).present();
+    }
+  }
+
+  isTextInLength(text) {
+    return text.length < 50;
   }
 
   /**
