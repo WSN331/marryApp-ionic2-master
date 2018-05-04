@@ -45,7 +45,10 @@ export class PeoplePage {
    * 初始化界面
    */
   init() {
-    this.myStorage.getCommunicateList().then((commList) => {
+    this.mySelf = this.memory.getUser().id;
+
+
+    this.myStorage.getCommunicateList(this.mySelf).then((commList) => {
       if (commList != null) {
         this.conversations = commList
       }
@@ -89,7 +92,7 @@ export class PeoplePage {
     }
     console.log(this.conversations)
     console.log((commList))
-    this.myStorage.setCommunicateList(commList)
+    this.myStorage.setCommunicateList(this.mySelf, commList)
   }
 
   /**
