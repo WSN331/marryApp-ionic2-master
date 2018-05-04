@@ -18,6 +18,7 @@ export class ImgService {
     quality: 75,
     destinationType: this.camera.DestinationType.DATA_URL,
     encodingType: this.camera.EncodingType.JPEG,
+    sourceType:this.camera.PictureSourceType.CAMERA,
     mediaType: this.camera.MediaType.PICTURE,
     targetWidth: 500,
     targetHeight: 500,
@@ -29,10 +30,11 @@ export class ImgService {
    * 相册选择图片参数
    * @type {ImageResizerOptions}
      */
-  private chooseOptions = {
+  private libraryOptions = {
     quality: 75,
     destinationType: this.camera.DestinationType.DATA_URL,
     sourceType:this.camera.PictureSourceType.PHOTOLIBRARY,
+    mediaType: this.camera.MediaType.PICTURE,
     allowEdit: true,
     encodingType: this.camera.EncodingType.JPEG,
     targetWidth: 500,
@@ -60,13 +62,49 @@ export class ImgService {
    * 启用相册
    * @param success
      */
-  chooseCamera(success: Function) {
-    this.camera.getPicture(this.chooseOptions).then((imageData) => {
+  startPhotoLibrary(success: Function) {
+    this.camera.getPicture(this.libraryOptions).then((imageData) => {
       success(this.encodeAdd(imageData));
     }, (err) => {
       console.log(err);
       //this.failError("调用相机失败");
     });
+  }
+
+  chooseCamera (success: Function) {
+    let alert = this.alertCtrl.create({
+      title: 'Login',
+      inputs: [
+        {
+          type : 'radio',
+          label: '从相册获取',
+          value: '0',
+        },
+        {
+          type : 'radio',
+          label: '相机拍摄',
+          value: '1',
+        }
+      ],
+      buttons: [
+        {
+          text: '关闭',
+          role: 'cancel'
+        },
+        {
+          text: '确定',
+          handler: data => {
+           console.log(data);
+            if (data == 0) {
+              this.startPhotoLibrary(success);
+            } else if (data == 1) {
+              this.startCamera(success);
+            }
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
   /**

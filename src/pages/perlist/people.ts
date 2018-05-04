@@ -30,18 +30,20 @@ export class PeoplePage {
   //通话记录
   public conversations:any = [];
   public timer;
-  public comTalk;
 
   constructor(public navCtrl:NavController, public memory:Memory, public events:Events,
               public changeDetectorRef:ChangeDetectorRef, public myHttp:MyHttp,
               public imgService:ImgService, public calculateService:CalculateService,
               public alertCtrl:AlertController, public myStorage: MyStorage) {
-    // this.init()
+    this.init()
     this.ngReFresh();
     this.events.subscribe('e-people', () => {
     });
   }
 
+  /**
+   * 初始化界面
+   */
   init() {
     this.myStorage.getCommunicateList().then((commList) => {
       if (commList != null) {
@@ -51,6 +53,9 @@ export class PeoplePage {
 
   }
 
+  /**
+   * 刷新
+   */
   ngReFresh() {
     this.getCommunicateList();
     //设置一个定时器，每秒刷新该界面
@@ -58,13 +63,38 @@ export class PeoplePage {
       this.changeDetectorRef.detectChanges();
       this.getCommunicateList(2);
       console.log("1");
-      // let commList = this.conversations
-      // console.log((commList))
-      // console.log(JSON.stringify(commList))
-      // TODO:this.myStorage.setCommunicateList(commList)
+      this.saveConversations();
+
     }, 2000);
   }
 
+  /**
+   * 存储聊天记录
+   */
+  saveConversations() {
+    let commList = [];
+    for (let conversation of this.conversations) {
+      let comm = {
+        baseInfo: conversation.baseInfo,
+        isDefaultPic: conversation.isDefaultPic,
+        show: conversation.show,
+        talk: {
+          // unreadMessagesCount: conversation.talk.unreadMessagesCount,
+          // members : conversation.talk.members,
+          // queryMessages : conversation.talk.queryMessages,
+          // read : conversation.talk.read
+        }
+      };
+      commList[commList.length] = comm;
+    }
+    console.log(this.conversations)
+    console.log((commList))
+    this.myStorage.setCommunicateList(commList)
+  }
+
+  /**
+   * 退出页面
+   */
   ngOnDestroy() {
     if (this.timer) {
       this.changeDetectorRef.detach();
@@ -106,7 +136,6 @@ export class PeoplePage {
   goToTalk(talk:any) {
     //如果当前用户是vip用户则可以开始聊天
     if (this.isVipOrNot()) {
-      this.comTalk = talk;
       //通话对象
       let personId = null;
       let list = talk.members.toString().split(',');
@@ -147,7 +176,6 @@ export class PeoplePage {
       isDefaultPic: '',
       show: false
     }
-
 
     conversation.talk = talk;
 
