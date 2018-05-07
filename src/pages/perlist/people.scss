@@ -28,14 +28,23 @@ page-peoples{
     width:60px;
     height:60px;
   }
+
+  .image_show img {
+    float: left;
+  }
   .circles{
     width:20px;
     height:20px;
     border-radius:50px;
     display: inline-block;
     position: absolute;
-    margin-top:-70px;
-    margin-left:40px;
+    /**
+    android
+     */
+    //margin-top:-70px;
+    //margin-left:40px;
+    margin-top:0px;
+    margin-left:-10px;
     background: #ff0000;
   }
   .describe{

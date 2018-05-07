@@ -36,10 +36,10 @@ export class ImgService {
     sourceType:this.camera.PictureSourceType.PHOTOLIBRARY,
     mediaType: this.camera.MediaType.PICTURE,
     allowEdit: true,
-    encodingType: this.camera.EncodingType.PNG,
+    encodingType: this.camera.EncodingType.JPEG,
     targetWidth: 500,
     targetHeight: 500,
-    saveToPhotoAlbum: true
+    saveToPhotoAlbum: false
   }
 
   constructor(private camera: Camera, public alertCtrl: AlertController, private sanitize:DomSanitizer, public platform: Platform) {
@@ -118,6 +118,8 @@ export class ImgService {
                     }
                   ]
                 }).present();
+              } else {
+                this.startPhotoLibrary(success);
               }
             } else if (data == 1) {
               this.startCamera(success);
