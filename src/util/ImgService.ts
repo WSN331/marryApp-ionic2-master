@@ -51,7 +51,7 @@ export class ImgService {
      */
   startCamera(success: Function) {
     this.camera.getPicture(this.cameraOptions).then((imageData) => {
-      // success(this.encodeAdd(imageData));
+      success(this.encodeAdd(imageData));
     }, (err) => {
       console.log(err);
       //this.failError("调用相机失败");
