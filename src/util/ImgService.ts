@@ -3,7 +3,7 @@
  */
 import {Injectable} from '@angular/core';
 import {Camera, CameraOptions} from '@ionic-native/camera';
-import { AlertController } from 'ionic-angular';
+import { AlertController, Platform} from 'ionic-angular';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 
@@ -36,13 +36,13 @@ export class ImgService {
     sourceType:this.camera.PictureSourceType.PHOTOLIBRARY,
     mediaType: this.camera.MediaType.PICTURE,
     allowEdit: true,
-    encodingType: this.camera.EncodingType.JPEG,
+    encodingType: this.camera.EncodingType.PNG,
     targetWidth: 500,
     targetHeight: 500,
-    saveToPhotoAlbum: false
+    saveToPhotoAlbum: true
   }
 
-  constructor(private camera: Camera, public alertCtrl: AlertController, private sanitize:DomSanitizer) {
+  constructor(private camera: Camera, public alertCtrl: AlertController, private sanitize:DomSanitizer, public platform: Platform) {
   }
 
   /**
@@ -51,7 +51,7 @@ export class ImgService {
      */
   startCamera(success: Function) {
     this.camera.getPicture(this.cameraOptions).then((imageData) => {
-      success(this.encodeAdd(imageData));
+      // success(this.encodeAdd(imageData));
     }, (err) => {
       console.log(err);
       //this.failError("调用相机失败");
@@ -64,6 +64,7 @@ export class ImgService {
      */
   startPhotoLibrary(success: Function) {
     this.camera.getPicture(this.libraryOptions).then((imageData) => {
+      // alert(imageData);
       success(this.encodeAdd(imageData));
     }, (err) => {
       console.log(err);
@@ -71,9 +72,13 @@ export class ImgService {
     });
   }
 
+  /**
+   * 选择相册
+   * @param success
+     */
   chooseCamera (success: Function) {
     let alert = this.alertCtrl.create({
-      title: 'Login',
+      title: '请选择图片来源',
       inputs: [
         {
           type : 'radio',
@@ -96,7 +101,24 @@ export class ImgService {
           handler: data => {
            console.log(data);
             if (data == 0) {
-              this.startPhotoLibrary(success);
+              if (this.platform.is("android")) {
+                this.alertCtrl.create({
+                  title: '友情提示',
+                  subTitle : '若您的设备是小米（红米）4及以下、魅族等，请使用相机拍摄，若从相册选择可能造成图片拉伸，我们会尽快解决这个问题',
+                  buttons : [
+                    {
+                      text: '关闭',
+                      role: 'cancel'
+                    },
+                    {
+                      text: '继续访问相册',
+                      handler: data => {
+                        this.startPhotoLibrary(success);
+                      }
+                    }
+                  ]
+                }).present();
+              }
             } else if (data == 1) {
               this.startCamera(success);
             }
