@@ -46,6 +46,8 @@ export class MyHttp {
   static URL_USER_SCREEN_LIST = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/home/screenList";
   // 用户详情
   static URL_USER_INTRODUCE = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/home/introduce";
+  // 用户基本信息
+  static URL_USER_BASE_INFO = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/home/baseInfo";
   // 获取全部图片
   static URL_GET_ALL_PICTURE = "http://" + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/home/getAllPicture";
   // 获取全部缩略图
@@ -156,12 +158,11 @@ export class MyHttp {
     if (options == null ) {
       options = {headers: new Headers()}
     }
-    console.log(unLoader)
+    // console.log(unLoader)
     let loader = this.loadingCtrl.create({
       // spinner: "bubbles",
       showBackdrop : false
     });
-    console.log(unLoader)
     if (!unLoader) {
       loader.present();
     }

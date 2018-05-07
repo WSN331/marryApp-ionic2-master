@@ -44,16 +44,16 @@ export class MyStorage {
     this.storage.set("password", password);
   }
 
-  public setCommunicateList(communicateList) {
-    this.storage.set("communicateList", communicateList);
+  public setCommunicateList(userId, communicateList) {
+    this.storage.set("communicateList:" + userId, communicateList);
   }
 
-  public getCommunicateList() {
-    return this.storage.get("communicateList")
+  public getCommunicateList(userId) {
+    return this.storage.get("communicateList:" + userId)
   }
 
   addConversation(conversation) {
-    
-    
+
+
   }
 }

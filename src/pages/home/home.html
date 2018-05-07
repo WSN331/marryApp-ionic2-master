@@ -92,7 +92,21 @@
       </div>
     </div>
 
-    <div *ngIf="showBtnGetMore" class="next_page" (click)="nextPage()">显示更多</div>
+    <!--<div *ngIf="showBtnGetMore" class="next_page" (click)="nextPage()">上拉显示更多</div>-->
+
   </div>
+
+  <ion-infinite-scroll *ngIf="showBtnGetMore" (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content
+      loadingText="上拉显示更多">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+  <ion-infinite-scroll *ngIf="!showBtnGetMore">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="正在加载...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
 </ion-content>

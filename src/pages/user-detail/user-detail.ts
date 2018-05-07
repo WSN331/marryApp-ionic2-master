@@ -73,16 +73,31 @@ export class UserDetailPage {
     })
   }
 
+  isInteger(obj) {
+    console.log(obj)
+    return Math.floor(obj) == obj
+  }
+
   /**
    * 下一步
    */
   nextStep() {
     console.log(this.baseInfo)
-    this.navCtrl.push(UserDetail1Page, {
-      userId : this.userId,
-      baseInfo: this.baseInfo,
-      detailInfo: this.detailInfo
-    })
+    console.log(this.detailInfo)
+    if (this.isInteger(this.detailInfo["height"]) && this.isInteger(this.detailInfo["weight"])) {
+      this.navCtrl.push(UserDetail1Page, {
+        userId : this.userId,
+        baseInfo: this.baseInfo,
+        detailInfo: this.detailInfo
+      })
+    } else {
+      this.alertCtrl.create({
+        title: "信息错误",
+        subTitle: "身高体重输个整数就行啦，我们不要求那么精确哦！！！",
+        buttons: ["关闭"]
+      }).present();
+    }
+
   }
 
   /**

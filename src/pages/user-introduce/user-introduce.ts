@@ -80,6 +80,7 @@ export class UserIntroducePage {
 
   ionViewDidEnter() {
     this.getUserInfo(null, true);
+    this.initCred();
   }
 
   /**

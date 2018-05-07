@@ -140,8 +140,6 @@ export class PayPage{
 
   //重新设置user信息
   setNewUser(){
-
-
 /*    this.myHttp.post(MyHttp.URL_USER_INTRODUCE, {
       userId: this.memory.getUser().id,
       otherUserId: this.memory.getUser().id
