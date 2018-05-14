@@ -52,8 +52,33 @@ export class MyStorage {
     return this.storage.get("communicateList:" + userId)
   }
 
-  addConversation(conversation) {
-
-
+  public setBeLikeList(userId, list) {
+    this.storage.set("beLikeList:" + userId, list);
   }
+
+  public getBeLikeList(userId) {
+    return this.storage.get("beLikeList:" + userId)
+  }
+
+  public setLikeList(userId, list) {
+    this.storage.set("likeList:" + userId, list);
+  }
+
+  public getLikeList(userId) {
+    return this.storage.get("likeList:" + userId)
+  }
+
+  public setHateList(userId, list) {
+    this.storage.set("hateList:" + userId, list);
+  }
+
+  public getHateList(userId) {
+    return this.storage.get("hateList:" + userId)
+  }
+
+
+  addConversation(conversation) {
+  }
+
+
 }

@@ -49,6 +49,8 @@ export class SearchPage{
 
   //普通搜索
   searchCom(){
+    this.searchInfo.newDistrict = "";
+    this.searchInfo.oldDistrict = "";
     this.events.publish('e-home-search', this.searchInfo,true);
     this.navCtrl.pop();
   }
@@ -84,15 +86,12 @@ export class SearchPage{
     }
   }
 
-
-
   /**
    * 退出
    */
   back(){
     this.navCtrl.pop();
   }
-
 
   /**
    * 判断是否为空

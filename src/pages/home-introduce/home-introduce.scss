@@ -1,10 +1,11 @@
 page-homeIntroduce{
   .back_icon {
   }
+
   .main_back{
     width: 30px;
     height: 30px;
-    position:absolute;
+    position: fixed;
     left:3%;
     top:3%;
     padding: 5px;

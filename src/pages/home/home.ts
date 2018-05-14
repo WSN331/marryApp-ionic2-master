@@ -40,6 +40,8 @@ export class HomePage {
 
   private showBtnGetMore = false;
 
+  // private isLoading=false;
+
   /*
   * 身高，年龄，收入，学历，当前所在地，故乡
   * */
@@ -213,7 +215,7 @@ export class HomePage {
             }
           } else if (data.listResult === '1'){
             this.alertCtrl.create({
-              message: '没有更多用户啦',
+              message: '您一下子看的用户太多啦，歇会儿再来吧',
               buttons: [{
                 text: 'OK',
                 handler: ()=> {
