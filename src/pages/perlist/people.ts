@@ -46,8 +46,6 @@ export class PeoplePage {
    */
   init() {
     this.mySelf = this.memory.getUser().id;
-
-
     this.myStorage.getCommunicateList(this.mySelf).then((commList) => {
       if (commList != null) {
         this.conversations = commList
@@ -82,18 +80,13 @@ export class PeoplePage {
         isDefaultPic: conversation.isDefaultPic,
         show: conversation.show,
         talk: {
-          // unreadMessagesCount: conversation.talk.unreadMessagesCount,
-          // members : conversation.talk.members,
-          // queryMessages : conversation.talk.queryMessages,
-          // read : conversation.talk.read
         }
       };
       commList[commList.length] = comm;
     }
-    console.log(this.conversations)
-    console.log((commList))
     this.myStorage.setCommunicateList(this.mySelf, commList)
   }
+
 
   /**
    * 退出页面
@@ -125,10 +118,12 @@ export class PeoplePage {
       }
 
       myQuery.limit(100).containsMembers([this.mySelf + '']).find().then((conversations)=> {
-        conversations.map((conversation)=> {
-          console.log(conversation.lastMessageAt.toString(), conversation.members);
-          this.showMember(conversation);
-        });
+        for (var i = conversations.length-1; i>=0; i--) {
+          this.showMember(conversations[i]);
+        }
+        // conversations.map((conversation)=> {
+        //   this.showMember(conversation);
+        // });
       }).catch(console.error.bind(console));
     }).catch(console.error);
   }
@@ -182,7 +177,6 @@ export class PeoplePage {
 
     conversation.talk = talk;
 
-
     //对话人账户
     let otherPerson = null;
     let comPeople = talk.members.toString().split(',');
@@ -194,38 +188,39 @@ export class PeoplePage {
 
     if (otherPerson != null) {
       console.log(otherPerson + "对话人的id");
+      this.addConversation(otherPerson, conversation);
       this.getUserInfo(otherPerson, (baseInfo, isDefaultPic, relation)=> {
 
         console.log(baseInfo.nickName + "用户姓名");
         conversation.baseInfo = baseInfo;
-        // conversation.detailInfo = detailInfo;
         conversation.isDefaultPic = isDefaultPic;
-        this.addConversation(conversation)
 
         if (relation != "2") {
           conversation.show = true;
         }
-
         this.memory.setConversion(this.conversations);
-
-        /*        conversation.baseInfo = baseInfo;
-         conversation.talk = talk;
-         this.conversations.push(conversation);*/
       })
     }
   }
 
-  addConversation(conversation) {
+  /**
+   * 将聊天添加到列表中
+   * @param personId
+   * @param conversation
+     */
+  addConversation(personId, conversation) {
     for (let i = 0; i < this.conversations.length; i++) {
       let item = this.conversations[i];
-      if (item["baseInfo"] != null && item["baseInfo"]["id"] == conversation["baseInfo"]["id"]) {
+      if (item["baseInfo"] != null && item["baseInfo"]["id"] == personId) {
         for (let j = i; j < this.conversations.length - 1; j++) {
           this.conversations[j] = this.conversations[j+1];
         }
         this.conversations.pop();
       }
     }
-    this.conversations.push(conversation)
+    var conList = [];
+    conList.push(conversation);
+    this.conversations = conList.concat(this.conversations)
   }
 
   /**
@@ -291,8 +286,9 @@ export class PeoplePage {
     }).present();
   }
 
-
-  //心动记录
+  /**
+   * 心动记录
+   */
   goToContact() {
     if (!this.isCredMain()) {
       this.goToCred();
@@ -326,10 +322,8 @@ export class PeoplePage {
     }
   }
 
-
-  //判断是否验证
   /**
-   *
+   * 判断是否验证
    * @returns {boolean}
    */
   isCredMain() {

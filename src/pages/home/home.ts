@@ -98,6 +98,7 @@ export class HomePage {
   }
 
   doRefresh(refresher) {
+    console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
     if(this.isSearch){
       //刷新后重新显示
       this.searchInfo = {
@@ -132,16 +133,7 @@ export class HomePage {
         if(this.isCredMain()){
           //通过认证就可以
           this.pageIndex ++;
-
-          console.log(this.searchInfo);
-
           this.getUserList(this.searchInfo, true);
-/*          if (this.calculateService.isVip(this.memory.getUser().vipTime)) {
-            //登录了，且是VIP
-          }else{
-            //登录了，不是VIP
-            this.goToBuyVip()
-          }*/
         }else{
           //没有通过认证
           this.goToCred();
@@ -170,6 +162,15 @@ export class HomePage {
    * @param searchInfo
      */
   getUserList(searchInfo:any, notDialog?) {
+
+    //提示用户有未读消息
+    let isMsg = this.memory.getMsg();
+    console.log(isMsg)
+    if(isMsg){
+      //TODO:
+      this.searchPub("又有人找您啦~");
+    }
+
     /**
      * 每次先获取一张
      */
@@ -226,11 +227,6 @@ export class HomePage {
 
           }
 
-          //提示用户有未读消息
-          let isMsg = this.memory.getMsg();
-          if(isMsg){
-            this.searchPub("又有人找您啦~");
-          }
         }, null, notDialog);
       }
     }else{

@@ -12,7 +12,7 @@ export class MyHttp {
    * 服务器的IP
    * @type {string}
    */
-  static IP = "xiehousinian.com"
+  static IP = "xiehouapp.com"
   // static IP = "localhost"
   // static IP = "192.168.2.232"
 

@@ -49,57 +49,52 @@ page-communicate{
     background: #eeeeee;
   }
 
-  /*聊天:发送消息*/
-  .main_send{
-    width:60%;
-    margin-left:38%;
-    margin-right:2%;
-    margin-top:10%;
+  .main {
+    width:100%;
+    margin:5% 2%;
   }
-  .send_picture{
-    width:30%;
+
+  .main .pic {
+    width:12%;
     border-radius: 50%;
     clear:both;
     overflow: hidden;
     display: inline-block;
-    float: right;
   }
-  .sendMs{
+
+  .main .msg {
     color: white;
-    background: dodgerblue;
-    width: 50%;
+    max-width: 60%;
     border-radius: 10%;
     padding: 10px;
     margin-top:10px;
     display: inline-block;
-    margin-left:15%;
   }
 
+  /*聊天:发送消息*/
+  .main_send{
+    float: right;
+  }
+  .send_picture{
+    float: right;
+  }
+  .sendMs{
+    float: right;
+    background: dodgerblue;
+    margin-right:5%;
+  }
 
   /*聊天:接收消息*/
   .main_receive{
-    width:60%;
-    margin-top:10%;
-    margin-left:2%;
+    float: left;
   }
   .receive_picture{
-    width:30%;
-    border-radius: 50%;
-    clear:both;
-    overflow: hidden;
-    display: inline-block;
+    width:15%;
     float: left;
   }
   .receiveMs{
-    color: white;
     background: #ffaa00;
-    width: 50%;
-    border-radius:10%;
-    padding: 10px;
-    display: inline-block;
-    margin-top:10px;
     margin-left:5%;
   }
-
 
 }

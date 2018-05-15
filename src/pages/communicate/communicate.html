@@ -16,20 +16,20 @@
   <div class="messageShow">
     <div class="first" id="first">
       <ng-container *ngFor="let msg of subMsgList">
-        <div *ngIf="msg.from==this.mySelf" class="main_send">
-          <div class="send_picture">
+        <div *ngIf="msg.from==this.mySelf" class="main_send main">
+          <div class="send_picture pic">
             <img [src]="imgService.safeImage(mySelfMsg.picture)">
           </div>
-          <div class="sendMs">
+          <div class="sendMs msg">
             {{msg.text}}
           </div>
         </div>
 
-        <div *ngIf="msg.from!=this.mySelf" class="main_receive">
-          <div class="receive_picture">
+        <div *ngIf="msg.from!=this.mySelf" class="main_receive main">
+          <div class="receive_picture pic">
             <img [src]="imgService.safeImage(otherSelfMsg.picture)" (click)="goToUserPage()">
           </div>
-          <div class="receiveMs">
+          <div class="receiveMs msg">
             {{msg.text}}
           </div>
         </div>
@@ -37,6 +37,7 @@
       </ng-container>
     </div>
   </div>
+
 
   <div class="textArea">
     <ion-item>
