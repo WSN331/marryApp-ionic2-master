@@ -76,6 +76,13 @@ export class MyStorage {
     return this.storage.get("hateList:" + userId)
   }
 
+  public setAccessToken(userId, token) {
+    this.storage.set("accessToken:" + userId, token);
+  }
+
+  public getAccessToken(userId) {
+    return this.storage.get("accessToken:" + userId);
+  }
 
   addConversation(conversation) {
   }

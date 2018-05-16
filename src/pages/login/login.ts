@@ -89,7 +89,7 @@ export class LoginPage {
         this.myStorage.setAccount(this.loginForm.account);
         this.myStorage.setPassword(this.loginForm.password);
         this.myStorage.setUser(data.user);
-
+        this.myStorage.setAccessToken(data.user['id'], data['accessToken']);
         this.memory.setUser(data.user);
 
 

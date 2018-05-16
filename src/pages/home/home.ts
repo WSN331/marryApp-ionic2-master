@@ -250,7 +250,7 @@ export class HomePage {
    *
    * @param userId
    */
-  getIntroduce(userId:any) {
+  getIntroduce(user:any) {
     if (!this.isLogin()) {
       //是否登录
       this.goToLogin();
@@ -258,7 +258,7 @@ export class HomePage {
       //是否通过认证
       this.goToCred();
     } else {
-      this.navCtrl.push(HomeIntroducePage, {otherUserId: userId})
+      this.navCtrl.push(HomeIntroducePage, {baseInfo: user})
     }
   }
 

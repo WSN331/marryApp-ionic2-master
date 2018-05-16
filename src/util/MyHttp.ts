@@ -3,7 +3,12 @@
  */
 import {Injectable} from '@angular/core';
 import {Http, RequestOptionsArgs, Headers} from '@angular/http';
+import {MyStorage} from "../util/MyStorage"
+import {Memory} from "../util/Memory"
 import {LoadingController} from 'ionic-angular';
+import { App, AlertController } from 'ionic-angular';
+import { StartPage } from '../pages/start/start'
+
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
@@ -120,8 +125,8 @@ export class MyHttp {
   static URL_ADD_TIP = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/tip/addTip";
   static URL_TIP_TYPE_LIST = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/tip/tipTypeList";
 
-  constructor (private http : Http, public loadingCtrl:LoadingController) {
-
+  constructor (private http : Http, public loadingCtrl:LoadingController, public myStorage : MyStorage,
+               public memory: Memory, public alertCtrl: AlertController, public app:App) {
   }
 
   loader = this.loadingCtrl.create({
@@ -173,14 +178,21 @@ export class MyHttp {
       loader.present();
     }
     options.headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    this.http.post(url, this.body(body), options).subscribe((data) => {
-      console.log(data)
-      loader.dismiss();
-      this.callBack(success, data);
-    }, (error) => {
-      console.log(error)
-      loader.dismiss();
-    });
+    this.myStorage.getAccessToken(this.memory.getUser().id).then((token) => {
+      if (token != null) {
+        body['ACCESS_TOKEN'] = token;
+      }
+      console.log(options)
+      this.http.post(url, this.body(body), options).subscribe((data) => {
+        console.log(data)
+        loader.dismiss();
+        this.callBack(success, data);
+      }, (error) => {
+        console.log(error)
+        loader.dismiss();
+      });
+    })
+
   }
 
 
@@ -202,11 +214,35 @@ export class MyHttp {
       if (body.result === 'error') {
         console.log("back error")
         console.log(body)
+        if (body.errorCode != null) {
+          this.alertCtrl.create({
+            title: body.errorCode,
+            subTitle: body.errorMessage,
+            buttons: [{
+              text: '关闭',
+              handler: data => {
+                if (body.errorCode == 1001) {
+                  /**
+                   * 如果是需要重新登录
+                   */
+                  this.myStorage.setAccount(null);
+                  this.myStorage.setPassword(null);
+                  this.app.getRootNav().setRoot(StartPage);
+                  this.myStorage.setUser(null);
+                  this.memory.setUser({});
+
+                }
+              }
+            }]
+          }).present();
+        }
       } else {
         success(body);
       }
     }
   }
+
+
 
 
 }

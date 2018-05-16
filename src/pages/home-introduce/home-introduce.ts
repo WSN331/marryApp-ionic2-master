@@ -80,9 +80,14 @@ export class HomeIntroducePage {
               public myHttp : MyHttp, public imgService:ImgService, public memory: Memory,
               public calculateService: CalculateService, public loadingCtrl:LoadingController
               ,public alertCtrl:AlertController) {
+    this.init();
     this.getUserInfo();
     this.getAllPicture();
     this.initCred();
+  }
+
+  init() {
+    this.baseInfo = this.navParams.get('baseInfo')
   }
 
   /**
@@ -113,7 +118,7 @@ export class HomeIntroducePage {
   getUserInfo(callBack?) {
     this.myHttp.post(MyHttp.URL_USER_INTRODUCE, {
       userId: this.memory.getUser().id,
-      otherUserId: this.navParams.get('otherUserId')
+      otherUserId: this.baseInfo['id']
     }, (data) => {
       console.log(data)
       this.baseInfo = data.baseInfo || {};
@@ -126,7 +131,7 @@ export class HomeIntroducePage {
       if (callBack !== null && typeof callBack === 'function') {
         callBack();
       }
-    })
+    }, null, true)
   }
 
   /**
@@ -135,11 +140,11 @@ export class HomeIntroducePage {
   getAllPicture() {
     this.myHttp.post(MyHttp.URL_GET_ALL_SMALL_PICTURE, {
       userId: this.memory.getUser().id,
-      otherUserId: this.navParams.get('otherUserId')
+      otherUserId: this.baseInfo['id']
     }, (data) => {
       console.log(data)
       this.allPictures = data.allIcon.concat(data.allPicture);
-    })
+    }, null, true)
   }
 
   /**
@@ -265,7 +270,7 @@ export class HomeIntroducePage {
       ]
     }).present();
   }
-  
+
   goToTip() {
     this.navCtrl.push(AddTipPage, {
       toUserId:this.navParams.get('otherUserId')
