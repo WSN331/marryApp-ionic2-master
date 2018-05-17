@@ -63,7 +63,7 @@
       <ion-list no-padding>
       <ion-item-sliding no-padding *ngFor="let user of likeList">
         <ion-item>
-          <div class="people"  (click)="getIntroduce(user.id)">
+          <div class="people"  (click)="getIntroduce(user)">
             <div class="people_picture">
               <img [src]="imgService.safeImage(user.picture)">
             </div>
