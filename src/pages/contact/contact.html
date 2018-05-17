@@ -31,7 +31,7 @@
   <div [ngSwitch]="select">
     <!--对我心动的-->
     <div *ngSwitchCase="'beLiked'">
-          <div class="people" *ngFor="let user of beLikeList" (click)="getIntroduce(user.id)">
+          <div class="people" *ngFor="let user of beLikeList" (click)="getIntroduce(user)">
             <div class="people_picture">
               <img [src]="imgService.safeImage(user.picture)"/>
             </div>

@@ -125,8 +125,8 @@ export class ContactPage {
    * 进去详细界面
    * @param userId
    */
-  getIntroduce(userId:any) {
-    this.navCtrl.push(HomeIntroducePage, {otherUserId: userId})
+  getIntroduce(user:any) {
+    this.navCtrl.push(HomeIntroducePage, {baseInfo: user})
   }
 
   /**

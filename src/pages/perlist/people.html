@@ -63,13 +63,13 @@
     <ion-item *ngIf="conTalk.isDefaultPic !== true && conTalk.show == true" class="item">
 
 
-      <div class="picture" item-start (click)="goToIntroduce(conTalk.baseInfo.id)">
+      <div class="picture" item-start (click)="goToIntroduce(conTalk.baseInfo)">
         <img [src]="imgService.safeImage(conTalk.baseInfo.picture)">
         <!--<div class="circle"></div>-->
         <div class="circle" *ngIf="conTalk.talk.unreadMessagesCount>0" >{{conTalk.talk.unreadMessagesCount}}</div>
       </div>
 
-      <div class="toTalk" (click)="goToTalk(conTalk.talk)">
+      <div class="toTalk" (click)="goToTalk(conTalk)">
         <h2 class="h2">{{conTalk.baseInfo.nickName}}</h2>
         <p>{{ calculateService.getAge(conTalk.baseInfo.birthday) }}岁<p>
         <p *ngIf="conTalk.baseInfo.hobby!=null && conTalk.baseInfo.hobby !=''">爱好：{{ conTalk.baseInfo.hobby}}</p>

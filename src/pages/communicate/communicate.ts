@@ -4,8 +4,8 @@ import {AlertController, Events, NavController, NavParams} from "ionic-angular";
 import * as AV from "leancloud-realtime"
 
 import {Memory} from "../../util/Memory";
-import {MyHttp} from "../../util/MyHttp";
 import {ImgService} from "../../util/ImgService";
+import {MyStorage} from "../../util/MyStorage";
 
 import {HomeIntroducePage} from '../../pages/home-introduce/home-introduce'
 
@@ -30,18 +30,14 @@ export class CommunicatePage {
   public sendText;
   //正在交谈的对话
   public conversation = null;
-  //存储发送的信息
-  public MsgList:any = [];
-  //存储接收的信息
-  public RsgList:any = [];
   //接收所有信息
   public subMsgList:any = [];
 
   public timer;
 
   constructor(public navCtrl:NavController, public navParams:NavParams, public memory:Memory,
-              public events:Events, public alertCtrl:AlertController, private myHttp:MyHttp,
-              public imgService:ImgService) {
+              public events:Events, public alertCtrl:AlertController,
+              public imgService:ImgService, public myStorage: MyStorage) {
     this.initAVcom();
     //得到最近20条聊天记录
     this.receiveMessageList();
@@ -56,8 +52,7 @@ export class CommunicatePage {
   }
 
   goToUserPage() {
-    console.log(this.otherSelf)
-    this.navCtrl.push(HomeIntroducePage, {otherUserId: this.otherSelf})
+    this.navCtrl.push(HomeIntroducePage, {baseInfo: this.otherSelfMsg})
   }
 
   /**
@@ -66,7 +61,8 @@ export class CommunicatePage {
   ngFresh() {
     //设置一个定时器，每秒刷新该界面
     this.timer = setInterval(()=> {
-      this.gotoBottom();
+      this.goToBottom();
+      this.myStorage.setMsgList(this.mySelf, this.otherSelf,this.subMsgList);
       console.log("1");
     }, 1000);
   }
@@ -84,7 +80,7 @@ export class CommunicatePage {
 
 
   //聊天窗口变换
-  gotoBottom() {
+  goToBottom() {
     let div = document.getElementById('first');
     if (div != null) {
       div.scrollTop = div.scrollHeight;
@@ -98,18 +94,11 @@ export class CommunicatePage {
   // private myInfo;
   initAVcom() {
     this.realTime = this.memory.getTiming();
-    this.mySelf = this.memory.getUser().id;
-    this.otherSelf = this.navParams.get('person');
-    //获取自己的信息
-    this.getOtherPersonMsg(this.mySelf, (baseInfo)=> {
-      console.log(baseInfo.nickName + "自己的信息BaseInfo");
-      this.mySelfMsg = baseInfo;
-    });
-    //获取他人的信息
-    this.getOtherPersonMsg(this.otherSelf, (baseInfo)=> {
-      console.log(baseInfo.nickName + "别人的信息BaseInfo");
-      this.otherSelfMsg = baseInfo;
-    })
+    this.mySelfMsg = this.memory.getUser();
+    this.mySelf = this.mySelfMsg['id']
+    this.otherSelfMsg = this.navParams.get('person');
+    this.otherSelf = this.otherSelfMsg['id']
+
   }
 
   /**
@@ -123,7 +112,10 @@ export class CommunicatePage {
       let msg = new AV.TextMessage(this.realSend);
       msg["from"] = this.mySelf;
 
-      this.subMsgList.push(msg);
+      console.log(msg.from);
+      console.log(msg.text);
+      console.log(msg.timestamp);
+      this.subMsgList.push({from: msg.from, text: msg.text, timestamp: msg.timestamp});
 
       this.ngFresh();
 
@@ -151,7 +143,6 @@ export class CommunicatePage {
   receiveMessageList() {
     this.conversation = this.navParams.get('talkmsg');
 
-    console.log(this.conversation + "最近的聊天记录");
     if (this.conversation != null) {
       //读取最近20条消息
       this.getCloudMsgread(this.conversation);
@@ -182,16 +173,33 @@ export class CommunicatePage {
    * 获取聊天记录(已读)
    */
   getCloudMsgread(conversation) {
-    conversation.queryMessages({
-      limit: 20, // limit 取值范围 1~1000，默认 20
-    }).then((messages)=> {
-      // 获取消息
-      for (let msg of messages) {
-        console.log(msg.from);
-        this.subMsgList.push(msg);
+    this.myStorage.getMsgList(this.mySelf, this.otherSelf).then((data) => {
+      let queryJson = {limit: 20};
+      if (data != null) {
+        this.subMsgList = data;
+        console.log(data)
+        let lastMessage = data[data.length - 1];
+
+        if (lastMessage != null && lastMessage['timestamp'] != null) {
+          console.log((lastMessage['timestamp']))
+          console.log(new Date(lastMessage['timestamp']))
+          queryJson['afterTime'] = new Date(lastMessage['timestamp']);
+        }
       }
-      //及时更新页面
-    }).catch(console.error.bind(console));
+      conversation.queryMessages(queryJson).then((messages)=> {
+        // 获取消息
+        for (let msg of messages) {
+          console.log(msg.from);
+          console.log(msg.text);
+          console.log(msg.timestamp);
+          this.subMsgList.push({from: msg.from, text: msg.text, timestamp: msg.timestamp});
+        }
+        //及时更新页面
+      }).catch(console.error.bind(console));
+
+
+    });
+
   }
 
 
@@ -207,24 +215,9 @@ export class CommunicatePage {
   }
 
   /**
-   * 获取信息
-   */
-  getOtherPersonMsg(otherUserId, callBack:Function) {
-    this.myHttp.post(MyHttp.URL_USER_BASE_INFO, {
-      userId: this.mySelf,
-      otherUserId: otherUserId
-    }, (data) => {
-      console.log(data)
-      let baseInfo = data.baseInfo || {};
-      console.log(baseInfo);
-      callBack(baseInfo);
-    })
-  }
-
-  /**
    * 返回
    */
-  back() {
+  back(){
     this.navCtrl.pop();
   }
 

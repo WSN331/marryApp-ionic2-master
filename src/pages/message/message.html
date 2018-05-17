@@ -21,7 +21,7 @@
 
 
   <div *ngFor="let user of visiterList">
-    <div class="people" *ngIf="user.id !== this.memory.getUser().id" (click)="getIntroduce(user.id)">
+    <div class="people" *ngIf="user.id !== this.memory.getUser().id" (click)="getIntroduce(user)">
       <div class="people_picture">
         <img [src]="imgService.safeImage(user.picture)"/>
       </div>

@@ -131,25 +131,25 @@ export class PeoplePage {
   /**
    * 开始对话
    */
-  goToTalk(talk:any) {
+  goToTalk(conTalk:any) {
     //如果当前用户是vip用户则可以开始聊天
     if (this.isVipOrNot()) {
+      let talk = conTalk['talk']
       //通话对象
-      let personId = null;
-      let list = talk.members.toString().split(',');
-      if (list != null) {
-        for (let person of list) {
-          if (person != this.mySelf) {
-            personId = person;
-          }
-        }
-      }
+      // let personId = null;
+      // let list = talk.members.toString().split(',');
+      // if (list != null) {
+      //   for (let person of list) {
+      //     if (person != this.mySelf) {
+      //       personId = person;
+      //     }
+      //   }
+      // }
       //通话对象
-      console.log(personId);
-      if (personId != null) {
+      if (conTalk['baseInfo'] != null) {
 
         this.navCtrl.push(CommunicatePage, {
-          person: personId,
+          person: conTalk['baseInfo'],
           talkmsg: talk
         });
       } else {
@@ -244,8 +244,8 @@ export class PeoplePage {
   /**
    * 去到个人详情界面
    */
-  goToIntroduce(userId:any) {
-    this.navCtrl.push(HomeIntroducePage, {otherUserId: userId});
+  goToIntroduce(user:any) {
+    this.navCtrl.push(HomeIntroducePage, {baseInfo: user});
   }
 
   /*

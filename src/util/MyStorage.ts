@@ -84,6 +84,15 @@ export class MyStorage {
     return this.storage.get("accessToken:" + userId);
   }
 
+  public setMsgList(userId, otherId, list) {
+    // console.log(JSON.stringify(list))
+    this.storage.set("msgList:" + userId + "&" + otherId, list);
+  }
+
+  public getMsgList(userId, otherId) {
+    return this.storage.get("msgList:" + userId + "&" + otherId);
+  }
+
   addConversation(conversation) {
   }
 
