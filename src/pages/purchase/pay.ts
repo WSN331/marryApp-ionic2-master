@@ -58,7 +58,7 @@ export class PayPage{
    * 请求订单数据
    */
   getOrder(){
-    this.myHttp.post(MyHttp.URL_ORDER_PRICE,null,(data)=>{
+    this.myHttp.post(MyHttp.URL_ORDER_PRICE,{},(data)=>{
       console.log(data);
       this.vipTypes = data.vipTypes
 
