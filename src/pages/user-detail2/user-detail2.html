@@ -68,15 +68,15 @@
   <ion-label>大学：</ion-label>
   <ion-item no-lines>
     <!--省-->
-    <ion-select [(ngModel)]="selectOption.forthSchoolSelect.provinceId"
-                (ngModelChange)="getSchoolList('forthSchoolSelect')">
+    <ion-select [(ngModel)]="selectOption.schoolSelect.provinceId"
+                (ngModelChange)="getSchoolList('schoolSelect')">
       <ion-option *ngFor="let province of selectOption.provinceList" value="{{province.id}}">
         {{province.name}}
       </ion-option>
     </ion-select>
     <!--学校-->
-    <ion-select [(ngModel)]="selectOption.forthSchoolSelect.id">
-      <ion-option *ngFor="let school of selectOption.forthSchoolSelect.schoolList" value="{{school.id}}">
+    <ion-select [(ngModel)]="selectOption.schoolSelect.id">
+      <ion-option *ngFor="let school of selectOption.schoolSelect.schoolList" value="{{school.id}}">
         {{school.name}}
       </ion-option>
     </ion-select>

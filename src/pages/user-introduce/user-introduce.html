@@ -106,19 +106,22 @@
         <p  *ngIf="detailInfo.oldDistrict !== undefined && detailInfo.oldDistrict !== null">
           故乡 {{detailInfo.oldDistrict.city.province.name}}-{{detailInfo.oldDistrict.city.name}}-{{detailInfo.oldDistrict.name}}
         </p>
-        <p *ngIf="detailInfo.forthSchool !== undefined && detailInfo.forthSchool !== null">
-          本科 {{detailInfo.forthSchool.name}}
+        <!--<p *ngIf="detailInfo.forthSchool !== undefined && detailInfo.forthSchool !== null">-->
+          <!--本科 {{detailInfo.forthSchool.name}}-->
+        <!--</p>-->
+        <p *ngIf="detailInfo.school !== undefined && detailInfo.school !== null">
+          学校 {{detailInfo.school.name}}
         </p>
         <!--<p *ngIf="detailInfo.graduate === 1">已毕业</p>-->
-        <p *ngIf="detailInfo.thirdSchool !== undefined && detailInfo.thirdSchool !== null">
-          高中 {{detailInfo.thirdSchool.name}}
-        </p>
-        <p *ngIf="detailInfo.secondSchool !== undefined && detailInfo.secondSchool !== null">
-          初中 {{detailInfo.secondSchool.name}}
-        </p>
-        <p *ngIf="detailInfo.firstSchool !== undefined && detailInfo.firstSchool !== null">
-          小学 {{detailInfo.firstSchool.name}}
-        </p>
+        <!--<p *ngIf="detailInfo.thirdSchool !== undefined && detailInfo.thirdSchool !== null">-->
+          <!--高中 {{detailInfo.thirdSchool.name}}-->
+        <!--</p>-->
+        <!--<p *ngIf="detailInfo.secondSchool !== undefined && detailInfo.secondSchool !== null">-->
+          <!--初中 {{detailInfo.secondSchool.name}}-->
+        <!--</p>-->
+        <!--<p *ngIf="detailInfo.firstSchool !== undefined && detailInfo.firstSchool !== null">-->
+          <!--小学 {{detailInfo.firstSchool.name}}-->
+        <!--</p>-->
       </div>
     </ion-item>
 

@@ -199,7 +199,7 @@ export class HomeIntroducePage {
    */
   private initCred() {
     this.myHttp.post(MyHttp.URL_CRED_INFO_BY_TITLE, {
-      userId: this.navParams.get('otherUserId')
+      userId: this.baseInfo['id']
     }, (data) => {
       //验证信息
       this.myCred = data.myCred;

@@ -35,10 +35,10 @@ export class UserDetail2Page {
     provinceList: [],
     newDistrictSelect: {cityList: [], districtList: []},
     oldDistrictSelect: {cityList: [], districtList: []},
-    firstSchoolSelect: {cityList: [], districtList: []},
-    secondSchoolSelect: {cityList: [], districtList: []},
-    thirdSchoolSelect: {schoolList: []},
-    forthSchoolSelect: {schoolList: []},
+    // firstSchoolSelect: {cityList: [], districtList: []},
+    // secondSchoolSelect: {cityList: [], districtList: []},
+    // thirdSchoolSelect: {schoolList: []},
+    schoolSelect: {schoolList: []},
   }
 
 
@@ -46,13 +46,13 @@ export class UserDetail2Page {
    * 等级划分
    * @type {{firstSchoolSelect: number, secondSchoolSelect: number, thirdSchoolSelect: number, forthSchoolSelect: number}}
    */
-  private scales = {firstSchoolSelect: 1, secondSchoolSelect: 2, thirdSchoolSelect: 3, forthSchoolSelect: 4};
+  private scales = {firstSchoolSelect: 1, secondSchoolSelect: 2, thirdSchoolSelect: 3, schoolSelect: 4};
 
   /**
    * 需要复选的内容
    * @type {string}
    */
-  private detailInfoSelect = "newDistrict oldDistrict firstSchool secondSchool thirdSchool forthSchool";
+  private detailInfoSelect = "newDistrict oldDistrict firstSchool secondSchool thirdSchool school";
 
   /**
    *
