@@ -55,7 +55,7 @@ export class ControlImagePage {
       buttons: [{
         text:'查看大图',
         handler: ()=> {
-          this.toLargeImage(this.pictures[index]);
+          this.toLargeImage(1,this.pictures[index]);
         }
       },{
         text:'删除图片',
@@ -68,12 +68,20 @@ export class ControlImagePage {
 
   /**
    * 查看大图
-   * @param base64
+   * @param flag 1 来自图片 2 来自头像
+   * @param picture
    */
-  toLargeImage(picture) {
+  toLargeImage(flag,picture) {
+    let pictureNow = picture
+    let pictureAll = []
+    if(flag==1){
+      pictureAll = this.pictures
+    }else if(flag==2){
+      pictureAll = this.icons
+    }
     this.navCtrl.push(LargeImagePage, {
-      imageBase64 : picture.img,
-      bigImageName : picture.bigImageName
+      pictureNow : pictureNow,
+      pictureAll : pictureAll
     });
   }
 
@@ -88,7 +96,7 @@ export class ControlImagePage {
       buttons: [{
         text:'查看大图',
         handler: ()=> {
-          this.toLargeImage(this.icons[index]);
+          this.toLargeImage(2,this.icons[index]);
         }
       },{
         text:'设为头像',

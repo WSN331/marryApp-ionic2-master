@@ -31,6 +31,9 @@ export class LargeImagePage {
     this.setInitImg()
   }
 
+  /**
+   * 初始化接受参数
+   */
   setInitImg(){
     this.picture = this.navParams.get("pictureNow")
     this.getAllPictures = this.navParams.get("pictureAll")
@@ -44,6 +47,9 @@ export class LargeImagePage {
     }
   }
 
+  /**
+   * 滑动位置变化监听
+   */
   slideChanged() {
     let currentIndex = this.slides.getActiveIndex();
     if(currentIndex < this.allPictures.length){
@@ -53,6 +59,9 @@ export class LargeImagePage {
     }
   }
 
+  /**
+   * 图片展示，小图->大图
+   */
   getShowPic(){
     let isFind = false
     if(this.bigAllPictures.length>0){
@@ -72,6 +81,10 @@ export class LargeImagePage {
     }
   }
 
+  /**
+   * 请求大图
+   * @param picture 原来的小图
+   */
   getBigImage(picture) {
     let imageName = picture.bigImageName
     if (imageName == null) {
