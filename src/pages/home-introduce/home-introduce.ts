@@ -96,9 +96,13 @@ export class HomeIntroducePage {
    */
   toLargeImage(picture) {
     this.navCtrl.push(LargeImagePage, {
+      pictureNow : picture,
+      pictureAll : this.allPictures
+    });
+/*    this.navCtrl.push(LargeImagePage, {
       imageBase64 : picture.img,
       bigImageName : picture.bigImageName
-    });
+    });*/
   }
 
   /**
