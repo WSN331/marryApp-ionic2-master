@@ -174,7 +174,7 @@ export class HomeIntroducePage {
     let url = [MyHttp.URL_LIKE,MyHttp.URL_HATE,MyHttp.URL_DIS_LIKE,MyHttp.URL_DIS_HATE,MyHttp.URL_COLLECT,MyHttp.URL_DIS_COLLECT][type];
     this.myHttp.post(url, {
       userId: this.memory.getUser().id,
-      toUserId: this.navParams.get('otherUserId')
+      toUserId: this.baseInfo['id']
     }, (data) => {
       //点击喜欢
       if(type===0){
@@ -190,7 +190,7 @@ export class HomeIntroducePage {
   eachCommunicate(){
     if(this.isVipOrNot()){
       this.navCtrl.push(CommunicatePage,{
-        person:this.navParams.get('otherUserId')
+        person:this.baseInfo['id']
       });
     }else{
       //当前用户不是vip用户,那么就发出善意的提醒
@@ -277,7 +277,7 @@ export class HomeIntroducePage {
 
   goToTip() {
     this.navCtrl.push(AddTipPage, {
-      toUserId:this.navParams.get('otherUserId')
+      toUserId:this.baseInfo['id']
     })
   }
 }
