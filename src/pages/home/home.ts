@@ -471,7 +471,7 @@ export class HomePage {
   goToMessage(event, user) {
     if(this.calculateService.isVip(this.memory.getUser().vipTime)){
       this.navCtrl.push(CommunicatePage,{
-        person:user.id
+        person:user
       });
     }else{
       //当前用户不是vip用户,那么就发出善意的提醒
