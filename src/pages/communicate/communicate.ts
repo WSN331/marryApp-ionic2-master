@@ -194,32 +194,33 @@ export class CommunicatePage {
    * 获取聊天记录(已读)
    */
   getCloudMsgread(conversation) {
-    this.myStorage.getMsgList(this.mySelf, this.otherSelf).then((data) => {
-      let queryJson = {limit: 20};
-      if (data != null) {
-        this.subMsgList = data;
-        console.log(data)
-        let lastMessage = data[data.length - 1];
-
-        if (lastMessage != null && lastMessage['timestamp'] != null) {
-          console.log((lastMessage['timestamp']))
-          console.log(new Date(lastMessage['timestamp']))
-          queryJson['afterTime'] = new Date(lastMessage['timestamp']);
-        }
+    let queryJson = {limit: 20};
+    // this.myStorage.getMsgList(this.mySelf, this.otherSelf).then((data) => {
+    //   let queryJson = {limit: 20};
+    //   if (data != null) {
+    //     this.subMsgList = data;
+    //     console.log(data)
+    //     let lastMessage = data[data.length - 1];
+    //
+    //     if (lastMessage != null && lastMessage['timestamp'] != null) {
+    //       console.log((lastMessage['timestamp']))
+    //       console.log(new Date(lastMessage['timestamp']))
+    //       queryJson['afterTime'] = new Date(lastMessage['timestamp']);
+    //     }
+    //   }
+    conversation.queryMessages(queryJson).then((messages)=> {
+      // 获取消息
+      for (let msg of messages) {
+        console.log(msg.from);
+        console.log(msg.text);
+        console.log(msg.timestamp);
+        this.subMsgList.push({from: msg.from, text: msg.text, timestamp: msg.timestamp});
       }
-      conversation.queryMessages(queryJson).then((messages)=> {
-        // 获取消息
-        for (let msg of messages) {
-          console.log(msg.from);
-          console.log(msg.text);
-          console.log(msg.timestamp);
-          this.subMsgList.push({from: msg.from, text: msg.text, timestamp: msg.timestamp});
-        }
-        //及时更新页面
-      }).catch(console.error.bind(console));
+      //及时更新页面
+    }).catch(console.error.bind(console));
 
 
-    });
+    // });
 
   }
 
