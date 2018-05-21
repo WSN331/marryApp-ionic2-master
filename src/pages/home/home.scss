@@ -112,15 +112,14 @@ page-home {
 
   .bar {
     position: absolute;
-    margin-top : -35px;
+    margin-top : -39px;
     z-index: 10;
     width: 92%;
-    hight: 35px;
+    height:35px;
     background: rgba(0,0,0,0.6);
   }
 
   .bar_item {
-
     float: left;
     width:50%;
     text-align: center;
