@@ -47,8 +47,10 @@
         </div>
 
         <div class="bar">
-          <div class="bar_item" *ngIf="user.relation==0" (click)="like($event, i)"><img src="assets/img/bar_like.png"/></div>
-          <div class="bar_item" *ngIf="user.relation==1" (click)="disLike($event, i)"><img src="assets/img/bar_like_on.png"/></div>
+          <div class="bar_item" *ngIf="user.relation==0" (click)="like($event, i)"><img src="assets/img/bar_like_new.png" /></div>
+          <div class="bar_item" *ngIf="user.relation==1" (click)="disLike($event, i)"><img src="assets/img/bar_like_on_new.png" /></div>
+
+          <div class="vertical_line"></div>
           <div class="bar_item" (click)="goToMessage($event, user)"><img src="assets/img/bar_msg.png"/></div>
         </div>
 

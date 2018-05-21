@@ -1,13 +1,41 @@
 page-tabs {
 
+  .tabs-md .tab-button {
+    min-height: 49px;
+  }
+  .tab-button{
+    background: rgba(255,255,255,1);
+  }
+
+  .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before {
+    height: 0px;
+  }
+
+  .tabs-ios .tabbar {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    background: rgba(255,255,255,1);
+  }
+  page-tabs .tabs-ios .tabbar {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .tabs-ios .tab-button-icon {
+    margin-top: 4px;
+    margin-bottom: 1px;
+    min-width: 24px;
+    height: 23px;
+    font-size: 30px;
+    color: #8c8c8c;
+  }
+
   .ion-tab-icon-base {
-    width: 35px;
-    height: 40px;
+    width: 24px;
+    height: 23px;
   }
 
   .ion-tab-icon-md-base {
     min-width: 0 !important;
-    height: 2.75rem;
+    height: 23px;
   }
 
   $tabImageName: 'home' 'message' 'user';

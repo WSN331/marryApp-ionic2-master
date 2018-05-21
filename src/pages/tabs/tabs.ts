@@ -28,8 +28,6 @@ export class TabsPage {
     //初始化聊天
     this.comCate.init();
     this.receiveMessage();
-
-
   }
 
 
@@ -65,6 +63,7 @@ export class TabsPage {
             if(conv.unreadMessagesCount>0){
               console.log("您有未读消息请注意！");
               this.memory.setMsg(true);
+              break
             }
           }
         });
