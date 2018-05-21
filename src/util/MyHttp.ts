@@ -216,7 +216,7 @@ export class MyHttp {
         console.log(body)
         if (body.errorCode != null) {
           this.alertCtrl.create({
-            title: body.errorCode,
+            title: "错误码：" + body.errorCode,
             subTitle: body.errorMessage,
             buttons: [{
               text: '关闭',

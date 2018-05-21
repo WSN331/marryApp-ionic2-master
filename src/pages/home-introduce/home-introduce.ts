@@ -190,7 +190,7 @@ export class HomeIntroducePage {
   eachCommunicate(){
     if(this.isVipOrNot()){
       this.navCtrl.push(CommunicatePage,{
-        person:this.baseInfo['id']
+        person:this.baseInfo
       });
     }else{
       //当前用户不是vip用户,那么就发出善意的提醒
@@ -279,5 +279,13 @@ export class HomeIntroducePage {
     this.navCtrl.push(AddTipPage, {
       toUserId:this.baseInfo['id']
     })
+  }
+
+  isNotNull(item) {
+    return item !== undefined && item !== null;
+  }
+
+  isNotZero(num) {
+    return this.isNotNull(num) && num != 0;
   }
 }

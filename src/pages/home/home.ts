@@ -268,8 +268,9 @@ export class HomePage {
    * @param user
    */
   deleteFromList(event,id){
-    this.userList.splice(id,1);
-    event.stopPropagation();
+    this.hate(event, id)
+    // this.userList.splice(id,1);
+    // event.stopPropagation();
   }
 
 

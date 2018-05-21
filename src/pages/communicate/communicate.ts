@@ -142,17 +142,38 @@ export class CommunicatePage {
    */
   receiveMessageList() {
     this.conversation = this.navParams.get('talkmsg');
+    console.log(this.conversation);
+    if (this.conversation == null) {
+      this.realTime.createIMClient(this.mySelf + '').then((my)=> {
+        // 创建与Jerry之间的对话
+        return my.createConversation({
+          members: [this.otherSelf + ''],
+          name: this.mySelf + '&' + this.otherSelf,
+          unique: true,
+        })
+      }).then((conversation)=> {
+        this.conversation = conversation;
+        console.log(this.conversation);
+        this.readOldMessage();
+      });
 
-    if (this.conversation != null) {
-      //读取最近20条消息
-      this.getCloudMsgread(this.conversation);
-
-      // 进入到对话页面时标记其为已读
-      this.conversation.read().then((conversation)=> {
-        console.log('对话已标记为已读');
-      }).catch(console.error.bind(console));
-      clearInterval(this.timer);
+    } else {
+      this.readOldMessage();
     }
+  }
+
+  /**
+   * 读取聊天记录
+   */
+  readOldMessage() {
+    //读取最近20条消息
+    this.getCloudMsgread(this.conversation);
+
+    // 进入到对话页面时标记其为已读
+    this.conversation.read().then((conversation)=> {
+      console.log('对话已标记为已读');
+    }).catch(console.error.bind(console));
+    clearInterval(this.timer);
   }
 
   /**

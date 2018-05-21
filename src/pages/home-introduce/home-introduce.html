@@ -83,21 +83,31 @@
     <ion-item>
       <span>基本资料</span>
       <div class="bath">
-        <p>{{ calculateService.getAge(baseInfo.birthday) }}岁</p>
-        <p>{{ calculateService.getConstellation(baseInfo.birthday) }}</p>
-        <p>身高 {{ detailInfo.height }}</p>
-        <p>体重 {{ detailInfo.weight }}</p>
-        <p>爱好 {{ baseInfo.hobby }}</p>
-        <p>
+        <p *ngIf="isNotZero(baseInfo.birthday)">
+          {{ calculateService.getAge(baseInfo.birthday) }}岁
+        </p>
+        <p *ngIf="isNotZero(baseInfo.birthday)">
+          {{ calculateService.getConstellation(baseInfo.birthday) }}
+        </p>
+        <p *ngIf="isNotZero(detailInfo.height)">
+          身高 {{ detailInfo.height }}
+        </p>
+        <p *ngIf="isNotZero(detailInfo.weight)">
+          体重 {{ detailInfo.weight }}
+        </p>
+        <p *ngIf="isNotNull(detailInfo.hobby)">
+          爱好 {{ baseInfo.hobby }}
+        </p>
+        <p *ngIf="isNotNull(detailInfo.income)">
           收入 {{ detailInfo.income }}
         </p>
-        <p *ngIf="detailInfo.newDistrict !== undefined && detailInfo.newDistrict !== null">
+        <p *ngIf="isNotNull(detailInfo.newDistrict)">
           所在地 {{detailInfo.newDistrict.city.province.name}}-{{detailInfo.newDistrict.city.name}}-{{detailInfo.newDistrict.name}}
         </p>
-        <p  *ngIf="detailInfo.oldDistrict !== undefined && detailInfo.oldDistrict !== null">
+        <p  *ngIf="isNotNull(detailInfo.oldDistrict)">
           故乡 {{detailInfo.oldDistrict.city.province.name}}-{{detailInfo.oldDistrict.city.name}}-{{detailInfo.oldDistrict.name}}
         </p>
-        <p *ngIf="detailInfo.school !== undefined && detailInfo.school !== null">
+        <p *ngIf="isNotNull(detailInfo.school)">
           学校 {{detailInfo.school.name}}
         </p>
         <!--<p *ngIf="detailInfo.forthSchool !== undefined && detailInfo.forthSchool !== null">-->
@@ -151,10 +161,8 @@
   </div>
   <!--更多的弹框-->
   <div class="more_execute" *ngIf="display_dialog">
-    <p *ngIf="relation==='2'" (click)="changeRelation(3)">取消无感（取消屏蔽）</p>
-    <p *ngIf="relation!=='2'" (click)="changeRelation(1)">无感（屏蔽）</p>
-    <p *ngIf="relation==='3'" (click)="changeRelation(5)">取消收藏</p>
-    <p *ngIf="relation!=='3'" (click)="changeRelation(4)">收藏</p>
+    <p *ngIf="relation==='2'" (click)="changeRelation(3)">取消屏蔽</p>
+    <p *ngIf="relation!=='2'" (click)="changeRelation(1)">屏蔽</p>
     <p (click)="goToTip()">举报</p>
   </div>
 
