@@ -282,7 +282,7 @@ export class HomeIntroducePage {
   }
 
   isNotNull(item) {
-    return item !== undefined && item !== null;
+    return item != undefined && item != null && item != 'undefined';
   }
 
   isNotZero(num) {

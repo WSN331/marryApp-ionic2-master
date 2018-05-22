@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {Platform, Tabs} from "ionic-angular";
+import {Platform, Tabs, Events} from "ionic-angular";
 
 import { UserIntroducePage } from '../user-introduce/user-introduce';
 import { HomePage } from '../home/home';
@@ -20,30 +20,19 @@ export class TabsPage {
   tab2Root:any = UserIntroducePage;
   tab3Root:any = PeoplePage;
 
+  messageCount;
 
   icons: Array<string> = ["tab-home", "tab-message", "tab-user"];
 
   constructor(public comCate:CommunicateService,public memory:Memory,
-              public platform: Platform) {
+              public platform: Platform, public events: Events) {
     //初始化聊天
     this.comCate.init();
     this.receiveMessage();
+    this.events.subscribe('e-tabs-message', (count) => {
+      this.messageCount = count;
+    })
   }
-
-
-
-/*  change(a: number) {
-    // if (this.platform.is("android")) {
-      for (let i = 0; i < this.icons.length; i++) {
-        if (i === a) {
-          this.icons[i] = this.icons[i] + "-outline";
-        } else {
-          this.icons[i] = this.icons[i].replace("-outline", "");
-        }
-      }
-      console.log(this.icons)
-    // }
-  }*/
 
   public realtime;
   public mySelf;
@@ -56,6 +45,7 @@ export class TabsPage {
     if(this.realtime!=null){
       this.mySelf = this.memory.getUser().id;
       //登录并查询是否有未读消息
+      console.log(this.messageCount)
       this.realtime.createIMClient(this.mySelf+'').then((my)=> {
         my.on('unreadmessagescountupdate', (conversations)=>{
           for(let conv of conversations) {
@@ -63,9 +53,11 @@ export class TabsPage {
             if(conv.unreadMessagesCount>0){
               console.log("您有未读消息请注意！");
               this.memory.setMsg(true);
+              this.messageCount = this.messageCount == null ? conv.unreadMessagesCount : this.messageCount + conv.unreadMessagesCount;
               break
             }
           }
+
         });
       }).catch(console.error);
     }

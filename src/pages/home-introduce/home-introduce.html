@@ -31,10 +31,10 @@
     <p class="line-one" *ngIf="detailInfo.newDistrict !== undefined && detailInfo.newDistrict !== null">
       {{detailInfo.newDistrict.city.name}}
     </p>
-    <p class="line-one">|</p>
-    <p class="line-one">{{ detailInfo.edu }}</p>
-    <p class="line-one">|</p>
-    <p class="line-one">{{ detailInfo.hopeTime }}结婚</p>
+    <p class="line-one" *ngIf="isNotNull(detailInfo.edu)">|</p>
+    <p class="line-one" *ngIf="isNotNull(detailInfo.edu)">{{ detailInfo.edu }}</p>
+    <p class="line-one" *ngIf="isNotNull(detailInfo.hopeTime)">|</p>
+    <p class="line-one" *ngIf="isNotNull(detailInfo.hopeTime)">{{ detailInfo.hopeTime }}结婚</p>
   </div>
 
   <!--<img class="btn_like" src="assets/img/btn_like.png">-->

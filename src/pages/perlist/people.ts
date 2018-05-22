@@ -300,7 +300,7 @@ export class PeoplePage {
   }
 
   //最近访问
-  public isShow = true;
+  public isShow = false;
 
   goToPeople() {
     if (!this.isCredMain()) {

@@ -163,13 +163,15 @@ export class HomePage {
      */
   getUserList(searchInfo:any, notDialog?) {
 
-    //提示用户有未读消息
-    let isMsg = this.memory.getMsg();
-    console.log(isMsg)
-    if(isMsg){
-      //TODO:
-      this.searchPub("又有人找您啦~");
-    }
+    // //提示用户有未读消息
+    // let isMsg = this.memory.getMsg();
+    // console.log(isMsg)
+    // if(isMsg){
+    //   this.events.publish('e-tabs-message', '1');
+    //   // this.searchPub("又有人找您啦~");
+    // }else {
+    //   this.events.publish('e-tabs-message', null);
+    // }
 
     /**
      * 每次先获取一张
