@@ -56,32 +56,33 @@
 
         <div class="message">
 
-          <div class="line_one">
-            <div class="name">
-              {{ user.nickName }}
+          <div class="name">
+            {{ user.nickName }}
+          </div>
+
+          <div class="first">
+            <!--vip显示-->
+            <div class="vip" *ngIf="calculateService.isVip(user.vipTime)==true">
+              <div class="first_vip" >
+                <img src="assets/img/vrz.png"/>
+              </div>
+              <span class="span1">Vip用户</span>
             </div>
-
-            <div class="pic" *ngIf="calculateService.isVip(user.vipTime)==true">
-              <img src="assets/img/vrz.png"/>
-              <span>Vip用户</span>
+            <!--学校显示-->
+            <div class="school" *ngIf="user.detailInfo.school !== undefined && user.detailInfo.school !== null">
+              <div class="first_school">
+                  <img src="assets/img/local.png"/>
+              </div>
+              <span class="span2">{{user.detailInfo.school.name}}</span>
             </div>
           </div>
-          <!--学校显示-->
-          <div class="school_forth">
-            <p *ngIf="user.detailInfo.school !== undefined && user.detailInfo.school !== null">
-              {{user.detailInfo.school.name}}
-            </p>
-          </div>
 
-          <div class="line_third">
-            <p>{{ calculateService.getAge(user.birthday) }}岁</p>
-            <p class="part">|</p>
-            <p>{{ calculateService.getConstellation(user.birthday) }}</p>
-          </div>
-
-          <div class="line_fourth">
-            <p *ngIf="user.hobby =='' ">爱好：主人很懒，什么都没写！</p>
-            <p *ngIf="user.hobby !=='' ">爱好：{{ user.hobby }}</p>
+          <div class="second">
+            <p *ngIf="user.birthday !== undefined && user.birthday !== '' && user.birthday !== null">{{ calculateService.getAge(user.birthday) }}岁</p>
+            <p *ngIf="user.birthday !== undefined && user.birthday !== '' && user.birthday !== null">{{ calculateService.getConstellation(user.birthday) }}</p>
+            <p *ngIf="user.detailInfo.height !== undefined && user.detailInfo.height !=='' && user.detailInfo.height !== null">{{ user.detailInfo.height}}cm</p>
+            <p *ngIf="user.detailInfo.weight !== undefined && user.detailInfo.weight !=='' && user.detailInfo.weight !== null">{{ user.detailInfo.weight}}kg</p>
+            <p *ngIf="user.detailInfo.income !== undefined && user.detailInfo.income !=='' && user.detailInfo.income !== null">{{ user.detailInfo.income}}</p>
           </div>
 
           <div class="line_five">
@@ -89,13 +90,8 @@
             <p *ngIf="user.detailInfo.chooseStandard == '' ">遇见便是一种缘分~</p>
           </div>
         </div>
-
-
       </div>
     </div>
-
-    <!--<div *ngIf="showBtnGetMore" class="next_page" (click)="nextPage()">上拉显示更多</div>-->
-
   </div>
 
   <ion-infinite-scroll *ngIf="showBtnGetMore" (ionInfinite)="doInfinite($event)">

@@ -69,29 +69,6 @@
     <div class="myItem_middle_line"></div>
   </div>
 
-
-
-
-  <!-- 下面显示聊天列表 -->
-<!--    <div *ngFor="let conTalk of conversations" >
-    <ion-item *ngIf="conTalk.isDefaultPic !== true && conTalk.show == true" class="item">
-      <div class="picture" item-start (click)="goToIntroduce(conTalk.baseInfo)">
-        <img [src]="imgService.safeImage(conTalk.baseInfo.picture)">
-        &lt;!&ndash;<div class="circle"></div>&ndash;&gt;
-        <div class="circle" *ngIf="conTalk.talk.unreadMessagesCount>0" >{{conTalk.talk.unreadMessagesCount}}</div>
-      </div>
-      <div class="toTalk" (click)="goToTalk(conTalk)">
-        <h2 class="h2">{{conTalk.baseInfo.nickName}}</h2>
-        <p>{{ calculateService.getAge(conTalk.baseInfo.birthday) }}岁<p>
-        <p *ngIf="conTalk.baseInfo.hobby!=null && conTalk.baseInfo.hobby !=''">爱好：{{ conTalk.baseInfo.hobby}}</p>
-        <p *ngIf="conTalk.baseInfo.hobby ==null || conTalk.baseInfo.hobby ==''">爱好：暂无,希望和你一起培养</p>
-      </div>
-      <p class="p_msg" *ngIf="conTalk.talk.unreadMessagesCount>0">您有未读消息</p>
-&lt;!&ndash;      <div *ngIf="conTalk.talk.unreadMessagesCount>0">{{this.memory.setMsg(true)}}</div>&ndash;&gt;
-      <ion-note item-end *ngIf="conTalk.talk.lastMessageAt != null && conTalk.talk.lastMessageAt.getMinutes()<10">{{conTalk.talk.lastMessageAt.getMonth()+1}}-{{conTalk.talk.lastMessageAt.getDate()}} {{conTalk.talk.lastMessageAt.getHours()}}:{{'0'+conTalk.talk.lastMessageAt.getMinutes()}}</ion-note>
-      <ion-note item-end *ngIf="conTalk.talk.lastMessageAt != null && conTalk.talk.lastMessageAt.getMinutes()>=10">{{conTalk.talk.lastMessageAt.getMonth()+1}}-{{conTalk.talk.lastMessageAt.getDate()}} {{conTalk.talk.lastMessageAt.getHours()}}:{{conTalk.talk.lastMessageAt.getMinutes()}}</ion-note>
-    </ion-item>-->
-
   <!-- 下面显示聊天列表 -->
   <div *ngFor="let conTalk of conversations" >
     <div class="myTalk" *ngIf="conTalk.isDefaultPic !== true && conTalk.show == true">

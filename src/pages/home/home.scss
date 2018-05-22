@@ -143,96 +143,81 @@ page-home {
 
   .message{
     width: 100%;
+    padding-left: 4%;
   }
-
-  .line_one{
-    position: relative;
-    margin: 0% 5%;
-  }
-  .school_forth{
-    position: absolute;
-    text-align: right;
-    width: 90%;
-    padding-right: 5% ;
-  }
-
-
-
   .name{
-    font-size: 22px;
-    display: inline-block;
+    margin-top: 12px;
+    font-size: 17px;
+    color: #333333;
   }
 
-  .pic{
+  /*VIP显示和学校显示*/
+  .first{
     display: inline-block;
-    margin-left: 5px;
-    width:100px;
-  }
-  .pic img{
-    float:left;
-    height: 18px;
-    width: 18px;
+    margin-top: 5px;
+    font-size:12px ;
     position: relative;
-    top: 2px;
+    color: #666666;
+    width: 100%;
   }
-  .pic span{
-    text-align: center;
-    margin-left: 3px;
-    font-size:15px;
-    color:#ff975a;
+  .vip{
+    position: relative;
+  }
+  .first_vip{
+    float: left;
+  }
+  .first_vip img{
+    width: 14px;
+  }
+  .span1{
+    display: inline-block;
+    margin-left: 7px;
+    margin-right: 11px;
+    margin-top: -2px;
+    color: #ff975a;
+    float: left;
+  }
+  .first_school{
+    float: left;
+    display: inline-block;
+  }
+  .first_school img{
+    width:10px;
+    margin-top: 1px;
+  }
+  .span2{
+    display: inline-block;
+    margin-left: 8px;
+    margin-top: -3px;
   }
 
-  .line_third {
-    position: relative;
-    margin-left: 5%;
-    margin-right: 5%;
-  }
-  .line_third p{
+  /*第二行*/
+  .second{
     display: inline-block;
+    margin-top: -8px;
+  }
+  .second p{
+    display: inline-block;
+    color: #ff975A;
     padding: 5px;
-    color: #FF975A;
-    background: #FFF6F1;
+    height: 26px;
+    background: #fff6f1;
     border-radius: 10px;
-  }
-  .line_third .part{
-    background: #ffffff;
-  }
 
-  .line_fourth{
-    position: relative;
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-top: -10px;
-  }
-  .line_fourth p{
-    display: inline-block;
-    padding: 5px;
-    color: #FF975A;
-    background: #FFF6F1;
-    border-radius: 10px;
+    margin-right: 16px;
+    font-size: 12px;
   }
 
   .line_five{
     position: relative;
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-top: -10px;
+    margin-top: -15px;
   }
   .line_five p{
+    font-size: 12px;
     display: inline-block;
     padding: 5px;
     color: #FF975A;
     background: #FFF6F1;
     border-radius: 10px;
   }
-
-  .next_page {
-    margin: 10px 0px;
-    padding: 10px;
-    text-align: center;
-    font-size: 20px;
-    color:#FF975A;
-  }
-
-
 }
