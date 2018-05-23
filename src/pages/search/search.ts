@@ -174,5 +174,9 @@ export class SearchPage{
     return this.calculateService.isVip(this.memory.getUser().vipTime)
   }
 
+  isNotNull(item) {
+    return item != undefined && item != null && item != 'undefined' && item != '';
+  }
+
 }
 

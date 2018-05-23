@@ -1,5 +1,6 @@
 page-homeIntroduce{
   .back_icon {
+    width: 18px;
   }
 
   .main_back{
@@ -17,63 +18,114 @@ page-homeIntroduce{
     width: 100%
   }
 
+  /*名字*/
   .first_line{
-    margin: 5% 8% 0px;
-
+    display: inline-block;
+    margin-top: 3%;
+    margin-left: 5%;
   }
 
   .name{
-    font-size: 22px;
+    font-weight: 500;
     display: inline-block;
+    font-size: 18px;
+    line-height: 20px;
+    float: left;
+    color: #333333;
   }
 
   .first_line .pic{
-    margin: 5px 10px;
-    width: 20px;
-    position: absolute;
-    text-align: center;
     display: inline-block;
+    width: 14px;
+    margin-left: 7px;
+    margin-top: 2px;
   }
 
+  /*简单介绍*/
   .little_info{
-    margin: 0px 7%;
+    margin: 0px 5%;
   }
-
-  .btn_like {
-    width: 25%;
-    position:absolute;
-    left:70%;
-    top:50%;
-    z-index: 99;
-  }
-
-  .all-pic {
-    float: left;
-    width: 100%;
-  }
-
-  .all-pic p {
-    margin-left: 8%;
-    font-size: 20px;
-    font-weight: bold;
-  }
-
-  .all-pic img {
-    width: 30%;
-    margin-left: 2.5%;
-    float: left;
-  }
-
   p.line-one {
     display: inline-block;
     padding: 2px;
     border-radius: 5px;
+    font-size: 14px;
+    color: #333333;
+  }
+
+
+  /*照片*/
+  .all-pic {
+    display: inline-block;
+    width: 100%;
+  }
+  .all-pic p {
+    margin-left: 4%;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333333;
+  }
+  .all-pic-img{
+    margin-left: 4%;
+  }
+  .all-pic img {
+    width: 30%;
+    margin-right: 2.5%;
+    margin-bottom: 2.5%;
+    float: left;
+  }
+  .line{
+    height: 1px;
+    background: rgba(0,0,0,0.1);
+    margin-top: 20px;
+  }
+
+  .line-two{
+    height: 1px;
+    background: rgba(0,0,0,0.1);
+    margin-top: 10px;
+  }
+
+  /*已认证信息*/
+  .pass_audit {
+    width: 100%;
+    text-align: center;
+  }
+
+  .pass_audit .title{
+    margin-top: 15px;
+  }
+  .pass_audit .title img {
+    width: 20px;
+  }
+  .pass_audit .title span{
+    font-size:17px;
+    overflow: hidden;
+    margin-left: 5px;
+    display: inline-block;
+  }
+
+  .list-ios {
+    margin: 15px 0 32px;
   }
 
   ion-list {
-    clear: both;
-    float: left;
     width: 100%;
+  }
+  .list-ios > .item-block:first-child {
+    border-top: 0.55px solid #eeeeee;
+  }
+  .list-ios > .item-block:last-child, .list-ios > .item-wrapper:last-child .item-block {
+    border-bottom: 0.55px solid #eeeeee;
+  }
+  .list-ios .item-block .item-inner {
+    border-bottom: 0.55px solid #eeeeee;
+    margin: 5px;
+  }
+  .item-ios {
+    padding-left: 12px;
+    font-size: 14px;
+    color: #333333;
   }
 
   ion-list.both-info ion-item span {
@@ -90,76 +142,106 @@ page-homeIntroduce{
     clear: both;
   }
 
+  /*最后下面部分*/
   .both-info {
-    margin-bottom: 23%;
+    margin-bottom: 18%;
+    margin-top: -4%;
+  }
+
+  .both-info span{
+    font-size: 14px;
+  }
+  .both-info .intro{
+    font-size: 14px;
+    color: #999999;
+  }
+  .item-ios p {
+    color: #999999;
+    font-size: 14px;
   }
 
   .both-info .bath {
     float: left;
-    width: 60%;
+    width: 72%;
   }
 
   .both-info .bath p{
+    display: inline-block;
     float: left;
-    color: #FF975A;
-    background: #FFF6F1;
-    margin-left: 10px;
-    padding: 2px;
+    color: #ff975A;
+    padding: 3px 6px 3px 6px;
+
+    height: 26px;
+    background: #fff6f1;
+    border-radius: 10px;
+
+    margin-bottom: 10px;
+    margin-right: 10px;
+    font-size: 12px;
   }
 
+
+  /*底部3个功能框*/
   .execute_btn {
     position: fixed;
     background: rgba(255, 255, 255, 1);
     bottom: 0.1%;
-    padding: 5px;
     width: 100%;
     float: left;
+  }
+
+  .line-third{
+    height:1px;
+    background:#eeeeee;
   }
 
   .execute_btn .item {
     float: left;
+    padding: 5px;
     width: 33.3%;
+    height: 49px;
     text-align: center;
   }
 
   .execute_btn .item img {
-    width: 25%;
+    width: 16%;
+  }
+
+  .execute_btn .s1,.s2{
+    font-size: 10px;
+    color: #666666;
+  }
+  .s3{
+    display: inline-block;
+    margin-top: 3px;
+    font-size: 10px;
+    color: #666666;
   }
 
   .more_execute {
     position: fixed;
-    bottom: 10%;
-    right: 9%;
-    clear: both;
-    float: left;
+    bottom: 8%;
+    right: 10%;
     background: #FFFFFF;
-    border:1px solid gray;
+    border:1px solid #e5e5e5;
   }
 
   .more_execute p{
-    clear: both;
-    font-size: 20px;
+    font-size: 15px;
+    color: #666666;
     margin: 10px 10px;
   }
 
-  .pass_audit {
-    clear: both;
-    float: left;
-    width: 100%;
-    margin-top: 10%;
-    text-align: center;
+  .btn_like {
+    width: 25%;
+    position:absolute;
+    left:70%;
+    top:50%;
+    z-index: 99;
   }
 
-  .pass_audit .title img {
-    width: 25px;
-  }
-  .pass_audit .title span{
-    font-size:21px;
-    overflow: hidden;
-    display: inline-block;
-  }
 
-  .unpass_audit{
+  /*  .unpass_audit{
     clear: both;
     float: left;
     width: 100%;
@@ -169,5 +251,5 @@ page-homeIntroduce{
     padding-bottom: 3px;
     font-size: 21px;
     color:#ff5c5c;
-  }
+  }*/
 }

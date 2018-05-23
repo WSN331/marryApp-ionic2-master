@@ -34,7 +34,7 @@
   </div>-->
 
   <div class="basic">
-    <p>基本筛选</p>
+    <span class="basic_span">基本筛选</span>
     <div class="divItem">
       <ion-label>身高</ion-label>
       <p text-right *ngIf="isStrNull(searchInfo.high)" (click)="chooseStr('high')" style="color: gray">请选择</p>
@@ -73,14 +73,17 @@
         </ion-option>
       </ion-select>
       <!--市-->
-      <ion-select [(ngModel)]="selectOption.newDistrictSelect.cityId"
+      <ion-select *ngIf="isNotNull(this.selectOption['newDistrictSelect'].provinceId)"
+                  [(ngModel)]="selectOption.newDistrictSelect.cityId"
                   (ngModelChange)="getDistrictList('newDistrictSelect')">
         <ion-option *ngFor="let city of selectOption.newDistrictSelect.cityList" value="{{city.id}}">
           {{city.name}}
         </ion-option>
       </ion-select>
       <!--区-->
-      <ion-select [(ngModel)]="selectOption.newDistrictSelect.id">
+      <ion-select
+        *ngIf="isNotNull(this.selectOption['newDistrictSelect'].cityId)"
+        [(ngModel)]="selectOption.newDistrictSelect.id">
         <ion-option *ngFor="let district of selectOption.newDistrictSelect.districtList" value="{{district.id}}">
           {{district.name}}
         </ion-option>
@@ -98,14 +101,17 @@
         </ion-option>
       </ion-select>
       <!--市-->
-      <ion-select [(ngModel)]="selectOption.oldDistrictSelect.cityId"
+      <ion-select *ngIf="isNotNull(this.selectOption['oldDistrictSelect'].provinceId)"
+                  [(ngModel)]="selectOption.oldDistrictSelect.cityId"
                   (ngModelChange)="getDistrictList('oldDistrictSelect')">
         <ion-option *ngFor="let city of selectOption.oldDistrictSelect.cityList" value="{{city.id}}">
           {{city.name}}
         </ion-option>
       </ion-select>
       <!--区-->
-      <ion-select [(ngModel)]="selectOption.oldDistrictSelect.id">
+      <ion-select
+        *ngIf="isNotNull(this.selectOption['oldDistrictSelect'].cityId)"
+        [(ngModel)]="selectOption.oldDistrictSelect.id">
         <ion-option *ngFor="let district of selectOption.oldDistrictSelect.districtList" value="{{district.id}}">
           {{district.name}}
         </ion-option>
@@ -114,7 +120,7 @@
 
   </div>
 
-  <div class="mybutton">
+  <div class="myButton">
     <button ion-button full class="common" (click)="searchCom()">普通搜索</button>
     <button ion-button full class="vip" (click)="searchVip()">Vip搜索</button>
   </div>
