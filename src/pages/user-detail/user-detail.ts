@@ -11,6 +11,7 @@ import { UserDetail1Page } from "../user-detail1/user-detail1"
 import { MyHttp } from '../../util/MyHttp';
 import { Memory } from '../../util/Memory'
 import { Constants } from '../../util/Constants'
+import { CalculateService } from '../../util/CalculateService'
 
 @Component({
   selector: 'page-userDetail',
@@ -45,7 +46,7 @@ export class UserDetailPage {
   };
 
   constructor(public navCtrl:NavController,public navParams:NavParams, private myHttp:MyHttp, public memory:Memory,
-              public events: Events, public alertCtrl: AlertController) {
+              public events: Events, public alertCtrl: AlertController, public calculateService: CalculateService) {
     this.getUserId();
     this.getUserInfo();
   }
@@ -65,8 +66,18 @@ export class UserDetailPage {
       userId: this.userId,
       otherUserId: this.userId
     }, (data) => {
+      console.log(data)
       this.baseInfo = data.baseInfo || {};
       this.detailInfo = data.detailInfo || {};
+      if (this.detailInfo['height'] == 0) {
+        this.detailInfo['height'] = null
+      }
+      if (this.detailInfo['weight'] == 0) {
+        this.detailInfo['weight'] = null
+      }
+      if (!this.calculateService.isNotNull(this.baseInfo['birthday'])) {
+        this.baseInfo['birthday'] = '1995-01-01'
+      }
       if (callBack !== null && typeof callBack === 'function') {
         callBack();
       }

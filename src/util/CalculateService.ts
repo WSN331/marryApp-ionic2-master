@@ -140,4 +140,12 @@ export class CalculateService {
     }
     return select[day>select[0] ? 2 : 1];
   }
+
+  public isNotNull(item) {
+    return item != undefined && item != null && item != 'undefined' && item != '';
+  }
+
+  public isNotZero(num) {
+    return this.isNotNull(num) && num != 0;
+  }
 }

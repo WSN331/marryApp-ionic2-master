@@ -29,8 +29,8 @@ export class TabsPage {
     //初始化聊天
     this.comCate.init();
     this.receiveMessage();
-    this.events.subscribe('e-tabs-message', (count) => {
-      this.messageCount = count;
+    this.events.subscribe('e-tabs-message-change', () => {
+      this.receiveMessage();
     })
   }
 
@@ -46,6 +46,7 @@ export class TabsPage {
       this.mySelf = this.memory.getUser().id;
       //登录并查询是否有未读消息
       console.log(this.messageCount)
+      let count = 0;
       this.realtime.createIMClient(this.mySelf+'').then((my)=> {
         my.on('unreadmessagescountupdate', (conversations)=>{
           for(let conv of conversations) {
@@ -53,10 +54,11 @@ export class TabsPage {
             if(conv.unreadMessagesCount>0){
               console.log("您有未读消息请注意！");
               this.memory.setMsg(true);
-              this.messageCount = this.messageCount == null ? conv.unreadMessagesCount : this.messageCount + conv.unreadMessagesCount;
+              count = count + conv.unreadMessagesCount;
               break
             }
           }
+          this.messageCount = count == 0 ? null : count;
 
         });
       }).catch(console.error);

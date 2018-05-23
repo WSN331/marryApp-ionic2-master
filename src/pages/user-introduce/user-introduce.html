@@ -45,13 +45,13 @@
 
   <!--简单信息-->
   <div class="little_info">
-    <p class="line-one" *ngIf="detailInfo.newDistrict !== undefined && detailInfo.newDistrict !== null">
+    <p class="line-one" *ngIf="isNotNull(detailInfo.newDistrict)">
       {{detailInfo.newDistrict.city.name}}
     </p>
-    <p class="line-one">|</p>
-    <p class="line-one">{{ detailInfo.edu }}</p>
-    <p class="line-one">|</p>
-    <p class="line-one">{{ detailInfo.hopeTime }}结婚</p>
+    <p class="line-one" *ngIf="isNotNull(detailInfo.newDistrict)">|</p>
+    <p class="line-one" *ngIf="isNotNull(detailInfo.edu)">{{ detailInfo.edu }}</p>
+    <p class="line-one" *ngIf="isNotNull(detailInfo.edu)">|</p>
+    <p class="line-one" *ngIf="isNotNull(detailInfo.hopeTime)">{{ detailInfo.hopeTime }}结婚</p>
   </div>
 
   <!--已认证的信息-->
@@ -92,24 +92,37 @@
     <ion-item>
       <span>基本资料</span>
       <div class="bath">
-        <p>{{ calculateService.getAge(baseInfo.birthday) }}岁</p>
-        <p>{{ calculateService.getConstellation(baseInfo.birthday) }}</p>
-        <p>身高 {{ detailInfo.height }}</p>
-        <p>体重 {{ detailInfo.weight }}</p>
-        <p>爱好 {{ baseInfo.hobby }}</p>
-        <p>
-          收入 {{ detailInfo.income }}
+        <p *ngIf="isNotZero(baseInfo.birthday)">
+          {{ calculateService.getAge(baseInfo.birthday) }}岁
         </p>
-        <p *ngIf="detailInfo.newDistrict !== undefined && detailInfo.newDistrict !== null">
+        <p *ngIf="isNotZero(baseInfo.birthday)">
+          {{ calculateService.getConstellation(baseInfo.birthday) }}
+        </p>
+        <p *ngIf="isNotZero(detailInfo.height)">
+          身高 {{ detailInfo.height }}
+        </p>
+        <p *ngIf="isNotZero(detailInfo.weight)">
+          体重 {{ detailInfo.weight }}
+        </p>
+        <p *ngIf="isNotNull(detailInfo.hobby)">
+          爱好 {{ baseInfo.hobby }}
+        </p>
+        <p *ngIf="isNotNull(detailInfo.income)">
+          {{ detailInfo.income }}
+        </p>
+        <p *ngIf="isNotNull(detailInfo.hopeTime)">
+          期望{{ detailInfo.hopeTime }}结婚
+        </p>
+        <p *ngIf="isNotNull(detailInfo.newDistrict)">
           所在地 {{detailInfo.newDistrict.city.province.name}}-{{detailInfo.newDistrict.city.name}}-{{detailInfo.newDistrict.name}}
         </p>
-        <p  *ngIf="detailInfo.oldDistrict !== undefined && detailInfo.oldDistrict !== null">
+        <p  *ngIf="isNotNull(detailInfo.oldDistrict)">
           故乡 {{detailInfo.oldDistrict.city.province.name}}-{{detailInfo.oldDistrict.city.name}}-{{detailInfo.oldDistrict.name}}
         </p>
         <!--<p *ngIf="detailInfo.forthSchool !== undefined && detailInfo.forthSchool !== null">-->
           <!--本科 {{detailInfo.forthSchool.name}}-->
         <!--</p>-->
-        <p *ngIf="detailInfo.school !== undefined && detailInfo.school !== null">
+        <p *ngIf="isNotNull(detailInfo.school)">
           学校 {{detailInfo.school.name}}
         </p>
         <!--<p *ngIf="detailInfo.graduate === 1">已毕业</p>-->

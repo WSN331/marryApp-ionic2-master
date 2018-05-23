@@ -282,10 +282,10 @@ export class HomeIntroducePage {
   }
 
   isNotNull(item) {
-    return item != undefined && item != null && item != 'undefined' && item != '';
+    return this.calculateService.isNotNull(item);
   }
 
   isNotZero(num) {
-    return this.isNotNull(num) && num != 0;
+    return this.calculateService.isNotZero(num);
   }
 }

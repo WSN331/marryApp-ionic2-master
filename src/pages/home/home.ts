@@ -60,6 +60,11 @@ export class HomePage {
               public calculateService: CalculateService, private cdr: ChangeDetectorRef,
               public toastCtrl: ToastController) {
     this.pageIndex = 1;
+    if(this.isLoginOnce()){
+      this.goToDetail();
+    } else if(!this.isCredMain()){
+      this.goToCred();
+    }
     this.getUserList(this.searchInfo);
     this.events.subscribe('e-home-list', () => {
       this.pageIndex = 1;
@@ -119,21 +124,8 @@ export class HomePage {
       //没有登录
       this.goToLogin();
     }else{
-      //第一次登陆
-      if(this.isLoginOnce()){
-        //去完善信息
-        this.goToDetail();
-      }else{
-        //是否通过认证
-        if(this.isCredMain()){
-          //通过认证就可以
-          this.pageIndex ++;
-          this.getUserList(this.searchInfo, true);
-        }else{
-          //没有通过认证
-          this.goToCred();
-        }
-      }
+      this.pageIndex ++;
+      this.getUserList(this.searchInfo, true);
     }
   }
 
@@ -157,7 +149,6 @@ export class HomePage {
    * @param searchInfo
      */
   getUserList(searchInfo:any, notDialog?) {
-
     /**
      * 每次先获取一张
      */
@@ -196,11 +187,7 @@ export class HomePage {
         this.myHttp.post(MyHttp.URL_USER_SCREEN_LIST, searchInfo, (data) => {
           console.log(data)
           if (data.listResult === '0') {
-            if(!this.isLoginOnce()){
-              funcAddList(data.userList);
-            }else{
-              this.goToDetail();
-            }
+            funcAddList(data.userList);
           } else if (data.listResult === '1'){
             this.alertCtrl.create({
               message: '您一下子看的用户太多啦，歇会儿再来吧',
@@ -241,10 +228,9 @@ export class HomePage {
     if (!this.isLogin()) {
       //是否登录
       this.goToLogin();
-    } else if (!this.isCredMain()) {
-      //是否通过认证
+    } else if(!this.isCredMain()){
       this.goToCred();
-    } else {
+    } else{
       this.navCtrl.push(HomeIntroducePage, {baseInfo: user})
     }
   }
@@ -256,8 +242,6 @@ export class HomePage {
    */
   deleteFromList(event,id){
     this.ignore(event, id)
-    // this.userList.splice(id,1);
-    // event.stopPropagation();
   }
 
   /**

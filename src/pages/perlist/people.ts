@@ -67,6 +67,7 @@ export class PeoplePage {
       this.getCommunicateList(2);
       console.log("1");
       this.saveConversations();
+      this.events.publish('e-tabs-message-change');
 
     }, 2000);
   }
@@ -145,9 +146,6 @@ export class PeoplePage {
         for (var i = conversations.length-1; i>=0; i--) {
           this.showMember(conversations[i]);
         }
-        // conversations.map((conversation)=> {
-        //   this.showMember(conversation);
-        // });
       }).catch(console.error.bind(console));
     }).catch(console.error);
   }

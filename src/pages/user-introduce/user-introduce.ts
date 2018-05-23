@@ -203,4 +203,12 @@ export class UserIntroducePage {
   goToCred(){
     this.navCtrl.push(CredListPage);
   }
+
+  isNotNull(item) {
+    return this.calculateService.isNotNull(item);
+  }
+
+  isNotZero(num) {
+    return this.calculateService.isNotZero(num);
+  }
 }
