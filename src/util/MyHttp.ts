@@ -79,6 +79,10 @@ export class MyHttp {
   static URL_HATE = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/relation/hate";
   // 取消讨厌
   static URL_DIS_HATE = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/relation/disHate";
+  // 无感
+  static URL_IGNORE = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/relation/ignore";
+  // 取消无感
+  static URL_DIS_IGNORE = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/relation/disIgnore";
   // 收藏
   static URL_COLLECT = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/relation/collect";
   // 取消收藏
@@ -115,6 +119,7 @@ export class MyHttp {
   static URL_GET_APP_DOWNLOAD_URL = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/version/getAppDownloadUrl";
   // 获取Visiter谁访问过自己的url
   static URL_VISITER = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/home/getVisiters ";
+  static URL_HAS_VISITER = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/home/hasVisiters ";
   // 获取邮箱验证码
   static URL_SEND_MAIL_VERIFY = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/sendMailVerify";
   // ios内购验证

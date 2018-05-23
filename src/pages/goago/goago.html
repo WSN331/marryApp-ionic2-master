@@ -1,0 +1,88 @@
+<ion-header >
+  <div class="head" id="head" style="opacity : 1">
+    <div class="head_title">
+      邂逅斯年
+    </div>
+    <div class="line">
+    </div>
+  </div>
+</ion-header>
+
+
+
+<ion-content>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <!--用户列表-->
+  <div class="user_list">
+    <!--<div class="glass"></div>-->
+    <!--每个用户的卡片-->
+    <div class="user_card" *ngFor="let user of userList; let i = index;" (click)="goToLogin()">
+
+      <div>
+
+        <div class="picture">
+          <img [src]="imgService.safeImage(user.picture)" class="mypic" />
+        </div>
+
+        <div class="vrz" *ngIf="user.mainCredNum >= 3">
+          <img src="assets/img/rz.png"/>
+          <span class="NoRz">认证用户</span>
+        </div>
+
+        <div class="message">
+
+          <div class="name">
+            {{ user.nickName }}
+          </div>
+
+          <div class="first">
+            <!--vip显示-->
+            <div class="vip" *ngIf="calculateService.isVip(user.vipTime)==true">
+              <div class="first_vip" >
+                <img src="assets/img/vrz.png"/>
+              </div>
+              <span class="span1">Vip用户</span>
+            </div>
+            <!--学校显示-->
+            <div class="school" *ngIf="user.detailInfo.school !== undefined && user.detailInfo.school !== null">
+              <div class="first_school">
+                  <img src="assets/img/local.png"/>
+              </div>
+              <span class="span2">{{user.detailInfo.school.name}}</span>
+            </div>
+          </div>
+
+          <div class="second">
+            <p *ngIf="user.birthday !== undefined && user.birthday !== '' && user.birthday !== null">{{ calculateService.getAge(user.birthday) }}岁</p>
+            <p *ngIf="user.birthday !== undefined && user.birthday !== '' && user.birthday !== null">{{ calculateService.getConstellation(user.birthday) }}</p>
+            <p *ngIf="user.detailInfo.height !== undefined && user.detailInfo.height !=='' && user.detailInfo.height !== null">{{ user.detailInfo.height}}cm</p>
+            <p *ngIf="user.detailInfo.weight !== undefined && user.detailInfo.weight !=='' && user.detailInfo.weight !== null">{{ user.detailInfo.weight}}kg</p>
+            <p *ngIf="user.detailInfo.income !== undefined && user.detailInfo.income !=='' && user.detailInfo.income !== null">{{ user.detailInfo.income}}</p>
+          </div>
+
+          <div class="line_five">
+            <p *ngIf="user.detailInfo.chooseStandard !== '' ">期待的他(她)：{{user.detailInfo.chooseStandard}}</p>
+            <p *ngIf="user.detailInfo.chooseStandard == '' ">遇见便是一种缘分~</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ion-infinite-scroll *ngIf="!showBtnGetMore">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="正在加载...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

@@ -55,8 +55,6 @@ export class HomePage {
   //判断是否是从搜索页面过来的
   public isSearch;
 
-  // @ViewChild("homeSlides") slides: Slides;
-
   constructor(public navCtrl:NavController, private myHttp:MyHttp, public alertCtrl:AlertController,
               public memory:Memory, public imgService:ImgService, public events: Events,
               public calculateService: CalculateService, private cdr: ChangeDetectorRef,
@@ -75,14 +73,11 @@ export class HomePage {
         this.searchInfo[name] = searchInfo[name];
       }
       console.log(this.searchInfo);
-
       this.isSearch = isSearch;
       this.userList = [];
       this.getUserList(this.searchInfo);
     })
   }
-
-
 
   ngAfterViewInit() {
     this.content.ionScroll.subscribe(event => {
@@ -162,16 +157,6 @@ export class HomePage {
    * @param searchInfo
      */
   getUserList(searchInfo:any, notDialog?) {
-
-    // //提示用户有未读消息
-    // let isMsg = this.memory.getMsg();
-    // console.log(isMsg)
-    // if(isMsg){
-    //   this.events.publish('e-tabs-message', '1');
-    //   // this.searchPub("又有人找您啦~");
-    // }else {
-    //   this.events.publish('e-tabs-message', null);
-    // }
 
     /**
      * 每次先获取一张
@@ -270,12 +255,10 @@ export class HomePage {
    * @param user
    */
   deleteFromList(event,id){
-    this.hate(event, id)
+    this.ignore(event, id)
     // this.userList.splice(id,1);
     // event.stopPropagation();
   }
-
-
 
   /**
    * 是否认证
@@ -437,11 +420,23 @@ export class HomePage {
   }
 
   /**
-   * 无感
+   * 屏蔽
    * @param user
      */
   hate(event, index) {
     this.changeRelation(1, this.userList[index].id, (data)=> {
+      if (data.hateResult == "0") {
+        for (index; index < this.userList.length-1; index++) {
+          this.userList[index] = this.userList[index+1];
+        }
+        this.userList.pop();
+      }
+    })
+    event.stopPropagation();
+  }
+
+  ignore(event, index) {
+    this.changeRelation(6, this.userList[index].id, (data)=> {
       if (data.hateResult == "0") {
         for (index; index < this.userList.length-1; index++) {
           this.userList[index] = this.userList[index+1];
@@ -457,7 +452,7 @@ export class HomePage {
    * @param type 0喜欢，1讨厌，2取消喜欢，3取消讨厌，4收藏，5取消收藏
    */
   changeRelation(type: number, toUserId, successBack:Function) {
-    let url = [MyHttp.URL_LIKE,MyHttp.URL_HATE,MyHttp.URL_DIS_LIKE,MyHttp.URL_DIS_HATE,MyHttp.URL_COLLECT,MyHttp.URL_DIS_COLLECT][type];
+    let url = [MyHttp.URL_LIKE,MyHttp.URL_HATE,MyHttp.URL_DIS_LIKE,MyHttp.URL_DIS_HATE,MyHttp.URL_COLLECT,MyHttp.URL_DIS_COLLECT, MyHttp.URL_IGNORE, MyHttp.URL_DIS_IGNORE][type];
     this.myHttp.post(url, {
       userId: this.memory.getUser().id,
       toUserId: toUserId

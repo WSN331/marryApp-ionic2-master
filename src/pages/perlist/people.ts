@@ -30,6 +30,8 @@ export class PeoplePage {
   //通话记录
   public conversations:any = [];
   public timer;
+  //最近访问
+  public isShow = false;
 
   constructor(public navCtrl:NavController, public memory:Memory, public events:Events,
               public changeDetectorRef:ChangeDetectorRef, public myHttp:MyHttp,
@@ -51,7 +53,7 @@ export class PeoplePage {
         this.conversations = commList
       }
     })
-
+    this.hasVisiter();
   }
 
   /**
@@ -67,6 +69,28 @@ export class PeoplePage {
       this.saveConversations();
 
     }, 2000);
+  }
+
+  /**
+   * 是否有访问者
+   */
+  hasVisiter() {
+    this.myStorage.getLastVisiterTime(this.mySelf).then((time) => {
+      console.log(time)
+      if (time == null) {
+        this.isShow = true;
+      } else {
+        this.myHttp.post(MyHttp.URL_HAS_VISITER, {
+          userId: this.mySelf,
+          afterTime : time
+        }, (data)=>{
+          if(data['hasVisiters'] > 0) {
+            this.isShow = true;
+          }
+        },null, true);
+      }
+    });
+
   }
 
   /**
@@ -135,16 +159,6 @@ export class PeoplePage {
     //如果当前用户是vip用户则可以开始聊天
     if (this.isVipOrNot()) {
       let talk = conTalk['talk']
-      //通话对象
-      // let personId = null;
-      // let list = talk.members.toString().split(',');
-      // if (list != null) {
-      //   for (let person of list) {
-      //     if (person != this.mySelf) {
-      //       personId = person;
-      //     }
-      //   }
-      // }
       //通话对象
       if (conTalk['baseInfo'] != null) {
 
@@ -299,16 +313,12 @@ export class PeoplePage {
     }
   }
 
-  //最近访问
-  public isShow = false;
-
   goToPeople() {
     if (!this.isCredMain()) {
       this.goToCred();
     } else {
       this.navCtrl.push(MessagePage);
       this.isShow = false;
-      /*      this.memory.setMsg(false);*/
     }
   }
 

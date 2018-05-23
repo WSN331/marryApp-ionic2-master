@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 import {NavController} from "ionic-angular";
 import {Memory} from "../../util/Memory";
-import {HomePage} from "../home/home";
+import {GoagoPage} from "../goago/goago";
 
 @Component({
   selector:'page-everyPerson',
@@ -15,13 +15,12 @@ export class EveryPersonPage{
   }
 
   goToManList(){
-    this.memory.setSex(1);
-    this.navCtrl.push(HomePage)
+    this.navCtrl.push(GoagoPage, {sex: 1})
   }
 
   goToWomList(){
     this.memory.setSex(0);
-    this.navCtrl.push(HomePage)
+    this.navCtrl.push(GoagoPage, {sex: 0})
   }
 
   back(){

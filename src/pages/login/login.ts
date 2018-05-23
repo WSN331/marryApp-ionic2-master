@@ -80,19 +80,12 @@ export class LoginPage {
         this.loginFailError("密码错误");
       } else {
         console.log(data.user)
-        //插入数据
-/*        if(this.memory.getDB()!=null){
-          this.sqLite.insert(this.memory.getDB(),this.loginForm);
-        }else{
-          console.log("在登录的时候显示db为空")
-        }*/
         this.myStorage.setAccount(this.loginForm.account);
         this.myStorage.setPassword(this.loginForm.password);
         this.myStorage.setUser(data.user);
         this.myStorage.setAccessToken(data.user['id'], data['accessToken']);
         this.memory.setUser(data.user);
-
-
+        
         if (data.user.isBeTip == true) {
           this.loginFailError("您的账号由于被举报，部分功能无法正常使用，若有疑问请联系邂逅大使！！！");
         }

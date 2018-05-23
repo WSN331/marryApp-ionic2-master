@@ -3,6 +3,7 @@ import { NavController } from "ionic-angular";
 
 import {Memory} from "../../util/Memory";
 import {MyHttp} from "../../util/MyHttp";
+import {MyStorage} from "../../util/MyStorage";
 import {ImgService} from "../../util/ImgService";
 import {CalculateService} from "../../util/CalculateService";
 import {HomeIntroducePage} from "../home-introduce/home-introduce";
@@ -17,7 +18,7 @@ export class MessagePage {
   public visiterList;
 
   constructor(public navCtrl:NavController,public memory:Memory, private myHttp : MyHttp,
-              public imgService: ImgService, public calculateService:CalculateService) {
+              public imgService: ImgService, public calculateService:CalculateService, public myStorage: MyStorage) {
     this.doRefresh();
   }
 
@@ -39,6 +40,10 @@ export class MessagePage {
     }, (data) => {
       console.log(data)
       this.visiterList = data.visiters;
+      if (this.visiterList != null && this.visiterList.length > 0) {
+        let last = this.visiterList[0];
+        this.myStorage.setLastVisiterTime(this.memory.getUser().id, last['visitTime']);
+      }
       if (typeof refresher !== 'undefined') {
         refresher.complete();
       }

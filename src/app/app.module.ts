@@ -50,6 +50,7 @@ import {PayPage} from "../pages/purchase/pay";
 import {ForgetPage} from "../pages/forget/forget";
 import {LargeImagePage} from "../pages/large-image/large-image"
 import {MatchmakerPage} from "../pages/matchmaker/matchmaker";
+import {GoagoPage} from "../pages/goago/goago";
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import {MatchmakerPage} from "../pages/matchmaker/matchmaker";
     ControlImagePage,
     LargeImagePage,
     MatchmakerPage,
-    AddTipPage
+    AddTipPage,
+    GoagoPage
   ],
   imports: [
     BrowserModule,
@@ -123,7 +125,8 @@ import {MatchmakerPage} from "../pages/matchmaker/matchmaker";
     ControlImagePage,
     LargeImagePage,
     MatchmakerPage,
-    AddTipPage
+    AddTipPage,
+    GoagoPage
   ],
   providers: [
     StatusBar,

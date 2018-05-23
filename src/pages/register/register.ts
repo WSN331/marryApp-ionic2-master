@@ -358,15 +358,12 @@ export class RegisterPage {
         this.registerMessage("密码错误");
       } else {
         console.log(data.user)
-        //插入数据
-        /*        if(this.memory.getDB()!=null){
-                  this.sqLite.insert(this.memory.getDB(),this.loginForm);
-                }else{
-                  console.log("在登录的时候显示db为空")
-                }*/
-        this.myStorage.setAccount(loginForm.account);
-        this.myStorage.setPassword(loginForm.password);
+        this.myStorage.setAccount(this.loginForm.account);
+        this.myStorage.setPassword(this.loginForm.password);
+        this.myStorage.setUser(data.user);
+        this.myStorage.setAccessToken(data.user['id'], data['accessToken']);
         this.memory.setUser(data.user);
+
         this.navCtrl.push(TabsPage);
       }
     })

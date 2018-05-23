@@ -1,0 +1,223 @@
+page-goago {
+  /*标题*/
+  .head{
+    position: absolute;
+    top: 0px;
+    float: left;
+    z-index: 10;
+    width: 100%;
+    height: 44px;
+    background: rgba(255, 255, 255, 1);
+  }
+  .head_back{
+    position: absolute;
+    height:44px;
+    vertical-align: middle;
+    margin-left:90%;
+    margin-top:-2px;
+  }
+  .head_back span{
+    width:0px;
+    height: 100%;
+    vertical-align: middle;
+    display: inline-block;
+  }
+  .head_back img{
+    width:22px;
+    vertical-align: middle;
+  }
+
+  .head_title {
+    font-size: 18px;
+    text-align: center;
+    line-height: 44px;
+    color: #ff975a;
+    vertical-align: middle;
+  }
+  .line{
+    height: 1px;
+    background-color:#eeeeee;
+  }
+
+  .user_list {
+    margin-top: 10%;
+    padding-top: 5px;
+  }
+
+  .scroll-content {
+    background-size:cover;
+    width:100%;
+  }
+
+  .content {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+  }
+
+  .user_card {
+    width: 92%;
+    margin: 4% 4%;
+    box-shadow:  0px 5px 5px rgba(34, 25, 25, 0.2);
+    border-radius:10px;
+    background: white;
+  }
+
+  .user_card .picture img {
+    position: relative;
+    border-radius: 10px 10px 0 0;
+    width: 100%;
+  }
+
+  /*认证部分*/
+  .vrz{
+    position: absolute;
+    margin : -88% 5%;
+    z-index: 10;
+    hight: 46px;
+    /*background: rgba(255,246,241,0.5);*/
+    background: rgba(0,0,0,0.5);
+    border-radius:10px;
+    padding:5px;
+  }
+  .vrz img{
+    float:left;
+    height: 18px;
+    width: 18px;
+    position: relative;
+    top: 2px;
+  }
+  .vrz span{
+    text-align: center;
+    margin-left: 10px;
+    font-size:16px;
+    color:#ff975a;
+  }
+
+  /*删除按钮*/
+  .delete{
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    display: inline-block;
+    position: absolute;
+    margin : -88% 80%;
+    padding: 5px;
+    background: rgba(0,0,0,0.5);
+  }
+
+  .bar {
+    position: absolute;
+    margin-top : -39px;
+    z-index: 10;
+    width: 92%;
+    height:35px;
+    background: rgba(0,0,0,0.6);
+  }
+
+  .bar_item {
+    float: left;
+    width:50%;
+    text-align: center;
+  }
+
+  .bar_item img{
+    margin-top: 8px;
+    width: 20px;
+  }
+
+  .vertical_line{
+    margin-top:8px;
+    position: absolute;
+    display: inline-block;
+    overflow: hidden;
+    width: 1px;
+    height: 20px;
+    background-color: #ffffff;
+  }
+
+
+  .message{
+    width: 100%;
+    padding-left: 4%;
+  }
+  .name{
+    margin-top: 12px;
+    font-size: 17px;
+    color: #333333;
+  }
+
+  /*VIP显示和学校显示*/
+  .first{
+    display: inline-block;
+    margin-top: 5px;
+    font-size:12px ;
+    position: relative;
+    color: #666666;
+    width: 100%;
+  }
+  .vip{
+    position: relative;
+  }
+  .first_vip{
+    float: left;
+  }
+  .first_vip img{
+    width: 14px;
+  }
+  .span1{
+    display: inline-block;
+    margin-left: 7px;
+    margin-right: 11px;
+    margin-top: -2px;
+    color: #ff975a;
+    float: left;
+  }
+  .first_school{
+    float: left;
+    display: inline-block;
+  }
+  .first_school img{
+    width:10px;
+    margin-top: 1px;
+  }
+  .span2{
+    display: inline-block;
+    margin-left: 8px;
+    margin-top: -3px;
+  }
+
+  /*第二行*/
+  .second{
+    display: inline-block;
+    margin-top: -8px;
+  }
+  .second p{
+    display: inline-block;
+    color: #ff975A;
+    padding: 5px;
+    height: 26px;
+    background: #fff6f1;
+    border-radius: 10px;
+
+    margin-right: 16px;
+    font-size: 12px;
+  }
+
+  .line_five{
+    position: relative;
+    margin-top: -15px;
+  }
+  .line_five p{
+    font-size: 12px;
+    display: inline-block;
+    padding: 5px;
+    color: #FF975A;
+    background: #FFF6F1;
+    border-radius: 10px;
+  }
+}

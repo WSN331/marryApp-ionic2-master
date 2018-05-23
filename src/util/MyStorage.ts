@@ -93,6 +93,14 @@ export class MyStorage {
     return this.storage.get("msgList:" + userId + "&" + otherId);
   }
 
+  public setLastVisiterTime(userId, time) {
+    this.storage.set("lastVisiterTime:" + userId, time);
+  }
+
+  public getLastVisiterTime(userId) {
+    return this.storage.get("lastVisiterTime:" + userId);
+  }
+
   addConversation(conversation) {
   }
 
