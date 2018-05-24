@@ -7,17 +7,16 @@
     <div class="head_title">
       心动
     </div>
-    <div class="line">
-    </div>
   </div>
 </ion-header>
 
-<ion-content padding>
+
+<ion-content>
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"  refreshingText="Refreshing...">
     </ion-refresher-content>
   </ion-refresher>
-  <div>
+  <div class="select">
     <ion-segment [(ngModel)]="select" color="danger">
       <ion-segment-button value="beLiked">
         对我心动的人
@@ -32,14 +31,17 @@
     <!--对我心动的-->
     <div *ngSwitchCase="'beLiked'">
           <div class="people" *ngFor="let user of beLikeList" (click)="getIntroduce(user)">
+            <!--头像-->
             <div class="people_picture">
               <img [src]="imgService.safeImage(user.picture)"/>
             </div>
+
             <div class="people_describe">
+              <!--名字-->
               <span class="span1">{{ user.nickName }}</span>
               <span class="span2">{{ calculateService.getAge(user.birthday) }}岁</span>
               <br/>
-
+              <!--认证图标-->
               <div class="people_describe_img" *ngIf="user.mainCredNum >= 3">
                 <img src="assets/img/rz.png">
                 <span>认证用户</span>
@@ -48,13 +50,15 @@
                 <img src="assets/img/norz.png">
                 <span class="NoRz">未认证用户</span>
               </div>
-
-              <span></span><br/>
               <span class="span3">兴趣爱好: {{user.hobby}}</span>
             </div>
+
+            <!--时间-->
             <div class="people_date">
               {{user.createTime}}
             </div>
+
+            <div class="line"></div>
           </div>
     </div>
 
@@ -72,10 +76,11 @@
               <span class="span2">{{ calculateService.getAge(user.birthday) }}岁</span>
               <br/>
 
-                <div class="people_describe_img" *ngIf="user.mainCredNum >= 3">
-                  <img src="assets/img/rz.png">
-                  <span>认证用户</span>
-                </div>
+              <div class="people_describe_img" *ngIf="user.mainCredNum >= 3">
+                <img src="assets/img/rz.png">
+                <span>认证用户</span>
+              </div>
+
               <div class="people_describe_img" *ngIf="user.mainCredNum < 3">
                 <img src="assets/img/norz.png">
                 <span class="NoRz">未认证用户</span>
@@ -87,11 +92,10 @@
                   <span>认证用户{{credType.name}}</span>
                 </div>
               </ng-container>-->
-              <span></span><br/>
-              <span class="span3">兴趣爱好: {{user.hobby}}</span><br/>
+              <!--<span></span><br/>-->
+              <span class="span3">兴趣爱好: {{user.hobby}}</span>
+              <br/>
               <span class="span4">{{user.createTime}}</span>
-
-
             </div>
             <div class="people_date" >
                 <img src="assets/img/lovehert.png"/>
@@ -99,7 +103,7 @@
           </div>
         </ion-item>
         <ion-item-options>
-          <button ion-button color="danger" icon-start (click)="disLove(user.id)">
+          <button class="text_nolike" ion-button color="danger" icon-start (click)="disLove(user.id)">
             <ion-icon name="trash"></ion-icon>
             不喜欢了
           </button>

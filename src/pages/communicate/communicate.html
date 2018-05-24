@@ -42,14 +42,14 @@
   <div class="textArea">
     <ion-item>
 
-      <button ion-button icon-only item-start clear (click)="sendImgMsg()">
+<!--      <button ion-button icon-only item-start clear (click)="sendImgMsg()">
         <ion-icon ios="ios-image" md="md-image" ></ion-icon>
-      </button>
+      </button>-->
 
       <ion-input class="send" [(ngModel)]="sendText" type="text" placeholder="想说点什么......" text-center>
       </ion-input>
 
-      <button ion-button icon-only item-end clear (click)="sendMessage()" >
+      <button class="button_send" ion-button item-end color="secondary" (click)="sendMessage()" >
         <!--<ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon>-->
         发送
       </button>
