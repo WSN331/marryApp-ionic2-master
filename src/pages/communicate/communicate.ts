@@ -1,5 +1,5 @@
-import {Component} from "@angular/core";
-import {AlertController, Events, NavController, NavParams} from "ionic-angular";
+import {Component, ViewChild} from "@angular/core";
+import {AlertController, Events, NavController, NavParams, Content} from "ionic-angular";
 
 import * as AV from "leancloud-realtime"
 
@@ -15,6 +15,8 @@ import {HomeIntroducePage} from '../../pages/home-introduce/home-introduce'
 })
 
 export class CommunicatePage {
+  @ViewChild(Content) content: Content;
+
   //实时通信
   public realTime;
   //登录用户
@@ -241,6 +243,12 @@ export class CommunicatePage {
    */
   back(){
     this.navCtrl.pop();
+  }
+
+  scrollTo() {
+    window.addEventListener('native.keyboardshow', (e:any) => {
+      this.content.scrollTo(0, e.keyboardHeight);
+    });
   }
 
 }
