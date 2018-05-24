@@ -37,12 +37,7 @@ page-communicate{
     scroll-top:100%;
     scroll-height:100%;
   }
-  /*聊天框*/
-  .textArea{
-    position: fixed;
-    width: 100%;
-    bottom: 0.1%;
-  }
+
   .messageShow{
     position: absolute;
     width:100%;
@@ -54,21 +49,22 @@ page-communicate{
     width:100%;
     margin-top: 3.5%;
     margin-right:2.5%;
+    margin-left: 2.5%;
   }
 
   .main .pic {
-    width:12%;
+    width:40px;
+    height: 40px;
     border-radius: 50%;
-    clear:both;
     overflow: hidden;
     display: inline-block;
   }
 
   .main .msg {
-    font-size: 17px;
+    font-size: 15px;
     max-width: 60%;
     border-radius: 5%;
-    padding: 8px;
+    padding: 4px;
     margin-top:5px;
     display: inline-block;
   }
@@ -96,7 +92,7 @@ page-communicate{
     float: left;
   }
   .receive_picture{
-    width:15%;
+    width:10%;
     float: left;
   }
   .receiveMs{
@@ -104,40 +100,66 @@ page-communicate{
     margin-left:2.5%;
   }
 
+  /*聊天框*/
+    .textArea{
+      height: 50px;
+    }
 
+  /*细节部分*/
+  .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before {
+    height: 0px;
+  }
+  .item-md .item-button {
+    padding: 0.5rem 0.8em;
+    height: 35px;
+    font-size: 1.2rem;
+    margin-left: 10px;
+  }
+  .item-ios .item-button {
+    padding: 0.5rem 0.8rem;
+    height: 35px;
+    font-size: 1.2rem;
+    margin-left: 10px;
+  }
+
+  .item-md.item-block .item-inner {
+    padding-right: 0px;
+    border-bottom: 0px solid #dedede;
+  }
   .item-ios.item-block .item-inner {
-    padding-right: 8px;
+    padding-right: 0px;
     border-bottom: 0px solid #c8c7cc;
+  }
+
+  .item-md.item-block .item-inner {
+    border-bottom: 0px solid #dedede;
+  }
+  .item-ios.item-block .item-inner {
+    border-bottom: 0px solid #dedede;
+  }
+
+  .item-input ion-input, .item-input ion-textarea {
+    border: 1px solid #eeeeee;
+    height: 40px;
+  }
+  .text-input-md {
+    height: 36px;
+    margin: 2px 0px 0px 0px;
+    padding: 0px;
+    width: calc(100% - 8px - 8px);
   }
   .text-input-ios {
     height: 36px;
-    border: 1px solid #B4B6BA;
-    background: #FDFDFE;
-    border-radius: 5px;
-    margin: 0px 0px 0px 0px;
+    margin: 2px 0px 0px 0px;
     padding: 0px;
     width: calc(100% - 8px);
   }
-
+/*
   .item-ios {
     font-size: 17px;
     color: rgba(0,0,0,0.6);
     background: #fafbfc;
     border: 1px solid #eeeeee;
   }
-
-  .item-ios .item-button {
-    padding: 0.5rem 0.8rem;
-    height: 30px;
-    font-size: 1.3rem;
-  }
-
-  .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before {
-    height: 0px;
-  }
-  .item-md.item-block .item-inner {
-    padding-right: 8px;
-    border-bottom: 0px solid #dedede;
-    height: 50px;
-  }
+*/
 }
