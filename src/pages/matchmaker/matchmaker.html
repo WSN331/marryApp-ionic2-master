@@ -16,21 +16,21 @@
   <div class="messageShow">
     <div class="first" id="first">
       <ng-container *ngFor="let msg of subMsgList">
-        <div *ngIf="msg.from==this.mySelf" class="main_send">
-          <div class="send_picture">
+        <div *ngIf="msg.from==this.mySelf" class="main_send main">
+          <div class="send_picture pic">
             <img [src]="imgService.safeImage(mySelfMsg.picture)">
           </div>
-          <div class="sendMs">
+          <div class="sendMs msg">
             <!--{{parseJsonTo(msg.data)}}-->
             {{msg.text}}
           </div>
         </div>
 
-        <div *ngIf="msg.from!=this.mySelf" class="main_receive">
+        <div *ngIf="msg.from!=this.mySelf" class="main_receive main">
           <div class="receive_picture">
             <img src="assets/img/logo.png"/>
           </div>
-          <div class="receiveMs">
+          <div class="receiveMs msg">
             {{msg.text}}
             <!--{{parseJsonTo(msg.data)}}-->
           </div>
@@ -43,15 +43,11 @@
   <div class="textArea">
     <ion-item>
 
-      <button ion-button icon-only item-start clear (click)="sendImgMsg()">
-        <ion-icon ios="ios-image" md="md-image" ></ion-icon>
-      </button>
-      <!--text-center-->
       <ion-input class="send" [(ngModel)]="sendText" type="text" placeholder="想说点什么......">
       </ion-input>
 
-      <button ion-button icon-only item-end clear (click)="sendMessage()" >
-        <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon>
+      <button class="button_send" ion-button item-end color="secondary" (click)="sendMessage()" >
+        发送
       </button>
 
     </ion-item>

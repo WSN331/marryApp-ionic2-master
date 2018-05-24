@@ -150,6 +150,11 @@ page-contact {
   }
   .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before {
     width: 100%;
-    height: 1px;
+    height: 0px;
+  }
+  .list-md .item-block .item-inner {
+    border-bottom: 1px solid #dedede;
+    height: 105px;
+    padding-bottom: 20px;
   }
 }
