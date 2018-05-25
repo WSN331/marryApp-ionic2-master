@@ -8,7 +8,7 @@ page-login{
   }
   .head_back{
     position: absolute;
-    height:50px;
+    height:44px;
     vertical-align: middle;
   }
   .head_back span{
@@ -17,13 +17,13 @@ page-login{
     display: inline-block
   }
   .head_back img{
-    width:25px;
+    width:22px;
     vertical-align: middle;
   }
   .head_title {
-    font-size: 22px;
+    font-size: 18px;
     text-align: center;
-    line-height: 50px;
+    line-height: 44px;
     color: #ffffff;
   }
   .line{
@@ -31,18 +31,21 @@ page-login{
     background-color:#eeeeee;
   }
 
+  /*下面部分*/
   .phone{
-    background-color: #fafafa;
-    border-radius: 20px;
+    background-color: #f4f4f4;
+    border-radius: 7px;
+    padding-left: 5px;
   }
   .password{
-    background-color: #fafafa;
-    border-radius: 20px;
+    background-color: #f4f4f4;
+    border-radius: 7px;
     margin-top:20px;
   }
 
   .phone img{
     width:20px;
+    display: inline-block;
   }
 
   .password img{
@@ -53,7 +56,9 @@ page-login{
     margin-top:30px;
     background-image: url('../assets/img/btn_background.png');
     background-size:cover;
-    border-radius:15px;
+    border-radius:7px;
+    width: 100%;
+    box-shadow: none;
     color:#ffffff;
   }
   .login:active{
@@ -81,5 +86,25 @@ page-login{
   .text-input::-webkit-input-placeholder {
     color: #cccccc;
   }
+
+  $select: 'md' 'ios';
+  @for $i from 1 to 3 {
+    /*细节*/
+    .header-#{nth($select, $i)}::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before {
+      height: 0px;
+    }
+    .list-#{nth($select, $i)}[inset] .item:first-child {
+      padding-left: 15px;
+    }
+    .list-#{nth($select, $i)}[no-lines] .item-block {
+      border-width: 0;
+      padding-left: 15px;
+    }
+    .button-#{nth($select, $i)} {
+      background-color: transparent;
+    }
+  }
+
+
 
 }

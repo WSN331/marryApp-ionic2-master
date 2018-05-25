@@ -8,9 +8,9 @@ page-start{
 
   .button{
     background-color:transparent;
-    border-radius:20px;
+    border-radius:7px;
     color:white;
-    border: 2px solid white;
+    border: 1px solid white;
     width:40%;
     margin:0 auto;
   }
@@ -26,8 +26,9 @@ page-start{
 
   .walk{
     position: fixed;
-    bottom: 10%;
+    bottom: 8%;
     background-image:url('../assets/img/btn_background.png');
+    background-size: cover;
     border: none;
     text-align: center;
     width: 90%;
@@ -35,13 +36,13 @@ page-start{
 
   .login{
     position: fixed;
-    bottom: 20%;
+    bottom: 18%;
     margin-top:10px;
   }
 
   .register{
     position: fixed;
-    bottom: 20%;
+    bottom: 18%;
     right: 5%;
     margin-top:10px;
   }
