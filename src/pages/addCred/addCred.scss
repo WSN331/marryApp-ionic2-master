@@ -1,11 +1,11 @@
 page-addCred {
   /*标题*/
   .head{
-    height: 50px;
+    height: 44px;
   }
   .head_back{
     position: absolute;
-    height:50px;
+    height:44px;
     vertical-align: middle;
   }
   .head_back span{
@@ -15,14 +15,14 @@ page-addCred {
     display: inline-block;
   }
   .head_back img{
-    width:25px;
+    width:22px;
     vertical-align: middle;
   }
 
   .head_title {
-    font-size: 22px;
+    font-size: 18px;
     text-align: center;
-    line-height: 50px;
+    line-height: 44px;
     color: #ff975a;
   }
   .line{
@@ -30,22 +30,27 @@ page-addCred {
     background-color:#eeeeee;
   }
 
+  /*提交照片页面*/
   .type_name {
-    font-size: 26px;
+    font-size: 18px;
     width: 100%;
     text-align: center;
   }
 
   .image_picker img {
-    width: 50%;
-    margin-left: 25%;
+    width: 30%;
+    margin-left: 35%;
   }
 
   .subImg{
-    margin-top:30px;
     background-image: url('../assets/img/btn_background.png');
-    background-size:cover;
-    border-radius:15px;
+    background-size: 100%;
+    margin: 10% 10%;
+    border: none;
+    text-align: center;
+    width: 80%;
+    border-radius:10px;
+    background-size: cover;
     color:#ffffff;
   }
   .subImg:active{
@@ -57,4 +62,12 @@ page-addCred {
     color:white;
   }
 
+
+  $select: 'md' 'ios';
+  @for $i from 1 to 3 {
+    /*细节*/
+    .header-#{nth($select, $i)}::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before {
+      height: 0px;
+    }
+  }
 }

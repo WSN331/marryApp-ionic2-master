@@ -108,6 +108,9 @@ page-homeIntroduce{
   .list-ios {
     margin: 15px 0 32px;
   }
+  .list-md {
+    margin: 15px 0 32px;
+  }
 
   ion-list {
     width: 100%;
@@ -115,14 +118,29 @@ page-homeIntroduce{
   .list-ios > .item-block:first-child {
     border-top: 0.55px solid #eeeeee;
   }
+  .list-md > .item-block:first-child {
+    border-top: 0.55px solid #eeeeee;
+  }
   .list-ios > .item-block:last-child, .list-ios > .item-wrapper:last-child .item-block {
+    border-bottom: 0.55px solid #eeeeee;
+  }
+  .list-md > .item-block:last-child, .list-ios > .item-wrapper:last-child .item-block {
     border-bottom: 0.55px solid #eeeeee;
   }
   .list-ios .item-block .item-inner {
     border-bottom: 0.55px solid #eeeeee;
     margin: 5px;
   }
+  .list-md .item-block .item-inner {
+    border-bottom: 0.55px solid #eeeeee;
+    margin: 5px;
+  }
   .item-ios {
+    padding-left: 12px;
+    font-size: 14px;
+    color: #333333;
+  }
+  .item-md {
     padding-left: 12px;
     font-size: 14px;
     color: #333333;
@@ -180,12 +198,15 @@ page-homeIntroduce{
     font-size: 12px;
   }
 
+  .credMsg{
+    font-size: 16px;
+  }
 
   /*底部3个功能框*/
   .execute_btn {
     position: fixed;
     background: rgba(255, 255, 255, 1);
-    bottom: 0.1%;
+    bottom: 0%;
     width: 100%;
     float: left;
   }
@@ -204,17 +225,17 @@ page-homeIntroduce{
   }
 
   .execute_btn .item img {
-    width: 16%;
+    width: 20%;
   }
 
   .execute_btn .s1,.s2{
-    font-size: 10px;
+    font-size: 8px;
     color: #666666;
   }
   .s3{
     display: inline-block;
     margin-top: 3px;
-    font-size: 10px;
+    font-size: 8px;
     color: #666666;
   }
 

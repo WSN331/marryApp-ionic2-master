@@ -1,11 +1,11 @@
 page-userDetail1{
   /*标题*/
   .head{
-    height: 50px;
+    height: 44px;
   }
   .head_back{
     position: absolute;
-    height:50px;
+    height:44px;
     vertical-align: middle;
   }
   .head_back span{
@@ -15,14 +15,14 @@ page-userDetail1{
     display: inline-block;
   }
   .head_back img{
-    width:25px;
+    width:22px;
     vertical-align: middle;
   }
 
   .head_title {
-    font-size: 22px;
+    font-size: 18px;
     text-align: center;
-    line-height: 50px;
+    line-height: 44px;
     color: #ff975a;
   }
   .line{
@@ -30,14 +30,61 @@ page-userDetail1{
     background-color:#eeeeee;
   }
 
+  /*每个单项*/
+  .divItem{
+    height:40px;
+    margin: 2% 5%;
+  }
+
+  .divItem ion-label{
+    position:absolute;
+    font-size:15px;
+    color: #333333;
+  }
+
+  .divItem ion-input{
+    font-size:15px;
+    padding-top: 0px;
+    padding-left: 20%;
+    color: #333333;
+  }
+
+  .divItem p{
+    margin:10px 8px;
+    font-size:15px;
+    padding-top: 12px;
+    padding-left: 20%;
+    color: #333333;
+  }
+
+  /*多输入部分*/
+  .divTextarea{
+    height: 80px;
+    margin: 2% 5%;
+    position: relative;
+  }
+  .divTextarea p{
+    font-size: 15px;
+    line-height:100%;
+    color: #333333;
+  }
+  .divTextarea ion-textarea{
+    font-size: 15px;
+    color: #333333;
+    width: 100%;
+
+  }
+
   //下一步按钮
   .btn_detail{
-    margin: 10% 5%;
+    margin: 10% 10%;
     background-image:url('../assets/img/btn_background.png');
     border: none;
     text-align: center;
-    width: 90%;
-    border-radius:20px;
+    width: 80%;
+    border-radius:10px;
+    background-size: cover;
+    box-shadow: none;
   }
   .btn_detail:active{
     background-color:#ffaa00;
@@ -48,38 +95,24 @@ page-userDetail1{
     color:white;
   }
 
-  .divItem{
-    height:45px;
-  }
 
-  .divItem ion-label{
-    position:absolute;
-    font-size:18px;
-    line-height:100%;
+  $select: 'md' 'ios';
+  @for $i from 1 to 3 {
+    /*细节*/
+    .item-#{nth($select, $i)}.item-block .item-inner {
+      padding-right: 8px;
+      border-bottom: 0.55px solid #eeeeee;
+    }
+    .header-#{nth($select, $i)}::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before {
+      height: 0px;
+    }
+    .text-input-#{nth($select, $i)} {
+      margin: 10px 2px;
+      height: 50px;
+      padding:3px 8px;
+      font-size: 16px;
+    }
   }
-
-  .divItem ion-input{
-    font-size:16px;
-    padding-top: 0px;
-  }
-
-  .divItem p{
-    margin:10px 8px;
-    font-size:16px;
-    padding-top: 7px;
-  }
-
-  .divTextarea{
-    height: 80px;
-  }
-  .divTextarea p{
-    font-size: 16px;
-    line-height:100%;
-  }
-  .divTextarea ion-textarea{
-    font-size: 16px;
-  }
-
 
 
 }

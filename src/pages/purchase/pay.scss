@@ -2,11 +2,11 @@ page-pay{
   /*标题*/
   .head{
     background-color: #ffffff;
-    height: 50px;
+    height: 44px;
   }
   .head_back{
     position: absolute;
-    height:50px;
+    height:44px;
     vertical-align: middle;
   }
   .head_back span{
@@ -15,36 +15,36 @@ page-pay{
     display: inline-block
   }
   .head_back img{
-    width:25px;
+    width:22px;
     vertical-align: middle;
   }
   .head_title {
-    font-size: 22px;
+    font-size: 18px;
     text-align: center;
-    line-height: 50px;
+    line-height: 44px;
     color: #ff975a;
   }
   .line{
     height: 1px;
     background-color:#eeeeee;
   }
+
   .ion-content{
     background-color: #fafafa;
   }
   //个人信息部分
-
   .ion-list{
-    margin-top:10px;
+    margin-top:8px;
   }
   .picture{
-    width: 60px;
-    height:60px;
+    width: 40px;
+    height:40px;
     border-radius: 50%;
     overflow: hidden;
   }
   .span1{
     float: left;
-    font-size:20px;
+    font-size:18px;
   }
 /*  .describe img{
     width:23px;
@@ -58,13 +58,14 @@ page-pay{
     color:#d9a961;
   }
   .describe_pic{
-    width:20px;
-    margin: 5px 10px;
+    width: 5%;
+    margin: 3px 17px;
     display: inline-block;
+    text-align: center;
   }
   .describe_openvip{
-    margin: 2px 10px;
-    width: 110px;
+    margin: 3px 17px;
+    width: 30%;
     display: inline-block;
   }
 
@@ -77,27 +78,32 @@ page-pay{
     overflow: hidden;
   }
   .buy_member{
-    margin-left:3%;
     font-size:18px;
-    text-align: center;
-    margin-top:15px;
-  }
-  .buy_first{
+    margin-left: 3%;
     margin-top:10px;
-    text-align: center;
-    margin-bottom: 20px;
   }
+  /*购买价格*/
+  .buy_first{
+    margin-top:5px;
+    text-align: center;
+    margin-left: 2.5%;
+    margin-bottom: 10px;
+    display: inline-block;
+    width: 100%;
+  }
+
   .buy_one{
+    position: relative;
     text-align: left;
     padding:10px;
     display: inline-block;
-    width:170px;
+    width:45%;
     border: 1px solid #cccccc ;
-    margin-left:2%;
-    margin-top:10px;
+    margin: 5px;
+    float: left;
   }
   .buy_name{
-    font-size:20px;
+    font-size:16px;
     color: #d9a961;
   }
   .buy_name img{
@@ -105,29 +111,30 @@ page-pay{
     width:20px;
   }
   .buy_name span{
-    font-size:15px;
+    font-size:13px;
     color: #d9a961;
   }
   .buy_newprice{
-    font-size:20px;
+    font-size:16px;
     color: #ec584e;
+  }
+  .buy_price_span1{
+    font-size: 13px;
   }
   .buy_price_span2{
     text-align: center;
-    width:60px;
+    width:50px;
     height:1px;
     background-color:black;
     margin-top:-8px;
   }
   .buy_img{
-    width:60px;
+    width:50px;
     position: absolute;
-    margin-left:99px;
-    margin-top:-12px;
+    display: inline-block;
+    right: 1%;
+    bottom: -2.5%;
   }
-
-
-
 
 
   //第三部分会员权益
@@ -137,40 +144,50 @@ page-pay{
     background-color:#ffffff;
     margin-top:10px;
     overflow: hidden;
-
   }
   .member_right{
-    margin-top:15px;
-    font-size: 20px;
+    margin-top:10px;
+    font-size: 17px;
     text-align: center;
   }
   .first_line{
-    margin-top:20px;
+    margin-top:10px;
     display: inline-block;
     width: 100%;
     text-align: center;
   }
-  .second_line{
-    display: inline-block;
-    margin-top:20px;
-    width:100%;
-    text-align: center;
+  .s1{
+    font-size: 14px;
   }
   .vip_img1{
     display: inline-block;
   }
   .vip_img1 img{
-    width:50px;
-    height:50px;
+    width:40px;
   }
   .vip_img {
     display: inline-block;
     margin-left:60px;
   }
   .vip_img img{
-    width:50px;
-    height:50px;
+    width:40px;
   }
+
+  .second_line{
+    display: inline-block;
+    margin-top:10px;
+    width:100%;
+    text-align: center;
+  }
+
+  $select: 'md' 'ios';
+  @for $i from 1 to 3 {
+    /*细节*/
+    .header-#{nth($select, $i)}::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before {
+      background: none;
+    }
+  }
+
 
 /*  ion-card {
     position: relative;

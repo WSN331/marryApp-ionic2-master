@@ -1,143 +1,164 @@
 page-userIntroduce {
 
+  /*头像*/
   .main_pic {
     width: 100%;
   }
-
   .main_pic img{
     width: 100%;
   }
+  /*设置按钮*/
   .main_set{
     position: absolute;
     top:3%;
     right: 5%;
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     background: rgba(0,0,0,0.5);
     border-radius:50%;
     padding: 2%;
   }
-  .btn_setting {
-  }
 
+  /*照片管理*/
   .control_img {
     position: absolute;
     left: 5%;
-    top: 50%;
+    top: 52%;
     z-index: 200;
     background-color:rgba(0,0,0,0.5);
-    width: 110px;
-    height: 35px;
+    width: 100px;
+    height: 30px;
     border-radius: 25px;
   }
-
   .control_img img {
     float: left;
-    margin: 10px 5px 5px 15px;
+    margin: 8px 5px 5px 15px;
     width: 15px;
   }
-
   .control_img p {
     float: left;
     color: white;
-    font-size: 15px;
+    font-size: 13px;
     line-height: 5px;
   }
 
+  /*第一行*/
   .first_line{
     margin: 5% 8% 0px;
   }
 
   .name{
-    font-size: 22px;
+    font-size: 18px;
     display: inline-block;
   }
 
   .first_line .pic{
-    margin: 5px 10px;
-    width: 20px;
+    margin: 2px 17px;
+    width: 5%;
     position: absolute;
     text-align: center;
     display: inline-block;
+  }
+  .first_line .openvip{
+    margin: 1px 17px;
+    width: 30%;
+    position: absolute;
+    text-align: center;
+    display: inline-block;
+
   }
   .remainPay{
     margin-left:8%;
-    margin-top:15px;
+    margin-top:10px;
     color: #FF975A;
-    font-size:18px;
-  }
-
-
-  .first_line .openvip{
-    margin: 2px 10px;
-    width: 110px;
-    position: absolute;
-    text-align: center;
-    display: inline-block;
+    font-size:16px;
   }
 
 
   .update{
     float: right;
   }
-
   .update p {
     float: right;
-    color: gray;
+    color: #999999;
+    font-size: 13px;
   }
-
   .update img {
     float: right;
-    width: 25px;
-    margin: 12px 5px 0px 5px;
+    width: 15px;
+    margin: 15px 5px 0px 5px;
   }
 
   .little_info{
-    margin-left:7%;
+    margin-left:8%;
   }
-
 
   p.line-one {
     display: inline-block;
-    padding: 2px;
+    font-size: 14px;
     border-radius: 5px;
   }
 
-  ion-list {
-    clear: both;
-    float: left;
-    width: 100%;
+  /*分割线*/
+  .line{
+    height:1px;
+    background: #eeeeee;
+    margin-top: 15px;
   }
 
+  .line-two{
+    height: 1px;
+    background: rgba(0,0,0,0.1);
+    margin-top: 10px;
+  }
+  /*下面详细介绍部分*/
   .pass_audit {
-    clear: both;
-    float: left;
     width: 100%;
-    margin-top: 10%;
     text-align: center;
   }
-
+  .pass_audit .title{
+    margin-top: 15px;
+  }
   .pass_audit .title img {
-    width: 25px;
+    width: 20px;
   }
   .pass_audit .title span{
-    font-size:21px;
+    font-size:17px;
+    margin-left: 5px;
     overflow: hidden;
     display: inline-block;
   }
+  .list-ios {
+    margin: 15px 0 32px;
+  }
+  .list-md {
+    margin: 15px 0 32px;
+  }
 
-  .unpass_audit{
-    clear: both;
-    float: left;
+
+  ion-list {
     width: 100%;
-    text-align: center;
   }
-  .unpass_audit .title{
-    padding-bottom: 3px;
-    font-size: 21px;
-    color:#ff5c5c;
+  .list-ios > .item-block:first-child {
+    border-top: 0.55px solid #eeeeee;
   }
-
+  .list-md > .item-block:first-child {
+    border-top: 0.55px solid #eeeeee;
+  }
+  .list-ios > .item-block:last-child, .list-ios > .item-wrapper:last-child .item-block {
+    border-bottom: 0.55px solid #eeeeee;
+  }
+  .list-md > .item-block:last-child, .list-ios > .item-wrapper:last-child .item-block {
+    border-bottom: 0.55px solid #eeeeee;
+  }
+  .list-ios .item-block .item-inner {
+    border-bottom: 0.55px solid #eeeeee;
+    margin: 5px;
+  }
+  .list-md .item-block .item-inner {
+    border-bottom: 0.55px solid #eeeeee;
+    margin: 5px;
+  }
 
   ion-list.both-info ion-item span {
     float: left;
@@ -153,27 +174,66 @@ page-userIntroduce {
     clear: both;
   }
 
+  /*其他信息部分*/
   .both-info {
+    margin-bottom: 18%;
+    margin-top: -4%;
+  }
+  .both-info span{
+    font-size: 14px;
+  }
+  .both-info .intro{
+    font-size: 14px;
+    color: #999999;
+  }
+  .item-ios p {
+    color: #999999;
+    font-size: 14px;
+  }
+  .item-md p {
+    color: #999999;
+    font-size: 14px;
   }
 
   .both-info .bath {
     float: left;
-    width: 60%;
+    width: 72%;
   }
 
-  .both-info .bath p {
+  .both-info .bath p{
+    display: inline-block;
     float: left;
-    color: #FF975A;
-    background: #FFF6F1;
-    margin-left: 10px;
-    padding: 2px;
+    color: #ff975A;
+    padding: 3px 6px 3px 6px;
+
+    height: 26px;
+    background: #fff6f1;
+    border-radius: 10px;
+
+    margin-bottom: 10px;
+    margin-right: 10px;
+    font-size: 12px;
   }
 
   .creMsgVS{
     color: #FF975A;
-    font-size:18px;
+    font-size:17px;
+  }
+  .credMsg{
+    font-size: 16px;
   }
 
 
 
 }
+/*  .unpass_audit{
+    clear: both;
+    float: left;
+    width: 100%;
+    text-align: center;
+  }
+  .unpass_audit .title{
+    padding-bottom: 3px;
+    font-size: 21px;
+    color:#ff5c5c;
+  }*/

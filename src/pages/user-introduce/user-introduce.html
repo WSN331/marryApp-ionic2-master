@@ -30,6 +30,7 @@
     <div class="pic" *ngIf="calculateService.isVip(baseInfo.vipTime)==true">
       <img src="assets/img/vrz.png"/>
     </div>
+
     <div class="openvip" *ngIf="calculateService.isVip(baseInfo.vipTime)==false" (click)="goToOpenVip()">
       <img src="assets/img/openvip.png"/>
     </div>
@@ -54,6 +55,10 @@
     <p class="line-one" *ngIf="isNotNull(detailInfo.hopeTime)">{{ detailInfo.hopeTime }}结婚</p>
   </div>
 
+  <!--分割线-->
+  <div class="line"></div>
+
+  <div class="line-two"></div>
   <!--已认证的信息-->
   <div class="pass_audit">
     <div class="title">
@@ -99,10 +104,10 @@
           {{ calculateService.getConstellation(baseInfo.birthday) }}
         </p>
         <p *ngIf="isNotZero(detailInfo.height)">
-          身高 {{ detailInfo.height }}
+          {{ detailInfo.height }}cm
         </p>
         <p *ngIf="isNotZero(detailInfo.weight)">
-          体重 {{ detailInfo.weight }}
+          {{ detailInfo.weight }}kg
         </p>
         <p *ngIf="isNotNull(detailInfo.hobby)">
           爱好 {{ baseInfo.hobby }}

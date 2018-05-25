@@ -17,12 +17,12 @@
   <!--全部头像图片-->
   <div class="all-pic">
     <div class="all-dex">头像照</div>
-    <img *ngFor="let picture of icons; let i = index" [src]="imgService.safeImage(picture.img)" (click)="controlIcon(i)" >
+    <img class="showPic" *ngFor="let picture of icons; let i = index" [src]="imgService.safeImage(picture.img)" (click)="controlIcon(i)" >
     <img src="assets/img/btn_add_img.png" (click)="addIcon()">
   </div>
 
 
-  <div class="all-pic">
+  <div class="live-pic">
     <div class="live-des">生活照</div>
     <img *ngFor="let picture of pictures; let i = index" [src]="imgService.safeImage(picture.img)" (click)="controlImage(i)">
     <img src="assets/img/btn_add_img.png" (click)="addPicture()">

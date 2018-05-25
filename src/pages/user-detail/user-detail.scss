@@ -1,11 +1,11 @@
 page-userDetail{
   /*标题*/
   .head{
-    height: 50px;
+    height: 44px;
   }
   .head_back{
     position: absolute;
-    height:50px;
+    height:44px;
     vertical-align: middle;
   }
   .head_back span{
@@ -15,14 +15,14 @@ page-userDetail{
     display: inline-block;
   }
   .head_back img{
-    width:25px;
+    width:22px;
     vertical-align: middle;
   }
 
   .head_title {
-    font-size: 22px;
+    font-size: 18px;
     text-align: center;
-    line-height: 50px;
+    line-height: 44px;
     color: #ff975a;
   }
   .line{
@@ -30,14 +30,43 @@ page-userDetail{
     background-color:#eeeeee;
   }
 
+  /*每个选项*/
+  .divItem{
+    height:40px;
+    margin: 3% 5%;
+  }
+
+  .divItem ion-label{
+    position:absolute;
+    font-size:15px;
+    color: #333333;
+  }
+
+  .divItem ion-input{
+    font-size:15px;
+    padding-top: 0px;
+    padding-left: 20%;
+    color: #333333;
+  }
+
+  .divItem p{
+    margin:10px 8px;
+    font-size:15px;
+    padding-top: 10px;
+    padding-left: 20%;
+    color: #333333;
+  }
+
   //下一步按钮
   .btn_detail{
-    margin: 10% 5%;
+    margin: 10% 10%;
     background-image:url('../assets/img/btn_background.png');
     border: none;
     text-align: center;
-    width: 90%;
-    border-radius:20px;
+    width: 80%;
+    border-radius:10px;
+    background-size: cover;
+    box-shadow: none;
   }
   .btn_detail:active{
     background-color:#ffaa00;
@@ -48,29 +77,22 @@ page-userDetail{
     color:white;
   }
 
-  .divItem{
-    height:45px;
+  $select: 'md' 'ios';
+  @for $i from 1 to 3 {
+    /*细节*/
+    .item-#{nth($select, $i)}.item-block .item-inner {
+      padding-right: 8px;
+      border-bottom: 0.55px solid #eeeeee;
+    }
+    .header-#{nth($select, $i)}::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before {
+      height: 0px;
+    }
+    .datetime-md {
+      padding: 13px 8px 13px 16px;
+      font-size: 15px;
+      color: #333333;
+    }
   }
-
-  .divItem ion-label{
-    position:absolute;
-    font-size:18px;
-    line-height:100%;
-  }
-
-  .divItem ion-input{
-    font-size:16px;
-    padding-top: 0px;
-  }
-
-  .divItem p{
-    margin:10px 8px;
-    font-size:16px;
-    padding-top: 7px;
-  }
-
-
-
 
 
 }

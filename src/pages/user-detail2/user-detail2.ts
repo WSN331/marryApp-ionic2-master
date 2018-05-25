@@ -311,4 +311,8 @@ export class UserDetail2Page {
   back(){
     this.navCtrl.pop();
   }
+
+  isNotNull(item) {
+    return item != undefined && item != null && item != 'undefined' && item != '';
+  }
 }

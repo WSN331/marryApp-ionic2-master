@@ -1,11 +1,11 @@
 page-about {
   /*标题*/
   .head{
-    height: 50px;
+    height: 44px;
   }
   .head_back{
     position: absolute;
-    height:50px;
+    height:44px;
     vertical-align: middle;
   }
   .head_back span{
@@ -14,14 +14,14 @@ page-about {
     display: inline-block
   }
   .head_back img{
-    width:25px;
+    width:22px;
     vertical-align: middle;
   }
 
   .head_title {
-    font-size: 22px;
+    font-size: 18px;
     text-align: center;
-    line-height: 50px;
+    line-height: 44px;
     color: #ff975a;
   }
   .line{
@@ -32,9 +32,8 @@ page-about {
 
   //下面部分
   div.picture img{
-    clear: both;
     float: left;
-    width: 30%;
+    width: 20%;
     margin: 10px;
     border-radius:50%;
     overflow:hidden;
@@ -43,18 +42,27 @@ page-about {
   div.user h2 {
     float: left;
     margin: 10%;
+    font-size: 20px;
   }
 
+
+  /*下面的条目*/
   ion-label {
-    font-size: larger;
+    font-size: 15px;
   }
 
   ion-label img {
     float: right;
+    width: 17px;
   }
 
   ion-label span {
     float: right;
+  }
+
+  .toggle-ios {
+    width: 51px;
+    height: 31px;
   }
 
   .button.logout {
@@ -63,15 +71,30 @@ page-about {
     border: none;
     text-align: center;
     width: 90%;
-    border-radius:20px;
+    border-radius:10px;
+    background-size: cover;
+    box-shadow: none;
   }
 
   .circle{
-    float: right;
-    padding: 2px 5px;
-    border-radius:50px;
+    width: 10px;
+    height: 10px;
+    border-radius:50%;
     display: inline-block;
     background: #ff0000;
+    position: absolute;
+  }
+
+  $select: 'md' 'ios';
+  @for $i from 1 to 3 {
+    /*细节*/
+    .item-#{nth($select, $i)}.item-block .item-inner {
+      padding-right: 8px;
+      border-bottom: 0.55px solid #eeeeee;
+    }
+    .header-#{nth($select, $i)}::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before {
+      height: 0px;
+    }
   }
 
 

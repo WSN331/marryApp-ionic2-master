@@ -1,11 +1,11 @@
 page-authorInformation {
   /*标题*/
   .head{
-    height: 50px;
+    height: 44px;
   }
   .head_back{
     position: absolute;
-    height:50px;
+    height:44px;
     vertical-align: middle;
   }
   .head_back span{
@@ -15,14 +15,14 @@ page-authorInformation {
     display: inline-block;
   }
   .head_back img{
-    width:25px;
+    width:22px;
     vertical-align: middle;
   }
 
   .head_title {
-    font-size: 22px;
+    font-size: 18px;
     text-align: center;
-    line-height: 50px;
+    line-height: 44px;
     color: #ff975a;
   }
   .line{
@@ -30,22 +30,27 @@ page-authorInformation {
     background-color:#eeeeee;
   }
 
-
-
-
-
+  /*关于我们*/
   ion-content{
     background: gainsboro;
   }
-
   .icon{
     width: 100%;
     text-align: center;
   }
-
   .icon img{
-
-    width: 50px
+    width: 40px
+  }
+  .icon p{
+    font-size: 20px;
+  }
+  .label-md {
+    margin: 13px 8px 13px 0;
+    font-size: 18px;
+  }
+  .label-ios {
+    margin: 13px 8px 13px 0;
+    font-size: 18px;
   }
 
   .copyright {
@@ -55,5 +60,14 @@ page-authorInformation {
     text-align: center;
   }
 
-
+  $select: 'md' 'ios';
+  @for $i from 1 to 3 {
+    .item-#{nth($select, $i)}.item-block .item-inner {
+      padding-right: 8px;
+      border-bottom: 0.55px solid #eeeeee;
+    }
+    .header-#{nth($select, $i)}::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before {
+      height: 0px;
+    }
+  }
 }

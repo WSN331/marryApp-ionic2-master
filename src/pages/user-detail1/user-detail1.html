@@ -12,7 +12,7 @@
   </div>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
 
     <div class="divItem">
       <ion-label>学历</ion-label>
@@ -20,11 +20,15 @@
       <p text-right (click)="chooseStr('edu')">{{detailInfo.edu}}</p>
     </div>
 
+  <div class="line"></div>
+
     <div class="divItem">
       <ion-label>期望婚时</ion-label>
       <p text-right *ngIf="isStrNull(detailInfo.hopeTime)" (click)="chooseStr('hopeTime')" style="color: gray">请选择</p>
       <p text-right (click)="chooseStr('hopeTime')">{{detailInfo.hopeTime}}</p>
     </div>
+
+  <div class="line"></div>
 
     <div class="divItem">
       <ion-label>收入</ion-label>
@@ -32,20 +36,28 @@
       <p text-right (click)="chooseStr('income')">{{detailInfo.income}}</p>
     </div>
 
+  <div class="line"></div>
+
     <div class="divTextarea">
       <p>爱好</p>
       <ion-textarea placeholder="请填写" [(ngModel)]="baseInfo.hobby"></ion-textarea>
     </div>
+
+  <div class="line"></div>
 
     <div class="divTextarea">
       <p>择偶标准</p>
       <ion-textarea placeholder="请填写" [(ngModel)]="detailInfo.chooseStandard"></ion-textarea>
     </div>
 
+  <div class="line"></div>
+
     <div class="divTextarea">
       <p>自我介绍</p>
       <ion-textarea placeholder="请填写" [(ngModel)]="detailInfo.introduce"></ion-textarea>
     </div>
+
+  <div class="line"></div>
 
     <button class="btn_detail" ion-button full (click)="nextStep()">下一步</button>
 

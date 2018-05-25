@@ -73,7 +73,7 @@
         </ion-option>
       </ion-select>
       <!--市-->
-      <ion-select *ngIf="isNotNull(this.selectOption['newDistrictSelect'].provinceId)"
+      <ion-select
                   [(ngModel)]="selectOption.newDistrictSelect.cityId"
                   (ngModelChange)="getDistrictList('newDistrictSelect')">
         <ion-option *ngFor="let city of selectOption.newDistrictSelect.cityList" value="{{city.id}}">
@@ -82,7 +82,6 @@
       </ion-select>
       <!--区-->
       <ion-select
-        *ngIf="isNotNull(this.selectOption['newDistrictSelect'].cityId)"
         [(ngModel)]="selectOption.newDistrictSelect.id">
         <ion-option *ngFor="let district of selectOption.newDistrictSelect.districtList" value="{{district.id}}">
           {{district.name}}
@@ -101,7 +100,7 @@
         </ion-option>
       </ion-select>
       <!--市-->
-      <ion-select *ngIf="isNotNull(this.selectOption['oldDistrictSelect'].provinceId)"
+      <ion-select
                   [(ngModel)]="selectOption.oldDistrictSelect.cityId"
                   (ngModelChange)="getDistrictList('oldDistrictSelect')">
         <ion-option *ngFor="let city of selectOption.oldDistrictSelect.cityList" value="{{city.id}}">
@@ -110,7 +109,6 @@
       </ion-select>
       <!--区-->
       <ion-select
-        *ngIf="isNotNull(this.selectOption['oldDistrictSelect'].cityId)"
         [(ngModel)]="selectOption.oldDistrictSelect.id">
         <ion-option *ngFor="let district of selectOption.oldDistrictSelect.districtList" value="{{district.id}}">
           {{district.name}}

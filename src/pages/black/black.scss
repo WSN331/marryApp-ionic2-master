@@ -1,11 +1,11 @@
 page-black{
   /*标题*/
   .head{
-    height: 50px;
+    height: 44px;
   }
   .head_back{
     position: absolute;
-    height:50px;
+    height:44px;
     vertical-align: middle;
   }
   .head_back span{
@@ -15,14 +15,14 @@ page-black{
     display: inline-block;
   }
   .head_back img{
-    width:25px;
+    width:22px;
     vertical-align: middle;
   }
 
   .head_title {
-    font-size: 22px;
+    font-size: 18px;
     text-align: center;
-    line-height: 50px;
+    line-height: 44px;
     color: #ff975a;
   }
   .line{
@@ -35,60 +35,91 @@ page-black{
   }
 
   .people{
-    margin-top: 5px;
-    height:100px;
+    height:90px;
     width:auto;
   }
+  /*头像*/
   .people_picture{
-    width: 60px;
-    height:60px;
+    width: 35px;
+    height:35px;
     border-radius:50%;
-    clear:both;
+    margin-left: 10px;
+    margin-top: 25px;
     float: left;
     overflow: hidden;
   }
+  /*名字描述*/
   .people_describe{
     margin-left: 10px;
     height: 80px;
+    margin-top: 15px;
     display: inline-block;
     position: absolute;
   }
-  .people_date{
-    display: inline-block;
-    height:80px;
-    line-height: 93px;
-    float: right;
-    color:#999999;
-    font-size:14px;
+  .span1{
+    font-size:17px;
   }
-  .people_date img{
-    width: 30px;
-    height: 24px;
+  .span2{
+    margin-left:5px;
+    font-size: 17px;
   }
 
-
-
+  /*认证模块*/
   .people_describe_img{
-    margin-top:5px;
+    margin-top:1px;
   }
   .people_describe_img img{
     float:left;
-    height: 18px;
-    width: 18px;
+    width: 12px;
     position: relative;
     top: 2px;
   }
   .people_describe_img span{
-    text-align: center;
-    margin-left: 10px;
-    font-size:16px;
+    display: inline-block;
+    margin-left: 5px;
+    font-size:12px;
     color:#ff975a;
   }
   .people_describe_img .NoRz{
-    text-align: center;
-    margin-left: 10px;
-    font-size:16px;
+    display: inline-block;
+    margin-left: 5px;
+    font-size:12px;
     color:#515151;
+  }
+  .span3{
+    margin-top: 3px;
+    position: relative;
+    display: inline-block;
+    color:#666666;
+    font-size:12px;
+  }
+  .span4{
+    position: relative;
+    display: inline-block;
+    color:#999999;
+    font-size:12px;
+    clear: both;
+  }
+
+  /*时间*/
+  .people_date{
+    display: inline-block;
+    height:90px;
+    line-height: 90px;
+    float: right;
+    color:#999999;
+    font-size:10px;
+    margin-right: 10px;
+  }
+
+  .line{
+    height: 1px;
+    background:#eeeeee;
+  }
+
+
+  .people_date img{
+    width: 23px;
   }
 
 
@@ -99,28 +130,39 @@ page-black{
     overflow: hidden;  /*超出宽度部分隐藏*/
     text-overflow: ellipsis;  /*超出部分以点号代替*/
   }
-  .span1{
-    font-size:22px;
-  }
-  .span2{
-    margin-left:10px;
-    font-size: 18px;
-  }
-  .span3{
-    position: relative;
-    top: -15px;
+
+  /*ion-list部分*/
+  /*ion-item{
+    height: 90px;
     display: inline-block;
-    color:#666666;
-    font-size:14px;
-    clear: both;
+  }*/
+
+  $select: 'md' 'ios';
+  @for $i from 1 to 3 {
+    .label-#{nth($select, $i)} {
+      margin: 0px 10px 15px 0;
+    }
+    .list-#{nth($select, $i)} .item-block .item-inner {
+      border-bottom: 0.55px solid #eeeeee;
+    }
+    .list-#{nth($select, $i)} > .item-block:last-child, .list-ios > .item-wrapper:last-child .item-block {
+      border-bottom: 0.55px solid #eeeeee;
+    }
+    .header-#{nth($select, $i)}::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before {
+      width: 100%;
+      height: 0px;
+    }
+    .list-#{nth($select, $i)} .item-block .item-inner {
+      border-bottom: 1px solid #dedede;
+      height: 105px;
+      padding-bottom: 20px;
+    }
   }
-  .span4{
-    position: relative;
-    top: -15px;
-    display: inline-block;
-    color:#999999;
-    font-size:14px;
-    clear: both;
+
+  .text_nolike{
+    font-size: 12px;
   }
+
+
 
 }

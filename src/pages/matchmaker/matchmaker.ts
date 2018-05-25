@@ -1,5 +1,5 @@
-import {Component} from "@angular/core";
-import {AlertController, Events, NavController, NavParams} from "ionic-angular";
+import {Component,ViewChild} from "@angular/core";
+import {AlertController, Events, NavController, NavParams,Content} from "ionic-angular";
 
 import * as AV from "leancloud-realtime"
 
@@ -15,7 +15,7 @@ import {MyHttp} from "../../util/MyHttp";
 })
 
 export class MatchmakerPage{
-
+  @ViewChild(Content) content: Content;
   //系统对话id
   public mySysTaLkId = "5a93eced1579a3003847f3c2";
 
@@ -198,5 +198,10 @@ export class MatchmakerPage{
     this.navCtrl.pop();
   }
 
+  scrollTo() {
+    window.addEventListener('native.keyboardshow', (e:any) => {
+      this.content.scrollTo(0, e.keyboardHeight);
+    });
+  }
 }
 

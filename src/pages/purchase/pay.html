@@ -29,6 +29,7 @@
           <img src="assets/img/openvip.png"/>
         </div>
       </div>
+
       <p class="p" *ngIf="calculate.isVip(user.vipTime)==true">您的vip于<span>{{user.vipTime}}</span>到期</p>
     </ion-item>
   </div>
@@ -38,21 +39,21 @@
 
     <div class="buy_first">
       <div class="buy_one" *ngFor="let order of orders" (click)="goToPay(order)">
-      <div class="buy_name">
-        <img src="{{order.img}}"/>{{order.name}}
-        <span>{{order.month}}</span>
-      </div>
-      <div class="buy_newprice">{{order.price}}</div>
+        <div class="buy_name">
+          <img src="{{order.img}}"/>{{order.name}}
+          <span>{{order.month}}</span>
+        </div>
+        <div class="buy_newprice">{{order.price}}</div>
 
-      <div class="buy_price">
-        <div class="buy_price_span1">{{order.des}}</div>
-        <div class="buy_price_span2"></div>
+        <div class="buy_price">
+          <div class="buy_price_span1">{{order.des}}</div>
+          <div class="buy_price_span2"></div>
+        </div>
+        <div class="buy_img">
+          <img src="assets/img/buyvip.png">
+        </div>
       </div>
 
-      <div class="buy_img">
-        <img src="assets/img/buyvip.png">
-      </div>
-    </div>
 
 <!--      <div class="buy_one">
         <div class="buy_name">
@@ -115,16 +116,16 @@
     <div class="first_line">
       <div class="vip_img1">
         <img  src="assets/img/one_img.png"/><br/>
-        <span>会员标识</span>
+        <span class="s1">会员标识</span>
       </div>
 
       <div class="vip_img">
         <img class="img5" src="assets/img/five_img.png"/><br/>
-        <span>优先审核</span>
+        <span class="s1">优先审核</span>
       </div>
       <div class="vip_img">
         <img src="assets/img/three_img.png"/><br/>
-        <span>优先展示</span>
+        <span class="s1">优先展示</span>
       </div>
     </div>
     <div class="second_line">

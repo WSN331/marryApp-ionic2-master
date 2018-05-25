@@ -12,40 +12,51 @@
   </div>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
 
-    <div class="divItem">
-      <ion-label>姓名</ion-label>
-      <ion-input type="text" [(ngModel)]="baseInfo.name" text-right placeholder="请输入（最多8个汉字）"></ion-input>
-    </div>
+  <div class="divItem">
+    <ion-label>姓名</ion-label>
+    <ion-input type="text" [(ngModel)]="baseInfo.name" text-right placeholder="请输入（最多8个汉字）"></ion-input>
+  </div>
 
-    <div class="divItem">
-      <ion-label>昵称</ion-label>
-      <ion-input type="text" [(ngModel)]="baseInfo.nickName" text-right placeholder="请输入（最多8个汉字）"></ion-input>
-    </div>
+  <div class="line"></div>
 
-    <div class="divItem">
-      <ion-label>性别</ion-label>
-      <p text-right *ngIf="baseInfo.sex=== -1" (click)="chooseSex()" style="color: gray">请选择</p>
-      <p text-right (click)="chooseSex()">{{['男','女'][baseInfo.sex]}}</p>
-    </div>
+  <div class="divItem">
+    <ion-label>昵称</ion-label>
+    <ion-input type="text" [(ngModel)]="baseInfo.nickName" text-right placeholder="请输入（最多8个汉字）"></ion-input>
+  </div>
 
-    <ion-item>
-      <ion-label>出生日期</ion-label>
-      <ion-datetime text-right placeholder="请选择" displayFormat="YYYY-MM-DD" [(ngModel)]="baseInfo.birthday"></ion-datetime>
-    </ion-item>
+  <div class="line"></div>
 
-    <div class="divItem">
-      <ion-label>身高（cm）</ion-label>
-      <ion-input text-right type="number" placeholder="请填写" [(ngModel)]="detailInfo.height"></ion-input>
-    </div>
+  <div class="divItem">
+    <ion-label>性别</ion-label>
+    <p text-right *ngIf="baseInfo.sex=== -1" (click)="chooseSex()" style="color: gray">请选择</p>
+    <p text-right (click)="chooseSex()">{{['男','女'][baseInfo.sex]}}</p>
+  </div>
 
-    <div class="divItem">
-      <ion-label>体重（kg）</ion-label>
-      <ion-input text-right type="number"  placeholder="请填写" [(ngModel)]="detailInfo.weight"></ion-input>
-    </div>
+  <div class="line"></div>
 
+  <ion-item>
+    <ion-label>出生日期</ion-label>
+    <ion-datetime text-right placeholder="请选择" displayFormat="YYYY-MM-DD" [(ngModel)]="baseInfo.birthday"></ion-datetime>
+  </ion-item>
 
-    <button class="btn_detail" ion-button full (click)="nextStep()">下一步</button>
+  <div class="line"></div>
+
+  <div class="divItem">
+    <ion-label>身高（cm）</ion-label>
+    <ion-input text-right type="number" placeholder="请填写" [(ngModel)]="detailInfo.height"></ion-input>
+  </div>
+
+  <div class="line"></div>
+
+  <div class="divItem">
+    <ion-label>体重（kg）</ion-label>
+    <ion-input text-right type="number"  placeholder="请填写" [(ngModel)]="detailInfo.weight"></ion-input>
+  </div>
+
+  <div class="line"></div>
+
+  <button class="btn_detail" ion-button full (click)="nextStep()">下一步</button>
 
 </ion-content>
