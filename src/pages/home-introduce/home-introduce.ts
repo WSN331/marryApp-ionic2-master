@@ -3,7 +3,7 @@
  */
 import { Component } from '@angular/core';
 import { AlertController, NavController, NavParams} from 'ionic-angular';
-import {LoadingController} from 'ionic-angular';
+import {LoadingController, Events} from 'ionic-angular';
 
 import { MyHttp } from '../../util/MyHttp';
 import { Memory } from '../../util/Memory'
@@ -79,7 +79,7 @@ export class HomeIntroducePage {
   constructor(public navCtrl: NavController, public navParams: NavParams,public alert:AlertController,
               public myHttp : MyHttp, public imgService:ImgService, public memory: Memory,
               public calculateService: CalculateService, public loadingCtrl:LoadingController
-              ,public alertCtrl:AlertController) {
+              ,public alertCtrl:AlertController, public events: Events) {
     this.init();
     this.getUserInfo();
     this.getAllPicture();
@@ -180,7 +180,9 @@ export class HomeIntroducePage {
       if(type===0){
         this.memory.setLike(true);
       }
-      this.getUserInfo();
+      this.getUserInfo(()=>{
+        this.events.publish('e-home-changeUserInfo', this.baseInfo['id'], {relation: this.relation});
+      });
     })
   }
 

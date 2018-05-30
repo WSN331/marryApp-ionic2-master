@@ -81,9 +81,17 @@ export class HomePage {
       this.isSearch = isSearch;
       this.userList = [];
       this.getUserList(this.searchInfo);
+    });
+    this.events.subscribe('e-home-changeUserInfo', (userId, changeInfo) => {
+      console.log(userId + ";");
+      console.log(changeInfo)
+      this.changeUserInfo(userId, changeInfo);
     })
   }
 
+  /**
+   * emmmmmmmm
+   */
   ngAfterViewInit() {
     this.content.ionScroll.subscribe(event => {
       // console.log(event)
@@ -97,6 +105,26 @@ export class HomePage {
     });
   }
 
+  /**
+   * 修改用户的信息（mdddddd智障）
+   * @param userId
+   * @param changeInfo
+     */
+  changeUserInfo(userId, changeInfo) {
+    for (let info of this.userList) {
+      if (info["id"] == userId) {
+        for (let name in changeInfo) {
+          info[name] = changeInfo[name];
+        }
+      }
+    }
+    console.log(this.userList);
+  }
+
+  /**
+   * 下拉刷新
+   * @param refresher
+     */
   doRefresh(refresher) {
     console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
     if(this.isSearch){
