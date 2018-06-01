@@ -17,9 +17,9 @@
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
       pullingIcon="arrow-dropdown"
-      pullingText="Pull to refresh"
+      pullingText="下拉刷新"
       refreshingSpinner="circles"
-      refreshingText="Refreshing...">
+      refreshingText="正在刷新">
     </ion-refresher-content>
   </ion-refresher>
 
@@ -57,15 +57,16 @@
           <div class="name">
             {{ user.nickName }}
           </div>
+          <!--vip显示-->
+          <!--*ngIf="calculateService.isVip(user.vipTime)==true"-->
+          <div class="vip" >
+            <div class="first_vip" >
+              <img src="assets/img/vrz.png"/>
+            </div>
+            <span class="span1">VIP用户</span>
+          </div>
 
           <div class="first">
-            <!--vip显示-->
-            <div class="vip" *ngIf="calculateService.isVip(user.vipTime)==true">
-              <div class="first_vip" >
-                <img src="assets/img/vrz.png"/>
-              </div>
-              <span class="span1">Vip用户</span>
-            </div>
             <!--学校显示-->
             <div class="school" *ngIf="calculateService.isNotNull(user.detailInfo.school)">
               <div class="first_school">
@@ -80,7 +81,12 @@
             <p *ngIf="calculateService.isNotNull(user.birthday)">{{ calculateService.getConstellation(user.birthday) }}</p>
             <p *ngIf="calculateService.isNotZero(user.detailInfo.height)">{{ user.detailInfo.height}}cm</p>
             <p *ngIf="calculateService.isNotZero(user.detailInfo.weight)">{{ user.detailInfo.weight}}kg</p>
-            <p *ngIf="calculateService.isNotNull(user.detailInfo.income)">{{ user.detailInfo.income}}</p>
+            <p *ngIf="calculateService.isNotIncome(user.detailInfo.income)">{{ user.detailInfo.income}}</p>
+          </div>
+
+          <div class="line_five">
+            <p *ngIf="user.detailInfo.introduce !== '' ">自我介绍：{{ user.detailInfo.introduce }}</p>
+            <p *ngIf="user.detailInfo.introduce == '' ">自我介绍：暂无（没有诚意）</p>
           </div>
 
           <div class="line_five">

@@ -65,14 +65,12 @@ page-userDetail1{
   }
   .divTextarea p{
     font-size: 15px;
-    line-height:100%;
     color: #333333;
   }
   .divTextarea ion-textarea{
     font-size: 15px;
     color: #333333;
     width: 100%;
-
   }
 
   //下一步按钮
@@ -107,10 +105,26 @@ page-userDetail1{
       height: 0px;
     }
     .text-input-#{nth($select, $i)} {
-      margin: 10px 2px;
-      height: 50px;
-      padding:3px 8px;
+      height: 40px;
       font-size: 16px;
+      margin: 0%;
+    }
+
+    .item-#{nth($select, $i)}.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-#{nth($select, $i)}.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
+      border-bottom-color: transparent;
+      -webkit-box-shadow: inset 0 -1px 0 0 transparent;
+      box-shadow: inset 0 -1px 0 0 transparent;
+    }
+    .item-#{nth($select, $i)}.item-input.item-input-has-focus .item-inner,
+    .item-#{nth($select, $i)}.item-input.input-has-focus .item-inner {
+      border-bottom-color: transparent;
+      -webkit-box-shadow: inset 0 -1px 0 0 transparent;
+      box-shadow: inset 0 -1px 0 0 transparent;
+    }
+
+    .item-input .label-#{nth($select, $i)}, .item-select .label-#{nth($select, $i)}, .item-datetime .label-#{nth($select, $i)} {
+      font-size:15px;
+      color: #333333;
     }
   }
 

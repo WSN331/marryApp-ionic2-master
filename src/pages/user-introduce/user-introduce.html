@@ -31,12 +31,14 @@
       <img src="assets/img/vrz.png"/>
     </div>
 
+    <div class="remainPay" *ngIf="calculateService.isVip(baseInfo.vipTime)==true" (click)="goToOpenVip()">续费VIP</div>
+
     <div class="openvip" *ngIf="calculateService.isVip(baseInfo.vipTime)==false" (click)="goToOpenVip()">
       <img src="assets/img/openvip.png"/>
     </div>
   </div>
 
-  <div class="remainPay" *ngIf="calculateService.isVip(baseInfo.vipTime)==true" (click)="goToOpenVip()">续费Vip</div>
+
 
   <!--编辑资料-->
   <div class="update" (click)="detail()">

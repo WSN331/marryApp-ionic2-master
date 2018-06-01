@@ -148,4 +148,8 @@ export class CalculateService {
   public isNotZero(num) {
     return this.isNotNull(num) && num != 0;
   }
+
+  public isNotIncome(item){
+    return item != undefined && item != null && item != 'undefined' && item != '' && item!='还是学生无固定收入';
+  }
 }

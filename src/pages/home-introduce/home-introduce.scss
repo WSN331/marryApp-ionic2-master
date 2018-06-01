@@ -243,10 +243,9 @@ page-homeIntroduce{
     position: fixed;
     bottom: 8%;
     right: 10%;
-    background: #FFFFFF;
-    border:1px solid #e5e5e5;
+    background-image: url('../assets/img/more_backgroud.png');
+    background-size: 100% 100%;
   }
-
   .more_execute p{
     font-size: 15px;
     color: #666666;

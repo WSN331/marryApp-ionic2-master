@@ -65,7 +65,7 @@ page-communicate{
     max-width: 60%;
     border-radius: 5%;
     padding: 4px;
-    margin-top:5px;
+    margin-top:10px;
     display: inline-block;
   }
 
@@ -84,7 +84,23 @@ page-communicate{
     float: right;
     color: white;
     background: #FF885E;
-    margin-right:2.5%;
+    position: relative;
+    margin-right:5%;
+  }
+  .sendMs:before{
+    content:'';
+    position:absolute;
+    left:100%;
+    top:0px;
+    width:8px;
+    height:8px;
+    border-width:0;
+    border-style:solid;
+    border-color:transparent;
+    border-bottom-width:5px;
+    border-bottom-color:currentColor;
+    border-radius:0 0 32px 0;
+    color:#FF885E;
   }
 
   /*聊天:接收消息*/
@@ -97,8 +113,23 @@ page-communicate{
   }
   .receiveMs{
     background: #FFFFFF;
-    margin-left:2.5%;
+    margin-left:5%;
+    position: relative;
   }
+  .receiveMs:before{
+    content:'';
+    position:absolute;
+    right:100%;
+    top:0px;
+    width:8px;
+    height:8px;
+    border-width:0;
+    border-style:solid;
+    border-color:transparent;
+    border-bottom-width:5px;
+    border-bottom-color:currentColor;
+    border-radius:0 0 0 32px;
+    color:#FFFFFF;}
 
   /*聊天框*/
     .textArea{
