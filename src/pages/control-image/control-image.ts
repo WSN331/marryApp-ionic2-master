@@ -24,9 +24,10 @@ export class ControlImagePage {
      */
   private pictures = [];
   private icons = [];
+  private waitIcons = [];
 
   private userId;
-
+  
   constructor(public navCtrl: NavController, public myHttp : MyHttp, public imgService:ImgService,
               public memory: Memory, public events: Events, public navParams: NavParams, public alertCtrl: AlertController) {
     this.init();
@@ -194,7 +195,13 @@ export class ControlImagePage {
     }, (data) => {
       this.pictures = data.allPicture;
       this.icons = data.allIcon;
-    })
+    });
+    this.myHttp.post(MyHttp.URL_GET_WAIT_CRED_ICON, {
+      userId: this.userId,
+    }, (data) => {
+      this.waitIcons = data.datas;
+      console.log(this.waitIcons)
+    });
   }
 
   /**
@@ -204,4 +211,6 @@ export class ControlImagePage {
   imageNotFull() : boolean {
     return this.pictures.length < 4;
   }
+
+
 }

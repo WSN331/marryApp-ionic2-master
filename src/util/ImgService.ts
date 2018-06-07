@@ -158,7 +158,11 @@ export class ImgService {
    * @param image
    */
   safeImage(image: String) : SafeUrl{
-    return this.sanitize.bypassSecurityTrustUrl("data:image/jpg;base64," + image)
+    return this.sanitize.bypassSecurityTrustUrl(this.decodeBase64(image));
+  }
+
+  decodeBase64(image: String) {
+    return "data:image/jpg;base64," + image;
   }
 
 

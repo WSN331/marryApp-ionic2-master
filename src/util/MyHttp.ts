@@ -17,21 +17,21 @@ export class MyHttp {
    * 服务器的IP
    * @type {string}
    */
-  static IP = "api.xiehouapp.com"
-  // static IP = "localhost"
+  // static IP = "api.xiehouapp.com"
+  static IP = "localhost"
   // static IP = "192.168.2.232"
 
   /**s
    * 服务端端口号
    * @type {number}
    */
-  static PORT = 443;
+  static PORT = 8080;
 
   /**
    *
    * @type {string}
      */
-  static PROTOCOL = "https";
+  static PROTOCOL = "http";
 
   /**
    * 服务端的接口名
@@ -51,6 +51,21 @@ export class MyHttp {
   static URL_REGISTER_NO_INVITATION_CODE = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/registerNoInvitaCodeStr";
   // 完善个人信息
   static URL_USER_COMPLETE = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/complete";
+  // 获取证件信息旧接口
+  static URL_CRED_INFO = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/credInfo";
+  // 获取证件信息第二版接口
+  static URL_CRED_INFO_BY_TITLE = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/credInfoByTitle";
+  // 添加证件
+  static URL_ADD_CRED = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/addCred";
+  // 获取短信验证码
+  static URL_SEND_VERIFY = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/sendVerify";
+  // 获取邮箱验证码
+  static URL_SEND_MAIL_VERIFY = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/sendMailVerify";
+  // 找回密码
+  static URL_GET_PAS = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/resetPassword";
+  // 获取待审核头像
+  static URL_GET_WAIT_CRED_ICON= MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/getWaitCredIcon";
+
   // 用户列表
   static URL_USER_LIST = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/home/list";
   // 筛选用户列表
@@ -61,8 +76,17 @@ export class MyHttp {
   static URL_USER_BASE_INFO = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/home/baseInfo";
   // 获取全部图片
   static URL_GET_ALL_PICTURE = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/home/getAllPicture";
+  // 获取大图
+  static URL_GET_BIG_IMAGE = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/home/getBigImage";
+  // 获取Visiter谁访问过自己的url
+  static URL_VISITER = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/home/getVisiters ";
+  // 获取访问者人数
+  static URL_HAS_VISITER = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/home/hasVisiters ";
+  //异性逛一逛
+  static URL_SEEEACHOTHER = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/home/goagoList";
   // 获取全部缩略图
   static URL_GET_ALL_SMALL_PICTURE = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/home/getAllSmallPicture";
+
   // 喜欢的列表
   static URL_LIKE_LIST = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/relation/likeList";
   // 讨厌的列表
@@ -87,6 +111,7 @@ export class MyHttp {
   static URL_COLLECT = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/relation/collect";
   // 取消收藏
   static URL_DIS_COLLECT = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/relation/disCollect";
+
   // 获取省份列表
   static URL_GET_PROVINCE_LIST = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/select/getProvinceList";
   // 获取城市列表
@@ -97,37 +122,22 @@ export class MyHttp {
   static URL_GET_SCHOOL_LIST = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/select/getSchoolList";
   // 添加学校
   static URL_ADD_SCHOOL = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/select/addSchool";
-  // 获取证件信息旧接口
-  static URL_CRED_INFO = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/credInfo";
-  // 获取证件信息第二版接口
-  static URL_CRED_INFO_BY_TITLE = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/credInfoByTitle";
-  // 添加证件
-  static URL_ADD_CRED = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/addCred";
-  //获取会员价格
-  static URL_ORDER_PRICE = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/aliPay/getVipTypeList";
-  //获取订单信息
-  static URL_ORDER_INFO = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/aliPay/getPayInfo2";
-  // 获取短信验证码
-  static URL_SEND_VERIFY = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/sendVerify";
-  // 找回密码
-  static URL_GET_PAS = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/resetPassword";
-  // 获取大图
-  static URL_GET_BIG_IMAGE = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/home/getBigImage";
+
   // 获取最新app版本
   static URL_GET_LATEST_APP_VERSION = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/version/getLatestAppVersion";
   // 获取app下载url
   static URL_GET_APP_DOWNLOAD_URL = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/version/getAppDownloadUrl";
-  // 获取Visiter谁访问过自己的url
-  static URL_VISITER = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/home/getVisiters ";
-  static URL_HAS_VISITER = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/home/hasVisiters ";
-  // 获取邮箱验证码
-  static URL_SEND_MAIL_VERIFY = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/sendMailVerify";
+
   // ios内购验证
   static URL_IAP_CERTIFICATE = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/iap/iapCertificate";
-  //异性逛一逛
-  static URL_SEEEACHOTHER = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/home/goagoList";
+  //获取会员价格
+  static URL_ORDER_PRICE = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/aliPay/getVipTypeList";
+  //获取订单信息
+  static URL_ORDER_INFO = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/aliPay/getPayInfo2";
+
   // 举报
   static URL_ADD_TIP = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/tip/addTip";
+  // 获取举报类型列表
   static URL_TIP_TYPE_LIST = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/tip/tipTypeList";
 
   constructor (private http : Http, public loadingCtrl:LoadingController, public myStorage : MyStorage,

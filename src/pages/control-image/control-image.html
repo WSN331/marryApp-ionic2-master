@@ -18,6 +18,9 @@
   <div class="all-pic">
     <div class="all-dex">头像照</div>
     <img class="showPic" *ngFor="let picture of icons; let i = index" [src]="imgService.safeImage(picture.img)" (click)="controlIcon(i)" >
+    <div class="waitIcon" *ngFor="let picture of waitIcons; let i = index;" [ngStyle]="{'background-image' : 'url(' + imgService.decodeBase64(picture) +')'}">
+      <div class="waitIcon-face">正在审核</div>
+    </div>
     <img src="assets/img/btn_add_img.png" (click)="addIcon()">
   </div>
 

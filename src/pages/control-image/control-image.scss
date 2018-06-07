@@ -43,6 +43,29 @@ page-controlImage {
     float: left;
   }
 
+  .waitIcon {
+    float: left;
+    margin-left: 2.5%;
+    margin-top: 2.5%;
+    width: 25%;
+    height: 80px;
+    background-size:cover;
+  }
+
+  .waitIcon-face{
+    display: inline-block;
+    text-align: center;
+    transform: rotate(315deg);
+    -ms-transform: rotate(315deg);
+    -moz-transform: rotate(315deg);
+    -webkit-transform: rotate(315deg);
+    -o-transform: rotate(315deg);
+    border: 1px dashed;
+    background: #57DD43;
+    margin: 50% 14%;
+
+  }
+
   /*生活照*/
   .live-pic {
     display: inline-block;

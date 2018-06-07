@@ -36,7 +36,7 @@
         "angular-md5": "^0.1.10",
         "buffer": "^5.1.0",
         "com.synconset.imagepicker": "^2.1.10",
-        "cordova-android": "^6.2.3",
+        "cordova-android": "6.2.3",
         "cordova-ios": "4.5.4",
         "cordova-plugin-app-update": "^1.5.2",
         "cordova-plugin-app-version": "^0.1.9",
@@ -98,8 +98,8 @@
             "cordova-plugin-inapppurchase": {}
         },
         "platforms": [
-            "android",
-            "ios"
+            "ios",
+            "android"
         ]
     }
 }
