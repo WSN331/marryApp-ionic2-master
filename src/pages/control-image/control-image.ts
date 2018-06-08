@@ -27,7 +27,7 @@ export class ControlImagePage {
   private waitIcons = [];
 
   private userId;
-  
+
   constructor(public navCtrl: NavController, public myHttp : MyHttp, public imgService:ImgService,
               public memory: Memory, public events: Events, public navParams: NavParams, public alertCtrl: AlertController) {
     this.init();
@@ -181,6 +181,7 @@ export class ControlImagePage {
           subTitle: "请耐心等待审核结果",
           buttons: ["关闭"]
         }).present();
+        this.getAllPicture();
       })
     })
   }
