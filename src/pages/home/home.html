@@ -54,8 +54,11 @@
 
         <div class="message">
 
-          <div class="name">
+          <div class="name" *ngIf="calculateService.isNotNull(user.nickName)">
             {{ user.nickName }}
+          </div>
+          <div class="name" *ngIf="!calculateService.isNotNull(user.nickName)">
+            昵称未填写（很懒）
           </div>
           <!--vip显示-->
           <!--*ngIf="calculateService.isVip(user.vipTime)==true"-->
