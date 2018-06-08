@@ -57,8 +57,11 @@
           <div class="name" *ngIf="calculateService.isNotNull(user.nickName)">
             {{ user.nickName }}
           </div>
-          <div class="name" *ngIf="!calculateService.isNotNull(user.nickName)">
-            昵称未填写（很懒）
+          <div class="name" *ngIf="!calculateService.isNotNull(user.nickName) && user.sex==0">
+            骑士{{nullUserID}}
+          </div>
+          <div class="name" *ngIf="!calculateService.isNotNull(user.nickName) && user.sex==1">
+            女王{{nullUserID}}
           </div>
           <!--vip显示-->
           <!--*ngIf="calculateService.isVip(user.vipTime)==true"-->
@@ -89,7 +92,7 @@
 
           <div class="line_five">
             <p *ngIf="user.detailInfo.introduce !== '' ">自我介绍：{{ user.detailInfo.introduce }}</p>
-            <p *ngIf="user.detailInfo.introduce == '' ">自我介绍：暂无（没有诚意）</p>
+            <!--<p *ngIf="user.detailInfo.introduce == '' ">自我介绍：暂无（没有诚意）</p>-->
           </div>
 
           <div class="line_five">
