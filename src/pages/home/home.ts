@@ -185,20 +185,30 @@ export class HomePage {
       notDialog = false;
     }
     this.getUserListStep(searchInfo, 1, notDialog);
-
-
   }
 
   getUserListStep(searchInfo:any, i:number, notDialog) {
     this.doGetUserList(searchInfo, 1, this.userList.length + 1,(userList)=>{
       console.log(userList)
-      this.userList = this.userList.concat(userList);
+      this.concatUserList(userList);
       if (i < this.PAGE_SIZE) {
         this.getUserListStep(searchInfo, i+1, true);
       } else {
         this.showBtnGetMore = true;
       }
     }, notDialog);
+  }
+
+  concatUserList(userList) {
+    if (userList.length > 0) {
+      if (this.userList.length > 0 && userList[0]['id'] == this.userList[this.userList.length - 1]['id']) {
+        console.log("poppoppoppoppoppoppoppop")
+        this.userList.pop();
+        this.userList = this.userList.concat(userList);
+      } else {
+        this.userList = this.userList.concat(userList);
+      }
+    }
   }
 
   /**
