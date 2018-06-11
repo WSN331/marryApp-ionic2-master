@@ -17,21 +17,21 @@ export class MyHttp {
    * 服务器的IP
    * @type {string}
    */
-  static IP = "api.xiehouapp.com"
-  // static IP = "localhost"
+  // static IP = "api.xiehouapp.com"
+  static IP = "localhost"
   // static IP = "192.168.2.232"
 
   /**s
    * 服务端端口号
    * @type {number}
    */
-  static PORT = 443;
+  static PORT = 8080;
 
   /**
    *
    * @type {string}
      */
-  static PROTOCOL = "https";
+  static PROTOCOL = "http";
 
   /**
    * 服务端的接口名

@@ -110,7 +110,7 @@ export class UserDetail2Page {
   detail() {
     console.log("json数据展示")
     let json = {
-      userId: this.baseInfo['id']
+      userId: this.userId
     };
     for (let name in this.baseInfo) {
       if (name !== "picture") {
