@@ -459,6 +459,7 @@ export class PeoplePage {
     }).present();
   }
 
+
   /*将对话标记为已读*/
   haveRead(conTalk:any){
     if(conTalk.talk==''){
