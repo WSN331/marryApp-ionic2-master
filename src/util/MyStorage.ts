@@ -44,12 +44,27 @@ export class MyStorage {
     this.storage.set("password", password);
   }
 
+  public setFirstIn(isFirst){
+    this.storage.set("isFirst",isFirst)
+  }
+  public getFirstIn(){
+    return this.storage.get("isFirst")
+  }
+
   public setCommunicateList(userId, communicateList) {
     this.storage.set("communicateList:" + userId, communicateList);
   }
 
   public getCommunicateList(userId) {
     return this.storage.get("communicateList:" + userId)
+  }
+
+  public setDeleteTalk(userId,deleteList){
+    this.storage.set("deleteList:" + userId, deleteList);
+  }
+
+  public getDeleteTalk(userId){
+    return this.storage.get("deleteList:" + userId);
   }
 
   public setBeLikeList(userId, list) {

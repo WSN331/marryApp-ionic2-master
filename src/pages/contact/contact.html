@@ -30,36 +30,36 @@
   <div [ngSwitch]="select">
     <!--对我心动的-->
     <div *ngSwitchCase="'beLiked'">
-          <div class="people" *ngFor="let user of beLikeList" (click)="getIntroduce(user)">
-            <!--头像-->
-            <div class="people_picture">
-              <img [src]="imgService.safeImage(user.picture)"/>
-            </div>
+      <div class="people" *ngFor="let user of beLikeList" (click)="getIntroduce(user)">
+        <!--头像-->
+        <div class="people_picture">
+          <img [src]="imgService.safeImage(user.picture)"/>
+        </div>
 
-            <div class="people_describe">
-              <!--名字-->
-              <span class="span1">{{ user.nickName }}</span>
-              <span class="span2">{{ calculateService.getAge(user.birthday) }}岁</span>
-              <br/>
-              <!--认证图标-->
-              <div class="people_describe_img" *ngIf="user.mainCredNum >= 3">
-                <img src="assets/img/rz.png">
-                <span>认证用户</span>
-              </div>
-              <div class="people_describe_img" *ngIf="user.mainCredNum < 3">
-                <img src="assets/img/norz.png">
-                <span class="NoRz">未认证用户</span>
-              </div>
-              <span class="span3">兴趣爱好: {{user.hobby}}</span>
-            </div>
-
-            <!--时间-->
-            <div class="people_date">
-              {{user.createTime}}
-            </div>
-
-            <div class="line"></div>
+        <div class="people_describe">
+          <!--名字-->
+          <span class="span1">{{ user.nickName }}</span>
+          <span class="span2">{{ calculateService.getAge(user.birthday) }}岁</span>
+          <br/>
+          <!--认证图标-->
+          <div class="people_describe_img" *ngIf="user.mainCredNum >= 3">
+            <img src="assets/img/rz.png">
+            <span>认证用户</span>
           </div>
+          <div class="people_describe_img" *ngIf="user.mainCredNum < 3">
+            <img src="assets/img/norz.png">
+            <span class="NoRz">未认证用户</span>
+          </div>
+          <span class="span3">兴趣爱好: {{user.hobby}}</span>
+        </div>
+
+        <!--时间-->
+        <div class="people_date">
+          {{user.createTime}}
+        </div>
+
+        <div class="line"></div>
+      </div>
     </div>
 
     <!--我喜欢的-->

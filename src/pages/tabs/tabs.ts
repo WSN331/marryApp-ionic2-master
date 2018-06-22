@@ -6,6 +6,7 @@ import { HomePage } from '../home/home';
 import {CommunicateService} from "../../util/CommunicateService";
 import {Memory} from "../../util/Memory";
 import {PeoplePage} from "../perlist/people";
+import {MyHttp} from "../../util/MyHttp";
 
 
 @Component({
@@ -25,9 +26,11 @@ export class TabsPage {
   icons: Array<string> = ["tab-home", "tab-message", "tab-user"];
 
   constructor(public comCate:CommunicateService,public memory:Memory,
-              public platform: Platform, public events: Events) {
+              public platform: Platform, public events: Events,
+              private myHttp : MyHttp) {
     //初始化聊天
     this.comCate.init();
+    this.getHateList()
     this.receiveMessage();
     this.events.subscribe('e-tabs-message-change', () => {
       this.receiveMessage();
@@ -36,6 +39,19 @@ export class TabsPage {
 
   public realtime;
   public mySelf;
+  public hateList;
+  /**
+   * 获取讨厌的列表
+   */
+  getHateList() {
+    this.myHttp.post(MyHttp.URL_HATE_LIST, {
+      userId: this.memory.getUser().id
+      /*userId:1*/
+    }, (data) => {
+      console.log(data)
+      this.hateList = data.userList;
+    })
+  }
 
   /**
    * 刚登录时查找未读信息是否存在,若存在则提醒用户
@@ -49,17 +65,21 @@ export class TabsPage {
       let count = 0;
       this.realtime.createIMClient(this.mySelf+'').then((my)=> {
         my.on('unreadmessagescountupdate', (conversations)=>{
-          for(let conv of conversations) {
-            console.log(conv.id, conv.name, conv.unreadMessagesCount+"这是查询未读消息的，请问哪里还有",conv);
-            if(conv.unreadMessagesCount>0){
-              console.log("您有未读消息请注意！");
-              this.memory.setMsg(true);
-              count = count + conv.unreadMessagesCount;
-              break
+          if(conversations.size > 0 && conversations != null){
+            this.memory.setUnreadConversions(conversations)
+            for(let conv of conversations) {
+              console.log(conv.id, conv.name, conv.unreadMessagesCount+"这是查询未读消息的，请问哪里还有",conv);
+              if(conv.unreadMessagesCount>0){
+                console.log("您有未读消息请注意！");
+                if(conv.id == "5a93eced1579a3003847f3c2"){
+                  this.memory.setMsg(true);
+                }
+                count = count + 1;
+                break
+              }
             }
+            this.messageCount = count == 0 ? null : count;
           }
-          this.messageCount = count == 0 ? null : count;
-
         });
       }).catch(console.error);
     }

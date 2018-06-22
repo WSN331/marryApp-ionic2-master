@@ -9,6 +9,12 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"  refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+
   <!--心动-->
   <div class="myItem" (click)="goToContact()">
     <!--图标-->
@@ -70,32 +76,48 @@
   </div>
 
   <!-- 下面显示聊天列表 -->
-  <div *ngFor="let conTalk of conversations" >
-    <div class="myTalk" *ngIf="conTalk.isDefaultPic !== true && conTalk.show == true">
-      <!--图标-->
-      <div class="myTalk_left" (click)="goToIntroduce(conTalk.baseInfo)">
-        <div class="myTalk_left_img">
-          <img [src]="imgService.safeImage(conTalk.baseInfo.picture)" onerror="onerror=null;src='assets/img/img_control.png'"/>
-        </div>
-        <div class="myTalk_left_circle" *ngIf="conTalk.talk.unreadMessagesCount>0">{{conTalk.talk.unreadMessagesCount}}</div>
-      </div>
-      <!--文字描述-->
-      <div class="myTalk_middle" (click)="goToTalk(conTalk)">
-        <div class="myTalk_middle_content_title">
-          <span class="s1">{{conTalk.baseInfo.nickName}}</span>
-          <span class="s2">{{ calculateService.getAge(conTalk.baseInfo.birthday) }}岁</span>
-        </div>
-        <div class="myTalk_middle_content_intro" *ngIf="conTalk.baseInfo.hobby!=null && conTalk.baseInfo.hobby !=''">爱好：{{ conTalk.baseInfo.hobby}}</div>
-        <div class="myTalk_middle_content_intro" *ngIf="conTalk.baseInfo.hobby ==null || conTalk.baseInfo.hobby ==''">爱好：暂无,希望和你一起培养</div>
-      </div>
+  <ion-list no-padding>
+    <ion-item-sliding no-padding *ngFor="let conTalk of conversations">
+      <!--conTalk.isDefaultPic !== true && conTalk.show == true && conTalk.lastMessageAt != ''-->
+      <ion-item no-padding *ngIf="isToShow(conTalk)">
+        <div class="myTalk" >
+          <!--图标-->
+          <div class="myTalk_left" (click)="goToIntroduce(conTalk.baseInfo)">
+            <div class="myTalk_left_img">
+              <img [src]="imgService.safeImage(conTalk.baseInfo.picture)" onerror="onerror=null;src='assets/img/img_control.png'"/>
+            </div>
+            <div class="myTalk_left_circle" *ngIf="conTalk.Count>0">{{conTalk.Count}}</div>
+          </div>
+          <!--文字描述-->
+          <div class="myTalk_middle" (click)="goToTalk(conTalk)">
+            <div class="myTalk_middle_content_title">
+              <span class="s1">{{conTalk.baseInfo.nickName}}</span>
+              <span class="s2">{{ calculateService.getAge(conTalk.baseInfo.birthday) }}岁</span>
+            </div>
+            <div class="myTalk_middle_content_intro" *ngIf="conTalk.baseInfo.hobby!=null && conTalk.baseInfo.hobby !=''">爱好：{{ conTalk.baseInfo.hobby}}</div>
+            <div class="myTalk_middle_content_intro" *ngIf="conTalk.baseInfo.hobby ==null || conTalk.baseInfo.hobby ==''">爱好：暂无,希望和你一起培养</div>
+          </div>
 
-      <div class="myTalk_middle_date">
-        <div *ngIf="conTalk.talk.lastMessageAt != null && conTalk.talk.lastMessageAt.getMinutes()<10">{{conTalk.talk.lastMessageAt.getMonth()+1}}-{{conTalk.talk.lastMessageAt.getDate()}} {{conTalk.talk.lastMessageAt.getHours()}}:{{'0'+conTalk.talk.lastMessageAt.getMinutes()}}</div>
-        <div *ngIf="conTalk.talk.lastMessageAt != null && conTalk.talk.lastMessageAt.getMinutes()>=10">{{conTalk.talk.lastMessageAt.getMonth()+1}}-{{conTalk.talk.lastMessageAt.getDate()}} {{conTalk.talk.lastMessageAt.getHours()}}:{{conTalk.talk.lastMessageAt.getMinutes()}}</div>
-      </div>
-      <div class="myItem_middle_line"></div>
-    </div>
-  </div>
+          <div class="myTalk_middle_date">
+            <div *ngIf="conTalk.lastMessageAt != null && conTalk.Minutes<10">{{conTalk.Month+1}}-{{conTalk.Date}} {{conTalk.Hour}}:{{'0'+conTalk.Minutes}}</div>
+            <div *ngIf="conTalk.lastMessageAt != null && conTalk.Minutes>=10">{{conTalk.Month+1}}-{{conTalk.Date}} {{conTalk.Hour}}:{{conTalk.Minutes}}</div>
+          </div>
+          <div class="myItem_middle_line"></div>
+        </div>
+      </ion-item>
+      <ion-item-options>
+        <button ion-button color="light" icon-start (click)="haveRead(conTalk)">
+          标为已读
+        </button>
+        <button ion-button color="danger" icon-start (click)="deleteTalk(conTalk)">
+          删除
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+<!--  <div *ngFor="let conTalk of conversations" >
+
+  </div>-->
 
 
 </ion-content>

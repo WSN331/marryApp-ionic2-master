@@ -72,9 +72,9 @@ export class CommunicatePage {
   ngOnDestroy() {
     // 当前聊天的对话收到了消息立即标记为已读
     if (this.conversation != null) {
-      /*      this.conversation.on('message', ()=>{
-       this.conversation.read().catch(console.error.bind(console));
-       });*/
+      this.conversation.read().then((conversation)=> {
+        console.log('对话已标记为已读');
+      }).catch(console.error.bind(console));
       //更新之前的页面
       this.events.publish("e-people");
     }
@@ -100,7 +100,6 @@ export class CommunicatePage {
     this.mySelf = this.mySelfMsg['id']
     this.otherSelfMsg = this.navParams.get('person');
     this.otherSelf = this.otherSelfMsg['id']
-
   }
 
   /**

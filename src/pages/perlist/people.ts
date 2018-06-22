@@ -33,6 +33,7 @@ export class PeoplePage {
   //最近访问
   public isShow = false;
 
+
   constructor(public navCtrl:NavController, public memory:Memory, public events:Events,
               public changeDetectorRef:ChangeDetectorRef, public myHttp:MyHttp,
               public imgService:ImgService, public calculateService:CalculateService,
@@ -43,16 +44,41 @@ export class PeoplePage {
     });
   }
 
+  doRefresh(refresher) {
+    this.getCommunicateList();
+    setTimeout(() => {
+      refresher.complete();
+    },2000);
+  }
+
   /**
    * 初始化界面
    */
   init() {
+    this.realTime = this.memory.getTiming();
     this.mySelf = this.memory.getUser().id;
-    this.myStorage.getCommunicateList(this.mySelf).then((commList) => {
-      if (commList != null) {
-        this.conversations = commList
+
+    this.myStorage.getFirstIn().then((isFirst)=>{
+      //判断是否是第一次访问
+      if(isFirst == null){
+        //是第一次访问
+        this.myStorage.setFirstIn(false)
+        this.getCommunicateList();
+      }else{
+        //不是第一次访问
+        this.myStorage.getCommunicateList(this.mySelf).then((commList) => {
+          if (commList != null) {
+            //有缓存
+            this.conversations = commList
+          }
+          if(this.conversations.size <= 0 || this.conversations == null || commList==null){
+            //没有缓存
+            this.getCommunicateList();
+          }
+        })
       }
     })
+
     this.hasVisiter();
   }
 
@@ -60,7 +86,13 @@ export class PeoplePage {
    * 刷新
    */
   ngReFresh() {
-    this.getCommunicateList();
+    //获取未读对话
+    let unReadConversations = this.memory.getUnreadConversions();
+    if(unReadConversations.size > 0 && unReadConversations != null){
+      for (var i = unReadConversations.length-1; i>=0; i--) {
+        this.showMember(unReadConversations[i]);
+      }
+    }
     //设置一个定时器，每秒刷新该界面
     this.timer = setInterval(()=> {
       this.changeDetectorRef.detectChanges();
@@ -104,14 +136,18 @@ export class PeoplePage {
         baseInfo: conversation.baseInfo,
         isDefaultPic: conversation.isDefaultPic,
         show: conversation.show,
-        talk: {
-        }
+        lastMessageAt:conversation.lastMessageAt,
+        Minutes:conversation.Minutes,
+        Hour:conversation.Hour,
+        Date:conversation.Date,
+        Month:conversation.Month,
+        Count:conversation.Count,
+        talk:''
       };
       commList[commList.length] = comm;
     }
     this.myStorage.setCommunicateList(this.mySelf, commList)
   }
-
 
   /**
    * 退出页面
@@ -130,8 +166,6 @@ export class PeoplePage {
     if (this.memory.getConversion().size > 0 && this.memory.getConversion() != null) {
       this.conversations = this.memory.getConversion();
     }
-    this.realTime = this.memory.getTiming();
-    this.mySelf = this.memory.getUser().id;
 
     this.realTime.createIMClient(this.mySelf + '').then((my)=> {
 
@@ -157,12 +191,16 @@ export class PeoplePage {
     //如果当前用户是vip用户则可以开始聊天
     if (this.isVipOrNot()) {
       let talk = conTalk['talk']
+      if(talk==''){
+        conTalk.Count = 0;
+        this.saveConversations();
+      }
       //通话对象
       if (conTalk['baseInfo'] != null) {
 
         this.navCtrl.push(CommunicatePage, {
           person: conTalk['baseInfo'],
-          talkmsg: talk
+          /*talkmsg: talk*/
         });
       } else {
         console.log("聊天对象id有问题");
@@ -173,7 +211,17 @@ export class PeoplePage {
     }
   }
 
-
+  //获取对话人的id
+  getPersonId(talk:any){
+    let otherPerson = null
+    let comPeople = talk.members.toString().split(',');
+    for (let person of comPeople) {
+      if (person != this.mySelf) {
+        otherPerson = person.trim();
+      }
+    }
+    return otherPerson
+  }
   /**
    * 获取对话人的姓名,图片
    * @param talk
@@ -182,21 +230,36 @@ export class PeoplePage {
     let conversation:any = {
       baseInfo: '',
       detailInfo: '',
-      talk: '',
+      lastMessageAt: '',
+      Minutes: '',
+      Hour: '',
+      Date: '',
+      Month: '',
+      Count: '',
       isDefaultPic: '',
+      talk:'',
       show: false
     }
 
+    if(talk.lastMessageAt!=null){
+      conversation.lastMessageAt = talk.lastMessageAt,
+      conversation.Minutes = talk.lastMessageAt.getMinutes()
+      conversation.Hour = talk.lastMessageAt.getHours()
+      conversation.Date = talk.lastMessageAt.getDate()
+      conversation.Month = talk.lastMessageAt.getMonth()
+      conversation.Count = talk.unreadMessagesCount
+    }
     conversation.talk = talk;
 
     //对话人账户
-    let otherPerson = null;
+    let otherPerson = this.getPersonId(talk)
+/*    let otherPerson = null;
     let comPeople = talk.members.toString().split(',');
     for (let person of comPeople) {
       if (person != this.mySelf) {
         otherPerson = person.trim();
       }
-    }
+    }*/
 
     if (otherPerson != null) {
       console.log(otherPerson + "对话人的id");
@@ -210,6 +273,8 @@ export class PeoplePage {
         if (relation != "2") {
           conversation.show = true;
         }
+        //调整conversations
+        this.isToAdd(conversation,otherPerson)
         this.memory.setConversion(this.conversations);
       })
     }
@@ -221,6 +286,7 @@ export class PeoplePage {
    * @param conversation
      */
   addConversation(personId, conversation) {
+    console.log("显示长度："+this.conversations.length)
     for (let i = 0; i < this.conversations.length; i++) {
       let item = this.conversations[i];
       if (item["baseInfo"] != null && item["baseInfo"]["id"] == personId) {
@@ -233,6 +299,41 @@ export class PeoplePage {
     var conList = [];
     conList.push(conversation);
     this.conversations = conList.concat(this.conversations)
+  }
+
+  isToAdd(conTalk:any,otherId){
+    let isShow = true
+    //获取一下删除的会话
+    this.myStorage.getDeleteTalk(this.mySelf).then((deleteList)=>{
+      if(deleteList != null){
+        console.log(deleteList)
+          for(let i=0;i<deleteList.length;i++){
+            if(conTalk.baseInfo.id == deleteList[i]){
+              //如果要显示的对话在删除的会话里面，在判断是否有新消息
+              if(conTalk.Count>0){
+                //有新消息就显示，且从删除对话中移除,从i下标开始,删除一个元素
+                deleteList.splice(i,1)
+                this.myStorage.setDeleteTalk(this.mySelf,deleteList)
+              }else{
+                //在删除对话里面，没有新消息就不显示
+                isShow = false;
+              }
+            }
+          }
+          if(!isShow){
+            //不显示的，那么就删除
+            for (let i = 0; i < this.conversations.length; i++) {
+              let item = this.conversations[i];
+              if (item["baseInfo"] != null && item["baseInfo"]["id"] == otherId) {
+                for (let j = i; j < this.conversations.length - 1; j++) {
+                  this.conversations[j] = this.conversations[j+1];
+                }
+                this.conversations.pop();
+              }
+            }
+          }
+      }
+    })
   }
 
   /**
@@ -358,6 +459,55 @@ export class PeoplePage {
     }).present();
   }
 
+  /*将对话标记为已读*/
+  haveRead(conTalk:any){
+    if(conTalk.talk==''){
+      conTalk.Count = 0;
+      this.saveConversations();
+    }else{
+      conTalk.talk.read().then((conversation)=> {
+        console.log('对话已标记为已读');
+      }).catch(console.error.bind(console));
+    }
+  }
 
+
+  /*删除对话*/
+  deleteTalk(conTalk:any){
+    //记录一下删除的会话
+    this.myStorage.getDeleteTalk(this.mySelf).then((deleteList)=>{
+      if(deleteList == null){
+        deleteList = []
+      }
+      //不重复添加
+      for(let i=0;i<deleteList.length;i++){
+        if(conTalk.baseInfo.id == deleteList[i]){
+          return;
+        }
+      }
+      deleteList.push(conTalk.baseInfo.id)
+      this.myStorage.setDeleteTalk(this.mySelf,deleteList)
+    })
+
+    for (let i = 0; i < this.conversations.length; i++) {
+      let item = this.conversations[i];
+      if (item["baseInfo"] != null && item["baseInfo"]["id"] == conTalk.baseInfo.id) {
+        for (let j = i; j < this.conversations.length - 1; j++) {
+          this.conversations[j] = this.conversations[j+1];
+        }
+        this.conversations.pop();
+      }
+    }
+  }
+
+  //判断是否可以显示
+  isToShow(conTalk:any){
+    let isShow = true
+    //照片不行，被拉黑，没有信息交流的，不能显示
+    if(conTalk.isDefaultPic == true || conTalk.show == false || conTalk.lastMessageAt == ''){
+      isShow = false
+    }
+    return isShow;
+  }
 }
 

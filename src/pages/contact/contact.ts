@@ -46,6 +46,7 @@ export class ContactPage {
       var beginId = 0;
       if (data != null) {
         this.likeList = data;
+        console.log(data);
         beginId = Number(data[0]["indexId"]) + 1;
       }
       console.log(beginId);

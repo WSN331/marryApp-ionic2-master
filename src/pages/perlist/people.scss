@@ -149,8 +149,20 @@ page-peoples{
 
 
 
-
-
+  $select: 'md' 'ios';
+  @for $i from 1 to 3 {
+    /*细节*/
+    .list-#{nth($select, $i)} .item-block .item-inner {
+      border-bottom: 0px solid #eeeeee;
+    }
+    .label-#{nth($select, $i)} {
+      margin: 0px 0px 0px 0;
+    }
+    .button-#{nth($select, $i)}-light {
+      color: #fff;
+      background-color: #cccccc;
+    }
+  }
 
 
 

@@ -19,10 +19,18 @@ page-start{
     background-color:#ffaa00;
     color:white;
   }
-  .button:hover{
+  .button-ios.activated{
     background-color:#ffaa00;
     color:white;
   }
+  .button-md.activated{
+    background-color:#ffaa00;
+    color:white;
+  }
+/*  .button:hover{
+    background-color:#ffaa00;
+    color:white;
+  }*/
 
   .walk{
     position: fixed;
@@ -46,5 +54,7 @@ page-start{
     right: 5%;
     margin-top:10px;
   }
+
+
 
 }

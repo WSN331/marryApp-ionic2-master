@@ -19,6 +19,16 @@
 
   //添加聊天人缓存
   private conversions:any = [];
+  //添加未读消息聊天人
+  private unreadConversions:any = [];
+
+  public setUnreadConversions(conversions){
+    this.unreadConversions = conversions;
+  }
+
+  public getUnreadConversions(){
+    return this.unreadConversions;
+  }
 
   public setConversion(conversions){
     this.conversions = conversions;
@@ -73,7 +83,7 @@
   public getSex(){
     return this.sex;
   }
-  
-  
-  
+
+
+
 }

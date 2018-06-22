@@ -25,7 +25,7 @@ export class MyHttp {
    * 服务端端口号
    * @type {number}
    */
-  static PORT = 8443;
+  static PORT = 443;
 
   /**
    *
