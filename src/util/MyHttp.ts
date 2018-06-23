@@ -25,7 +25,7 @@ export class MyHttp {
    * 服务端端口号
    * @type {number}
    */
-  static PORT = 443;
+  static PORT = 8443;
 
   /**
    *
@@ -70,6 +70,8 @@ export class MyHttp {
   static URL_USER_LIST = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/home/list";
   // 筛选用户列表
   static URL_USER_SCREEN_LIST = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/home/screenList";
+  // 筛选用户ID列表
+  static URL_USER_SCREEN_LIST_ID = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/home/screenListId";
   // 用户详情
   static URL_USER_INTRODUCE = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/home/introduce";
   // 用户基本信息

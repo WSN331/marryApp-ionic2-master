@@ -24,7 +24,7 @@ import {CommunicatePage} from "../communicate/communicate";
 
 export class HomePage {
   @ViewChild(Content) content: Content;　　//获取界面Content的实例对象
-  private PAGE_SIZE = 5;
+  private PAGE_SIZE = 10;
   //
   public nullUserID = Math.ceil(Math.random()*1000)
 
@@ -32,6 +32,8 @@ export class HomePage {
    * 婚配对象列表
    */
   public userList = [];
+
+  public userIdList = [];
 
   public id;
   public pageIndex;
@@ -138,6 +140,7 @@ export class HomePage {
     }
     this.pageIndex = 1;
     this.userList = [];
+    this.userListId = [];
     this.getUserList(this.searchInfo);
     setTimeout(() => {
       refresher.complete();
@@ -148,13 +151,13 @@ export class HomePage {
    * 请先购买VIP
    */
   nextPage() {
-    if(!this.isLogin()){
-      //没有登录
-      this.goToLogin();
-    }else{
-      this.pageIndex ++;
-      this.getUserList(this.searchInfo, true);
-    }
+    // if(!this.isLogin()){
+    //   //没有登录
+    //   this.goToLogin();
+    // }else{
+    //   this.pageIndex ++;
+    //   this.getUserList(this.searchInfo, true);
+    // }
   }
 
   /**
@@ -166,7 +169,6 @@ export class HomePage {
     if (this.showBtnGetMore) {
       setTimeout(() => {
         this.nextPage();
-
         infiniteScroll.complete();
       }, 500);
     }
@@ -184,78 +186,49 @@ export class HomePage {
     if (notDialog == null) {
       notDialog = false;
     }
-    this.getUserListStep(searchInfo, 1, notDialog);
-  }
-
-  getUserListStep(searchInfo:any, i:number, notDialog) {
-    this.doGetUserList(searchInfo, 1, this.userList.length + 1,(userList)=>{
-      console.log(userList)
-      this.concatUserList(userList);
-      if (i < this.PAGE_SIZE) {
-        this.getUserListStep(searchInfo, i+1, true);
-      } else {
-        this.showBtnGetMore = true;
-      }
-    }, notDialog);
-  }
-
-  concatUserList(userList) {
-    if (userList.length > 0) {
-      if (this.userList.length > 0 && userList[0]['id'] == this.userList[this.userList.length - 1]['id']) {
-        console.log("poppoppoppoppoppoppoppop")
-        this.userList.pop();
-        this.userList = this.userList.concat(userList);
-      } else {
-        this.userList = this.userList.concat(userList);
-      }
+    if (this.userIdList.length <= this.userList.length) {
+      this.getUserListId(searchInfo, () => {
+        this.getUserListStep();
+      }, notDialog)
+    } else {
+      this.getUserListStep();
     }
   }
 
-  /**
-   * 实施获取用户列表
-   */
-  doGetUserList(searchInfo:any, pageSize, pageIndex, funcAddList : Function, notDialog) {
+  // 先获取所有匹配用户的id
+  getUserListId(searchInfo, nextDoing: Function, notDialog?) {
     if (this.isLogin()) {
       this.id = this.memory.getUser().id;
       console.log(this.id+"现在登录的id")
       searchInfo['userId'] = this.id;
-      searchInfo['size'] = pageSize;
-      searchInfo['index'] = pageIndex;
+      searchInfo['size'] = this.PAGE_SIZE;
+      searchInfo['index'] = this.pageIndex;
       if (this.id) {
-        this.myHttp.post(MyHttp.URL_USER_SCREEN_LIST, searchInfo, (data) => {
+        this.myHttp.post(MyHttp.URL_USER_SCREEN_LIST_ID, searchInfo, (data) => {
           console.log(data)
-          if (data.listResult === '0') {
-            funcAddList(data.userList);
-          } else if (data.listResult === '1'){
-            this.alertCtrl.create({
-              message: '您一下子看的用户太多啦，歇会儿再来吧',
-              buttons: [{
-                text: 'OK',
-                handler: ()=> {
-                }
-              }]
-            }).present();
-          } else if (data.listResult === '2'){
-
-          }
-
+          this.userIdList = this.userIdList.concat(data.userList);
+          nextDoing();
+          this.pageIndex ++;
         }, null, notDialog);
       }
-    }else{
-      let sex = this.memory.getSex();
-      console.log(this.id+"观光的id")
-
-      this.myHttp.post(MyHttp.URL_SEEEACHOTHER, {
-        sex:sex,
-        size: 2
-      }, (data) => {
-        console.log(data)
-        if (data.listResult === '0') {
-            this.userList = data.userList;
-        }
-      })
     }
+  }
 
+  // 单独获取UserList
+  getUserListStep() {
+    let size = this.userList.length;
+    console.log(this.userIdList)
+    console.log(size)
+    this.myHttp.post(MyHttp.URL_USER_INTRODUCE, {
+      userId: this.id,
+      otherUserId: this.userIdList[size]
+    }, (data) => {
+      console.log(data)
+      let item = data.baseInfo;
+      item.detailInfo = data.detailInfo;
+      this.userList.push(item);
+      this.getUserList(this.searchInfo, true);
+    }, null, true)
   }
 
   /**
