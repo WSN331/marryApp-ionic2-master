@@ -140,7 +140,7 @@ export class HomePage {
     }
     this.pageIndex = 1;
     this.userList = [];
-    this.userListId = [];
+    this.userIdList = [];
     this.getUserList(this.searchInfo);
     setTimeout(() => {
       refresher.complete();
