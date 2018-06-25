@@ -190,11 +190,6 @@ export class HomePage {
    * 获取用户列表
      */
   getUserList() {
-    /**
-     * 每次先获取一张
-     */
-    this.showBtnGetMore = false;
-
     if (this.userIdList.length > this.userList.length) {
       this.getUserItem();
     } else {
@@ -211,6 +206,7 @@ export class HomePage {
       searchInfo['size'] = this.PAGE_SIZE;
       searchInfo['index'] = this.pageIndex;
       if (this.id) {
+        this.showBtnGetMore = false;
         this.myHttp.post(MyHttp.URL_USER_SCREEN_LIST_ID, searchInfo, (data) => {
           console.log(data)
           this.userIdList = this.userIdList.concat(data.userList);
@@ -233,7 +229,7 @@ export class HomePage {
       let item = data.baseInfo;
       item.detailInfo = data.detailInfo;
       this.userList.push(item);
-      this.getUserList(this.searchInfo, true);
+      this.getUserList();
     }, null, true)
   }
 
