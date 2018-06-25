@@ -25,6 +25,7 @@ import {CommunicatePage} from "../communicate/communicate";
 export class HomePage {
   @ViewChild(Content) content: Content;　　//获取界面Content的实例对象
   private PAGE_SIZE = 10;
+
   //
   public nullUserID = Math.ceil(Math.random()*1000)
 
@@ -36,13 +37,12 @@ export class HomePage {
   public userIdList = [];
 
   public id;
+
   public pageIndex;
 
   public displayTitle = true;
 
   private showBtnGetMore = false;
-
-  // private isLoading=false;
 
   /*
   * 身高，年龄，收入，学历，当前所在地，故乡
@@ -61,34 +61,47 @@ export class HomePage {
               public memory:Memory, public imgService:ImgService, public events: Events,
               public calculateService: CalculateService, private cdr: ChangeDetectorRef,
               public toastCtrl: ToastController) {
-    this.pageIndex = 1;
+
     if(this.isLoginOnce()){
       this.goToDetail();
     } else if(!this.isCredMain()){
       this.goToCred();
     }
-    this.getUserList(this.searchInfo);
-    this.events.subscribe('e-home-list', () => {
-      this.pageIndex = 1;
-      this.userList = [];
-      this.getUserList(this.searchInfo);
-    });
-    this.events.subscribe('e-home-search', (searchInfo,isSearch)=>{
-      this.pageIndex = 1;
 
+    // 初始化userList
+    this.initUserList();
+
+    // 添加初始化的声明
+    this.events.subscribe('e-home-list', () => {
+      this.initUserList();
+    });
+
+    // 添加搜索回调
+    this.events.subscribe('e-home-search', (searchInfo,isSearch)=>{
       for(let name in searchInfo){
         this.searchInfo[name] = searchInfo[name];
       }
       console.log(this.searchInfo);
       this.isSearch = isSearch;
-      this.userList = [];
-      this.getUserList(this.searchInfo);
+      this.initUserList();
     });
+
+    // 添加修改userInfo的回调
     this.events.subscribe('e-home-changeUserInfo', (userId, changeInfo) => {
       console.log(userId + ";");
       console.log(changeInfo)
       this.changeUserInfo(userId, changeInfo);
     })
+  }
+
+  /**
+   * 初始化用户列表
+   */
+  initUserList() {
+    this.userList = [];
+    this.userIdList = [];
+    this.pageIndex = 0;
+    this.nextPage(this.searchInfo);
   }
 
   /**
@@ -138,26 +151,10 @@ export class HomePage {
         edu : '',
       };
     }
-    this.pageIndex = 1;
-    this.userList = [];
-    this.userListId = [];
-    this.getUserList(this.searchInfo);
+    this.initUserList();
     setTimeout(() => {
       refresher.complete();
     },2000);
-  }
-
-  /**
-   * 请先购买VIP
-   */
-  nextPage() {
-    // if(!this.isLogin()){
-    //   //没有登录
-    //   this.goToLogin();
-    // }else{
-    //   this.pageIndex ++;
-    //   this.getUserList(this.searchInfo, true);
-    // }
   }
 
   /**
@@ -175,23 +172,33 @@ export class HomePage {
   }
 
   /**
+   * 请先购买VIP
+   */
+  nextPage() {
+    if(!this.isLogin()){
+      //没有登录
+      this.goToLogin();
+    }else{
+      this.pageIndex ++;
+      this.getUserListId(this.searchInfo, () => {
+        this.getUserList();
+      }, true)
+    }
+  }
+
+  /**
    * 获取用户列表
-   * @param searchInfo
      */
-  getUserList(searchInfo:any, notDialog?) {
+  getUserList() {
     /**
      * 每次先获取一张
      */
     this.showBtnGetMore = false;
-    if (notDialog == null) {
-      notDialog = false;
-    }
-    if (this.userIdList.length <= this.userList.length) {
-      this.getUserListId(searchInfo, () => {
-        this.getUserListStep();
-      }, notDialog)
+
+    if (this.userIdList.length > this.userList.length) {
+      this.getUserItem();
     } else {
-      this.getUserListStep();
+      this.showBtnGetMore = true;
     }
   }
 
@@ -208,14 +215,13 @@ export class HomePage {
           console.log(data)
           this.userIdList = this.userIdList.concat(data.userList);
           nextDoing();
-          this.pageIndex ++;
         }, null, notDialog);
       }
     }
   }
 
   // 单独获取UserList
-  getUserListStep() {
+  getUserItem() {
     let size = this.userList.length;
     console.log(this.userIdList)
     console.log(size)
@@ -430,6 +436,7 @@ export class HomePage {
     event.stopPropagation();
   }
 
+  // 无感
   ignore(event, index) {
     this.changeRelation(6, this.userList[index].id, (data)=> {
       if (data.hateResult == "0") {
@@ -460,6 +467,7 @@ export class HomePage {
     })
   }
 
+  // 前往聊天界面
   goToMessage(event, user) {
     if(this.calculateService.isVip(this.memory.getUser().vipTime)){
       this.navCtrl.push(CommunicatePage,{
