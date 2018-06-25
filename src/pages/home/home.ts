@@ -101,7 +101,7 @@ export class HomePage {
     this.userList = [];
     this.userIdList = [];
     this.pageIndex = 0;
-    this.nextPage(this.searchInfo);
+    this.nextPage();
   }
 
   /**
