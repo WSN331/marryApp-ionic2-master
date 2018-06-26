@@ -1,0 +1,38 @@
+page-deleteUser{
+  /*标题*/
+  .head{
+    height: 44px;
+  }
+  .head_back{
+    position: absolute;
+    height:44px;
+    vertical-align: middle;
+  }
+  .head_back span{
+    height: 100%;
+    vertical-align: middle;
+    display: inline-block
+  }
+  .head_back img{
+    width:22px;
+    vertical-align: middle;
+  }
+
+  .head_title {
+    font-size: 18px;
+    text-align: center;
+    line-height: 44px;
+    color: #ff975a;
+  }
+  .line{
+    height: 1px;
+    background-color:#eeeeee;
+  }
+
+  .deleteUser-info{
+    width: 90%;
+    margin-left: 5%;
+  }
+
+
+}

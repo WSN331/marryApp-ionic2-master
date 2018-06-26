@@ -65,6 +65,8 @@ export class MyHttp {
   static URL_GET_PAS = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/resetPassword";
   // 获取待审核头像
   static URL_GET_WAIT_CRED_ICON= MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/getWaitCredIcon";
+  // 注销用户
+  static URL_GET_CANCEL_REGISTER = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/user/cancelRegister";
 
   // 用户列表
   static URL_USER_LIST = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/home/list";

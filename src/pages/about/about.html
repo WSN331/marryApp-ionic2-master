@@ -20,9 +20,14 @@
     <h2>{{ user.nickName }}</h2>
   </div>
 
-  <ion-item>
-    <ion-toggle checked="true"></ion-toggle>
-    <ion-label>消息通知</ion-label>
+  <!--<ion-item>-->
+    <!--<ion-toggle checked="true"></ion-toggle>-->
+    <!--<ion-label>消息通知</ion-label>-->
+  <!--</ion-item>-->
+
+  <ion-item (click)="goToSafe()">
+    <ion-label>账号安全</ion-label>
+    <ion-label><img src="assets/img/btn_next.png"></ion-label>
   </ion-item>
 
   <ion-item (click)="goToBlack()">

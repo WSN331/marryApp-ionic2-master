@@ -1,0 +1,28 @@
+<ion-header>
+  <div class="head">
+    <div class="head_back" (click)="back()">
+      <span></span>
+      <img src="assets/img/back.png"/>
+    </div>
+    <div class="head_title">
+      账号安全
+    </div>
+    <div class="line">
+    </div>
+  </div>
+</ion-header>
+
+<ion-content padding>
+
+
+  <ion-item (click)="goToResetPassword()">
+    <ion-label>修改密码</ion-label>
+    <ion-label><img src="assets/img/btn_next.png"></ion-label>
+  </ion-item>
+
+  <ion-item (click)="goToDelete()">
+    <ion-label>注销账号</ion-label>
+    <ion-label><img src="assets/img/btn_next.png"></ion-label>
+  </ion-item>
+
+</ion-content>

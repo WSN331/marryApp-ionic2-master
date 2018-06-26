@@ -16,6 +16,7 @@ import { UserIntroducePage } from '../user-introduce/user-introduce'
 import { CredListPage } from '../credList/credList'
 import { PayPage } from "../purchase/pay";
 import { AuthorInformationPage } from "../authorInformation/authorInformation"
+import {SafePage} from "../safe/safe";
 
 @Component({
   selector: 'page-about',
@@ -119,6 +120,13 @@ export class AboutPage{
    */
   goToBlack() {
     this.navCtrl.push(BlackPage);
+  }
+
+  /**
+   * 进入黑名单
+   */
+  goToSafe() {
+    this.navCtrl.push(SafePage);
   }
 
   /**

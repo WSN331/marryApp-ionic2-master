@@ -22,6 +22,8 @@ import { AddCredPage } from '../pages/addCred/addCred'
 import { AuthorInformationPage } from "../pages/authorInformation/authorInformation"
 import { ControlImagePage } from "../pages/control-image/control-image"
 import { AddTipPage } from "../pages/addTip/addTip"
+import { SafePage } from "../pages/safe/safe"
+import { DeleteUserPage } from "../pages/deleteUser/deleteUser"
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -82,7 +84,9 @@ import {GoagoPage} from "../pages/goago/goago";
     LargeImagePage,
     MatchmakerPage,
     AddTipPage,
-    GoagoPage
+    GoagoPage,
+    SafePage,
+    DeleteUserPage
   ],
   imports: [
     BrowserModule,
@@ -126,7 +130,9 @@ import {GoagoPage} from "../pages/goago/goago";
     LargeImagePage,
     MatchmakerPage,
     AddTipPage,
-    GoagoPage
+    GoagoPage,
+    SafePage,
+    DeleteUserPage
   ],
   providers: [
     StatusBar,

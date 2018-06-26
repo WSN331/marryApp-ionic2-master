@@ -11,7 +11,6 @@ import {TabsPage} from "../pages/tabs/tabs";
   templateUrl: 'app.html'
 })
 export class MyApp {
-  //rootPage:any = SearchPage;
   rootPage:any = StartPage;
 
   backButtonPressed: boolean = false;  //用于判断返回键是否触发
@@ -19,7 +18,7 @@ export class MyApp {
 
   constructor(public platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
               public toastCtrl: ToastController, public keyBoard: Keyboard ,
-              public ionicApp: IonicApp,) {
+              public ionicApp: IonicApp) {
     /*this.showExit();*/
 
     platform.ready().then(() => {

@@ -1,0 +1,32 @@
+<ion-header>
+  <div class="head">
+    <div class="head_back" (click)="back()">
+      <span></span>
+      <img src="assets/img/back.png"/>
+    </div>
+    <div class="head_title">
+      注销账号
+    </div>
+    <div class="line">
+    </div>
+  </div>
+</ion-header>
+
+<ion-content padding>
+
+  <div class="deleteUser-info">
+    {{text}}
+  </div>
+
+  <ion-list>
+
+    <ion-item *ngFor="let reason of reasons; let i = index">
+      <ion-label>{{reason}}</ion-label>
+      <ion-checkbox [(ngModel)]="selectReason[i]"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+
+  <button ion-button full color="red" (click)="submitDelete()" >账号永久注销</button>
+
+
+</ion-content>
