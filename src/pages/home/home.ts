@@ -47,15 +47,12 @@ export class HomePage {
   /*
   * 身高，年龄，收入，学历，当前所在地，故乡
   * */
-  public searchInfo =  {
-    high : '',
-    age : '',
-    income : '',
-    edu : ''
-  };
+  public searchInfo;
 
   //判断是否是从搜索页面过来的
   public isSearch;
+
+  public notMoreUser;
 
   constructor(public navCtrl:NavController, private myHttp:MyHttp, public alertCtrl:AlertController,
               public memory:Memory, public imgService:ImgService, public events: Events,
@@ -68,6 +65,7 @@ export class HomePage {
       this.goToCred();
     }
 
+    this.initSearchInfo();
     // 初始化userList
     this.initUserList();
 
@@ -94,6 +92,17 @@ export class HomePage {
     })
   }
 
+  initSearchInfo() {
+    this.searchInfo =  {
+      high : '',
+      age : '',
+      income : '',
+      edu : '',
+      screenSchoolAndDistrict: ""
+    };
+    this.isSearch = 0;
+  }
+
   /**
    * 初始化用户列表
    */
@@ -101,6 +110,7 @@ export class HomePage {
     this.userList = [];
     this.userIdList = [];
     this.pageIndex = 0;
+    this.notMoreUser = false;
     this.nextPage();
   }
 
@@ -144,12 +154,7 @@ export class HomePage {
     console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
     if(this.isSearch){
       //刷新后重新显示
-      this.searchInfo = {
-        high : '',
-        age : '',
-        income : '',
-        edu : '',
-      };
+      this.initSearchInfo();
     }
     this.initUserList();
     setTimeout(() => {
@@ -209,7 +214,12 @@ export class HomePage {
         this.showBtnGetMore = false;
         this.myHttp.post(MyHttp.URL_USER_SCREEN_LIST_ID, searchInfo, (data) => {
           console.log(data)
-          this.userIdList = this.userIdList.concat(data.userList);
+          if (typeof data.userList !== "undefined") {
+            this.userIdList = this.userIdList.concat(data.userList);
+            this.notMoreUser = false;
+          } else {
+            this.notMoreUser = true;
+          }
           nextDoing();
         }, null, notDialog);
       }
@@ -228,6 +238,7 @@ export class HomePage {
       console.log(data)
       let item = data.baseInfo;
       item.detailInfo = data.detailInfo;
+      item.relation = data.relation;
       this.userList.push(item);
       this.getUserList();
     }, null, true)

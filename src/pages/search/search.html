@@ -14,24 +14,6 @@
 
 <ion-content padding>
 
-<!--  <div class="div">
-    <div class="div1">
-      <button ion-button icon-only clear (click)="goToIntroduce()">
-        <ion-icon ios="ios-search-outline" md="md-search"></ion-icon>
-      </button>
-    </div>
-    <div class="div2">
-      <ion-input type="text" placeholder="搜索ID" [(ngModel)]="userId"></ion-input>
-    </div>
-    <div class="div3">
-      <button ion-button icon-only clear (click)="inputClear()">
-        <ion-icon ios="ios-close-outline" md="md-close"></ion-icon>
-      </button>
-    </div>
-    <div class="div4">
-    </div>
-
-  </div>-->
 
   <div class="basic">
     <span class="basic_span">基本筛选</span>
@@ -112,6 +94,25 @@
         [(ngModel)]="selectOption.oldDistrictSelect.id">
         <ion-option *ngFor="let district of selectOption.oldDistrictSelect.districtList" value="{{district.id}}">
           {{district.name}}
+        </ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-label>学校：</ion-label>
+    <ion-item no-lines>
+      <!--省-->
+      <ion-select [(ngModel)]="selectOption.schoolSelect.provinceId"
+                  (ngModelChange)="getSchoolList('schoolSelect')">
+        <ion-option *ngFor="let province of selectOption.provinceList" value="{{province.id}}">
+          {{province.name}}
+        </ion-option>
+      </ion-select>
+
+      <!--学校-->
+      <ion-select
+        [(ngModel)]="selectOption.schoolSelect.id">
+        <ion-option *ngFor="let school of selectOption.schoolSelect.schoolList" value="{{school.id}}">
+          {{school.name}}
         </ion-option>
       </ion-select>
     </ion-item>

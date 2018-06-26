@@ -235,4 +235,10 @@ page-home {
     text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
     white-space:nowrap; /*不换行 */
   }
+
+  .notMoreUser {
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+  }
 }

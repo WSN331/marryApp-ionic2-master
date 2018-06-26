@@ -22,8 +22,18 @@ export class SearchPage{
     age : '',
     income : '',
     edu : '',
-    newDistrict:{},
-    oldDistrict:{}
+    screenSchoolAndDistrict: {
+      /**
+       * "schoolId": 1,
+       "schoolProvinceId": 1,
+       "oldDistrictId": 1,
+       "oldDistrictCityId": 1,
+       "oldDistrictProvinceId": 1,
+       "newDistrictId": 1,
+       "newDistrictCityId": 1,
+       "newDistrictProvinceId": 1
+       */
+    }
   };
 
   private strForChoose = {
@@ -38,8 +48,10 @@ export class SearchPage{
     provinceList: [],
     newDistrictSelect: {cityList: [], districtList: []},
     oldDistrictSelect: {cityList: [], districtList: []},
+    schoolSelect: {schoolList: []}
   }
-  private detailInfoSelect = "newDistrict oldDistrict";
+  private districtInfoSelect = "newDistrict oldDistrict";
+  private schoolInfoSelect = "school";
 
   constructor(public navCtrl:NavController,public alertCtrl: AlertController,
               public myHttp:MyHttp,public calculateService: CalculateService,
@@ -49,8 +61,8 @@ export class SearchPage{
 
   //普通搜索
   searchCom(){
-    this.searchInfo.newDistrict = "";
-    this.searchInfo.oldDistrict = "";
+    this.searchInfo.screenSchoolAndDistrict = "{}";
+    this.searchInfo.edu = "";
     this.events.publish('e-home-search', this.searchInfo,true);
     this.navCtrl.pop();
   }
@@ -58,8 +70,7 @@ export class SearchPage{
   //Vip搜索
   searchVip(){
     this.getDetailJson();
-    this.searchInfo.newDistrict = JSON.stringify(this.searchInfo.newDistrict);
-    this.searchInfo.oldDistrict = JSON.stringify(this.searchInfo.oldDistrict);
+    this.searchInfo.screenSchoolAndDistrict = JSON.stringify(this.searchInfo.screenSchoolAndDistrict);
     this.events.publish('e-home-search', this.searchInfo,true);
     this.navCtrl.pop();
   }
@@ -68,20 +79,33 @@ export class SearchPage{
   * 补全信息
   * */
   getDetailJson(){
-    let detailInfoSelects = this.detailInfoSelect.split(" ");
-    for(let i in detailInfoSelects){
-      let name = detailInfoSelects[i]
+    let districtInfoSelects = this.districtInfoSelect.split(" ");
+    for(let i in districtInfoSelects){
+      let name = districtInfoSelects[i]
       //省
       if(typeof this.selectOption[name + 'Select'].provinceId !=='undefined'){
-        this.searchInfo[name]['provinceId']= this.selectOption[name + 'Select'].provinceId;
+        this.searchInfo.screenSchoolAndDistrict[name + 'ProvinceId']= this.selectOption[name + 'Select'].provinceId;
       }
       //市
       if(typeof this.selectOption[name + 'Select'].cityId  !=='undefined'){
-        this.searchInfo[name]['cityId']= this.selectOption[name + 'Select'].cityId;
+        this.searchInfo.screenSchoolAndDistrict[name + 'CityId']= this.selectOption[name + 'Select'].cityId;
       }
       //区
       if(typeof this.selectOption[name + 'Select'].id !=='undefined'){
-        this.searchInfo[name]['id'] = this.selectOption[name + 'Select'].id;
+        this.searchInfo.screenSchoolAndDistrict[name + 'Id'] = this.selectOption[name + 'Select'].id;
+      }
+    }
+
+    let schoolInfoSelects = this.schoolInfoSelect.split(" ");
+    for(let i in schoolInfoSelects){
+      let name = schoolInfoSelects[i]
+      //省
+      if(typeof this.selectOption[name + 'Select'].provinceId !=='undefined'){
+        this.searchInfo.screenSchoolAndDistrict[name + 'ProvinceId']= this.selectOption[name + 'Select'].provinceId;
+      }
+      //区
+      if(typeof this.selectOption[name + 'Select'].id !=='undefined'){
+        this.searchInfo.screenSchoolAndDistrict[name + 'Id'] = this.selectOption[name + 'Select'].id;
       }
     }
   }
@@ -150,6 +174,22 @@ export class SearchPage{
     }, (data)=> {
       console.log(data);
       this.selectOption[selectName].cityList = data.list;
+    });
+  }
+
+  /**
+   * 获取城市列表
+   * @param selectName 选择参数名
+   */
+  getSchoolList(selectName:string) {
+    this.selectOption[selectName].districtList = [];
+
+    this.myHttp.post(MyHttp.URL_GET_SCHOOL_LIST, {
+      provinceId: this.selectOption[selectName].provinceId,
+      scale: 4
+    }, (data)=> {
+      console.log(data);
+      this.selectOption[selectName].schoolList = data.list;
     });
   }
 
