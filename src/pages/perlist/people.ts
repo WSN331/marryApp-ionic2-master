@@ -40,7 +40,13 @@ export class PeoplePage {
               public alertCtrl:AlertController, public myStorage: MyStorage) {
     this.init()
     this.ngReFresh();
-    this.events.subscribe('e-people', () => {
+    this.events.subscribe('e-people', (otherPersonId) => {
+      for (let i = 0; i < this.conversations.length; i++) {
+        let item = this.conversations[i];
+        if (item["baseInfo"] != null && item["baseInfo"]["id"] == otherPersonId) {
+          this.haveRead(this.conversations[i])
+        }
+      }
     });
   }
 
@@ -80,12 +86,7 @@ export class PeoplePage {
     })
 
     this.hasVisiter();
-  }
 
-  /**
-   * 刷新
-   */
-  ngReFresh() {
     //获取未读对话
     let unReadConversations = this.memory.getUnreadConversions();
     if(unReadConversations.size > 0 && unReadConversations != null){
@@ -93,14 +94,29 @@ export class PeoplePage {
         this.showMember(unReadConversations[i]);
       }
     }
+
+  }
+
+  /**
+   * 刷新
+   */
+  ngReFresh() {
     //设置一个定时器，每秒刷新该界面
     this.timer = setInterval(()=> {
-      this.changeDetectorRef.detectChanges();
+      //this.changeDetectorRef.detectChanges();
       this.getCommunicateList(2);
       console.log("1");
       this.saveConversations();
-      this.events.publish('e-tabs-message-change');
 
+      let messageCount = 0;
+      //获取未读消息条数，重新返回给tab界面
+      for (let i = 0; i < this.conversations.length; i++) {
+        let item = this.conversations[i];
+        if(item.Count>0){
+          messageCount = messageCount+item.Count
+        }
+      }
+      this.events.publish('e-tabs-message-change',messageCount);
     }, 2000);
   }
 
@@ -190,11 +206,8 @@ export class PeoplePage {
   goToTalk(conTalk:any) {
     //如果当前用户是vip用户则可以开始聊天
     if (this.isVipOrNot()) {
-      let talk = conTalk['talk']
-      if(talk==''){
-        conTalk.Count = 0;
-        this.saveConversations();
-      }
+      conTalk.Count = 0;
+      this.saveConversations();
       //通话对象
       if (conTalk['baseInfo'] != null) {
 
@@ -227,6 +240,10 @@ export class PeoplePage {
    * @param talk
    */
   showMember(talk:any) {
+    //首先暂停，让该执行的操作只执行一次
+    //clearInterval(this.timer);
+
+
     let conversation:any = {
       baseInfo: '',
       detailInfo: '',
@@ -263,7 +280,9 @@ export class PeoplePage {
 
     if (otherPerson != null) {
       console.log(otherPerson + "对话人的id");
+
       this.addConversation(otherPerson, conversation);
+
       this.getUserInfo(otherPerson, (baseInfo, isDefaultPic, relation)=> {
 
         console.log(baseInfo.nickName + "用户姓名");
@@ -276,6 +295,8 @@ export class PeoplePage {
         //调整conversations
         this.isToAdd(conversation,otherPerson)
         this.memory.setConversion(this.conversations);
+
+        //this.ngReFresh()
       })
     }
   }
@@ -287,9 +308,11 @@ export class PeoplePage {
      */
   addConversation(personId, conversation) {
     console.log("显示长度："+this.conversations.length)
+    let count = 0
     for (let i = 0; i < this.conversations.length; i++) {
       let item = this.conversations[i];
       if (item["baseInfo"] != null && item["baseInfo"]["id"] == personId) {
+        count = item.Count
         for (let j = i; j < this.conversations.length - 1; j++) {
           this.conversations[j] = this.conversations[j+1];
         }
@@ -298,9 +321,17 @@ export class PeoplePage {
     }
     var conList = [];
     conList.push(conversation);
+    if(conversation.Count > 0 && count > 0){
+      conversation.Count = count + 1
+    }
     this.conversations = conList.concat(this.conversations)
   }
 
+  /**
+   * 判断是否显示，也就是是否是删除的
+   * @param conTalk
+   * @param otherId
+   */
   isToAdd(conTalk:any,otherId){
     let isShow = true
     //获取一下删除的会话
@@ -462,10 +493,9 @@ export class PeoplePage {
 
   /*将对话标记为已读*/
   haveRead(conTalk:any){
-    if(conTalk.talk==''){
-      conTalk.Count = 0;
-      this.saveConversations();
-    }else{
+    conTalk.Count = 0;
+    this.saveConversations();
+    if(conTalk.talk !=''){
       conTalk.talk.read().then((conversation)=> {
         console.log('对话已标记为已读');
       }).catch(console.error.bind(console));
@@ -505,7 +535,8 @@ export class PeoplePage {
   isToShow(conTalk:any){
     let isShow = true
     //照片不行，被拉黑，没有信息交流的，不能显示
-    if(conTalk.isDefaultPic == true || conTalk.show == false || conTalk.lastMessageAt == ''){
+    if(conTalk.isDefaultPic == true || conTalk.show == false || conTalk.lastMessageAt == ''
+      ||conTalk.baseInfo.nickName == '' || this.calculateService.getAge(conTalk.baseInfo.birthday) == 0){
       isShow = false
     }
     return isShow;

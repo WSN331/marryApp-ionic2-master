@@ -83,7 +83,7 @@ export class CalculateService {
     }
 
   }
-  
+
   /**
    * 计算年龄
    * @param birthday yyyy-MM-dd格式的出生年月日
@@ -149,6 +149,6 @@ export class CalculateService {
   }
 
   public isNotIncome(item){
-    return item != undefined && item != null && item != 'undefined' && item != '' && item!='还是学生无固定收入';
+    return item != undefined && item != null && item != 'undefined' && item != '' && item!='还是学生无固定收入' && item!='还是学生没有收入';
   }
 }

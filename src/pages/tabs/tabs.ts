@@ -32,8 +32,9 @@ export class TabsPage {
     this.comCate.init();
     this.getHateList()
     this.receiveMessage();
-    this.events.subscribe('e-tabs-message-change', () => {
+    this.events.subscribe('e-tabs-message-change', (messageCount) => {
       this.receiveMessage();
+      this.messageCount = messageCount;
     })
   }
 

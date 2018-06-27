@@ -46,11 +46,10 @@ export class CommunicatePage {
     //得到在线消息
     this.receiveMessage((msg, conversation)=> {
       this.subMsgList.push(msg);
+      console.log("您好")
       //及时更新页面
       this.ngFresh();
     });
-
-    this.ngFresh();
   }
 
   goToUserPage() {
@@ -76,7 +75,7 @@ export class CommunicatePage {
         console.log('对话已标记为已读');
       }).catch(console.error.bind(console));
       //更新之前的页面
-      this.events.publish("e-people");
+      this.events.publish("e-people",this.otherSelf);
     }
   }
 
@@ -174,7 +173,9 @@ export class CommunicatePage {
     this.conversation.read().then((conversation)=> {
       console.log('对话已标记为已读');
     }).catch(console.error.bind(console));
-    clearInterval(this.timer);
+
+    this.ngFresh();
+    //clearInterval(this.timer);
   }
 
   /**
@@ -195,7 +196,7 @@ export class CommunicatePage {
    * 获取聊天记录(已读)
    */
   getCloudMsgread(conversation) {
-    let queryJson = {limit: 20};
+    let queryJson = {limit: 30};
     // this.myStorage.getMsgList(this.mySelf, this.otherSelf).then((data) => {
     //   let queryJson = {limit: 20};
     //   if (data != null) {
@@ -217,6 +218,7 @@ export class CommunicatePage {
         console.log(msg.timestamp);
         this.subMsgList.push({from: msg.from, text: msg.text, timestamp: msg.timestamp});
       }
+
       //及时更新页面
     }).catch(console.error.bind(console));
 
