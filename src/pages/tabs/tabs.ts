@@ -9,6 +9,7 @@ import {PeoplePage} from "../perlist/people";
 import {MyHttp} from "../../util/MyHttp";
 
 
+
 @Component({
   selector:'page-tabs',
   templateUrl: 'tabs.html'
@@ -34,7 +35,7 @@ export class TabsPage {
     this.receiveMessage();
     this.events.subscribe('e-tabs-message-change', (messageCount) => {
       this.receiveMessage();
-      this.messageCount = messageCount;
+      this.messageCount = messageCount == 0 ? null : messageCount;
     })
   }
 
@@ -62,10 +63,13 @@ export class TabsPage {
     if(this.realtime!=null){
       this.mySelf = this.memory.getUser().id;
       //登录并查询是否有未读消息
-      console.log(this.messageCount)
       let count = 0;
+      console.log("查询未读消息1")
+
       this.realtime.createIMClient(this.mySelf+'').then((my)=> {
         my.on('unreadmessagescountupdate', (conversations)=>{
+          console.log("查询未读消息2")
+          console.log(conversations)
           if(conversations.size > 0 && conversations != null){
             this.memory.setUnreadConversions(conversations)
             for(let conv of conversations) {

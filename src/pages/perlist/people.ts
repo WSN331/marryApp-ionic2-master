@@ -84,6 +84,7 @@ export class PeoplePage {
         })
       }
     })
+    /*this.getCommunicateList();*/
 
     this.hasVisiter();
 
@@ -117,6 +118,7 @@ export class PeoplePage {
         }
       }
       this.events.publish('e-tabs-message-change',messageCount);
+
     }, 2000);
   }
 
@@ -179,6 +181,7 @@ export class PeoplePage {
    * 用户登录并监听消息
    */
   getCommunicateList(secondAgo?) {
+
     if (this.memory.getConversion().size > 0 && this.memory.getConversion() != null) {
       this.conversations = this.memory.getConversion();
     }
@@ -196,6 +199,7 @@ export class PeoplePage {
         for (var i = conversations.length-1; i>=0; i--) {
           this.showMember(conversations[i]);
         }
+
       }).catch(console.error.bind(console));
     }).catch(console.error);
   }
@@ -240,10 +244,6 @@ export class PeoplePage {
    * @param talk
    */
   showMember(talk:any) {
-    //首先暂停，让该执行的操作只执行一次
-    //clearInterval(this.timer);
-
-
     let conversation:any = {
       baseInfo: '',
       detailInfo: '',
@@ -296,7 +296,6 @@ export class PeoplePage {
         this.isToAdd(conversation,otherPerson)
         this.memory.setConversion(this.conversations);
 
-        //this.ngReFresh()
       })
     }
   }
@@ -321,9 +320,6 @@ export class PeoplePage {
     }
     var conList = [];
     conList.push(conversation);
-    if(conversation.Count > 0 && count > 0){
-      conversation.Count = count + 1
-    }
     this.conversations = conList.concat(this.conversations)
   }
 
