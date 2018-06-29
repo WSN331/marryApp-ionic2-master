@@ -75,7 +75,25 @@ export class PeoplePage {
         this.myStorage.getCommunicateList(this.mySelf).then((commList) => {
           if (commList != null) {
             //有缓存
+            console.log("缓存赋值")
             this.conversations = commList
+
+            //获取未读对话
+            let unReadConversations = this.memory.getUnreadConversions();
+            if(unReadConversations != null && unReadConversations.length > 0){
+              for (var i = 0; i < unReadConversations.length; i++) {
+                var CONVERSATION_ID = unReadConversations[i];
+                this.realTime.createIMClient(this.mySelf + '').then((my)=> {
+                  console.log("未读消息处理4")
+                  my.getConversation(CONVERSATION_ID).then((conversation)=>{
+                    console.log(conversation.id+"对话的id"+conversation.unreadMessagesCount)
+                    console.log(conversation)
+                    this.showMember(conversation);
+                  }).catch(console.error.bind(console));
+                }).catch(console.error);
+              }
+            }
+
           }
           if(this.conversations.size <= 0 || this.conversations == null || commList==null){
             //没有缓存
@@ -88,13 +106,7 @@ export class PeoplePage {
 
     this.hasVisiter();
 
-    //获取未读对话
-    let unReadConversations = this.memory.getUnreadConversions();
-    if(unReadConversations.size > 0 && unReadConversations != null){
-      for (var i = unReadConversations.length-1; i>=0; i--) {
-        this.showMember(unReadConversations[i]);
-      }
-    }
+
 
   }
 

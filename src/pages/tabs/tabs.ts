@@ -34,7 +34,7 @@ export class TabsPage {
     this.getHateList()
     this.receiveMessage();
     this.events.subscribe('e-tabs-message-change', (messageCount) => {
-      this.receiveMessage();
+      //this.receiveMessage();
       this.messageCount = messageCount == 0 ? null : messageCount;
     })
   }
@@ -64,13 +64,39 @@ export class TabsPage {
       this.mySelf = this.memory.getUser().id;
       //登录并查询是否有未读消息
       let count = 0;
+      let unreadConversions = []
+      //是否加入未读消息列表
+      let isInUpdate = false
       console.log("查询未读消息1")
-
+      /*unreadmessagescountupdate*/
       this.realtime.createIMClient(this.mySelf+'').then((my)=> {
-        my.on('unreadmessagescountupdate', (conversations)=>{
+        my.on('message', (conversations)=>{
           console.log("查询未读消息2")
           console.log(conversations)
-          if(conversations.size > 0 && conversations != null){
+          console.log(conversations.cid)
+
+          for(var i = 0; i < unreadConversions.length;i++){
+            if(conversations.cid == unreadConversions[i]){
+              isInUpdate = true
+            }
+          }
+
+          count = count+1
+          console.log(count)
+
+          this.messageCount = count == 0 ? null : count;
+
+          //有系统消息
+          if(conversations.cid == "5a93eced1579a3003847f3c2"){
+            this.memory.setMsg(true);
+          }
+
+          if(!isInUpdate){
+            unreadConversions.push(conversations.cid)
+            console.log("查询未读消息3")
+            this.memory.setUnreadConversions(unreadConversions)
+          }
+/*          if(conversations.size > 0 && conversations != null){
             this.memory.setUnreadConversions(conversations)
             for(let conv of conversations) {
               console.log(conv.id, conv.name, conv.unreadMessagesCount+"这是查询未读消息的，请问哪里还有",conv);
@@ -84,7 +110,7 @@ export class TabsPage {
               }
             }
             this.messageCount = count == 0 ? null : count;
-          }
+          }*/
         });
       }).catch(console.error);
     }
