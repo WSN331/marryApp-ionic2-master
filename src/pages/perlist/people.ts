@@ -126,7 +126,8 @@ export class PeoplePage {
       //获取未读消息条数，重新返回给tab界面
       for (let i = 0; i < this.conversations.length; i++) {
         let item = this.conversations[i];
-        if(item.Count>0){
+        //count>0且能显示
+        if(item.Count>0 && this.isToShow(item)){
           messageCount = messageCount+item.Count
         }
       }
