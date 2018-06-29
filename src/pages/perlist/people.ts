@@ -40,6 +40,7 @@ export class PeoplePage {
               public alertCtrl:AlertController, public myStorage: MyStorage) {
     this.init()
     this.ngReFresh();
+
     this.events.subscribe('e-people', (otherPersonId) => {
       for (let i = 0; i < this.conversations.length; i++) {
         let item = this.conversations[i];
