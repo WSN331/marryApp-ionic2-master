@@ -40,7 +40,6 @@ export class PeoplePage {
               public alertCtrl:AlertController, public myStorage: MyStorage) {
     this.init()
     this.ngReFresh();
-
     this.events.subscribe('e-people', (otherPersonId) => {
       for (let i = 0; i < this.conversations.length; i++) {
         let item = this.conversations[i];
@@ -61,10 +60,22 @@ export class PeoplePage {
   /**
    * 初始化界面
    */
+/*  init() {
+    this.mySelf = this.memory.getUser().id;
+    this.myStorage.getCommunicateList(this.mySelf).then((commList) => {
+      if (commList != null) {
+        this.conversations = commList
+      }
+    })
+    this.hasVisiter();
+  }*/
+
+  /**
+   * 初始化界面
+   */
   init() {
     this.realTime = this.memory.getTiming();
     this.mySelf = this.memory.getUser().id;
-
     this.myStorage.getFirstIn().then((isFirst)=>{
       //判断是否是第一次访问
       if(isFirst == null){
@@ -103,11 +114,7 @@ export class PeoplePage {
         })
       }
     })
-    /*this.getCommunicateList();*/
-
     this.hasVisiter();
-
-
 
   }
 
@@ -115,6 +122,7 @@ export class PeoplePage {
    * 刷新
    */
   ngReFresh() {
+    //this.getCommunicateList();
     //设置一个定时器，每秒刷新该界面
     this.timer = setInterval(()=> {
       //this.changeDetectorRef.detectChanges();
@@ -199,6 +207,9 @@ export class PeoplePage {
     if (this.memory.getConversion().size > 0 && this.memory.getConversion() != null) {
       this.conversations = this.memory.getConversion();
     }
+
+    this.realTime = this.memory.getTiming();
+    this.mySelf = this.memory.getUser().id;
 
     this.realTime.createIMClient(this.mySelf + '').then((my)=> {
 
