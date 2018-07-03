@@ -219,6 +219,7 @@ export class MyHttp {
    * @param success 成功的回调函数
    * @param data 数据
      */
+  public alertIsShow = false;
   callBack (success: Function, data: any) {
     if (data.status !== 200) {
       console.log('net error')
@@ -232,26 +233,28 @@ export class MyHttp {
         console.log("back error")
         console.log(body)
         if (body.errorCode != null) {
-          this.alertCtrl.create({
-            title: "系统消息",
-            subTitle: body.errorMessage + "(" +  + body.errorCode + ")",
-            buttons: [{
-              text: '关闭',
-              handler: data => {
-                if (body.errorCode == 1001) {
-                  /**
-                   * 如果是需要重新登录
-                   */
-                  this.myStorage.setAccount(null);
-                  this.myStorage.setPassword(null);
-                  this.app.getRootNav().setRoot(StartPage);
-                  this.myStorage.setUser(null);
-                  this.memory.setUser({});
-
+          if(!this.alertIsShow){
+            this.alertCtrl.create({
+              title: "系统消息",
+              subTitle: body.errorMessage + "(" +  + body.errorCode + ")",
+              buttons: [{
+                text: '关闭',
+                handler: data => {
+                  if (body.errorCode == 1001) {
+                    /**
+                     * 如果是需要重新登录
+                     */
+                    this.myStorage.setAccount(null);
+                    this.myStorage.setPassword(null);
+                    this.app.getRootNav().setRoot(StartPage);
+                    this.myStorage.setUser(null);
+                    this.memory.setUser({});
+                  }
                 }
-              }
-            }]
-          }).present();
+              }]
+            }).present();
+          }
+          this.alertIsShow = true;
         }
       } else {
         success(body);
