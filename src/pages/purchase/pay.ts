@@ -4,6 +4,7 @@ import {AlertController, NavController, Platform} from "ionic-angular";
 import { InAppPurchase } from '@ionic-native/in-app-purchase';
 import { Buffer } from 'buffer';
 import {LoadingController, Events} from 'ionic-angular';
+import { BackgroundFetch, BackgroundFetchConfig } from '@ionic-native/background-fetch';
 
 import {MyHttp} from "../../util/MyHttp";
 import {Memory} from "../../util/Memory";
@@ -23,7 +24,7 @@ export class PayPage{
   constructor(public navCtrl: NavController,private myHttp:MyHttp, public alertCtrl: AlertController,
               public memory:Memory,public imgService: ImgService,public myStorage:MyStorage,
               public calculate : CalculateService, private iap: InAppPurchase, public platform: Platform,
-              public loadingCtrl:LoadingController, public events:Events){
+              public loadingCtrl:LoadingController, public events:Events, private backgroundFetch: BackgroundFetch){
     this.getUserMsg();
     this.getOrder();
   }
@@ -179,6 +180,28 @@ export class PayPage{
       });
 
   }
+
+  doBack(order) {
+    let config: BackgroundFetchConfig = {
+      stopOnTerminate: false, // Set true to cease background-fetch from operating after user "closes" the app. Defaults to true.
+    };
+
+    this.backgroundFetch.configure(config)
+      .then(() => {
+        console.log('Background Fetch initialized');
+
+        this.backgroundFetch.finish();
+
+      })
+      .catch(e => console.log('Error initializing background fetch', e));
+
+    // Start the background-fetch API. Your callbackFn provided to #configure will be executed each time a background-fetch event occurs. NOTE the #configure method automatically calls #start. You do not have to call this method after you #configure the plugin
+    this.backgroundFetch.start();
+
+    // Stop the background-fetch API from firing fetch events. Your callbackFn provided to #configure will no longer be executed.
+    // this.backgroundFetch.stop();
+  }
+
 
   /**
    *
