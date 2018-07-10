@@ -231,14 +231,14 @@ export class HomePage {
     let size = this.userList.length;
     console.log(this.userIdList)
     console.log(size)
-    this.myHttp.post(MyHttp.URL_USER_INTRODUCE, {
+    this.myHttp.post(MyHttp.URL_USER_ITEM, {
       userId: this.id,
       otherUserId: this.userIdList[size]
     }, (data) => {
       console.log(data)
-      let item = data.baseInfo;
-      item.detailInfo = data.detailInfo;
-      item.relation = data.relation;
+      let item = data.user;
+      // item.detailInfo = data.detailInfo;
+      // item.relation = data.relation;
       this.userList.push(item);
       this.getUserList();
     }, null, true)

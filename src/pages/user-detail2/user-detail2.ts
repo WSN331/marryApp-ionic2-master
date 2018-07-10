@@ -35,9 +35,6 @@ export class UserDetail2Page {
     provinceList: [],
     newDistrictSelect: {cityList: [], districtList: []},
     oldDistrictSelect: {cityList: [], districtList: []},
-    // firstSchoolSelect: {cityList: [], districtList: []},
-    // secondSchoolSelect: {cityList: [], districtList: []},
-    // thirdSchoolSelect: {schoolList: []},
     schoolSelect: {schoolList: []},
   }
 
@@ -52,7 +49,7 @@ export class UserDetail2Page {
    * 需要复选的内容
    * @type {string}
    */
-  private detailInfoSelect = "newDistrict oldDistrict firstSchool secondSchool thirdSchool school";
+  private detailInfoSelect = "newDistrict oldDistrict school";
 
   /**
    *
@@ -80,21 +77,29 @@ export class UserDetail2Page {
     // 遍历所有的select选项
     for (let i in detailInfoSelects) {
       let name = detailInfoSelects[i]
-      if (typeof this.detailInfo[name] === 'undefined' || this.detailInfo[name] == null) {
-        continue;
-      }
+      console.log(name)
+
       if (name.indexOf("District") != -1) {
         // 初始化选中的地区和地区列表
-        this.selectOption[name + 'Select'].provinceId = this.detailInfo[name].city.province.id;
-        this.getCityList(name + 'Select');
-        this.selectOption[name + 'Select'].cityId = this.detailInfo[name].city.id;
-        this.getDistrictList(name + 'Select');
+        if (typeof this.detailInfo[name + "Province"] !== 'undefined' && this.detailInfo[name + "Province"] != null) {
+          this.selectOption[name + 'Select'].provinceId = this.detailInfo[name + "Province"].id;
+          this.getCityList(name + 'Select');
+        }
+        if (typeof this.detailInfo[name + "City"] !== 'undefined' && this.detailInfo[name + "City"] != null) {
+          this.selectOption[name + 'Select'].cityId = this.detailInfo[name + "City"].id;
+          this.getDistrictList(name + 'Select');
+        }
       } else {
         // 初始化选中的学校列表
-        this.selectOption[name + 'Select'].provinceId = this.detailInfo[name].province.id;
-        this.getSchoolList(name + 'Select');
+        if (typeof this.detailInfo[name + "Province"] !== 'undefined' && this.detailInfo[name + "Province"] != null) {
+          this.selectOption[name + 'Select'].provinceId = this.detailInfo[name + "Province"].id;
+          this.getSchoolList(name + 'Select');
+        }
       }
-      this.selectOption[name + 'Select'].id = this.detailInfo[name].id;
+
+      if (typeof this.detailInfo[name] !== 'undefined' && this.detailInfo[name] != null) {
+        this.selectOption[name + 'Select'].id = this.detailInfo[name].id;
+      }
     }
     console.log(this.selectOption);
 
@@ -120,10 +125,19 @@ export class UserDetail2Page {
     for (let name in this.detailInfo) {
       if (this.detailInfoSelect.indexOf(name) == -1) {
         json[name] = this.detailInfo[name];
-      } else {
-        json[name] = this.selectOption[name + 'Select'].id
       }
     }
+
+    json["school"] = this.selectOption['schoolSelect'].id
+    json["schoolProvince"] = this.selectOption['schoolSelect'].provinceId;
+
+    json["newDistrict"] = this.selectOption['newDistrictSelect'].id
+    json["newDistrictCity"] = this.selectOption['newDistrictSelect'].cityId;
+    json["newDistrictProvince"] = this.selectOption['newDistrictSelect'].provinceId;
+
+    json["oldDistrict"] = this.selectOption['oldDistrictSelect'].id
+    json["oldDistrictCity"] = this.selectOption['oldDistrictSelect'].cityId;
+    json["oldDistrictProvince"] = this.selectOption['oldDistrictSelect'].provinceId;
 
     console.log(json)
     console.log("json数据展示")

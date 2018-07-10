@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HttpModule } from '@angular/http';
-import { BackgroundFetch } from '@ionic-native/background-fetch';
+// import { BackgroundFetch } from '@ionic-native/background-fetch';
 
 
 import { StartPage } from '../pages/start/start'
@@ -153,8 +153,7 @@ import {GoagoPage} from "../pages/goago/goago";
     FileOpener,
     Transfer,
     AppUpdate,
-    InAppPurchase,
-    BackgroundFetch
+    InAppPurchase
   ]
 })
 export class AppModule {}
