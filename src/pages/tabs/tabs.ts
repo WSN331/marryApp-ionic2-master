@@ -8,6 +8,8 @@ import {Memory} from "../../util/Memory";
 import {PeoplePage} from "../perlist/people";
 import {MyHttp} from "../../util/MyHttp";
 
+import { Buffer } from 'buffer';
+import {MyStorage} from "../../util/MyStorage";
 
 
 @Component({
@@ -24,11 +26,16 @@ export class TabsPage {
 
   messageCount;
 
+
+  public realtime;
+  public mySelf;
+  public hateList;
+
   icons: Array<string> = ["tab-home", "tab-message", "tab-user"];
 
   constructor(public comCate:CommunicateService,public memory:Memory,
               public platform: Platform, public events: Events,
-              private myHttp : MyHttp) {
+              private myHttp : MyHttp,public myStorage:MyStorage) {
     //初始化聊天
     this.comCate.init();
     this.getHateList()
@@ -37,17 +44,38 @@ export class TabsPage {
       this.receiveMessageAndroid();
     }else if(this.platform.is("ios")){
       this.receiveMessageIOS();
+      this.findAndSendIapCert();
     }
 
     this.events.subscribe('e-tabs-message-change', (messageCount) => {
       //this.receiveMessage();
       this.messageCount = messageCount == 0 ? null : messageCount;
     })
+
+    this.events.subscribe('e-tabs-iapCertificate', (certificate) => {
+      this.iapCertificate(certificate)
+    })
+
   }
 
-  public realtime;
-  public mySelf;
-  public hateList;
+  findAndSendIapCert() {
+    this.myStorage.getIapCertificate(this.memory.getUser().id).then(data=> {
+      if (data != null) {
+        for (let certificate of  data) {
+          console.log("*******certificate:")
+          console.log(JSON.parse(certificate))
+          if (certificate["used"] == 0) {
+            this.iapCertificate(certificate)
+          }
+        }
+      }
+    })
+    setTimeout(() => {
+      this.findAndSendIapCert()
+    },20000);
+  }
+
+
   /**
    * 获取讨厌的列表
    */
@@ -178,7 +206,32 @@ export class TabsPage {
     return isPingbi
   }
 
+  /**
+   *
+   * @param receipt
+   */
+  iapCertificate (certificate) {
+    let receiptBase64 = new Buffer(JSON.stringify(certificate["receipt"])).toString('base64');
+    this.myHttp.post(MyHttp.URL_IAP_CERTIFICATE,{
+      userId: this.memory.getUser().id,
+      receipt: receiptBase64,
+      chooseEnv: true,
+      vipId: certificate["vipId"]
+    },(data)=>{
+      console.log(data)
+      let result = data.iapCertificateResult;
+      if(result != null && result.status == "0") {
+        alert("支付成功");
+        this.events.subscribe("e-user-introduce");
+      }
+      certificate["used"] = 1;
+    });
+  }
 }
+
+
+
+
 
 /*      this.realtime.createIMClient(this.mySelf+'').then((my)=>{
         console.log("查询未读消息23")

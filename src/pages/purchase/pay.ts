@@ -165,7 +165,7 @@ export class PayPage{
           .then((data)=> {
             console.log(data);
             loader.dismiss();
-            this.iapCertificate(data, order.id);
+            this.saveCertificate(data, order.id);
 
           })
           .catch((err)=> {
@@ -202,25 +202,11 @@ export class PayPage{
   }
 
 
-  /**
-   *
-   * @param receipt
-     */
-  iapCertificate (receipt, vipId) {
-    let receiptBase64 = new Buffer(JSON.stringify(receipt)).toString('base64');
-    this.myHttp.post(MyHttp.URL_IAP_CERTIFICATE,{
-      userId: this.memory.getUser().id,
-      receipt: receiptBase64,
-      chooseEnv: true,
-      vipId: vipId
-    },(data)=>{
-      console.log(data)
-      let result = data.iapCertificateResult;
-      if(result != null && result.status == "0") {
-        this.events.subscribe("e-user-introduce");
-        alert("支付成功")
-      }
-    });
+  saveCertificate(receipt, vipId) {
+    let userId = this.memory.getUser().id;
+    let certificate = this.myStorage.addIapCertificate(userId, receipt, vipId);
+
+    this.events.publish("e-tabs-iapCertificate", certificate)
   }
 
 

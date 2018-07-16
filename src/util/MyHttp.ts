@@ -17,21 +17,21 @@ export class MyHttp {
    * 服务器的IP
    * @type {string}
    */
-  // static IP = "api.xiehouapp.com"
-  static IP = "localhost"
+  static IP = "api.xiehouapp.com"
+  // static IP = "localhost"
   // static IP = "192.168.2.232"
 
   /**s
    * 服务端端口号
    * @type {number}
    */
-  static PORT = 8080;
+  static PORT = 443;
 
   /**
    *
    * @type {string}
      */
-  static PROTOCOL = "http";
+  static PROTOCOL = "https";
 
   /**
    * 服务端的接口名
@@ -134,7 +134,7 @@ export class MyHttp {
   static URL_GET_APP_DOWNLOAD_URL = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/version/getAppDownloadUrl";
 
   // ios内购验证
-  static URL_IAP_CERTIFICATE = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/iap/iapCertificate";
+  static URL_IAP_CERTIFICATE = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/iap/newIapCertificate";
   //获取会员价格
   static URL_ORDER_PRICE = MyHttp.PROTOCOL + "://"  + MyHttp.IP + ":" + MyHttp.PORT + "/" + MyHttp.SERVER_NAME + "/aliPay/getVipTypeList";
   //获取订单信息

@@ -116,6 +116,25 @@ export class MyStorage {
     return this.storage.get("lastVisiterTime:" + userId);
   }
 
+  public getIapCertificate(userId) {
+    return this.storage.get("iapCertificate:" + userId);
+  }
+
+  public addIapCertificate(userId, receipt, vipId) {
+    let certificate = {
+      receipt : receipt,
+      vipId : vipId,
+      used: 0
+    };
+    this.getIapCertificate(userId).then((data) => {
+      if (data == null) {
+        data = [];
+      }
+      data.old.push(certificate);
+    })
+    return certificate;
+  }
+
   addConversation(conversation) {
   }
 

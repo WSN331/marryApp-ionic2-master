@@ -128,16 +128,16 @@ export class UserDetail2Page {
       }
     }
 
-    json["school"] = this.selectOption['schoolSelect'].id
-    json["schoolProvince"] = this.selectOption['schoolSelect'].provinceId;
+    json["school"] = this.selectOption['schoolSelect']["id"]
+    json["schoolProvince"] = this.selectOption['schoolSelect']["provinceId"];
 
-    json["newDistrict"] = this.selectOption['newDistrictSelect'].id
-    json["newDistrictCity"] = this.selectOption['newDistrictSelect'].cityId;
-    json["newDistrictProvince"] = this.selectOption['newDistrictSelect'].provinceId;
+    json["newDistrict"] = this.selectOption['newDistrictSelect']["id"]
+    json["newDistrictCity"] = this.selectOption['newDistrictSelect']["cityId"];
+    json["newDistrictProvince"] = this.selectOption['newDistrictSelect']["provinceId"];
 
-    json["oldDistrict"] = this.selectOption['oldDistrictSelect'].id
-    json["oldDistrictCity"] = this.selectOption['oldDistrictSelect'].cityId;
-    json["oldDistrictProvince"] = this.selectOption['oldDistrictSelect'].provinceId;
+    json["oldDistrict"] = this.selectOption['oldDistrictSelect']["id"]
+    json["oldDistrictCity"] = this.selectOption['oldDistrictSelect']["cityId"];
+    json["oldDistrictProvince"] = this.selectOption['oldDistrictSelect']["provinceId"];
 
     console.log(json)
     console.log("json数据展示")
