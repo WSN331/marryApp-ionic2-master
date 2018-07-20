@@ -41,7 +41,7 @@
 
   <ion-item>
     <ion-label>出生日期</ion-label>
-    <ion-datetime text-right placeholder="请选择" displayFormat="YYYY-MM-DD" [(ngModel)]="baseInfo.birthday"></ion-datetime>
+    <ion-datetime text-right placeholder="请选择" displayFormat="YYYY-MM-DD" max="{{maxTime}}" [(ngModel)]="baseInfo.birthday"></ion-datetime>
   </ion-item>
 
   <div class="line"></div>

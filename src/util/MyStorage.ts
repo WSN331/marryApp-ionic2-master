@@ -117,22 +117,51 @@ export class MyStorage {
   }
 
   public getIapCertificate(userId) {
+    console.log("*******certificate get:" + userId)
     return this.storage.get("iapCertificate:" + userId);
   }
 
   public addIapCertificate(userId, receipt, vipId) {
+    console.log("*******certificate add:")
+
     let certificate = {
       receipt : receipt,
       vipId : vipId,
       used: 0
     };
     this.getIapCertificate(userId).then((data) => {
+      console.log("*******certificate add then:" + data)
       if (data == null) {
+        console.log("*******certificate add then data is null")
+        console.log("*******certificate add then data is null")
         data = [];
       }
-      data.old.push(certificate);
+      data.push(certificate);
+      console.log("*******certificate add:" + certificate)
+      this.storage.set("iapCertificate:" + userId, data)
+    }).catch((error) => {
+      console.log("*******certificate add error:" + error)
     })
     return certificate;
+  }
+
+  usedIapCertificate(userId, certificate: any) {
+    this.getIapCertificate(userId).then((data) => {
+      console.log("*******certificate used then:" + data)
+      if (data == null) {
+        console.log("*******certificate used then data is null")
+        data = [];
+      } else {
+        for (let cert of data) {
+          console.log("*******certificate used foreach compare " + cert["transactionId"] == certificate["transactionId"])
+          if (cert["transactionId"] == certificate["transactionId"]) {
+            console.log("*******certificate used this one :" + JSON.stringify(cert))
+            cert["used"] = 1
+          }
+        }
+      }
+      this.storage.set("iapCertificate:" + userId, data)
+    })
   }
 
   addConversation(conversation) {

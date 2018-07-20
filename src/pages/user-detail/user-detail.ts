@@ -35,6 +35,8 @@ export class UserDetailPage {
      */
   private userId;
 
+  private maxTime;
+
   /**
    * 待填写的字符串
    * @type {{income: string[], hopeTime: string[], edu: string[]}}
@@ -49,6 +51,7 @@ export class UserDetailPage {
               public events: Events, public alertCtrl: AlertController, public calculateService: CalculateService) {
     this.getUserId();
     this.getUserInfo();
+    this.maxTime = this.calculateService.getMaxTimeChooser();
   }
 
   getUserId() {

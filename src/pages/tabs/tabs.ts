@@ -59,11 +59,13 @@ export class TabsPage {
   }
 
   findAndSendIapCert() {
+    console.log("*******certificateinging:")
     this.myStorage.getIapCertificate(this.memory.getUser().id).then(data=> {
+      console.log("*******certificateinging:" + JSON.stringify(data))
       if (data != null) {
         for (let certificate of  data) {
-          console.log("*******certificate:")
-          console.log(JSON.parse(certificate))
+          console.log("*******certificate:" + JSON.stringify(certificate))
+          console.log("*******certificate use:" + JSON.stringify(certificate["used"]))
           if (certificate["used"] == 0) {
             this.iapCertificate(certificate)
           }
@@ -225,7 +227,10 @@ export class TabsPage {
         this.events.subscribe("e-user-introduce");
       }
       certificate["used"] = 1;
-    });
+      this.myStorage.usedIapCertificate(this.memory.getUser().id, certificate)
+      console.log("*******certificate after send use:" + JSON.stringify(certificate["used"]))
+
+    }, null, true);
   }
 }
 

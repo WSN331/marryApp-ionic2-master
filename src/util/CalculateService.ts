@@ -101,7 +101,7 @@ export class CalculateService {
     let month = Number(birth[1]);
     let day = Number(birth[2]);
     let now = new Date();
-    return (now.getMonth() + 1 > month || (now.getMonth() == month && now.getDay() == day)) ? now.getFullYear()-year : now.getFullYear()-year-1;
+    return (now.getMonth() + 1 > month || (now.getMonth() == month && now.getUTCDate() == day)) ? now.getFullYear()-year : now.getFullYear()-year-1;
   }
 
   /**
@@ -150,5 +150,26 @@ export class CalculateService {
 
   public isNotIncome(item){
     return item != undefined && item != null && item != 'undefined' && item != '' && item!='还是学生无固定收入' && item!='还是学生没有收入';
+  }
+
+  public getMaxTimeChooser() {
+    let now = new Date();
+    let maxTime = "";
+    let year = now.getFullYear() - 18;
+    maxTime = maxTime + year;
+    let month = now.getMonth() + 1;
+    if (month < 10) {
+      maxTime = maxTime + "-0" + month
+    } else {
+      maxTime = maxTime + "-" + month
+    }
+    let day = now.getUTCDate();
+    if (day < 10) {
+      maxTime = maxTime + "-0" + day
+    } else {
+      maxTime = maxTime + "-" + day
+    }
+    console.log(maxTime)
+    return maxTime
   }
 }

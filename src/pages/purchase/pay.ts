@@ -163,7 +163,7 @@ export class PayPage{
         this.iap
           .buy(products[0].productId)
           .then((data)=> {
-            console.log(data);
+            console.log("*******certificate buy:" + data);
             loader.dismiss();
             this.saveCertificate(data, order.id);
 
