@@ -1,0 +1,128 @@
+page-rzthree {
+  /*标题*/
+  /*3.6px = 1vw*/
+  .head {
+    background-color: #ffffff;
+    height: 44px;
+  }
+  .head_back {
+    position: absolute;
+    height: 44px;
+    vertical-align: middle;
+    z-index: 10;
+  }
+  .head_back span {
+    height: 100%;
+    vertical-align: middle;
+    display: inline-block
+  }
+  .head_back img {
+    width: 22px;
+    vertical-align: middle;
+  }
+  .head_title {
+    font-size: 18px;
+    text-align: center;
+    line-height: 44px;
+    color: #ff975a;
+    position: absolute;
+    width: 100%;
+  }
+  .head_tg{
+    font-size: 15px;
+    line-height: 44px;
+    margin-left: 80%;
+    position: relative;
+  }
+
+  .line{
+    height: 1px;
+    background-color:#eeeeee;
+  }
+
+  /*头像上传部分*/
+  .all-pic{
+    margin-top: 5%;
+  }
+  .all-pic p{
+    font-size: 13px;
+  }
+  .divItem1{
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    width: 30%;
+    margin-left: 35%;
+  }
+
+
+
+  //下一步按钮
+  .btn_detail{
+    margin: 10% 10%;
+    background-image:url('../assets/img/btn_background.png');
+    border: none;
+    text-align: center;
+    width: 80%;
+    border-radius:10px;
+    background-size: cover;
+    box-shadow: none;
+  }
+  .btn_detail:active{
+    background-color:#ffaa00;
+    color:white;
+  }
+  .btn_detail:hover{
+    background-color:#ffaa00;
+    color:white;
+  }
+
+  $select: 'md' 'ios';
+  @for $i from 1 to 3 {
+    /*细节*/
+    .item-#{nth($select, $i)}.item-block .item-inner {
+      padding-right: 8px;
+      border-bottom: 0.55px solid #eeeeee;
+    }
+    .header-#{nth($select, $i)}::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before {
+      height: 0px;
+      border-bottom: 0px solid #eeeeee;
+    }
+    .item-#{nth($select, $i)}.item-input.item-input-has-focus .item-inner,
+    .item-#{nth($select, $i)}.item-input.input-has-focus .item-inner {
+      border-bottom-color: transparent;
+      -webkit-box-shadow: inset 0 -1px 0 0 transparent;
+      box-shadow: inset 0 -1px 0 0 transparent;
+    }
+
+    .item-input .label-#{nth($select, $i)}, .item-select .label-#{nth($select, $i)}, .item-datetime .label-#{nth($select, $i)} {
+      font-size:15px;
+      color: #333333;
+    }
+
+    .text-input-#{nth($select, $i)} {
+      font-size:13px;
+      padding-top: 0px;
+      padding-left: 10%;
+      color: #333333;
+    }
+
+    .item-#{nth($select, $i)}.item-block .item-inner {
+      border-bottom: 0px solid #eeeeee;
+    }
+    .button-#{nth($select, $i)} {
+      background-color: #ff975a;
+    }
+
+    .select-#{nth($select, $i)} {
+      padding: 13px 8px 13px 16px;
+      font-size: 13px;
+    }
+
+    .item-#{nth($select, $i)} {
+      padding-left: 16px;
+      margin-top: -5%;
+    }
+  }
+
+}

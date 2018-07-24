@@ -49,6 +49,7 @@ export class CredListPage {
     this.myHttp.post(MyHttp.URL_CRED_INFO_BY_TITLE, {
       userId: this.memory.getUser().id
     }, (data) => {
+      console.log("data")
       console.log(data)
       this.myCred = data.myCred;
       this.credTypes = data.credTypes;

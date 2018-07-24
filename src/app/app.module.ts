@@ -55,6 +55,10 @@ import {ForgetPage} from "../pages/forget/forget";
 import {LargeImagePage} from "../pages/large-image/large-image"
 import {MatchmakerPage} from "../pages/matchmaker/matchmaker";
 import {GoagoPage} from "../pages/goago/goago";
+import {RzOnePage} from "../pages/rzone/rzone";
+import {RzTwoPage} from "../pages/rztwo/rztwo";
+import {RzTwoRgPage} from "../pages/rztworg/rztowrg";
+import {RzThreePage} from "../pages/rzthree/rzthree";
 
 @NgModule({
   declarations: [
@@ -88,7 +92,11 @@ import {GoagoPage} from "../pages/goago/goago";
     AddTipPage,
     GoagoPage,
     SafePage,
-    DeleteUserPage
+    DeleteUserPage,
+    RzOnePage,
+    RzTwoPage,
+    RzTwoRgPage,
+    RzThreePage
   ],
   imports: [
     BrowserModule,
@@ -134,7 +142,11 @@ import {GoagoPage} from "../pages/goago/goago";
     AddTipPage,
     GoagoPage,
     SafePage,
-    DeleteUserPage
+    DeleteUserPage,
+    RzOnePage,
+    RzTwoPage,
+    RzTwoRgPage,
+    RzThreePage
   ],
   providers: [
     StatusBar,

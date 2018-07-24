@@ -5,6 +5,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import {StartPage} from "../pages/start/start";
 import {TabsPage} from "../pages/tabs/tabs";
+import {AddCredPage} from "../pages/addCred/addCred";
+import {LoginPage} from "../pages/login/login";
+import {RzOnePage} from "../pages/rzone/rzone";
 
 
 @Component({

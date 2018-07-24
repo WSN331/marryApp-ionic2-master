@@ -10,6 +10,10 @@ import {EveryPersonPage} from "../every-person/every-person";
 import {Memory} from "../../util/Memory";
 import {MyStorage} from "../../util/MyStorage";
 import {TabsPage} from "../tabs/tabs";
+import {RzOnePage} from "../rzone/rzone";
+import {RzTwoPage} from "../rztwo/rztwo";
+import {RzTwoRgPage} from "../rztworg/rztowrg";
+import {RzThreePage} from "../rzthree/rzthree";
 
 
 @Component({
@@ -40,7 +44,8 @@ export class StartPage {
   }
 
   goToRegister() {
-    this.navCtrl.push(RegisterPage);
+    //this.navCtrl.push(RegisterPage);
+    this.navCtrl.push(RzOnePage);
   }
 
   goToSeeEachPerson() {

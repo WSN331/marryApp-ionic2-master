@@ -26,7 +26,6 @@ export class HomePage {
   @ViewChild(Content) content: Content;　　//获取界面Content的实例对象
   private PAGE_SIZE = 10;
 
-  //
   public nullUserID = Math.ceil(Math.random()*1000)
 
   /**

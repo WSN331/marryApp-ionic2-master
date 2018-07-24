@@ -1,0 +1,53 @@
+<ion-header>
+  <div class="head">
+    <div class="head_back" (click)="back()">
+      <span></span>
+      <img src="assets/img/back.png"/>
+    </div>
+
+    <div class="head_title">
+      身份认证(2/3)
+    </div>
+
+    <div class="head_tg" >
+      <span (click)="popKuang">跳过</span>
+    </div>
+
+    <div class="line">
+    </div>
+  </div>
+</ion-header>
+
+<ion-content padding>
+
+  <div class="div_intro">
+    <p>*为什么要身份认证？</p>
+    <p>邂逅斯年是一款校园严肃交友的应用，为了用户保证身份的真实性，给大家提供一个纯净的交友环境。</p>
+    <p>关于隐私安全：</p>
+    <p>您上传的任何身份证照片等资料，仅供审核需要且他人无法查看，敬请放心。</p>
+  </div>
+
+  <!--照片认证部分-->
+  <div class="all-pic">
+    <p class="p1">请上传认证照片</p>
+
+    <!--身份证正面-->
+    <div class="divItem1">
+      <img src="assets/img/btn_add_img.png" (click)="addIcon()">
+      <p>身份证正面</p>
+    </div>
+    <!--身份证反面-->
+    <div class="divItem2">
+      <img src="assets/img/btn_add_img.png" (click)="addIcon()">
+      <p>身份证反面</p>
+    </div>
+
+    <p class="p2">*我们会进行严格的人工审核，审核通过后会第一时间通知您。</p>
+  </div>
+
+
+</ion-content>
+
+<ion-footer>
+  <button class="btn_detail" ion-button full >下一步</button>
+</ion-footer>

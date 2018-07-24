@@ -104,4 +104,5 @@
     <plugin name="cordova-plugin-background-fetch" spec="^5.4.1" />
     <engine name="android" spec="^6.2.3" />
     <engine name="ios" spec="^4.5.4" />
+    <plugin name="phonegap-plugin-local-notification" spec="~1.0.1" />
 </widget>

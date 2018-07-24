@@ -1,0 +1,54 @@
+<ion-header>
+  <div class="head">
+    <div class="head_back" (click)="back()">
+      <span></span>
+      <img src="assets/img/back.png"/>
+    </div>
+
+    <div class="head_title">
+      身份认证(2/3)
+    </div>
+
+    <div class="head_tg" >
+      <span (click)="popKuang()">跳过</span>
+    </div>
+
+    <div class="line">
+    </div>
+  </div>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-item no-lines>
+    <ion-label>真实姓名</ion-label>
+    <!--[(ngModel)]="baseInfo.nickName"-->
+    <ion-input type="text" text-right placeholder="请输入"></ion-input>
+  </ion-item>
+
+  <ion-item no-lines>
+    <ion-label>身份证号</ion-label>
+    <!--[(ngModel)]="baseInfo.nickName"-->
+    <ion-input type="text" text-right placeholder="请输入"></ion-input>
+  </ion-item>
+
+  <div>
+    <p>请如实填写身份证信息，提交后将晦气支付宝APP进行刷脸认证</p>
+    <p class="div_p">认证不通过？试试
+      <span>人工审核认证>></span>
+    </p>
+  </div>
+
+  <div class="div_intro">
+    <p>*为什么要身份认证？</p>
+    <p>邂逅斯年是一款校园严肃交友的应用，为了用户保证身份的真实性，给大家提供一个纯净的交友环境。</p>
+    <p>关于隐私安全：</p>
+    <p>您上传的任何身份证照片等资料，仅供审核需要且他人无法查看，敬请放心。</p>
+  </div>
+
+
+</ion-content>
+
+<ion-footer>
+  <button class="btn_detail" ion-button full >下一步</button>
+</ion-footer>

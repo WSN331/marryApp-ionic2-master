@@ -1,16 +1,16 @@
 import {Component, ViewChild} from '@angular/core';
 import {Platform, Tabs, Events} from "ionic-angular";
+//import {PhonegapLocalNotification} from '@ionic-native/phonegap-local-notification';
 
-import { UserIntroducePage } from '../user-introduce/user-introduce';
-import { HomePage } from '../home/home';
 import {CommunicateService} from "../../util/CommunicateService";
 import {Memory} from "../../util/Memory";
-import {PeoplePage} from "../perlist/people";
 import {MyHttp} from "../../util/MyHttp";
-
-import { Buffer } from 'buffer';
+import {Buffer} from 'buffer';
 import {MyStorage} from "../../util/MyStorage";
 
+import {PeoplePage} from "../perlist/people";
+import { UserIntroducePage } from '../user-introduce/user-introduce';
+import { HomePage } from '../home/home';
 
 @Component({
   selector:'page-tabs',
@@ -35,7 +35,8 @@ export class TabsPage {
 
   constructor(public comCate:CommunicateService,public memory:Memory,
               public platform: Platform, public events: Events,
-              private myHttp : MyHttp,public myStorage:MyStorage) {
+              private myHttp : MyHttp,public myStorage:MyStorage,
+              ) {
     //初始化聊天
     this.comCate.init();
     this.getHateList()
@@ -77,6 +78,20 @@ export class TabsPage {
     },20000);
   }
 
+/*  localNotification(message){
+    this.localnote.requestPermission().then(
+      (permission) => {
+        if (permission === 'granted') {
+          // Create the notification
+          this.localnote.create('My Title', {
+            tag: message,
+            body: 'My body',
+            icon: 'assets/icon/favicon.ico'
+          });
+        }
+      }
+    );
+  }*/
 
   /**
    * 获取讨厌的列表
@@ -113,7 +128,10 @@ export class TabsPage {
             console.log(conv.id, conv.name, conv.unreadMessagesCount+"这是查询未读消息的，请问哪里还有",conv);
             if(conv.unreadMessagesCount>0 && !this.isPingbiAndroid(conv)){
               console.log("您有未读消息请注意！");
+              //this.localNotification(conv.message)
+
               if(conv.id == "5a93eced1579a3003847f3c2"){
+                //这个是系统消息
                 this.memory.setMsg(true);
               }
               for(var i = 0; i < unreadConversions.length;i++){
@@ -152,6 +170,9 @@ export class TabsPage {
             console.log("查询未读消息2")
             console.log(conversations)
             console.log(conversations.cid)
+
+            //this.localNotification(conversations.message)
+
             if(!this.isPingbiIOS(conversations.from)){
               //有系统消息
               if(conversations.cid == "5a93eced1579a3003847f3c2"){

@@ -37,6 +37,10 @@ export class AddCredPage {
   getTitle() {
     this.title = this.navParams.get('title')
     this.types = this.navParams.get('types')
+    console.log("title:")
+    console.log(this.title)
+    console.log("type:")
+    console.log(this.types)
   }
 
   /**

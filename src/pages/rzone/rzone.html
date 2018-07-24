@@ -1,0 +1,83 @@
+<ion-header>
+  <div class="head">
+    <div class="head_back" (click)="back()">
+      <span></span>
+      <img src="assets/img/back.png"/>
+    </div>
+    <div class="head_title">
+      基本资料(1/3)
+    </div>
+    <div class="line">
+    </div>
+  </div>
+</ion-header>
+
+<ion-content padding>
+
+  <!--全部头像图片-->
+  <div class="all-pic">
+    <div *ngIf="havePic()">
+      <img src="imgService.safeImage(base64)" (click)="addPicture()">
+    </div>
+    <div>
+      <img src="assets/img/btn_add_img.png" (click)="addPicture()">
+    </div>
+    <p>上传真实头像才能通过审核</p>
+  </div>
+
+  <ion-item no-lines>
+    <ion-label>昵称</ion-label>
+    <ion-input type="text" [(ngModel)]="json.nickName" text-right placeholder="请输入（最多8个汉字）"></ion-input>
+  </ion-item>
+
+  <ion-item no-lines>
+    <ion-label>性别</ion-label>
+    <ion-select [(ngModel)]="json.sex" placeholder="请选择">
+      <ion-option value="1">男</ion-option>
+      <ion-option value="0">女</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>出生日期</ion-label>
+    <ion-datetime text-right placeholder="请选择" displayFormat="YYYY-MM-DD" max="{{maxTime}}" [(ngModel)]="json.birthday"></ion-datetime>
+  </ion-item>
+
+  <ion-label class="mylabel">故乡：</ion-label>
+  <ion-item no-lines>
+    <!--省-->
+    <ion-select [(ngModel)]="selectOption.oldDistrictSelect.provinceId"
+                (ngModelChange)="getCityList('oldDistrictSelect')">
+      <ion-option *ngFor="let province of selectOption.provinceList" value="{{province.id}}">
+        {{province.name}}
+      </ion-option>
+    </ion-select>
+    <!--市-->
+    <ion-select [(ngModel)]="selectOption.oldDistrictSelect.cityId"
+                (ngModelChange)="getDistrictList('oldDistrictSelect')">
+      <ion-option *ngFor="let city of selectOption.oldDistrictSelect.cityList" value="{{city.id}}">
+        {{city.name}}
+      </ion-option>
+    </ion-select>
+    <!--区-->
+    <ion-select [(ngModel)]="selectOption.oldDistrictSelect.id">
+      <ion-option *ngFor="let district of selectOption.oldDistrictSelect.districtList" value="{{district.id}}">
+        {{district.name}}
+      </ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item no-lines>
+    <ion-label>是否毕业</ion-label>
+    <ion-select [(ngModel)]="json.graduation" placeholder="请选择">
+      <ion-option value="1">是</ion-option>
+      <ion-option value="0">否</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <span>上述信息必须填写完整(若没有地区选择可为空)</span>
+</ion-content>
+
+<ion-footer no-padding>
+  <button class="btn_detail" ion-button full (click)="save()">确认</button>
+</ion-footer>
