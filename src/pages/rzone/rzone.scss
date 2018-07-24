@@ -82,7 +82,7 @@ page-rzone {
 
   //下一步按钮
   .btn_detail{
-    margin: 10% 10%;
+    margin: 5% 10% 5% 10%;
     background-image:url('../assets/img/btn_background.png');
     border: none;
     text-align: center;
@@ -99,6 +99,10 @@ page-rzone {
     background-color:#ffaa00;
     color:white;
   }
+  .prompt{
+    text-align: center;
+    font-size: 10px;
+  }
 
   $select: 'md' 'ios';
   @for $i from 1 to 3 {
@@ -110,9 +114,6 @@ page-rzone {
     .header-#{nth($select, $i)}::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before {
       height: 0px;
       border-bottom: 0px solid #eeeeee;
-    }
-    .footer.footer-#{nth($select, $i)}{
-      background: transparent;
     }
 
     .item-#{nth($select, $i)}.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-#{nth($select, $i)}.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {

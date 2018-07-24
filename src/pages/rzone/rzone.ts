@@ -9,6 +9,7 @@ import {Memory} from "../../util/Memory";
 import {ImgService} from "../../util/ImgService";
 import {MyHttp} from "../../util/MyHttp";
 import {CalculateService} from "../../util/CalculateService";
+import {RzTwoPage} from "../rztwo/rztwo";
 
 
 @Component({
@@ -61,6 +62,12 @@ export class RzOnePage {
     this.json.oldDistrict = this.selectOption['oldDistrictSelect']["id"]
     this.json.oldDistrictCity = this.selectOption['oldDistrictSelect']["cityId"];
     this.json.oldDistrictProvince = this.selectOption['oldDistrictSelect']["provinceId"];
+    for(let name in this.json){
+      //判断里面所有选项不为空
+    }
+    //还有一个照片
+
+    this.navCtrl.push(RzTwoPage)
   }
 
   //获取登录用户的id

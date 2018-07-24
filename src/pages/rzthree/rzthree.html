@@ -22,15 +22,15 @@
 
   <ion-item no-lines>
     <ion-label>是否毕业</ion-label>
-    <ion-select [(ngModel)]="graduation">
-      <ion-option value="yes">是</ion-option>
-      <ion-option value="no">否</ion-option>
+    <ion-select [(ngModel)]="graduation" placeholder="请选择">
+      <ion-option value="1">是</ion-option>
+      <ion-option value="0">否</ion-option>
     </ion-select>
   </ion-item>
 
   <ion-item no-lines>
     <ion-label>学校</ion-label>
-    <ion-select [(ngModel)]="school">
+    <ion-select [(ngModel)]="school" placeholder="请选择">
       <ion-option value="hd">杭州电子科技大学</ion-option>
     </ion-select>
   </ion-item>
@@ -47,14 +47,14 @@
 
   <ion-item no-lines>
     <ion-label>学历</ion-label>
-    <ion-select [(ngModel)]="education">
+    <ion-select [(ngModel)]="education" placeholder="请选择">
       <ion-option value="yjs">研究生</ion-option>
     </ion-select>
   </ion-item>
 
   <ion-item no-lines>
     <ion-label>入学年级</ion-label>
-    <ion-select [(ngModel)]="year">
+    <ion-select [(ngModel)]="year" placeholder="请选择">
       <ion-option value="2017">2017</ion-option>
     </ion-select>
   </ion-item>

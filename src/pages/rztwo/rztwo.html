@@ -35,7 +35,7 @@
   <div>
     <p>请如实填写身份证信息，提交后将晦气支付宝APP进行刷脸认证</p>
     <p class="div_p">认证不通过？试试
-      <span>人工审核认证>></span>
+      <span (click)="peoRz()">人工审核认证>></span>
     </p>
   </div>
 
@@ -50,5 +50,5 @@
 </ion-content>
 
 <ion-footer>
-  <button class="btn_detail" ion-button full >下一步</button>
+  <button class="btn_detail" ion-button full (click)="next()">下一步</button>
 </ion-footer>

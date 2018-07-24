@@ -8,6 +8,8 @@ import { Events } from 'ionic-angular';
 import {Memory} from "../../util/Memory";
 import {ImgService} from "../../util/ImgService";
 import {MyHttp} from "../../util/MyHttp";
+import {RzThreePage} from "../rzthree/rzthree";
+import {RzTwoRgPage} from "../rztworg/rztowrg";
 
 
 @Component({
@@ -20,13 +22,20 @@ export class RzTwoPage {
               public memory: Memory, public events: Events, public navParams: NavParams, public alertCtrl: AlertController) {
   }
 
-  /**
-   * 返回
-   */
+
+  //下一步
+  next(){
+    this.navCtrl.push(RzThreePage)
+  }
+
+  //返回
   back(){
     this.navCtrl.pop();
   }
-
+  //人工认证
+  peoRz(){
+    this.navCtrl.push(RzTwoRgPage)
+  }
   /**
    * 弹框
    */
@@ -36,7 +45,7 @@ export class RzTwoPage {
       buttons: [{
         text:'稍后认证',
         handler: ()=> {
-          //this.navCtrl.push(PayPage);
+          this.navCtrl.push(RzThreePage);
         }
       },
         {

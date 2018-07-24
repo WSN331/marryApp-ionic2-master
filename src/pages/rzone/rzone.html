@@ -19,7 +19,7 @@
     <div *ngIf="havePic()">
       <img src="imgService.safeImage(base64)" (click)="addPicture()">
     </div>
-    <div>
+    <div *ngIf="!havePic()">
       <img src="assets/img/btn_add_img.png" (click)="addPicture()">
     </div>
     <p>上传真实头像才能通过审核</p>
@@ -75,9 +75,10 @@
     </ion-select>
   </ion-item>
 
-  <span>上述信息必须填写完整(若没有地区选择可为空)</span>
+
 </ion-content>
 
 <ion-footer no-padding>
+  <p class="prompt">上述信息必须填写完整(若没有地区选择可为空)</p>
   <button class="btn_detail" ion-button full (click)="save()">确认</button>
 </ion-footer>
